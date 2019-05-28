@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   Text(
                     _isCollapsed ? 'Hami Nirogi' : '',
-                    style: Theme.of(context).primaryTextTheme.title,
+                    style: Theme.of(context).textTheme.headline,
                   ),
                   SizedBox(
                     width: 14,
@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> {
           heading,
           style: TextStyle(
             fontSize:
-                Theme.of(context).textTheme.display1.fontSize.toDouble() * 0.75,
+                Theme.of(context).textTheme.display1.fontSize.toDouble() * 0.55,
             fontFamily: 'Montserrat',
           ),
         ),
@@ -211,7 +211,7 @@ class _HomePageState extends State<HomePage> {
               width: MediaQuery.of(context).size.width,
               height: 165,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).primaryColor,
               ),
               child: Row(
                 children: <Widget>[
@@ -233,6 +233,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget buildTopNews() {
     return Container(
+      padding: EdgeInsets.only(bottom: 20),
       child: ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),

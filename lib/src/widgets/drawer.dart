@@ -121,7 +121,7 @@ class AppDrawer extends StatelessWidget {
       ),
       title: Text(
         name,
-        style: Theme.of(context).primaryTextTheme.title,
+        style: Theme.of(context).textTheme.body1,
       ),
     );
   }

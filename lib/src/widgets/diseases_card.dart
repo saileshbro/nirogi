@@ -47,11 +47,9 @@ class DiseaseCard extends StatelessWidget {
               child: Text(
                 disease.name,
                 style: TextStyle(
-                  fontFamily:
-                      Theme.of(context).primaryTextTheme.title.fontFamily,
-                  color: Colors.white,
-                  fontSize: Theme.of(context).primaryTextTheme.title.fontSize,
-                ),
+                    fontFamily: Theme.of(context).textTheme.headline.fontFamily,
+                    color: Colors.white,
+                    fontSize: 18),
               ),
             ),
           ],

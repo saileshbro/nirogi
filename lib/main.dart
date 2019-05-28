@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
       title: 'Hami Nirogi',
       debugShowCheckedModeBanner: false,
-      theme: lightTheme,
+      theme: kLightTheme,
     );
   }
 }

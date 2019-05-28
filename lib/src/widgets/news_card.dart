@@ -10,6 +10,7 @@ class NewsCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8),
       child: Material(
+        borderRadius: BorderRadius.circular(7),
         elevation: 1.0,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
@@ -33,10 +34,7 @@ class NewsCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.start,
                       maxLines: 3,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.body1,
                     ),
                     SizedBox(
                       height: 10,
@@ -44,16 +42,13 @@ class NewsCard extends StatelessWidget {
                     Text(
                       news.body,
                       maxLines: 3,
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.normal,
-                      ),
+                      style: Theme.of(context).textTheme.body2,
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Row(
                           children: <Widget>[
@@ -64,7 +59,10 @@ class NewsCard extends StatelessWidget {
                             SizedBox(
                               width: 5,
                             ),
-                            Text(news.source),
+                            Text(
+                              news.source,
+                              style: Theme.of(context).textTheme.body2,
+                            ),
                           ],
                         ),
                         Row(
@@ -76,7 +74,10 @@ class NewsCard extends StatelessWidget {
                             SizedBox(
                               width: 5,
                             ),
-                            Text(news.date),
+                            Text(
+                              news.date,
+                              style: Theme.of(context).textTheme.body2,
+                            ),
                           ],
                         )
                       ],
