@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as prefix0;
 import 'package:nirogi/src/bloc/change_theme_bloc.dart';
 import 'package:nirogi/src/themes/themes.dart';
 
@@ -167,7 +168,7 @@ class AppDrawer extends StatelessWidget {
       child: ListTile(
         onTap: ModalRoute.of(context).settings.name != route
             ? () {
-                Navigator.pop(context);
+                Navigator.popUntil(context, ModalRoute.withName('/'));
                 Navigator.pushNamed(context, route);
               }
             : null,

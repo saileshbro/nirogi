@@ -34,9 +34,6 @@ ThemeData _buildLightTheme() {
           fontSize: 12),
     ),
     scaffoldBackgroundColor: Colors.white,
-    pageTransitionsTheme: PageTransitionsTheme(builders: {
-      TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-    }),
   );
 }
 
@@ -46,9 +43,6 @@ ThemeData _buildDarkTheme() {
   final ThemeData base = ThemeData.dark();
   return base.copyWith(
     highlightColor: Colors.white24,
-    pageTransitionsTheme: PageTransitionsTheme(builders: {
-      TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-    }),
     appBarTheme: AppBarTheme(
       iconTheme: IconThemeData(
         color: Colors.red[700],
