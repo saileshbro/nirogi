@@ -158,21 +158,28 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  ListTile buildListTile(
+  Container buildListTile(
       BuildContext context, String name, String imgUrl, String route) {
-    return ListTile(
-      onTap: () {
-        Navigator.pop(context);
-        Navigator.pushNamed(context, route);
-      },
-      contentPadding: EdgeInsets.only(left: 30),
-      leading: Image.asset(
-        imgUrl,
-        width: 35,
-      ),
-      title: Text(
-        name,
-        style: Theme.of(context).textTheme.body1,
+    return Container(
+      color: ModalRoute.of(context).settings.name == route
+          ? changeThemeBloc.currentState.themeData.highlightColor
+          : Colors.transparent,
+      child: ListTile(
+        onTap: ModalRoute.of(context).settings.name != route
+            ? () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, route);
+              }
+            : null,
+        contentPadding: EdgeInsets.only(left: 30),
+        leading: Image.asset(
+          imgUrl,
+          width: 35,
+        ),
+        title: Text(
+          name,
+          style: Theme.of(context).textTheme.body1,
+        ),
       ),
     );
   }
