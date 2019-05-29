@@ -25,7 +25,8 @@ class AppDrawer extends StatelessWidget {
           ),
           Column(
             children: <Widget>[
-              buildListTile(context, "Home", "assets/images/icons/home.png"),
+              buildListTile(
+                  context, "Home", "assets/images/icons/home.png", "/"),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Divider(
@@ -35,12 +36,12 @@ class AppDrawer extends StatelessWidget {
                       : Colors.blueGrey[100].withOpacity(0.3),
                 ),
               ),
-              buildListTile(
-                  context, "Diseasaes", "assets/images/icons/disease.png"),
-              buildListTile(
-                  context, "Symptoms", "assets/images/icons/symptoms.png"),
-              buildListTile(
-                  context, "Health News", "assets/images/icons/news.png"),
+              buildListTile(context, "Diseasaes",
+                  "assets/images/icons/disease.png", "/diseases"),
+              buildListTile(context, "Symptoms",
+                  "assets/images/icons/symptoms.png", "/symptoms"),
+              buildListTile(context, "Health News",
+                  "assets/images/icons/news.png", '/news'),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Divider(
@@ -50,10 +51,10 @@ class AppDrawer extends StatelessWidget {
                       : Colors.blueGrey[100].withOpacity(0.3),
                 ),
               ),
-              buildListTile(
-                  context, "About Us", "assets/images/icons/about.png"),
-              buildListTile(
-                  context, "Contact Us", "assets/images/icons/contact.png"),
+              buildListTile(context, "About Us",
+                  "assets/images/icons/about.png", "/about"),
+              buildListTile(context, "Contact Us",
+                  "assets/images/icons/contact.png", "/contact"),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Divider(
@@ -157,8 +158,13 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  ListTile buildListTile(BuildContext context, String name, String imgUrl) {
+  ListTile buildListTile(
+      BuildContext context, String name, String imgUrl, String route) {
     return ListTile(
+      onTap: () {
+        Navigator.pop(context);
+        Navigator.pushNamed(context, route);
+      },
       contentPadding: EdgeInsets.only(left: 30),
       leading: Image.asset(
         imgUrl,

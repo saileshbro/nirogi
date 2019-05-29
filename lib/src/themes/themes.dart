@@ -5,7 +5,10 @@ final ThemeData kLightTheme = _buildLightTheme();
 ThemeData _buildLightTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
-    appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.red[700])),
+    appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(color: Colors.red[700]),
+      elevation: 0.5,
+    ),
     primaryColor: Colors.white,
     accentColor: Colors.black,
     primaryIconTheme: IconThemeData(
@@ -38,7 +41,12 @@ final ThemeData kDarkTheme = _buildDarkTheme();
 ThemeData _buildDarkTheme() {
   final ThemeData base = ThemeData.dark();
   return base.copyWith(
-    appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.red[700])),
+    appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(
+        color: Colors.red[700],
+      ),
+      elevation: 0.5,
+    ),
     primaryColor: Color(0xff323639),
     scaffoldBackgroundColor: Color(0xff323639),
     canvasColor: Color(0xff323639),

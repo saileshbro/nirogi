@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nirogi/src/bloc/change_theme_bloc.dart';
 import 'package:nirogi/src/bloc/change_theme_state.dart';
 import 'package:nirogi/src/screens/homepage.dart';
+import 'package:nirogi/src/screens/screens.dart';
 
 void main() {
   runApp(MyApp(
@@ -31,8 +32,16 @@ class _MyAppState extends State<MyApp> {
       bloc: widget.bloc,
       builder: (BuildContext context, ChangeThemeState state) {
         return MaterialApp(
-          home: HomePage(),
+          // home: HomePage(),
           title: 'Hami Nirogi',
+          routes: <String, WidgetBuilder>{
+            "/": (context) => HomePage(),
+            "/diseases": (context) => DiseasesPage(),
+            "/symptoms": (context) => SymptomsPage(),
+            "/news": (context) => HealthNewsPage(),
+            "/about": (context) => AboutPage(),
+            "/contact": (context) => ContactPage(),
+          },
           debugShowCheckedModeBanner: false,
           theme: state.themeData,
         );

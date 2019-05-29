@@ -46,7 +46,6 @@ class _HomePageState extends State<HomePage> {
           return <Widget>[
             SliverAppBar(
               pinned: true,
-              elevation: 0.5,
               expandedHeight: 170,
               flexibleSpace: _isCollapsed ? null : heroClipPath(context),
               title: Row(
