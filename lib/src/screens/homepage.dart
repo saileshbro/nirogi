@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
             SliverAppBar(
               pinned: true,
               expandedHeight: 170,
-              flexibleSpace: _isCollapsed ? null : heroClipPath(context),
+              flexibleSpace: _isCollapsed ? SizedBox() : heroClipPath(context),
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                             'assets/images/icons/meditation.png',
                             width: 30,
                           )
-                        : null,
+                        : SizedBox(),
                   )
                 ],
               ),

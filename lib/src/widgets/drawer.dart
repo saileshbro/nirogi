@@ -87,7 +87,7 @@ class AppDrawer extends StatelessWidget {
                                   shape: BoxShape.circle,
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Color(0xff323639),
+                                      color: Color(0xff121212),
                                       blurRadius: 2.0,
                                       spreadRadius: 2.0,
                                     )
@@ -104,7 +104,7 @@ class AppDrawer extends StatelessWidget {
                                     bottom: 10,
                                     child: Image.asset(
                                       'assets/images/icons/check.png',
-                                      color: Color(0xff323639),
+                                      color: Color(0xff121212),
                                     ),
                                   )
                                 : SizedBox(),
@@ -120,7 +120,7 @@ class AppDrawer extends StatelessWidget {
                           children: <Widget>[
                             Container(
                               decoration: BoxDecoration(
-                                  color: Color(0xff323639),
+                                  color: Color(0xff121212),
                                   shape: BoxShape.circle,
                                   boxShadow: [
                                     BoxShadow(

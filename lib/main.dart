@@ -13,7 +13,7 @@ void main() {
 
 class MyApp extends StatefulWidget {
   final ChangeThemeBloc bloc;
-  MyApp({@required this.bloc}) : assert(bloc != null);
+  MyApp({@required this.bloc});
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -32,7 +32,6 @@ class _MyAppState extends State<MyApp> {
       bloc: widget.bloc,
       builder: (BuildContext context, ChangeThemeState state) {
         return MaterialApp(
-          // home: HomePage(),
           title: 'Hami Nirogi',
           routes: <String, WidgetBuilder>{
             "/": (context) => HomePage(),
