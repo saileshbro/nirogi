@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/bloc/change_theme_bloc.dart';
+import 'package:nirogi/src/themes/themes.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -13,7 +15,9 @@ class AppDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Image.asset(
-                    'assets/images/logos/brand-logo.png',
+                    changeThemeBloc.currentState.themeData == kDarkTheme
+                        ? 'assets/images/logos/brand-logo-light.png'
+                        : 'assets/images/logos/brand-logo-dark.png',
                   ),
                 ],
               ),
@@ -56,51 +60,86 @@ class AppDrawer extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              Column(
                 children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        height: 35,
-                        width: 35,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.black,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'Light',
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                  Text('Theme', style: Theme.of(context).textTheme.body1),
                   SizedBox(
-                    width: 35,
+                    height: 10,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Container(
-                        height: 35,
-                        width: 35,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.black,
+                      GestureDetector(
+                        onTap: changeThemeBloc.onLightThemeChange,
+                        child: Stack(
+                          overflow: Overflow.clip,
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color(0xff323639),
+                                      blurRadius: 2.0,
+                                      spreadRadius: 2.0,
+                                    )
+                                  ]),
+                              height: 60,
+                              width: 60,
+                            ),
+                            changeThemeBloc.currentState.themeData ==
+                                    kLightTheme
+                                ? Positioned(
+                                    top: 10,
+                                    left: 10,
+                                    right: 10,
+                                    bottom: 10,
+                                    child: Image.asset(
+                                      'assets/images/icons/check.png',
+                                      color: Color(0xff323639),
+                                    ),
+                                  )
+                                : SizedBox(),
+                          ],
                         ),
                       ),
                       SizedBox(
-                        height: 5,
+                        width: 30,
                       ),
-                      Text(
-                        'Dark',
-                        textAlign: TextAlign.center,
-                      ),
+                      GestureDetector(
+                        onTap: changeThemeBloc.onDarkThemeChange,
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Color(0xff323639),
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.white,
+                                      blurRadius: 2.0,
+                                      spreadRadius: 2.0,
+                                    )
+                                  ]),
+                              height: 60,
+                              width: 60,
+                            ),
+                            changeThemeBloc.currentState.themeData == kDarkTheme
+                                ? Positioned(
+                                    top: 10,
+                                    left: 10,
+                                    right: 10,
+                                    bottom: 10,
+                                    child: Image.asset(
+                                      'assets/images/icons/check.png',
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                : SizedBox(),
+                          ],
+                        ),
+                      )
                     ],
                   )
                 ],

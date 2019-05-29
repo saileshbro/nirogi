@@ -20,7 +20,7 @@ ThemeData _buildLightTheme() {
       body1: TextStyle(
         fontSize: 16,
         color: Colors.black,
-        fontFamily: 'Karla',
+        fontFamily: 'Montserrat',
         fontWeight: FontWeight.normal,
       ),
       body2: TextStyle(
@@ -56,7 +56,7 @@ ThemeData _buildDarkTheme() {
           color: Colors.white,
           fontSize: 16),
       body2: TextStyle(
-          fontFamily: 'Montserrat',
+          fontFamily: 'Karla',
           fontWeight: FontWeight.normal,
           color: Colors.white,
           fontSize: 12),

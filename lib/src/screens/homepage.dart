@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/bloc/change_theme_bloc.dart';
 import 'package:nirogi/src/models/diseases.dart';
 import 'package:nirogi/src/models/news.dart';
 import 'package:nirogi/src/models/symptoms.dart';
 import 'package:nirogi/src/themes/clippers.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
+import 'package:nirogi/src/themes/themes.dart';
 import 'package:nirogi/src/widgets/diseases_card.dart';
 import 'package:nirogi/src/widgets/drawer.dart';
 import 'package:nirogi/src/widgets/news_card.dart';
@@ -218,7 +220,9 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: Image.asset(
-                      'assets/images/logos/brand-logo.png',
+                      changeThemeBloc.currentState.themeData == kDarkTheme
+                          ? 'assets/images/logos/brand-logo-light.png'
+                          : 'assets/images/logos/brand-logo-dark.png',
                       fit: BoxFit.contain,
                     ),
                   ),

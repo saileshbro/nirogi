@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   shared_preferences:
   flutter_bloc:
+  bloc:
 
 dev_dependencies:
   flutter_test:
@@ -44,17 +45,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/images/logos/brand-logo.png
-   - assets/images/icons/meditation.png
-   - assets/images/icons/calender.png
-   - assets/images/icons/blood-drop.png
-   - assets/images/icons/symptoms.png
-   - assets/images/icons/disease.png
-   - assets/images/icons/news.png
-   - assets/images/icons/about.png
-   - assets/images/icons/contact.png
-   - assets/images/icons/pen.png
-   - assets/images/icons/home.png
+   - assets/images/logos/
+   - assets/images/icons/
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
