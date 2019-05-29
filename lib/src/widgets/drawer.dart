@@ -30,7 +30,9 @@ class AppDrawer extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Divider(
                   height: 10,
-                  color: Colors.blueGrey[900].withOpacity(0.3),
+                  color: changeThemeBloc.currentState.themeData == kLightTheme
+                      ? Colors.blueGrey[900].withOpacity(0.3)
+                      : Colors.blueGrey[100].withOpacity(0.3),
                 ),
               ),
               buildListTile(
@@ -43,7 +45,9 @@ class AppDrawer extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Divider(
                   height: 10,
-                  color: Colors.blueGrey[900].withOpacity(0.3),
+                  color: changeThemeBloc.currentState.themeData == kLightTheme
+                      ? Colors.blueGrey[900].withOpacity(0.3)
+                      : Colors.blueGrey[100].withOpacity(0.3),
                 ),
               ),
               buildListTile(
@@ -54,7 +58,9 @@ class AppDrawer extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Divider(
                   height: 10,
-                  color: Colors.blueGrey[900].withOpacity(0.3),
+                  color: changeThemeBloc.currentState.themeData == kLightTheme
+                      ? Colors.blueGrey[900].withOpacity(0.3)
+                      : Colors.blueGrey[100].withOpacity(0.3),
                 ),
               ),
               SizedBox(
