@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                   height: 25,
                 ),
                 heading('Top News'),
-                buildTopNews(),
+                buildTopNews(context),
               ],
             ),
           ),
@@ -234,24 +234,40 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildTopNews() {
+  Widget buildTopNews(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(bottom: 20),
-      child: ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (BuildContext context, int index) {
-          return NewsCard(
-            news: topNews[index],
-          );
-        },
-        itemCount: topNews.length,
-        separatorBuilder: (BuildContext context, int index) {
-          return SizedBox(
-            height: 20,
-          );
-        },
-      ),
+      child: MediaQuery.of(context).orientation == Orientation.portrait
+          ? ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (BuildContext context, int index) {
+                return NewsCard(
+                  news: topNews[index],
+                );
+              },
+              itemCount: topNews.length,
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  height: 20,
+                );
+              },
+            )
+          : GridView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: topNews.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                childAspectRatio: 3,
+              ),
+              itemBuilder: (BuildContext context, int index) {
+                return NewsCard(
+                  news: topNews[index],
+                );
+              },
+            ),
     );
   }
 }

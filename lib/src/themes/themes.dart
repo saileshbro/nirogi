@@ -22,7 +22,7 @@ ThemeData _buildLightTheme() {
         color: Colors.black,
       ),
       body1: TextStyle(
-        fontSize: 16,
+        fontSize: 14,
         color: Colors.black,
         fontFamily: 'Montserrat',
         fontWeight: FontWeight.normal,
@@ -64,12 +64,13 @@ ThemeData _buildDarkTheme() {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal,
           color: Colors.white,
-          fontSize: 16),
+          fontSize: 14),
       body2: TextStyle(
-          fontFamily: 'Karla',
-          fontWeight: FontWeight.normal,
-          color: Colors.white,
-          fontSize: 12),
+        fontFamily: 'Karla',
+        fontWeight: FontWeight.normal,
+        color: Colors.white,
+        fontSize: 12,
+      ),
     ),
   );
 }

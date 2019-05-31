@@ -28,60 +28,67 @@ class NewsCard extends StatelessWidget {
               Flexible(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    Text(
-                      news.title,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.start,
-                      maxLines: 3,
-                      style: Theme.of(context).textTheme.body1,
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      news.body,
-                      maxLines: 3,
-                      style: Theme.of(context).textTheme.body2,
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Image.asset(
-                              'assets/images/icons/pen.png',
-                              width: 20,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              news.source,
-                              style: Theme.of(context).textTheme.body2,
-                            ),
-                          ],
+                        Text(
+                          news.title,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.start,
+                          maxLines: 3,
+                          style: Theme.of(context).textTheme.body1,
                         ),
-                        Row(
-                          children: <Widget>[
-                            Image.asset(
-                              'assets/images/icons/calender.png',
-                              width: 20,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              news.date,
-                              style: Theme.of(context).textTheme.body2,
-                            ),
-                          ],
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          news.body,
+                          maxLines: 3,
+                          style: Theme.of(context).textTheme.body2,
                         )
                       ],
                     ),
+                    Column(
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Image.asset(
+                                  'assets/images/icons/pen.png',
+                                  width: 20,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  news.source,
+                                  style: Theme.of(context).textTheme.body2,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Image.asset(
+                                  'assets/images/icons/calender.png',
+                                  width: 20,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  news.date,
+                                  style: Theme.of(context).textTheme.body2,
+                                ),
+                              ],
+                            )
+                          ],
+                        )
+                      ],
+                    )
                   ],
                 ),
               )
