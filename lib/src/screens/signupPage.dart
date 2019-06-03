@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nirogi/src/themes/clippers.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/signup_form.dart';
+import "package:flare_flutter/flare_actor.dart";
 
 class SignupPage extends StatelessWidget {
   @override
@@ -62,7 +63,7 @@ class SignupPage extends StatelessWidget {
                             ),
                           ),
                           onTap: () {
-                            print('hello');
+                            Navigator.pushReplacementNamed(context, '/login');
                           },
                         ),
                       ],
@@ -95,7 +96,6 @@ class _TopPart extends StatelessWidget {
   const _TopPart({
     Key key,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -103,9 +103,13 @@ class _TopPart extends StatelessWidget {
         children: <Widget>[
           Container(
             width: 0.24 * MediaQuery.of(context).size.width,
-            child: Image.asset(
-              'assets/images/logos/yoga.png',
+            height: 0.24 * MediaQuery.of(context).size.width,
+            child: FlareActor(
+              'assets/animations/yoga.flr',
+              animation: 'relaxing',
               color: Colors.white,
+              fit: BoxFit.cover,
+              shouldClip: false,
             ),
           ),
           SizedBox(

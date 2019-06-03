@@ -27,7 +27,6 @@ ThemeData _buildLightTheme() {
           color: Colors.red[700],
         ),
       ),
-      focusColor: Colors.red[700],
     ),
     textTheme: TextTheme(
       headline: TextStyle(
@@ -79,7 +78,6 @@ ThemeData _buildDarkTheme() {
           color: Colors.red[700],
         ),
       ),
-      focusColor: Colors.red[700],
     ),
     buttonTheme: ButtonThemeData(
       buttonColor: Colors.black,

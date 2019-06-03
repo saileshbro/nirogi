@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/themes/clippers.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
@@ -23,11 +24,11 @@ class LoginPage extends StatelessWidget {
                         ),
                         _TopPart(),
                         SizedBox(
-                          height: 0.09 * MediaQuery.of(context).size.height,
+                          height: 0.13 * MediaQuery.of(context).size.height,
                         ),
                         LoginForm(),
                         SizedBox(
-                          height: 0.08 * MediaQuery.of(context).size.height,
+                          height: 0.05 * MediaQuery.of(context).size.height,
                         ),
                         GestureDetector(
                           child: Padding(
@@ -62,7 +63,7 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                           onTap: () {
-                            print('hello');
+                            Navigator.pushReplacementNamed(context, '/signup');
                           },
                         ),
                       ],
@@ -103,9 +104,13 @@ class _TopPart extends StatelessWidget {
         children: <Widget>[
           Container(
             width: 0.24 * MediaQuery.of(context).size.width,
-            child: Image.asset(
-              'assets/images/logos/yoga.png',
+            height: 0.24 * MediaQuery.of(context).size.width,
+            child: FlareActor(
+              'assets/animations/yoga.flr',
+              animation: 'relaxing',
               color: Colors.white,
+              fit: BoxFit.cover,
+              shouldClip: false,
             ),
           ),
           SizedBox(
