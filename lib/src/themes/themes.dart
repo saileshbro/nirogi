@@ -15,6 +15,20 @@ ThemeData _buildLightTheme() {
     primaryIconTheme: IconThemeData(
       color: Colors.red[700],
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: TextStyle(
+        fontSize: 14,
+        color: Colors.black,
+        fontFamily: 'Montserrat',
+        fontWeight: FontWeight.normal,
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: Colors.red[700],
+        ),
+      ),
+      focusColor: Colors.red[700],
+    ),
     textTheme: TextTheme(
       headline: TextStyle(
         fontFamily: 'Montserrat',
@@ -54,6 +68,20 @@ final ThemeData kDarkTheme = _buildDarkTheme();
 ThemeData _buildDarkTheme() {
   final ThemeData base = ThemeData.dark();
   return base.copyWith(
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: TextStyle(
+        fontSize: 14,
+        color: Colors.black,
+        fontFamily: 'Montserrat',
+        fontWeight: FontWeight.normal,
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: Colors.red[700],
+        ),
+      ),
+      focusColor: Colors.red[700],
+    ),
     buttonTheme: ButtonThemeData(
       padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
       buttonColor: Colors.black,
