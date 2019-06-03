@@ -54,10 +54,10 @@ class LoginPageClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     final Path path = Path();
-    path.lineTo(0, 525);
-    path.lineTo(size.width, 250);
-    path.lineTo(size.width, 425);
-    path.lineTo(0, 700);
+    path.lineTo(0, 0.61 * size.height);
+    path.lineTo(size.width, 0.29 * size.height);
+    path.lineTo(size.width, 0.49 * size.height);
+    path.lineTo(0, 0.81 * size.height);
     return path;
   }
 

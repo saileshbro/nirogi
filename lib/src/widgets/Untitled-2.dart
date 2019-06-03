@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({
+class SignupForm extends StatelessWidget {
+  const SignupForm({
     Key key,
   }) : super(key: key);
 
@@ -30,6 +30,26 @@ class LoginForm extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              TextField(
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.red[700],
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.normal,
+                ),
+                decoration: InputDecoration(
+                  border: Theme.of(context).inputDecorationTheme.border,
+                  icon: Image.asset(
+                    'assets/images/icons/user.png',
+                    color: Colors.red[700],
+                    width: 0.05 * width,
+                  ),
+                  hintText: 'Name',
+                ),
+              ),
+              SizedBox(
+                height: 0.034 * MediaQuery.of(context).size.height,
+              ),
               TextField(
                 style: TextStyle(
                   fontSize: 16,
@@ -69,6 +89,27 @@ class LoginForm extends StatelessWidget {
                   hintText: 'Password',
                 ),
               ),
+              SizedBox(
+                height: 0.034 * MediaQuery.of(context).size.height,
+              ),
+              TextField(
+                obscureText: true,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.red[700],
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.normal,
+                ),
+                decoration: InputDecoration(
+                  border: Theme.of(context).inputDecorationTheme.border,
+                  icon: Image.asset(
+                    'assets/images/icons/confirm.png',
+                    color: Colors.red[700],
+                    width: 0.05 * width,
+                  ),
+                  hintText: 'Confirm Password',
+                ),
+              ),
             ],
           ),
         ),
@@ -84,7 +125,7 @@ class LoginForm extends StatelessWidget {
             ),
             elevation: 5,
             child: Text(
-              'LOGIN',
+              'SIGN UP',
               style: Theme.of(context)
                   .textTheme
                   .button

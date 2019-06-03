@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/themes/clippers.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
-import 'package:nirogi/src/widgets/login_form.dart';
+import 'package:nirogi/src/widgets/signup_form.dart';
 
-class LoginPage extends StatelessWidget {
+class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,11 +23,11 @@ class LoginPage extends StatelessWidget {
                         ),
                         _TopPart(),
                         SizedBox(
-                          height: 0.09 * MediaQuery.of(context).size.height,
+                          height: 0.05 * MediaQuery.of(context).size.height,
                         ),
-                        LoginForm(),
+                        SignupForm(),
                         SizedBox(
-                          height: 0.08 * MediaQuery.of(context).size.height,
+                          height: 0.015 * MediaQuery.of(context).size.height,
                         ),
                         GestureDetector(
                           child: Padding(
@@ -36,7 +36,7 @@ class LoginPage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  "create a new account",
+                                  "Already have an account",
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontFamily: Theme.of(context)

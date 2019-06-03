@@ -57,7 +57,6 @@ ThemeData _buildLightTheme() {
     scaffoldBackgroundColor: Colors.white,
     buttonColor: Colors.white,
     buttonTheme: ButtonThemeData(
-      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
       buttonColor: Colors.white,
     ),
   );
@@ -83,7 +82,6 @@ ThemeData _buildDarkTheme() {
       focusColor: Colors.red[700],
     ),
     buttonTheme: ButtonThemeData(
-      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
       buttonColor: Colors.black,
     ),
     highlightColor: Colors.white24,

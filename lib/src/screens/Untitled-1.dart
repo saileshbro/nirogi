@@ -16,56 +16,56 @@ class LoginPage extends StatelessWidget {
                   children: <Widget>[
                     _LinearGradient(),
                     _BackgroundClipPath(),
-                    Column(
-                      children: <Widget>[
-                        SizedBox(
-                          height: 0.09 * MediaQuery.of(context).size.height,
-                        ),
-                        _TopPart(),
-                        SizedBox(
-                          height: 0.09 * MediaQuery.of(context).size.height,
-                        ),
-                        LoginForm(),
-                        SizedBox(
-                          height: 0.08 * MediaQuery.of(context).size.height,
-                        ),
-                        GestureDetector(
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  "create a new account",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontFamily: Theme.of(context)
-                                        .textTheme
-                                        .body1
-                                        .fontFamily,
-                                    fontWeight: Theme.of(context)
-                                        .textTheme
-                                        .body1
-                                        .fontWeight,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  size: 30,
-                                  color: Colors.red[700],
-                                )
-                              ],
-                            ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 90.0),
+                      child: Column(
+                        children: <Widget>[
+                          _TopPart(),
+                          SizedBox(
+                            height: 55,
                           ),
-                          onTap: () {
-                            print('hello');
-                          },
-                        ),
-                      ],
+                          LoginForm(),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          GestureDetector(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text(
+                                    "create a new account",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: Theme.of(context)
+                                          .textTheme
+                                          .body1
+                                          .fontFamily,
+                                      fontWeight: Theme.of(context)
+                                          .textTheme
+                                          .body1
+                                          .fontWeight,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    size: 30,
+                                    color: Colors.red[700],
+                                  )
+                                ],
+                              ),
+                            ),
+                            onTap: () {
+                              print('hello');
+                            },
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -102,14 +102,14 @@ class _TopPart extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            width: 0.24 * MediaQuery.of(context).size.width,
+            width: 120,
             child: Image.asset(
               'assets/images/logos/yoga.png',
               color: Colors.white,
             ),
           ),
           SizedBox(
-            height: 0.01 * MediaQuery.of(context).size.height,
+            height: 10,
           ),
           Text(
             'HAMI NIROGI',
@@ -185,27 +185,26 @@ class _BackgroundClipPath extends StatelessWidget {
           Positioned(
             child: Image.asset(
               'assets/images/icons/dna.png',
-              width: 0.14 * MediaQuery.of(context).size.width,
+              width: 70,
             ),
-            bottom: 0.24 * MediaQuery.of(context).size.height,
+            bottom: 215,
             left: 4,
           ),
           Positioned(
             child: Image.asset(
               'assets/images/icons/medicine.png',
-              width: 0.14 * MediaQuery.of(context).size.width,
+              width: 70,
             ),
-            top: 0.33 * MediaQuery.of(context).size.height,
+            top: 290,
             right: 4,
           ),
           Positioned(
             child: Image.asset(
               'assets/images/icons/yoga.png',
-              width: 0.3 * MediaQuery.of(context).size.width,
+              width: 150,
             ),
-            top: 0.46 * MediaQuery.of(context).size.height,
-            right: (MediaQuery.of(context).size.width / 2) -
-                (0.15 * MediaQuery.of(context).size.width),
+            top: 400,
+            right: (MediaQuery.of(context).size.width / 2) - 75,
           ),
         ],
       ),
