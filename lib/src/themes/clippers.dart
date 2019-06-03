@@ -49,3 +49,18 @@ class HomePageBorderClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => true;
 }
+
+class LoginPageClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final Path path = Path();
+    path.lineTo(0, 525);
+    path.lineTo(size.width, 250);
+    path.lineTo(size.width, 425);
+    path.lineTo(0, 700);
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
+}

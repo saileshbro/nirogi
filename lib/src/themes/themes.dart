@@ -32,8 +32,20 @@ ThemeData _buildLightTheme() {
           fontWeight: FontWeight.normal,
           color: Colors.black,
           fontSize: 12),
+      button: TextStyle(
+        fontFamily: 'Montserrat',
+        fontWeight: FontWeight.w600,
+        color: Colors.black,
+        fontSize: 17,
+        letterSpacing: 2,
+      ),
     ),
     scaffoldBackgroundColor: Colors.white,
+    buttonColor: Colors.white,
+    buttonTheme: ButtonThemeData(
+      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+      buttonColor: Colors.white,
+    ),
   );
 }
 
@@ -42,6 +54,10 @@ final ThemeData kDarkTheme = _buildDarkTheme();
 ThemeData _buildDarkTheme() {
   final ThemeData base = ThemeData.dark();
   return base.copyWith(
+    buttonTheme: ButtonThemeData(
+      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+      buttonColor: Colors.black,
+    ),
     highlightColor: Colors.white24,
     appBarTheme: AppBarTheme(
       iconTheme: IconThemeData(
@@ -50,6 +66,7 @@ ThemeData _buildDarkTheme() {
       elevation: 0.5,
     ),
     primaryColor: Color(0xff121212),
+    buttonColor: Color(0xff121212),
     scaffoldBackgroundColor: Color(0xff121212),
     canvasColor: Color(0xff1e1e1e),
     accentColor: Colors.blue,
@@ -70,6 +87,13 @@ ThemeData _buildDarkTheme() {
         fontWeight: FontWeight.normal,
         color: Colors.white,
         fontSize: 12,
+      ),
+      button: TextStyle(
+        fontFamily: 'Montserrat',
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+        fontSize: 17,
+        letterSpacing: 2,
       ),
     ),
   );
