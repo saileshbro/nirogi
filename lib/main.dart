@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
         return MaterialApp(
           title: 'Hami Nirogi',
           routes: <String, WidgetBuilder>{
-            "/": (context) => HomePage(),
+            "/": (context) => LoginPage(),
             "/diseases": (context) => DiseasesPage(),
             "/symptoms": (context) => SymptomsPage(),
             "/news": (context) => HealthNewsPage(),

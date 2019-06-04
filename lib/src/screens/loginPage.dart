@@ -1,8 +1,8 @@
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/themes/clippers.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/login_form.dart';
+import 'package:flare_flutter/flare_actor.dart';
 
 class LoginPage extends StatelessWidget {
   @override

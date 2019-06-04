@@ -27,9 +27,6 @@ class SignupPage extends StatelessWidget {
                           height: 0.05 * MediaQuery.of(context).size.height,
                         ),
                         SignupForm(),
-                        SizedBox(
-                          height: 0.015 * MediaQuery.of(context).size.height,
-                        ),
                         GestureDetector(
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),

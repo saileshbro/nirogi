@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nirogi/src/functions/validator.dart';
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({
-    Key key,
-  }) : super(key: key);
-
+  static GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -27,49 +25,66 @@ class LoginForm extends StatelessWidget {
                   color: Colors.black.withOpacity(.3),
                 )
               ]),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              TextField(
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.red[700],
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.normal,
-                ),
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  border: Theme.of(context).inputDecorationTheme.border,
-                  icon: Image.asset(
-                    'assets/images/icons/email.png',
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                TextFormField(
+                  validator: (email) {
+                    return validateEmail(email);
+                  },
+                  onSaved: (String value) {
+                    print('Send data to api');
+                  },
+                  style: TextStyle(
+                    fontSize: 16,
                     color: Colors.red[700],
-                    width: 0.05 * width,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.normal,
                   ),
-                  hintText: 'Email',
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    errorText: "",
+                    border: Theme.of(context).inputDecorationTheme.border,
+                    icon: Image.asset(
+                      'assets/images/icons/email.png',
+                      color: Colors.red[700],
+                      width: 0.05 * width,
+                    ),
+                    hintText: 'Email',
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 0.034 * MediaQuery.of(context).size.height,
-              ),
-              TextField(
-                obscureText: true,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.red[700],
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.normal,
+                SizedBox(
+                  height: 0.014 * MediaQuery.of(context).size.height,
                 ),
-                decoration: InputDecoration(
-                  border: Theme.of(context).inputDecorationTheme.border,
-                  icon: Image.asset(
-                    'assets/images/icons/password.png',
+                TextFormField(
+                  validator: (password) {
+                    if (password.length > 7) {
+                      return null;
+                    }
+                    return 'Password must be 8 characters long';
+                  },
+                  obscureText: true,
+                  style: TextStyle(
+                    fontSize: 16,
                     color: Colors.red[700],
-                    width: 0.05 * width,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.normal,
                   ),
-                  hintText: 'Password',
+                  decoration: InputDecoration(
+                    errorText: "",
+                    border: Theme.of(context).inputDecorationTheme.border,
+                    icon: Image.asset(
+                      'assets/images/icons/password.png',
+                      color: Colors.red[700],
+                      width: 0.05 * width,
+                    ),
+                    hintText: 'Password',
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         Positioned(
@@ -90,7 +105,11 @@ class LoginForm extends StatelessWidget {
                   .button
                   .copyWith(color: Colors.red[700]),
             ),
-            onPressed: () {},
+            onPressed: () {
+              if (_formKey.currentState.validate()) {
+                _formKey.currentState.save();
+              }
+            },
           ),
         )
       ],

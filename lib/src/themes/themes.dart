@@ -49,7 +49,7 @@ ThemeData _buildLightTheme() {
         fontFamily: 'Montserrat',
         fontWeight: FontWeight.w600,
         color: Colors.black,
-        fontSize: 17,
+        fontSize: 12,
         letterSpacing: 2,
       ),
     ),
@@ -79,8 +79,9 @@ ThemeData _buildDarkTheme() {
         ),
       ),
     ),
+    buttonColor: Colors.white,
     buttonTheme: ButtonThemeData(
-      buttonColor: Colors.black,
+      buttonColor: Colors.white,
     ),
     highlightColor: Colors.white24,
     appBarTheme: AppBarTheme(
@@ -90,7 +91,6 @@ ThemeData _buildDarkTheme() {
       elevation: 0.5,
     ),
     primaryColor: Color(0xff121212),
-    buttonColor: Color(0xff121212),
     scaffoldBackgroundColor: Color(0xff121212),
     canvasColor: Color(0xff1e1e1e),
     accentColor: Colors.blue,

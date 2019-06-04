@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nirogi/src/functions/functions.dart';
 
 class SignupForm extends StatelessWidget {
-  const SignupForm({
-    Key key,
-  }) : super(key: key);
+  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  static GlobalKey<FormFieldState> _passwordKey = GlobalKey<FormFieldState>();
+  final formData = {'name': '', 'email': '', 'password': ''};
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class SignupForm extends StatelessWidget {
       children: <Widget>[
         Container(
           margin: EdgeInsets.fromLTRB(
-              0.08 * width, .02 * height, .08 * width, .058 * height),
+              0.08 * width, .02 * height, .08 * width, .054 * height),
           padding: EdgeInsets.fromLTRB(
               .02 * width, .034 * height, .02 * width, .08 * height),
           decoration: BoxDecoration(
@@ -27,90 +28,118 @@ class SignupForm extends StatelessWidget {
                   color: Colors.black.withOpacity(.3),
                 )
               ]),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              TextField(
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.red[700],
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.normal,
-                ),
-                decoration: InputDecoration(
-                  border: Theme.of(context).inputDecorationTheme.border,
-                  icon: Image.asset(
-                    'assets/images/icons/user.png',
-                    color: Colors.red[700],
-                    width: 0.05 * width,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0.004),
+                  child: TextFormField(
+                    validator: (name) => validateName(name),
+                    onSaved: (name) {
+                      formData['name'] = name;
+                    },
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.red[700],
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.normal,
+                    ),
+                    decoration: InputDecoration(
+                      errorText: "",
+                      border: Theme.of(context).inputDecorationTheme.border,
+                      icon: Image.asset(
+                        'assets/images/icons/user.png',
+                        color: Colors.red[700],
+                        width: 0.05 * width,
+                      ),
+                      hintText: 'Name',
+                    ),
                   ),
-                  hintText: 'Name',
                 ),
-              ),
-              SizedBox(
-                height: 0.034 * MediaQuery.of(context).size.height,
-              ),
-              TextField(
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.red[700],
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.normal,
-                ),
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  border: Theme.of(context).inputDecorationTheme.border,
-                  icon: Image.asset(
-                    'assets/images/icons/email.png',
-                    color: Colors.red[700],
-                    width: 0.05 * width,
+                Container(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0.004 * height),
+                  child: TextFormField(
+                    validator: (email) => validateEmail(email),
+                    onSaved: (email) {
+                      formData['email'] = email;
+                    },
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.red[700],
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.normal,
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      errorText: "",
+                      border: Theme.of(context).inputDecorationTheme.border,
+                      icon: Image.asset(
+                        'assets/images/icons/email.png',
+                        color: Colors.red[700],
+                        width: 0.05 * width,
+                      ),
+                      hintText: 'Email',
+                    ),
                   ),
-                  hintText: 'Email',
                 ),
-              ),
-              SizedBox(
-                height: 0.034 * MediaQuery.of(context).size.height,
-              ),
-              TextField(
-                obscureText: true,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.red[700],
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.normal,
-                ),
-                decoration: InputDecoration(
-                  border: Theme.of(context).inputDecorationTheme.border,
-                  icon: Image.asset(
-                    'assets/images/icons/password.png',
-                    color: Colors.red[700],
-                    width: 0.05 * width,
+                Container(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0.004 * height),
+                  child: TextFormField(
+                    key: _passwordKey,
+                    validator: (password) => validatePassword(password),
+                    onSaved: (password) {
+                      formData['password'] = password;
+                    },
+                    obscureText: true,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.red[700],
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.normal,
+                    ),
+                    decoration: InputDecoration(
+                      errorText: "",
+                      border: Theme.of(context).inputDecorationTheme.border,
+                      icon: Image.asset(
+                        'assets/images/icons/password.png',
+                        color: Colors.red[700],
+                        width: 0.05 * width,
+                      ),
+                      hintText: 'Password',
+                    ),
                   ),
-                  hintText: 'Password',
                 ),
-              ),
-              SizedBox(
-                height: 0.034 * MediaQuery.of(context).size.height,
-              ),
-              TextField(
-                obscureText: true,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.red[700],
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.normal,
-                ),
-                decoration: InputDecoration(
-                  border: Theme.of(context).inputDecorationTheme.border,
-                  icon: Image.asset(
-                    'assets/images/icons/confirm.png',
+                TextFormField(
+                  validator: (confirmPassword) {
+                    if (_passwordKey.currentState.value == confirmPassword) {
+                      print(_passwordKey.currentState.value);
+                      print(confirmPassword);
+                      return null;
+                    }
+                    return "Password didn't match";
+                  },
+                  obscureText: true,
+                  style: TextStyle(
+                    fontSize: 16,
                     color: Colors.red[700],
-                    width: 0.05 * width,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.normal,
                   ),
-                  hintText: 'Confirm Password',
+                  decoration: InputDecoration(
+                    errorText: "",
+                    border: Theme.of(context).inputDecorationTheme.border,
+                    icon: Image.asset(
+                      'assets/images/icons/confirm.png',
+                      color: Colors.red[700],
+                      width: 0.05 * width,
+                    ),
+                    hintText: 'Confirm Password',
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         Positioned(
@@ -131,7 +160,12 @@ class SignupForm extends StatelessWidget {
                   .button
                   .copyWith(color: Colors.red[700]),
             ),
-            onPressed: () {},
+            onPressed: () {
+              if (_formKey.currentState.validate()) {
+                _formKey.currentState.save();
+                print(formData);
+              }
+            },
           ),
         )
       ],
