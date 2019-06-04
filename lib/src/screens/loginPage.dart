@@ -20,11 +20,11 @@ class LoginPage extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         SizedBox(
-                          height: 0.09 * MediaQuery.of(context).size.height,
+                          height: 0.05 * MediaQuery.of(context).size.height,
                         ),
                         _TopPart(),
                         SizedBox(
-                          height: 0.13 * MediaQuery.of(context).size.height,
+                          height: 0.11 * MediaQuery.of(context).size.height,
                         ),
                         LoginForm(),
                         SizedBox(
@@ -32,7 +32,7 @@ class LoginPage extends StatelessWidget {
                         ),
                         GestureDetector(
                           child: Padding(
-                            padding: const EdgeInsets.all(5.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
@@ -103,8 +103,8 @@ class _TopPart extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            width: 0.24 * MediaQuery.of(context).size.width,
-            height: 0.24 * MediaQuery.of(context).size.width,
+            width: 0.32 * MediaQuery.of(context).size.width,
+            height: 0.32 * MediaQuery.of(context).size.width,
             child: FlareActor(
               'assets/animations/yoga.flr',
               animation: 'relaxing',
