@@ -4,72 +4,379 @@ import 'package:meta/meta.dart';
 class Disease {
   final String name;
   final String imageUrl;
-  Disease({@required this.name, this.imageUrl});
+  final String body;
+  Disease({@required this.name, this.imageUrl, this.body});
 }
 
 List<Disease> allDiseases = [
-  Disease(name: "Acid Reflux Disease"),
-  Disease(name: "Acute Kidney Failure"),
-  Disease(name: "Allergy"),
-  Disease(name: "Alzheimer’s Disease"),
-  Disease(name: "Amoebiasis/Giardiasis"),
-  Disease(name: "Anemia"),
-  Disease(name: "Appendicitis"),
-  Disease(name: "Arthritis"),
-  Disease(name: "Ascariasis"),
-  Disease(name: "Asthma"),
-  Disease(name: "Atrial Fibrillation (AF)"),
-  Disease(name: "Autism Spectrum Disorder (ASD)"),
-  Disease(name: "Blood Cancer (Leukemia)"),
-  Disease(name: "Breast Cancer"),
-  Disease(name: "Cancer"),
-  Disease(name: "Cataract"),
-  Disease(name: "Chronic Obstructive Pulmonary Disease (COPD)"),
-  Disease(name: "Cirrhosis of Liver"),
-  Disease(name: "Conjunctivitis"),
-  Disease(name: "Depression"),
-  Disease(name: "Diabetes Mellitus"),
-  Disease(name: "Diarrhea"),
-  Disease(name: "Difficulty swallowing (Dysphagia)"),
-  Disease(name: "Diphtheria"),
-  Disease(name: "Esophageal Varices"),
-  Disease(name: "Gasteroesophageal Reflux Disease"),
-  Disease(name: "Gum Disease"),
-  Disease(name: "Heart Attack"),
-  Disease(name: "Heart Failure"),
-  Disease(name: "Hepatitis"),
-  Disease(name: "High Cholesterol"),
-  Disease(name: "HIV/AIDS"),
-  Disease(name: "Hookworm Infestation"),
-  Disease(name: "Hypertension"),
-  Disease(name: "Hyperuricemia"),
-  Disease(name: "Hypotension"),
-  Disease(name: "Jaundice"),
-  Disease(name: "Lung Cancer"),
-  Disease(name: "Malaria"),
-  Disease(name: "Peptic Ulcer Disease"),
-  Disease(name: "Pneumonia"),
-  Disease(name: "Protein Energy Malnutrition"),
-  Disease(name: "Rabies"),
-  Disease(name: "Rheumatic Fever"),
-  Disease(name: "Ringworm"),
-  Disease(name: "Scabies"),
-  Disease(name: "Schizophrenia"),
-  Disease(name: "Sexually Transmitted Diseases"),
-  Disease(name: "Shingles / Herpes Zoster"),
-  Disease(name: "Sinusitis"),
-  Disease(name: "Stroke"),
-  Disease(name: "Stye and Chalazion"),
-  Disease(name: "Syphilis"),
-  Disease(name: "Systemic Lupus Erythematosus (Lupus)"),
-  Disease(name: "Tetanus"),
-  Disease(name: "Thyroid Disorder"),
-  Disease(name: "Tingling or Numbness"),
-  Disease(name: "Tuberculosis"),
-  Disease(name: "Upper Respiratory Infection (URI)"),
-  Disease(name: "Viral Exanthems"),
-  Disease(name: "Vitamin Deficiency")
+  Disease(
+      name: "Acid Reflux Disease",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Acute Kidney Failure",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Allergy",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Alzheimer’s Disease",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Amoebiasis/Giardiasis",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Anemia",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Appendicitis",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Arthritis",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Ascariasis",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Asthma",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Atrial Fibrillation (AF)",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Autism Spectrum Disorder (ASD)",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Blood Cancer (Leukemia)",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Breast Cancer",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Cancer",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Cataract",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Chronic Obstructive Pulmonary Disease (COPD)",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Cirrhosis of Liver",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Conjunctivitis",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Depression",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Diabetes Mellitus",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Diarrhea",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Difficulty swallowing (Dysphagia)",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Diphtheria",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Esophageal Varices",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Gasteroesophageal Reflux Disease",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Gum Disease",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Heart Attack",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Heart Failure",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Hepatitis",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "High Cholesterol",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "HIV/AIDS",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Hookworm Infestation",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Hypertension",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Hyperuricemia",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Hypotension",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Jaundice",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Lung Cancer",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Malaria",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Peptic Ulcer Disease",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Pneumonia",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Protein Energy Malnutrition",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Rabies",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Rheumatic Fever",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Ringworm",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Scabies",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Schizophrenia",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Sexually Transmitted Diseases",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Shingles / Herpes Zoster",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Sinusitis",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Stroke",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Stye and Chalazion",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Syphilis",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Systemic Lupus Erythematosus (Lupus)",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Tetanus",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Thyroid Disorder",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Tingling or Numbness",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Tuberculosis",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Upper Respiratory Infection (URI)",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Viral Exanthems",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+  Disease(
+      name: "Vitamin Deficiency",
+      imageUrl:
+          "http://niroginepal.com/wp-content/uploads/2016/04/Amoebiasis-and-Giardiasis-1-150x150.png",
+      body:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
 ];
+
 final List<Disease> topDisease = <Disease>[
   Disease(
       name: "Giardiasis",
