@@ -9,6 +9,7 @@
 .history
 .svn/
 pubspec.lock
+lib/src/constants/env.dart
 # IntelliJ related
 *.iml
 *.ipr
