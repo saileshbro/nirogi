@@ -21,7 +21,7 @@ class _LoginSignupState extends State<LoginSignup> {
   LoginBloc _loginBloc;
   SignupBloc _signupBloc;
   AuthenticationBloc _authenticationBloc;
-  bool isLoginShown = true;
+  bool isLoginShown;
 
   UserRepository get _userRepository => widget.userRepository;
   @override
@@ -35,6 +35,7 @@ class _LoginSignupState extends State<LoginSignup> {
       authenticationBloc: _authenticationBloc,
       userRepository: _userRepository,
     );
+    isLoginShown = true;
     super.initState();
   }
 
@@ -76,7 +77,7 @@ class _LoginSignupState extends State<LoginSignup> {
                 ],
               ),
               Positioned(
-                bottom: 0.034 * MediaQuery.of(context).size.height,
+                bottom: 0.08 * MediaQuery.of(context).size.height,
                 left: 10,
                 right: 10,
                 child: GestureDetector(

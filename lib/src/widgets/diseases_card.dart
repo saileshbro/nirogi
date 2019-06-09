@@ -10,9 +10,7 @@ class DiseaseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print('here');
-      },
+      onTap: () {},
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(

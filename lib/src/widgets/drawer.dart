@@ -218,7 +218,6 @@ class AppDrawer extends StatelessWidget {
             : Colors.transparent,
         child: ListTile(
           onTap: () {
-            print('logout');
             BlocProvider.of<AuthenticationBloc>(context)
                 .dispatch(LoggedOutEvent());
           },

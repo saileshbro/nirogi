@@ -91,9 +91,6 @@ class _SignupFormState extends State<SignupForm> {
                       child: TextFormField(
                         key: _name,
                         validator: (name) => validateName(name),
-                        onSaved: (name) {
-                          print('Send data to api');
-                        },
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.red[700],
@@ -117,9 +114,6 @@ class _SignupFormState extends State<SignupForm> {
                       child: TextFormField(
                         key: _emailKey,
                         validator: (email) => validateEmail(email),
-                        onSaved: (email) {
-                          print('Send data to api');
-                        },
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.red[700],
@@ -144,9 +138,6 @@ class _SignupFormState extends State<SignupForm> {
                       child: TextFormField(
                         key: _passwordKey,
                         validator: (password) => validatePassword(password),
-                        onSaved: (password) {
-                          print('Send data to api');
-                        },
                         obscureText: true,
                         style: TextStyle(
                           fontSize: 16,
@@ -170,8 +161,6 @@ class _SignupFormState extends State<SignupForm> {
                       validator: (confirmPassword) {
                         if (_passwordKey.currentState.value ==
                             confirmPassword) {
-                          print(_passwordKey.currentState.value);
-                          print(confirmPassword);
                           return null;
                         }
                         return "Password didn't match";
@@ -225,7 +214,6 @@ class _SignupFormState extends State<SignupForm> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
-                    _formKey.currentState.save();
                     email = _emailKey.currentState.value;
                     password = _passwordKey.currentState.value;
                     name = _name.currentState.value;

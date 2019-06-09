@@ -16,17 +16,12 @@ class UserRepository {
     try {
       final response = await client.post('$baseUrl/users/login',
           body: jsonEncode(user.toJson()),
-          headers: {
-            'Content-Type': 'application/json',
-          });
-      Map<String, dynamic> data = jsonDecode(response.body);
-      if (data.containsKey('error')) {
-        if (data['error'] == "{}") {
-          throw "Server error";
-        }
-        // throw data['error'];
+          headers: {'Content-Type': 'application/json'});
+      Map<String, dynamic> responseData = jsonDecode(response.body);
+      if (responseData.containsKey('error')) {
+        throw responseData['error'];
       } else {
-        User user = new User.fromJson(jsonDecode(response.body));
+        User user = User.fromJson(jsonDecode(response.body));
         return user.token;
       }
     } catch (e) {
@@ -41,21 +36,14 @@ class UserRepository {
   }) async {
     final user = User(email: email, password: password, name: name);
     try {
-      final response = await client.post(
-        '$baseUrl/users/signup',
-        body: jsonEncode(user.toJson()),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      );
-      Map<String, dynamic> data = jsonDecode(response.body);
-      if (data.containsKey('error')) {
-        if (data['error'] == "{}") {
-          throw "Server error";
-        }
-        // throw data['error'];
+      final response = await client.post('$baseUrl/users/signup',
+          body: jsonEncode(user.toJson()),
+          headers: {'Content-Type': 'application/json'});
+      Map<String, dynamic> responseData = jsonDecode(response.body);
+      if (responseData.containsKey('error')) {
+        throw responseData['error'];
       } else {
-        User user = new User.fromJson(jsonDecode(response.body));
+        User user = User.fromJson(jsonDecode(response.body));
         return user.token;
       }
     } catch (e) {
@@ -77,7 +65,6 @@ class UserRepository {
 
   Future<bool> hasToken() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    print(preferences.getKeys());
     return preferences.containsKey('token');
   }
 }

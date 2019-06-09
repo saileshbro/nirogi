@@ -80,9 +80,6 @@ class _LoginFormState extends State<LoginForm> {
                       validator: (email) {
                         return validateEmail(email);
                       },
-                      onSaved: (String value) {
-                        user.email = value;
-                      },
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.red[700],
@@ -105,9 +102,6 @@ class _LoginFormState extends State<LoginForm> {
                       height: 0.014 * MediaQuery.of(context).size.height,
                     ),
                     TextFormField(
-                      onSaved: (String value) {
-                        user.password = value;
-                      },
                       key: _passwordKey,
                       validator: (password) {
                         if (password.length > 7) {
@@ -163,7 +157,6 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
-                    _formKey.currentState.save();
                     user.email = _emailKey.currentState.value;
                     user.password = _passwordKey.currentState.value;
                     _loginBloc.dispatch(LoginButtonPressedEvent(
