@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
@@ -10,11 +11,13 @@ import 'package:nirogi/src/widgets/loading_indicator.dart';
 
 void main() {
   final UserRepository userRepository = UserRepository();
-
-  runApp(MyApp(
-    changeThemeBloc: changeThemeBloc,
-    userRepository: userRepository,
-  ));
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
+    runApp(MyApp(
+      changeThemeBloc: changeThemeBloc,
+      userRepository: userRepository,
+    ));
+  });
 }
 
 class MyApp extends StatefulWidget {
