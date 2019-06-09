@@ -1,93 +1,124 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nirogi/src/bloc/blocs.dart';
+import 'package:nirogi/src/repository/user_repository.dart';
 import 'package:nirogi/src/themes/clippers.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/login_form.dart';
-import 'package:flare_flutter/flare_actor.dart';
+import 'package:nirogi/src/widgets/signup_form.dart';
+import "package:flare_flutter/flare_actor.dart";
 
-class LoginPage extends StatelessWidget {
+class LoginSignup extends StatefulWidget {
+  final UserRepository userRepository;
+  LoginSignup({Key key, @required this.userRepository})
+      : assert(userRepository != null),
+        super(key: key);
+  @override
+  _LoginSignupState createState() => _LoginSignupState();
+}
+
+class _LoginSignupState extends State<LoginSignup> {
+  LoginBloc _loginBloc;
+  SignupBloc _signupBloc;
+  AuthenticationBloc _authenticationBloc;
+  bool isLoginShown;
+
+  UserRepository get _userRepository => widget.userRepository;
+  @override
+  void initState() {
+    _authenticationBloc = BlocProvider.of<AuthenticationBloc>(context);
+    _signupBloc = SignupBloc(
+      userRepository: _userRepository,
+      authenticationBloc: _authenticationBloc,
+    );
+    _loginBloc = LoginBloc(
+      authenticationBloc: _authenticationBloc,
+      userRepository: _userRepository,
+    );
+    isLoginShown = true;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _signupBloc.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: MediaQuery.of(context).orientation == Orientation.portrait
-          ? ScrollConfiguration(
-              behavior: RemoveEndOfListIndicator(),
-              child: SingleChildScrollView(
-                child: Stack(
-                  children: <Widget>[
-                    _LinearGradient(),
-                    _BackgroundClipPath(),
-                    Column(
+      body: ScrollConfiguration(
+        behavior: RemoveEndOfListIndicator(),
+        child: SingleChildScrollView(
+          child: Stack(
+            children: <Widget>[
+              _LinearGradient(),
+              _BackgroundClipPath(),
+              Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 0.05 * MediaQuery.of(context).size.height,
+                  ),
+                  _TopPart(),
+                  SizedBox(
+                    height: 0.08 * MediaQuery.of(context).size.height,
+                  ),
+                  !isLoginShown
+                      ? SignupForm(
+                          authenticationBloc: _authenticationBloc,
+                          signupBloc: _signupBloc,
+                        )
+                      : LoginForm(
+                          authenticationBloc: _authenticationBloc,
+                          loginBloc: _loginBloc,
+                        ),
+                ],
+              ),
+              Positioned(
+                bottom: 0.08 * MediaQuery.of(context).size.height,
+                left: 10,
+                right: 10,
+                child: GestureDetector(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(
-                          height: 0.05 * MediaQuery.of(context).size.height,
-                        ),
-                        _TopPart(),
-                        SizedBox(
-                          height: 0.11 * MediaQuery.of(context).size.height,
-                        ),
-                        LoginForm(),
-                        SizedBox(
-                          height: 0.05 * MediaQuery.of(context).size.height,
-                        ),
-                        GestureDetector(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  "create a new account",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontFamily: Theme.of(context)
-                                        .textTheme
-                                        .body1
-                                        .fontFamily,
-                                    fontWeight: Theme.of(context)
-                                        .textTheme
-                                        .body1
-                                        .fontWeight,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  size: 30,
-                                  color: Colors.red[700],
-                                )
-                              ],
-                            ),
+                        Text(
+                          "Already have an account",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontFamily:
+                                Theme.of(context).textTheme.body1.fontFamily,
+                            fontWeight:
+                                Theme.of(context).textTheme.body1.fontWeight,
+                            color: Colors.black,
                           ),
-                          onTap: () {
-                            Navigator.pushReplacementNamed(context, '/signup');
-                          },
                         ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Icon(
+                          Icons.arrow_forward,
+                          size: 30,
+                          color: Colors.red[700],
+                        )
                       ],
-                    )
-                  ],
+                    ),
+                  ),
+                  onTap: () {
+                    setState(() {
+                      isLoginShown = !isLoginShown;
+                    });
+                  },
                 ),
               ),
-            )
-          : Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 4,
-                  child: Container(
-                    color: Colors.red,
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                    color: Colors.yellow,
-                  ),
-                )
-              ],
-            ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -96,7 +127,6 @@ class _TopPart extends StatelessWidget {
   const _TopPart({
     Key key,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Center(

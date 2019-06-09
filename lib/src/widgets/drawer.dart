@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nirogi/src/bloc/authentication_bloc.dart';
+import 'package:nirogi/src/bloc/authentication_event.dart';
 import 'package:nirogi/src/bloc/change_theme_bloc.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/themes/themes.dart';
@@ -63,6 +66,18 @@ class AppDrawer extends StatelessWidget {
                         "assets/images/icons/about.png", "/about"),
                     buildListTile(context, "Contact Us",
                         "assets/images/icons/contact.png", "/contact"),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Divider(
+                        height: 10,
+                        color: changeThemeBloc.currentState.themeData ==
+                                kLightTheme
+                            ? Colors.blueGrey[900].withOpacity(0.3)
+                            : Colors.blueGrey[100].withOpacity(0.3),
+                      ),
+                    ),
+                    buildListTile(context, 'Logout',
+                        'assets/images/icons/logout.png', '/logout'),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Divider(
@@ -173,27 +188,51 @@ class AppDrawer extends StatelessWidget {
 
   Container buildListTile(
       BuildContext context, String name, String imgUrl, String route) {
-    return Container(
-      color: ModalRoute.of(context).settings.name == route
-          ? changeThemeBloc.currentState.themeData.highlightColor
-          : Colors.transparent,
-      child: ListTile(
-        onTap: ModalRoute.of(context).settings.name != route
-            ? () {
-                Navigator.popUntil(context, ModalRoute.withName('/'));
-                Navigator.pushNamed(context, route);
-              }
-            : null,
-        contentPadding: EdgeInsets.only(left: 30),
-        leading: Image.asset(
-          imgUrl,
-          width: 35,
+    if (route != '/logout') {
+      return Container(
+        color: ModalRoute.of(context).settings.name == route
+            ? changeThemeBloc.currentState.themeData.highlightColor
+            : Colors.transparent,
+        child: ListTile(
+          onTap: ModalRoute.of(context).settings.name != route
+              ? () {
+                  Navigator.popUntil(context, ModalRoute.withName('/'));
+                  Navigator.pushNamed(context, route);
+                }
+              : null,
+          contentPadding: EdgeInsets.only(left: 30),
+          leading: Image.asset(
+            imgUrl,
+            width: 35,
+          ),
+          title: Text(
+            name,
+            style: Theme.of(context).textTheme.body1,
+          ),
         ),
-        title: Text(
-          name,
-          style: Theme.of(context).textTheme.body1,
+      );
+    } else if (route == '/logout') {
+      return Container(
+        color: ModalRoute.of(context).settings.name == route
+            ? changeThemeBloc.currentState.themeData.highlightColor
+            : Colors.transparent,
+        child: ListTile(
+          onTap: () {
+            BlocProvider.of<AuthenticationBloc>(context)
+                .dispatch(LoggedOutEvent());
+          },
+          contentPadding: EdgeInsets.only(left: 30),
+          leading: Image.asset(
+            imgUrl,
+            width: 35,
+          ),
+          title: Text(
+            name,
+            style: Theme.of(context).textTheme.body1,
+          ),
         ),
-      ),
-    );
+      );
+    } else
+      return Container();
   }
 }
