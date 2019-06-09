@@ -18,8 +18,8 @@ class NewsCard extends StatelessWidget {
             children: <Widget>[
               Image.network(
                 news.imgUrl,
-                width: 140,
-                height: 90,
+                width: 0.28 * MediaQuery.of(context).size.width,
+                height: 0.1 * MediaQuery.of(context).size.height,
                 fit: BoxFit.fill,
               ),
               SizedBox(
