@@ -52,6 +52,7 @@ class _SignupFormState extends State<SignupForm> {
               SnackBar(
                 content: Text('${state.error}'),
                 backgroundColor: Colors.red,
+                duration: Duration(milliseconds: 800),
               ),
             );
           });
@@ -206,6 +207,7 @@ class _SignupFormState extends State<SignupForm> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
+                    FocusScope.of(context).requestFocus(new FocusNode());
                     email = _emailKey.currentState.value;
                     password = _passwordKey.currentState.value;
                     name = _name.currentState.value;

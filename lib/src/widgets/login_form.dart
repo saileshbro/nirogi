@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -49,6 +50,7 @@ class _LoginFormState extends State<LoginForm> {
               SnackBar(
                 content: Text('${state.error}'),
                 backgroundColor: Colors.red,
+                duration: Duration(milliseconds: 800),
               ),
             );
           });
@@ -157,6 +159,7 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
+                    FocusScope.of(context).requestFocus(new FocusNode());
                     user.email = _emailKey.currentState.value;
                     user.password = _passwordKey.currentState.value;
                     _loginBloc.dispatch(LoginButtonPressedEvent(
