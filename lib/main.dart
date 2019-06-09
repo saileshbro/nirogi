@@ -49,47 +49,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return BlocBuilder(
-      bloc: widget.bloc,
-      builder: (BuildContext context, ChangeThemeState state) {
-        return MaterialApp(
-          title: 'Hami Nirogi',
-          routes: <String, WidgetBuilder>{
-            "/": (context) => HomePage(),
-            "/diseases": (context) => DiseasesPage(),
-            "/symptoms": (context) => SymptomsPage(),
-            "/news": (context) => HealthNewsPage(),
-            "/about": (context) => AboutPage(),
-            "/contact": (context) => ContactPage(),
-            "/login": (context) => LoginPage(),
-            "/signup": (context) => SignupPage(),
-          },
-          debugShowCheckedModeBanner: false,
-          theme: state.themeData,
-        );
-      },
-||||||| merged common ancestors
-    return BlocBuilder(
-      bloc: widget.bloc,
-      builder: (BuildContext context, ChangeThemeState state) {
-        return MaterialApp(
-          title: 'Hami Nirogi',
-          routes: <String, WidgetBuilder>{
-            "/": (context) => LoginPage(),
-            "/diseases": (context) => DiseasesPage(),
-            "/symptoms": (context) => SymptomsPage(),
-            "/news": (context) => HealthNewsPage(),
-            "/about": (context) => AboutPage(),
-            "/contact": (context) => ContactPage(),
-            "/login": (context) => LoginPage(),
-            "/signup": (context) => SignupPage(),
-          },
-          debugShowCheckedModeBanner: false,
-          theme: state.themeData,
-        );
-      },
-=======
     return BlocProvider<AuthenticationBloc>(
       bloc: authenticationBloc,
       child: BlocBuilder<ChangeThemeEvent, ChangeThemeState>(
@@ -126,7 +85,6 @@ class _MyAppState extends State<MyApp> {
           );
         },
       ),
->>>>>>> login-implementatin
     );
   }
 }
