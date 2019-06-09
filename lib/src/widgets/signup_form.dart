@@ -39,14 +39,6 @@ class _SignupFormState extends State<SignupForm> {
     });
   }
 
-  _onSignupButtonPressed() {
-    _signupBloc.dispatch(SignupButtonPressedEvent(
-      email: email,
-      password: password,
-      name: name,
-    ));
-  }
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -217,9 +209,13 @@ class _SignupFormState extends State<SignupForm> {
                     email = _emailKey.currentState.value;
                     password = _passwordKey.currentState.value;
                     name = _name.currentState.value;
-                    state is! SignupLoadingState
-                        ? _onSignupButtonPressed()
-                        : null;
+                    _signupBloc.dispatch(
+                      SignupButtonPressedEvent(
+                        email: email,
+                        password: password,
+                        name: name,
+                      ),
+                    );
                   }
                 },
               ),
