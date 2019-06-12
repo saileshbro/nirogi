@@ -46,52 +46,65 @@ class PostBlock extends StatelessWidget {
                     height: 20,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         '${post.time} hours ago',
                         textAlign: TextAlign.justify,
                         maxLines: 5,
-                        style: Theme.of(context)
-                            .textTheme
-                            .body2
-                            .copyWith(fontSize: 16),
+                        style: Theme.of(context).textTheme.body2.copyWith(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        width: 10,
+                        width: 20,
                       ),
-                      Text(
-                        '${post.views} views',
-                        textAlign: TextAlign.justify,
-                        maxLines: 5,
-                        style: Theme.of(context)
-                            .textTheme
-                            .body2
-                            .copyWith(fontSize: 16),
+                      Image.asset(
+                        'assets/images/icons/eye.png',
+                        height: 30,
                       ),
                       SizedBox(
-                        width: 10,
+                        width: 5,
                       ),
                       Text(
-                        '${post.upvotes} upvotes',
+                        '${post.views}',
                         textAlign: TextAlign.justify,
                         maxLines: 5,
-                        style: Theme.of(context)
-                            .textTheme
-                            .body2
-                            .copyWith(fontSize: 16),
+                        style: Theme.of(context).textTheme.body2.copyWith(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        width: 10,
+                        width: 20,
+                      ),
+                      Image.asset(
+                        'assets/images/icons/upvote.png',
+                        height: 30,
+                      ),
+                      SizedBox(
+                        width: 5,
                       ),
                       Text(
-                        '${post.comments} comments',
+                        '+ ${post.upvotes} - ${post.downvotes}',
                         textAlign: TextAlign.justify,
                         maxLines: 5,
-                        style: Theme.of(context)
-                            .textTheme
-                            .body2
-                            .copyWith(fontSize: 16),
+                        style: Theme.of(context).textTheme.body2.copyWith(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Image.asset(
+                        'assets/images/icons/chat.png',
+                        height: 30,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        '${post.comments}',
+                        textAlign: TextAlign.justify,
+                        maxLines: 5,
+                        style: Theme.of(context).textTheme.body2.copyWith(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ],
                   )

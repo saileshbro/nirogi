@@ -3,6 +3,7 @@ class Post {
   final String body;
   final String views;
   final String upvotes;
+  final String downvotes;
   final String comments;
   final String time;
   Post(
@@ -11,6 +12,7 @@ class Post {
       this.title,
       this.body,
       this.upvotes,
+      this.downvotes,
       this.time});
 }
 
@@ -22,6 +24,7 @@ List<Post> allPosts = [
       time: "9",
       views: "15",
       upvotes: "11",
+      downvotes: "11",
       comments: " 2"),
   Post(
       title: "Solution to Alzeimer disease",
@@ -30,6 +33,7 @@ List<Post> allPosts = [
       time: "9",
       views: "15",
       upvotes: "11",
+      downvotes: "11",
       comments: " 2"),
   Post(
       title: "Solution to Alzeimer disease",
@@ -38,6 +42,7 @@ List<Post> allPosts = [
       time: "9",
       views: "15",
       upvotes: "11",
+      downvotes: "11",
       comments: " 2"),
   Post(
       title: "Solution to Alzeimer disease",
@@ -46,6 +51,7 @@ List<Post> allPosts = [
       time: "9",
       views: "15",
       upvotes: "11",
+      downvotes: "11",
       comments: " 2"),
   Post(
       title: "Solution to Alzeimer disease",
@@ -54,6 +60,7 @@ List<Post> allPosts = [
       time: "9",
       views: "15",
       upvotes: "11",
+      downvotes: "11",
       comments: " 2"),
   Post(
       title: "Solution to Alzeimer disease",
@@ -62,6 +69,7 @@ List<Post> allPosts = [
       time: "9",
       views: "15",
       upvotes: "11",
+      downvotes: "11",
       comments: " 2"),
   Post(
       title: "Solution to Alzeimer disease",
@@ -70,5 +78,6 @@ List<Post> allPosts = [
       time: "9",
       views: "15",
       upvotes: "11",
+      downvotes: "11",
       comments: " 2"),
 ];

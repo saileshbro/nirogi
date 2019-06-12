@@ -7,6 +7,19 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Container(
+        margin: EdgeInsets.only(bottom: 25),
+        child: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Color(0xff5B86E5),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Image.asset(
+              'assets/images/icons/news.png',
+            ),
+          ),
+        ),
+      ),
       drawer: AppDrawer(),
       appBar: AppBar(
         elevation: 0,
@@ -59,16 +72,17 @@ class ProfilePage extends StatelessWidget {
                                     ),
                                   ),
                                   Positioned(
-                                    top: 110,
-                                    left: 90,
+                                    top: 100,
+                                    left: 100,
                                     child: Container(
                                       height: 40,
                                       child: FloatingActionButton(
-                                        backgroundColor: Colors.white,
+                                        backgroundColor:
+                                            Color(0xff5B86E5).withOpacity(0.8),
                                         onPressed: () {},
                                         child: Image.asset(
-                                          'assets/images/icons/pen.png',
-                                          height: 20,
+                                          'assets/images/icons/edit.png',
+                                          height: 25,
                                           width: 30,
                                         ),
                                       ),
@@ -147,7 +161,8 @@ class ProfilePage extends StatelessWidget {
                             child: Container(
                               height: 40,
                               child: FloatingActionButton(
-                                backgroundColor: Colors.white,
+                                backgroundColor:
+                                    Color(0xff5B86E5).withOpacity(0.8),
                                 onPressed: () {},
                                 child: Image.asset(
                                   'assets/images/icons/notification.png',
@@ -185,23 +200,6 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-          Positioned(
-            top: 140,
-            right: 10,
-            child: Container(
-              height: 50,
-              child: FloatingActionButton(
-                onPressed: () {},
-                backgroundColor: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Image.asset(
-                    'assets/images/icons/createpost.png',
-                  ),
-                ),
-              ),
-            ),
           ),
         ],
       ),
