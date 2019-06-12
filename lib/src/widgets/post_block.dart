@@ -58,7 +58,7 @@ class PostBlock extends StatelessWidget {
                             .copyWith(fontSize: 16),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
                       Text(
                         '${post.views} views',
@@ -70,7 +70,7 @@ class PostBlock extends StatelessWidget {
                             .copyWith(fontSize: 16),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
                       Text(
                         '${post.upvotes} upvotes',
@@ -82,7 +82,7 @@ class PostBlock extends StatelessWidget {
                             .copyWith(fontSize: 16),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
                       Text(
                         '${post.comments} comments',

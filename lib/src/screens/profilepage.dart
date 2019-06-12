@@ -10,7 +10,6 @@ class ProfilePage extends StatelessWidget {
       drawer: AppDrawer(),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0xffffdde1).withOpacity(0.95),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -31,19 +30,7 @@ class ProfilePage extends StatelessWidget {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  Container(
-                    height: 155,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0xffffdde1).withOpacity(0.8),
-                          Color(0xffFFEFBA).withOpacity(0.8),
-                        ],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                      ),
-                    ),
-                  ),
+                  Container(),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,7 +43,7 @@ class ProfilePage extends StatelessWidget {
                                 children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                      left: 5.0,
+                                      left: 10.0,
                                       right: 15,
                                       top: 10,
                                     ),
@@ -72,14 +59,13 @@ class ProfilePage extends StatelessWidget {
                                     ),
                                   ),
                                   Positioned(
-                                    top: 100,
-                                    left: 80,
-                                    child: FlatButton(
-                                      color: Colors.white,
-                                      shape: CircleBorder(),
-                                      onPressed: () {},
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                    top: 110,
+                                    left: 90,
+                                    child: Container(
+                                      height: 40,
+                                      child: FloatingActionButton(
+                                        backgroundColor: Colors.white,
+                                        onPressed: () {},
                                         child: Image.asset(
                                           'assets/images/icons/pen.png',
                                           height: 20,
@@ -93,7 +79,7 @@ class ProfilePage extends StatelessWidget {
                               Column(
                                 children: <Widget>[
                                   SizedBox(
-                                    height: 35,
+                                    height: 45,
                                   ),
                                   Text(
                                     'Sarayu Gautam',
@@ -112,12 +98,44 @@ class ProfilePage extends StatelessWidget {
                                   SizedBox(
                                     height: 35,
                                   ),
-                                  Text(
-                                    'Your Posts :',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .body1
-                                        .copyWith(fontSize: 20),
+                                  Column(
+                                    children: <Widget>[
+                                      Text(
+                                        'Your Posts',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .body1
+                                            .copyWith(fontSize: 20),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Container(
+                                            height: 1.0,
+                                            color: Colors.red,
+                                            width: 50,
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Container(
+                                            height: 10,
+                                            width: 10,
+                                            child: Image.asset(
+                                                'assets/images/icons/blood-drop.png'),
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Container(
+                                            height: 1.0,
+                                            width: 70,
+                                            color: Colors.red,
+                                          ),
+                                        ],
+                                      )
+                                    ],
                                   ),
                                 ],
                               ),
@@ -126,13 +144,16 @@ class ProfilePage extends StatelessWidget {
                           Positioned(
                             top: 1,
                             right: 10,
-                            child: FloatingActionButton(
-                              backgroundColor: Colors.white,
-                              onPressed: () {},
-                              child: Image.asset(
-                                'assets/images/icons/notification.png',
-                                width: 30,
-                                height: 30,
+                            child: Container(
+                              height: 40,
+                              child: FloatingActionButton(
+                                backgroundColor: Colors.white,
+                                onPressed: () {},
+                                child: Image.asset(
+                                  'assets/images/icons/notification.png',
+                                  width: 30,
+                                  height: 30,
+                                ),
                               ),
                             ),
                           )
@@ -143,8 +164,9 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  padding: EdgeInsets.symmetric(vertical: 10),
                   child: ListView.separated(
                     shrinkWrap: true,
                     physics: BouncingScrollPhysics(),
@@ -165,17 +187,18 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
           Positioned(
-            top: 120,
+            top: 140,
             right: 10,
-            child: FloatingActionButton(
-              onPressed: () {},
-              backgroundColor: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Image.asset(
-                  'assets/images/icons/createpost.png',
-                  height: 100,
-                  width: 100,
+            child: Container(
+              height: 50,
+              child: FloatingActionButton(
+                onPressed: () {},
+                backgroundColor: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Image.asset(
+                    'assets/images/icons/createpost.png',
+                  ),
                 ),
               ),
             ),
