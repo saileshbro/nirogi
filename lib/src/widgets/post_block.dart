@@ -93,7 +93,7 @@ class PostBlock extends StatelessWidget {
                         width: 20,
                       ),
                       Image.asset(
-                        'assets/images/icons/chat.png',
+                        'assets/images/icons/comment.png',
                         height: 30,
                       ),
                       SizedBox(

@@ -5,6 +5,8 @@ import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/repository/user_repository.dart';
+import 'package:nirogi/src/screens/profileedit.dart';
+import 'package:nirogi/src/screens/profilepage.dart';
 import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/screens/splashScreenPage.dart';
 import 'package:nirogi/src/widgets/loading_indicator.dart';
@@ -69,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                   return HomePage();
                 }
                 if (state is AuthenticationUnauthenticatedState) {
-                  return LoginSignup(userRepository: widget.userRepository);
+                  return ProfileEdit();
                 }
                 if (state is AuthenticationLoadingState) {
                   return LoadingIndicator();

@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/models/popupchoice.dart';
 import 'package:nirogi/src/models/posts.dart';
+import 'package:nirogi/src/widgets/choice_card.dart';
 import 'package:nirogi/src/widgets/drawer.dart';
 import 'package:nirogi/src/widgets/post_block.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  Choice _selectedChoice = choice[0];
+
+  void _select(Choice choice) {
+    setState(() {
+      _selectedChoice = choice;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +51,21 @@ class ProfilePage extends StatelessWidget {
             ),
           ],
         ),
+        actions: <Widget>[
+          PopupMenuButton<Choice>(
+            onSelected: _select,
+            itemBuilder: (BuildContext context) {
+              return choice.map((Choice choice) {
+                return PopupMenuItem<Choice>(
+                  child: ChoiceCard(
+                    choice: choice,
+                  ),
+                  value: choice,
+                );
+              }).toList();
+            },
+          )
+        ],
       ),
       body: Stack(
         children: <Widget>[
