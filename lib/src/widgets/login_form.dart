@@ -24,6 +24,72 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.all(5),
+          title: Container(
+            margin: EdgeInsets.fromLTRB(50, 0, 50, 20),
+            child: Text(
+              'FORGOT PASSWORD?',
+              style: Theme.of(context).textTheme.body1.copyWith(fontSize: 16),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          content: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Form(
+              child: TextFormField(
+                validator: (email) {
+                  return validateEmail(email);
+                },
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.red[700],
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.normal,
+                ),
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  errorText: "",
+                  border: Theme.of(context).inputDecorationTheme.border,
+                  icon: Image.asset(
+                    'assets/images/icons/email.png',
+                    color: Colors.red[700],
+                    width: 20,
+                  ),
+                  hintText: 'Email',
+                ),
+              ),
+            ),
+          ),
+          actions: <Widget>[
+            Container(
+              padding: EdgeInsets.only(right: 10),
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                elevation: 5,
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                onPressed: () {},
+                child: Text(
+                  'RESET',
+                  style: Theme.of(context).textTheme.body2.copyWith(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                ),
+              ),
+            )
+          ],
+        );
+      },
+    );
+  }
+
   static GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   static GlobalKey<FormFieldState> _emailKey = new GlobalKey<FormFieldState>();
   static GlobalKey<FormFieldState> _passwordKey =
@@ -129,6 +195,20 @@ class _LoginFormState extends State<LoginForm> {
                         hintText: 'Password',
                       ),
                     ),
+                    GestureDetector(
+                      onTap: _showDialog,
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 15),
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Text(
+                          'Forgot Password?',
+                          style: Theme.of(context).textTheme.body1.copyWith(
+                                fontSize: 16,
+                              ),
+                          textAlign: TextAlign.end,
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
