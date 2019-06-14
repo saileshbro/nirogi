@@ -5,7 +5,6 @@ import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/repository/user_repository.dart';
-import 'package:nirogi/src/screens/passwordchange.dart';
 import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/screens/splashScreenPage.dart';
 import 'package:nirogi/src/widgets/loading_indicator.dart';
