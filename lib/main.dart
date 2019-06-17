@@ -69,7 +69,9 @@ class _MyAppState extends State<MyApp> {
                   return HomePage();
                 }
                 if (state is AuthenticationUnauthenticatedState) {
-                  return AboutPage();
+                  return LoginSignup(
+                    userRepository: widget.userRepository,
+                  );
                 }
                 if (state is AuthenticationLoadingState) {
                   return LoadingIndicator();
@@ -82,6 +84,9 @@ class _MyAppState extends State<MyApp> {
               "/news": (context) => HealthNewsPage(),
               "/about": (context) => AboutPage(),
               "/contact": (context) => ContactPage(),
+              "/profile": (context) => ProfilePage(),
+              "/editprofile": (context) => EditProfile(),
+              "/changepw": (context) => ChangePassword()
             },
             debugShowCheckedModeBanner: false,
             theme: state.themeData,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
-import 'package:nirogi/src/widgets/drawer.dart';
 import 'package:nirogi/src/widgets/password_change_form.dart';
 
 class ChangePassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: AppDrawer(),
       appBar: AppBar(
         backgroundColor: Color(0xfff2fcfe).withOpacity(0.8),
         elevation: 0,
@@ -17,11 +17,11 @@ class ChangePassword extends StatelessWidget {
             Text('Change Password',
                 style: Theme.of(context).textTheme.headline),
             SizedBox(
-              width: 14,
+              width: 0.03 * width,
             ),
             Image.asset(
               'assets/images/icons/padlock.png',
-              width: 30,
+              width: 0.07 * width,
             ),
           ],
         ),
@@ -36,10 +36,10 @@ class ChangePassword extends StatelessWidget {
               Column(
                 children: <Widget>[
                   SizedBox(
-                    height: 0.05 * MediaQuery.of(context).size.height,
+                    height: 0.05 * height,
                   ),
                   SizedBox(
-                    height: 0.15 * MediaQuery.of(context).size.height,
+                    height: 0.15 * height,
                   ),
                   PasswordChangeForm(),
                 ],

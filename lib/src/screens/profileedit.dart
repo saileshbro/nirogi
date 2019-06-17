@@ -5,14 +5,13 @@ import 'package:nirogi/src/functions/functions.dart';
 import 'package:nirogi/src/models/popupchoice.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/choice_card.dart';
-import 'package:nirogi/src/widgets/drawer.dart';
 
-class ProfileEdit extends StatefulWidget {
+class EditProfile extends StatefulWidget {
   @override
-  _ProfileEditState createState() => _ProfileEditState();
+  _EditProfileState createState() => _EditProfileState();
 }
 
-class _ProfileEditState extends State<ProfileEdit> {
+class _EditProfileState extends State<EditProfile> {
   File _image;
 
   Future getImage() async {
@@ -23,20 +22,11 @@ class _ProfileEditState extends State<ProfileEdit> {
     });
   }
 
-  Choice _selectedChoice = choice[0];
-
-  void _select(Choice choice) {
-    setState(() {
-      _selectedChoice = choice;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: AppDrawer(),
       appBar: AppBar(
         elevation: 0,
         title: Row(
@@ -44,17 +34,19 @@ class _ProfileEditState extends State<ProfileEdit> {
           children: <Widget>[
             Text('Edit Profile', style: Theme.of(context).textTheme.headline),
             SizedBox(
-              width: 14,
+              width: 0.03 * width,
             ),
             Image.asset(
               'assets/images/icons/createpost.png',
-              width: 30,
+              width: 0.07 * width,
             ),
           ],
         ),
         actions: <Widget>[
           PopupMenuButton<Choice>(
-            onSelected: _select,
+            onSelected: (Choice choice) {
+              Navigator.of(context).pushNamed('/changepw');
+            },
             itemBuilder: (BuildContext context) {
               return choice.map((Choice choice) {
                 return PopupMenuItem<Choice>(
@@ -80,7 +72,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                 Column(
                   children: <Widget>[
                     SizedBox(
-                      height: 20,
+                      height: 0.02 * height,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -88,8 +80,8 @@ class _ProfileEditState extends State<ProfileEdit> {
                         Stack(
                           children: <Widget>[
                             Container(
-                              height: 130,
-                              width: 130,
+                              height: 0.17 * height,
+                              width: 0.33 * width,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
@@ -97,18 +89,18 @@ class _ProfileEditState extends State<ProfileEdit> {
                                   'assets/images/icons/profile.png'),
                             ),
                             Positioned(
-                              top: 80,
+                              top: 0.10 * height,
                               right: 0,
                               child: SizedBox(
-                                height: 50,
-                                width: 40,
+                                height: 0.06 * height,
+                                width: 0.10 * width,
                                 child: FloatingActionButton(
                                   backgroundColor: Colors.white,
                                   onPressed: getImage,
                                   tooltip: 'Change Avatar',
                                   child: Image.asset(
                                     'assets/images/icons/avatar.png',
-                                    width: 25,
+                                    width: 0.07 * width,
                                   ),
                                 ),
                               ),
@@ -118,15 +110,16 @@ class _ProfileEditState extends State<ProfileEdit> {
                       ],
                     ),
                     Container(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 0.05 * width, vertical: 0.02 * height),
                       padding: const EdgeInsets.all(20.0),
                       child: Form(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             Container(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0.004),
+                              padding:
+                                  EdgeInsets.fromLTRB(0, 0, 0, 0.004 * height),
                               child: TextFormField(
                                 validator: (name) => validateName(name),
                                 style: TextStyle(
@@ -151,7 +144,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                               ),
                             ),
                             Divider(
-                              height: 20,
+                              height: 0.02 * height,
                             ),
                             Container(
                               padding:
@@ -180,7 +173,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                               ),
                             ),
                             Divider(
-                              height: 20,
+                              height: 0.02 * height,
                             ),
                             Container(
                               padding:
@@ -228,7 +221,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                               style: Theme.of(context)
                                   .textTheme
                                   .button
-                                  .copyWith(fontSize: 15, color: Colors.white),
+                                  .copyWith(fontSize: 17, color: Colors.white),
                             ),
                           ),
                           onPressed: () {},

@@ -8,6 +8,8 @@ class PostBlock extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return GestureDetector(
         onTap: () {
           print('Here');
@@ -18,7 +20,7 @@ class PostBlock extends StatelessWidget {
           child: Container(
             margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(0.01 * height),
               child: Column(
                 children: <Widget>[
                   Text(
@@ -31,7 +33,7 @@ class PostBlock extends StatelessWidget {
                         ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 0.01 * height,
                   ),
                   Text(
                     post.body,
@@ -43,10 +45,11 @@ class PostBlock extends StatelessWidget {
                         .copyWith(fontSize: 14),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 0.02 * height,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       Text(
                         '${post.time} hours ago',
@@ -55,57 +58,60 @@ class PostBlock extends StatelessWidget {
                         style: Theme.of(context).textTheme.body2.copyWith(
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
-                        width: 20,
+                      Row(
+                        children: <Widget>[
+                          Image.asset(
+                            'assets/images/icons/eye.png',
+                            height: 0.04 * height,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            '${post.views}',
+                            textAlign: TextAlign.justify,
+                            maxLines: 5,
+                            style: Theme.of(context).textTheme.body2.copyWith(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
-                      Image.asset(
-                        'assets/images/icons/eye.png',
-                        height: 30,
+                      Row(
+                        children: <Widget>[
+                          Image.asset(
+                            'assets/images/icons/upvote.png',
+                            height: 0.04 * height,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            '+ ${post.upvotes}',
+                            textAlign: TextAlign.justify,
+                            maxLines: 5,
+                            style: Theme.of(context).textTheme.body2.copyWith(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        '${post.views}',
-                        textAlign: TextAlign.justify,
-                        maxLines: 5,
-                        style: Theme.of(context).textTheme.body2.copyWith(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Image.asset(
-                        'assets/images/icons/upvote.png',
-                        height: 30,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        '+ ${post.upvotes} - ${post.downvotes}',
-                        textAlign: TextAlign.justify,
-                        maxLines: 5,
-                        style: Theme.of(context).textTheme.body2.copyWith(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Image.asset(
-                        'assets/images/icons/comment.png',
-                        height: 30,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        '${post.comments}',
-                        textAlign: TextAlign.justify,
-                        maxLines: 5,
-                        style: Theme.of(context).textTheme.body2.copyWith(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
+                      Row(
+                        children: <Widget>[
+                          Image.asset(
+                            'assets/images/icons/comment.png',
+                            height: 0.04 * height,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            '${post.comments}',
+                            textAlign: TextAlign.justify,
+                            maxLines: 5,
+                            style: Theme.of(context).textTheme.body2.copyWith(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )
                     ],
                   )
                 ],

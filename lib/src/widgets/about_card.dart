@@ -11,7 +11,8 @@ class AboutPageCard extends StatelessWidget {
       children: <Widget>[
         SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.fromLTRB(20, 5, 20, 0),
+            margin: EdgeInsets.fromLTRB(
+                0.05 * width, 0.03 * height, 0.05 * width, 0),
             padding: EdgeInsets.fromLTRB(
                 .02 * width, .01 * height, .02 * width, .01 * height),
             decoration: BoxDecoration(
@@ -36,8 +37,8 @@ class AboutPageCard extends StatelessWidget {
                           text: "Hami Nirogi",
                           style: Theme.of(context).textTheme.body1.copyWith(
                               fontSize: 16,
-                              color: Theme.of(context).textTheme.body1.color,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                         TextSpan(
                           text:
@@ -82,152 +83,83 @@ class AboutPageCard extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline.copyWith(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return DevInfoPage(
-                              selectedUrl: "https://github.com/saileshbro",
-                              devName: "Sailesh Dahal",
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    child: Chip(
-                      avatar: Image.network(
-                          "https://avatars2.githubusercontent.com/u/43571990?s=460&v=4"),
-                      label: Text(
-                        'Sailesh Dahal (10)',
-                        style: Theme.of(context)
-                            .textTheme
-                            .body2
-                            .copyWith(fontSize: 18, color: Colors.black),
-                        textAlign: TextAlign.justify,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return DevInfoPage(
-                              selectedUrl: "https://github.com/sarayugautam",
-                              devName: "Sarayu Gautam",
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    child: Chip(
-                      avatar: Image.network(
-                          'https://avatars1.githubusercontent.com/u/38787833?s=460&v=4'),
-                      label: Text(
-                        'Sarayu Gautam (14)',
-                        style: Theme.of(context)
-                            .textTheme
-                            .body2
-                            .copyWith(fontSize: 18, color: Colors.black),
-                        textAlign: TextAlign.justify,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return DevInfoPage(
-                              selectedUrl: "https://github.com/saileshbro",
-                              devName: "Awan Shrestha",
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    child: Chip(
-                      avatar: Image.network(
-                          'https://avatars0.githubusercontent.com/u/39413435?s=460&v=4'),
-                      label: Text(
-                        'Awan Shrestha (45)',
-                        style: Theme.of(context)
-                            .textTheme
-                            .body2
-                            .copyWith(fontSize: 18, color: Colors.black),
-                        textAlign: TextAlign.justify,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return DevInfoPage(
-                              selectedUrl: "https://github.com/saileshbro",
-                              devName: "Sabil Shrestha",
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    child: Chip(
-                      avatar: Image.network(
-                          'https://avatars0.githubusercontent.com/u/45491148?s=460&v=4'),
-                      label: Text(
-                        'Sabil Shrestha (51)',
-                        style: Theme.of(context)
-                            .textTheme
-                            .body2
-                            .copyWith(fontSize: 18, color: Colors.black),
-                        textAlign: TextAlign.justify,
-                      ),
-                    ),
-                  ),
+                  buildChip(
+                      context,
+                      "https://avatars2.githubusercontent.com/u/43571990?s=460&v=4",
+                      "https://github.com/saileshbro",
+                      "Sailesh Dahal",
+                      "(10)"),
+                  buildChip(
+                      context,
+                      "https://avatars1.githubusercontent.com/u/38787833?s=460&v=4",
+                      "https://github.com/sarayugautam",
+                      "Sarayu Gautam",
+                      "(14)"),
+                  buildChip(
+                      context,
+                      'https://avatars0.githubusercontent.com/u/39413435?s=460&v=4',
+                      "https://github.com/saileshbro",
+                      "Awan Shrestha",
+                      "(45)"),
+                  buildChip(
+                      context,
+                      'https://avatars0.githubusercontent.com/u/45491148?s=460&v=4',
+                      "https://github.com/saileshbro",
+                      "Sabil Shrestha",
+                      "(51)"),
                   SizedBox(height: 20),
                   Text(
                     "Supervisor",
                     style: Theme.of(context).textTheme.headline.copyWith(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return DevInfoPage(
-                              selectedUrl: "https://github.com/saileshbro",
-                              devName: "Dr. Gajendra Sharma",
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    child: Chip(
-                      avatar: Image.network(
-                          'https://media.licdn.com/dms/image/C5603AQHDI5qWk6KXOw/profile-displayphoto-shrink_800_800/0?e=1566432000&v=beta&t=Jkcrwl-EgbzJ4YOZgTRYV4w0Q1iycfqV_06kOfia3qM'),
-                      label: Text(
-                        'Dr. Gajendra Sharma',
-                        style: Theme.of(context)
-                            .textTheme
-                            .body2
-                            .copyWith(fontSize: 18, color: Colors.black),
-                        textAlign: TextAlign.justify,
-                      ),
-                    ),
-                  ),
+                  buildChip(
+                      context,
+                      'https://media.licdn.com/dms/image/C5603AQHDI5qWk6KXOw/profile-displayphoto-shrink_800_800/0?e=1566432000&v=beta&t=Jkcrwl-EgbzJ4YOZgTRYV4w0Q1iycfqV_06kOfia3qM',
+                      "https://github.com/saileshbro",
+                      "Dr. Gajendra Sharma",
+                      ""),
                 ],
               ),
             ),
           ),
         ),
       ],
+    );
+  }
+
+  GestureDetector buildChip(
+      BuildContext context, imageUrl, selectedUrl, devName, rollNo) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return DevInfoPage(
+                selectedUrl: selectedUrl,
+                devName: devName,
+              );
+            },
+          ),
+        );
+      },
+      child: Chip(
+        elevation: 3.0,
+        avatar: CircleAvatar(
+          backgroundImage: NetworkImage(imageUrl),
+        ),
+        label: Text(
+          "$devName $rollNo",
+          style: Theme.of(context).textTheme.body2.copyWith(fontSize: 18),
+          textAlign: TextAlign.justify,
+        ),
+      ),
     );
   }
 }

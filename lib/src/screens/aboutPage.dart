@@ -1,4 +1,3 @@
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/widgets/about_card.dart';
 import 'package:nirogi/src/widgets/drawer.dart';
@@ -6,20 +5,25 @@ import 'package:nirogi/src/widgets/drawer.dart';
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xfff2fcfe).withOpacity(0.8),
-        elevation: 0,
+        elevation: Theme.of(context).appBarTheme.elevation,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('About Us', style: Theme.of(context).textTheme.headline),
+            Text('About Us',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline
+                    .copyWith(color: Colors.black)),
             SizedBox(
-              width: 14,
+              width: 0.035 * width,
             ),
             Image.asset(
               'assets/images/icons/about.png',
-              width: 30,
+              width: 0.07 * width,
             ),
           ],
         ),
@@ -45,7 +49,7 @@ class _LinearGradient extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
-          height: MediaQuery.of(context).size.height * 0.35,
+          height: MediaQuery.of(context).size.height * 0.36,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [

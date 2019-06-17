@@ -11,24 +11,20 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  Choice _selectedChoice = choice[0];
-
-  void _select(Choice choice) {
-    setState(() {
-      _selectedChoice = choice;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       floatingActionButton: Container(
-        margin: EdgeInsets.only(bottom: 25),
+        margin: EdgeInsets.only(bottom: 0.033 * height),
         child: FloatingActionButton(
+          heroTag: 'createPost',
           onPressed: () {},
           backgroundColor: Color(0xff5B86E5),
           child: Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: EdgeInsets.fromLTRB(
+                0.03 * width, 0.016 * width, 0.03 * width, 0.016 * width),
             child: Image.asset(
               'assets/images/icons/news.png',
             ),
@@ -43,17 +39,19 @@ class _ProfilePageState extends State<ProfilePage> {
           children: <Widget>[
             Text('Profile', style: Theme.of(context).textTheme.headline),
             SizedBox(
-              width: 14,
+              width: 0.035 * width,
             ),
             Image.asset(
               'assets/images/icons/profile.png',
-              width: 30,
+              width: 0.075 * width,
             ),
           ],
         ),
         actions: <Widget>[
           PopupMenuButton<Choice>(
-            onSelected: _select,
+            onSelected: (Choice choice) {
+              Navigator.of(context).pushNamed('/changepw');
+            },
             itemBuilder: (BuildContext context) {
               return choice.map((Choice choice) {
                 return PopupMenuItem<Choice>(
@@ -85,14 +83,14 @@ class _ProfilePageState extends State<ProfilePage> {
                               Stack(
                                 children: <Widget>[
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 10.0,
-                                      right: 15,
-                                      top: 10,
+                                    padding: EdgeInsets.only(
+                                      left: 0.025 * width,
+                                      right: 0.036 * width,
+                                      top: 0.013 * height,
                                     ),
                                     child: Container(
-                                      height: 140,
-                                      width: 140,
+                                      height: 0.189 * height,
+                                      width: 0.35 * width,
                                       child: Image.asset(
                                         'assets/images/icons/profile.png',
                                       ),
@@ -102,18 +100,22 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                   ),
                                   Positioned(
-                                    top: 100,
-                                    left: 100,
+                                    top: 0.135 * height,
+                                    left: 0.255 * width,
                                     child: Container(
-                                      height: 40,
+                                      height: 0.054 * height,
                                       child: FloatingActionButton(
+                                        heroTag: "editProfile",
                                         backgroundColor:
                                             Color(0xff5B86E5).withOpacity(0.8),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.pushNamed(
+                                              context, '/editprofile');
+                                        },
                                         child: Image.asset(
                                           'assets/images/icons/edit.png',
-                                          height: 25,
-                                          width: 30,
+                                          height: 0.033 * height,
+                                          width: 0.07 * width,
                                         ),
                                       ),
                                     ),
@@ -123,7 +125,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               Column(
                                 children: <Widget>[
                                   SizedBox(
-                                    height: 45,
+                                    height: 0.06 * height,
                                   ),
                                   Text(
                                     'Sarayu Gautam',
@@ -158,7 +160,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           Container(
                                             height: 1.0,
                                             color: Colors.red,
-                                            width: 50,
+                                            width: 0.127 * width,
                                           ),
                                           SizedBox(
                                             width: 5,
@@ -174,7 +176,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           ),
                                           Container(
                                             height: 1.0,
-                                            width: 70,
+                                            width: 0.178 * width,
                                             color: Colors.red,
                                           ),
                                         ],
@@ -189,15 +191,16 @@ class _ProfilePageState extends State<ProfilePage> {
                             top: 1,
                             right: 10,
                             child: Container(
-                              height: 40,
+                              height: 0.05 * height,
                               child: FloatingActionButton(
+                                heroTag: "notification",
                                 backgroundColor:
                                     Color(0xff5B86E5).withOpacity(0.8),
                                 onPressed: () {},
                                 child: Image.asset(
                                   'assets/images/icons/notification.png',
-                                  width: 30,
-                                  height: 30,
+                                  width: 0.07 * width,
+                                  height: 0.04 * height,
                                 ),
                               ),
                             ),
@@ -223,7 +226,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     },
                     separatorBuilder: (BuildContext context, int index) {
                       return SizedBox(
-                        height: 15,
+                        height: 0.02 * height,
                       );
                     },
                   ),

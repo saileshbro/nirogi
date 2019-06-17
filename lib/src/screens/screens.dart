@@ -5,3 +5,6 @@ export 'healthNewsPage.dart';
 export 'homepage.dart';
 export 'symptomsPage.dart';
 export 'loginsignup.dart';
+export 'profilepage.dart';
+export 'profileedit.dart';
+export 'passwordchange.dart';

@@ -8,26 +8,7 @@ class ChoiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle =
-        Theme.of(context).textTheme.body1.copyWith(fontSize: 18);
-    return Column(
-      children: <Widget>[
-        Center(
-          child: GestureDetector(
-            onTap: () {},
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.asset(choice.icon, width: 25, color: Colors.red[700]),
-                SizedBox(
-                  width: 15,
-                ),
-                Text(choice.title, style: textStyle),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
+    return Text(choice.title,
+        style: Theme.of(context).textTheme.body1.copyWith(fontSize: 14));
   }
 }

@@ -8,7 +8,7 @@ ThemeData _buildLightTheme() {
     highlightColor: Colors.grey[400].withOpacity(.6),
     appBarTheme: AppBarTheme(
       iconTheme: IconThemeData(color: Colors.red[700]),
-      elevation: 0.5,
+      elevation: 0,
     ),
     primaryColor: Colors.white,
     accentColor: Colors.black,
@@ -88,7 +88,7 @@ ThemeData _buildDarkTheme() {
       iconTheme: IconThemeData(
         color: Colors.red[700],
       ),
-      elevation: 0.5,
+      elevation: 0.0,
     ),
     primaryColor: Color(0xff121212),
     scaffoldBackgroundColor: Color(0xff121212),

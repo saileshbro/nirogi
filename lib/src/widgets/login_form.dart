@@ -202,9 +202,10 @@ class _LoginFormState extends State<LoginForm> {
                         padding: const EdgeInsets.only(right: 10),
                         child: Text(
                           'Forgot Password?',
-                          style: Theme.of(context).textTheme.body1.copyWith(
-                                fontSize: 16,
-                              ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .body1
+                              .copyWith(fontSize: 16, color: Colors.black),
                           textAlign: TextAlign.end,
                         ),
                       ),
