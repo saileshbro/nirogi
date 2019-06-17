@@ -16,6 +16,7 @@ dependencies:
   http:
   flare_flutter: 1.0.2
   flutter_spinkit: "^3.1.0"
+  webview_flutter: ^0.3.9+1
 dev_dependencies:
   flutter_test:
     sdk: flutter

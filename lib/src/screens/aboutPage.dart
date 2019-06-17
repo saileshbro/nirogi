@@ -8,6 +8,8 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xfff2fcfe).withOpacity(0.8),
+        elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -25,10 +27,7 @@ class AboutPage extends StatelessWidget {
       drawer: AppDrawer(),
       body: Stack(
         children: <Widget>[
-          _TopPart(),
-          SizedBox(
-            height: 0.01 * MediaQuery.of(context).size.height,
-          ),
+          _LinearGradient(),
           AboutPageCard(),
         ],
       ),
@@ -36,28 +35,42 @@ class AboutPage extends StatelessWidget {
   }
 }
 
-class _TopPart extends StatelessWidget {
-  const _TopPart({
+class _LinearGradient extends StatelessWidget {
+  const _LinearGradient({
     Key key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          Container(
-            width: 0.2 * MediaQuery.of(context).size.width,
-            height: 0.2 * MediaQuery.of(context).size.width,
-            child: FlareActor(
-              'assets/animations/yoga.flr',
-              animation: 'relaxing',
-              color: Colors.red[700],
-              fit: BoxFit.cover,
-              shouldClip: false,
+    return Column(
+      children: <Widget>[
+        Container(
+          height: MediaQuery.of(context).size.height * 0.35,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xfff2fcfe).withOpacity(0.8),
+                Color(0xff1c92d2).withOpacity(0.8),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
           ),
-        ],
-      ),
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.53,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xfff2fcfe).withOpacity(0.8),
+                Color(0xff1c92d2).withOpacity(0.8),
+              ],
+              end: Alignment.topCenter,
+              begin: Alignment.bottomCenter,
+            ),
+          ),
+        )
+      ],
     );
   }
 }
