@@ -77,7 +77,7 @@ class _LoginSignupState extends State<LoginSignup> {
                 ],
               ),
               Positioned(
-                bottom: 0.08 * MediaQuery.of(context).size.height,
+                bottom: 0.03 * MediaQuery.of(context).size.height,
                 left: 10,
                 right: 10,
                 child: GestureDetector(
