@@ -12,6 +12,65 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
+  void _showLogoutModal() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.all(5),
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              'LOGOUT?',
+              style: Theme.of(context)
+                  .textTheme
+                  .body1
+                  .copyWith(fontSize: 16, color: Colors.red[700]),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          content: Text(
+            'Do you really want to logout?',
+            style: Theme.of(context).textTheme.body2.copyWith(fontSize: 14),
+            textAlign: TextAlign.center,
+          ),
+          actions: <Widget>[
+            FlatButton(
+              color: Colors.transparent,
+              onPressed: () {
+                Navigator.popUntil(context, ModalRoute.withName('/'));
+              },
+              child: Text(
+                'Cancel',
+                style: Theme.of(context).textTheme.body2.copyWith(
+                      fontSize: 16,
+                      color: Colors.grey,
+                    ),
+              ),
+            ),
+            FlatButton(
+              color: Colors.transparent,
+              onPressed: () {
+                Navigator.popUntil(context, ModalRoute.withName('/'));
+                setState(() {
+                  BlocProvider.of<AuthenticationBloc>(context)
+                      .dispatch(LoggedOutEvent());
+                });
+              },
+              child: Text(
+                'Logout',
+                style: Theme.of(context).textTheme.body2.copyWith(
+                      fontSize: 16,
+                      color: Colors.red[700],
+                    ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -222,13 +281,7 @@ class _AppDrawerState extends State<AppDrawer> {
             ? changeThemeBloc.currentState.themeData.highlightColor
             : Colors.transparent,
         child: ListTile(
-          onTap: () {
-            Navigator.of(context).pop();
-            setState(() {
-              BlocProvider.of<AuthenticationBloc>(context)
-                  .dispatch(LoggedOutEvent());
-            });
-          },
+          onTap: _showLogoutModal,
           contentPadding: EdgeInsets.only(left: 30),
           leading: Image.asset(
             imgUrl,
