@@ -6,7 +6,12 @@ import 'package:nirogi/src/bloc/change_theme_bloc.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/themes/themes.dart';
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer extends StatefulWidget {
+  @override
+  _AppDrawerState createState() => _AppDrawerState();
+}
+
+class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -218,8 +223,11 @@ class AppDrawer extends StatelessWidget {
             : Colors.transparent,
         child: ListTile(
           onTap: () {
-            BlocProvider.of<AuthenticationBloc>(context)
-                .dispatch(LoggedOutEvent());
+            Navigator.of(context).pop();
+            setState(() {
+              BlocProvider.of<AuthenticationBloc>(context)
+                  .dispatch(LoggedOutEvent());
+            });
           },
           contentPadding: EdgeInsets.only(left: 30),
           leading: Image.asset(
