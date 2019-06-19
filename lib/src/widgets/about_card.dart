@@ -12,7 +12,7 @@ class AboutPageCard extends StatelessWidget {
         SingleChildScrollView(
           child: Container(
             margin: EdgeInsets.fromLTRB(
-                0.05 * width, 0.03 * height, 0.05 * width, 0),
+                0.05 * width, 0.02 * height, 0.05 * width, 0),
             padding: EdgeInsets.fromLTRB(
                 .02 * width, .01 * height, .02 * width, .01 * height),
             decoration: BoxDecoration(
@@ -101,13 +101,13 @@ class AboutPageCard extends StatelessWidget {
                   buildChip(
                       context,
                       'https://avatars0.githubusercontent.com/u/39413435?s=460&v=4',
-                      "https://github.com/saileshbro",
+                      "https://github.com/awanshrestha",
                       "Awan Shrestha",
                       "(45)"),
                   buildChip(
                       context,
                       'https://avatars0.githubusercontent.com/u/45491148?s=460&v=4',
-                      "https://github.com/saileshbro",
+                      "https://github.com/sabil62",
                       "Sabil Shrestha",
                       "(51)"),
                   SizedBox(height: 20),
@@ -122,7 +122,7 @@ class AboutPageCard extends StatelessWidget {
                   buildChip(
                       context,
                       'https://media.licdn.com/dms/image/C5603AQHDI5qWk6KXOw/profile-displayphoto-shrink_800_800/0?e=1566432000&v=beta&t=Jkcrwl-EgbzJ4YOZgTRYV4w0Q1iycfqV_06kOfia3qM',
-                      "https://github.com/saileshbro",
+                      "https://np.linkedin.com/in/gajendra-sharma-6266b3103",
                       "Dr. Gajendra Sharma",
                       ""),
                 ],
