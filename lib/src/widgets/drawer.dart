@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nirogi/src/bloc/authentication_bloc.dart';
 import 'package:nirogi/src/bloc/authentication_event.dart';
 import 'package:nirogi/src/bloc/change_theme_bloc.dart';
+import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/themes/themes.dart';
 
@@ -81,18 +82,24 @@ class _AppDrawerState extends State<AppDrawer> {
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Column(
               children: <Widget>[
-                Container(
-                  height: 135,
-                  child: DrawerHeader(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(
-                          changeThemeBloc.currentState.themeData == kDarkTheme
-                              ? 'assets/images/logos/brand-logo-light.png'
-                              : 'assets/images/logos/brand-logo-dark.png',
-                        ),
-                      ],
+                UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(color: Colors.teal),
+                  onDetailsPressed: () {
+                    Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return ProfilePage();
+                    }));
+                  },
+                  accountEmail: Text(
+                    "saileshbro@gmail.com",
+                    style: Theme.of(context).textTheme.body1,
+                  ),
+                  accountName: Text("Sailesh Dahal",
+                      style: Theme.of(context).textTheme.headline),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      "https://avatars2.githubusercontent.com/u/43571990?s=460&v=4",
                     ),
                   ),
                 ),

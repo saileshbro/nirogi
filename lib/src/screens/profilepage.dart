@@ -31,7 +31,6 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
       ),
-      drawer: AppDrawer(),
       appBar: AppBar(
         elevation: 0,
         title: Row(
