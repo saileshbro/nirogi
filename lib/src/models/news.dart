@@ -1,22 +1,5 @@
-import 'package:meta/meta.dart';
-
-class News {
-  String title;
-  String body;
-  String source;
-  String date;
-  String imgUrl;
-  News({
-    @required this.body,
-    @required this.date,
-    this.imgUrl,
-    this.source,
-    @required this.title,
-  });
-}
-
-List<News> topNews = <News>[
-  News(
+List<NewsItem> topNews = <NewsItem>[
+  NewsItem(
     title: "Hypertension and Zinc deficiency",
     body: """Zinc deficiency may play a role in high blood pressure
 Link found between zinc, blood pressure and kidney sodium transporter in mouse study.
@@ -24,12 +7,12 @@ Lower-than-normal zinc levels may contribute to high blood pressure (hypertensio
 Zinc deficiency is common in people with chronic illnesses such as type 2 diabetes and chronic kidney disease. People with low zinc levels are also at a higher risk for hypertension. The way in which the kidneys either excrete sodium into the urine or reabsorb it into the body — specifically through a pathway called the sodium chloride cotransporter (NCC) — also plays a role in blood pressure control. Less sodium in the urine typically corresponds with higher blood pressure. Recent research has suggested that zinc may help regulate proteins that in turn regulate the NCC, but a direct link between zinc-deficiency-induced hypertension has not been examined.
 Researchers compared male mice with zinc deficiency to healthy controls with normal zinc levels. The zinc-deficient mice developed high blood pressure and a corresponding decrease in urinary sodium excretion. The control group did not experience the same changes. A small group of the zinc-deficient mice were fed a zinc-rich diet partway through the study. Once the animals’ zinc reached adequate levels, blood pressure began to drop and urinary sodium levels increased. “These significant findings demonstrate that enhanced renal [sodium] reabsorption plays a critical role in [zinc-deficiency]-induced hypertension,” the research team wrote.
 “Understanding the specific mechanisms by which [zinc deficiency] contributes to [blood pressure] dysregulation may have an important effect on the treatment of hypertension in chronic disease settings,” the researchers added.""",
-    date: "January 24, 2019",
-    imgUrl:
+    updatedAt: "January 24, 2019",
+    imageUrl:
         "http://niroginepal.com/wp-content/uploads/2019/01/Zinc-Source-848x296.jpg",
-    source: "Science Daily",
+    writtenBy: "Science Daily",
   ),
-  News(
+  NewsItem(
     title: "Hypertension and Zinc deficiency",
     body: """Zinc deficiency may play a role in high blood pressure
 Link found between zinc, blood pressure and kidney sodium transporter in mouse study.
@@ -37,12 +20,12 @@ Lower-than-normal zinc levels may contribute to high blood pressure (hypertensio
 Zinc deficiency is common in people with chronic illnesses such as type 2 diabetes and chronic kidney disease. People with low zinc levels are also at a higher risk for hypertension. The way in which the kidneys either excrete sodium into the urine or reabsorb it into the body — specifically through a pathway called the sodium chloride cotransporter (NCC) — also plays a role in blood pressure control. Less sodium in the urine typically corresponds with higher blood pressure. Recent research has suggested that zinc may help regulate proteins that in turn regulate the NCC, but a direct link between zinc-deficiency-induced hypertension has not been examined.
 Researchers compared male mice with zinc deficiency to healthy controls with normal zinc levels. The zinc-deficient mice developed high blood pressure and a corresponding decrease in urinary sodium excretion. The control group did not experience the same changes. A small group of the zinc-deficient mice were fed a zinc-rich diet partway through the study. Once the animals’ zinc reached adequate levels, blood pressure began to drop and urinary sodium levels increased. “These significant findings demonstrate that enhanced renal [sodium] reabsorption plays a critical role in [zinc-deficiency]-induced hypertension,” the research team wrote.
 “Understanding the specific mechanisms by which [zinc deficiency] contributes to [blood pressure] dysregulation may have an important effect on the treatment of hypertension in chronic disease settings,” the researchers added.""",
-    date: "January 24, 2019",
-    imgUrl:
+    updatedAt: "January 24, 2019",
+    imageUrl:
         "http://niroginepal.com/wp-content/uploads/2019/01/Zinc-Source-848x296.jpg",
-    source: "Science Daily",
+    writtenBy: "Science Daily",
   ),
-  News(
+  NewsItem(
     title: "Drinking baking soda is good to health !",
     body:
         """A daily dose of baking soda may help reduce the destructive inflammation of autoimmune diseases like rheumatoid arthritis, scientists say.
@@ -100,12 +83,12 @@ The spleen also got bigger with consuming baking soda, the scientists think beca
 Other cells besides neurons are known to use the chemical communicator acetylcholine. Baking soda also interact with acidic ingredients like buttermilk and cocoa in cakes and other baked goods to help the batter expand and, along with heat from the oven, to rise. It can also help raise the pH in pools, is found in antacids and can help clean your teeth and tub.
 
 The research was funded by the National Institutes of Health.""",
-    date: "April 22, 2018",
-    imgUrl:
+    updatedAt: "April 22, 2018",
+    imageUrl:
         "http://niroginepal.com/wp-content/uploads/2018/05/Baking-soda-848x296.jpg",
-    source: "Science Daily",
+    writtenBy: "Science Daily",
   ),
-  News(
+  NewsItem(
     title: "Male Birth Control Pill",
     body:
         """A new birth control pill for men appears to be safe when used daily for a month, with hormone responses consistent with effective contraception, study researchers say. Their study results, in 83 men, will be presented Sunday at ENDO 2018, the Endocrine Society’s 100th annual meeting in Chicago, Ill.
@@ -128,15 +111,15 @@ All groups taking DMAU did have weight gain and decreases in HDL (“good”) ch
 
 “These promising results are unprecedented in the development of a prototype male pill,” Page said. “Longer term studies are currently under way to confirm that DMAU taken every day blocks sperm production.”
 
-Story Source:
+Story writtenBy:
 
 Materials provided by Science Daily. Note: Content may be edited for style and length.""",
-    date: "January 24, 2019",
-    imgUrl:
+    updatedAt: "January 24, 2019",
+    imageUrl:
         "http://niroginepal.com/wp-content/uploads/2018/03/Male-pill-848x296.jpg",
-    source: "Science Daily",
+    writtenBy: "Science Daily",
   ),
-  News(
+  NewsItem(
     title: "Carbs, fat, DNA? Weight loss is finicky, new study shows",
     body:
         """A precision nutrition approach to weight loss didn’t hold up in a study testing low fat versus low carb depending on dieters’ DNA profiles.
@@ -166,9 +149,73 @@ The study was well-conducted but because participants were not provided with spe
 Dr Frank Hu, nutrition chief at Harvard’s School of Public Health, has called precision nutrition a promising approach and said the study wasn’t a comprehensive test of all gene variations that might affect individual responses to weight loss diets.
 
 “In any weight loss diets, adherence to the diet and the overall quality of the diet are probably more important than any other factors,” Hu said.""",
-    date: "January 24, 2019",
-    imgUrl:
+    updatedAt: "January 24, 2019",
+    imageUrl:
         "http://niroginepal.com/wp-content/uploads/2018/03/weightloss-card-848x296.jpg",
-    source: "Science Daily",
+    writtenBy: "Science Daily",
   ),
 ];
+
+class News {
+  List<NewsItem> news;
+
+  News({this.news});
+
+  News.fromJson(Map<String, dynamic> json) {
+    if (json['news'] != null) {
+      news = new List<NewsItem>();
+      json['news'].forEach((v) {
+        news.add(new NewsItem.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.news != null) {
+      data['news'] = this.news.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class NewsItem {
+  int newsId;
+  String title;
+  String imageUrl;
+  String description;
+  String body;
+  String writtenBy;
+  String updatedAt;
+
+  NewsItem(
+      {this.newsId,
+      this.title,
+      this.imageUrl,
+      this.description,
+      this.body,
+      this.writtenBy,
+      this.updatedAt});
+
+  NewsItem.fromJson(Map<String, dynamic> json) {
+    newsId = json['news_id'];
+    title = json['title'];
+    imageUrl = json['imageUrl'];
+    description = json['description'];
+    body = json['body'];
+    writtenBy = json['written_by'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['news_id'] = this.newsId;
+    data['title'] = this.title;
+    data['imageUrl'] = this.imageUrl;
+    data['description'] = this.description;
+    data['body'] = this.body;
+    data['written_by'] = this.writtenBy;
+    data['updated_at'] = this.updatedAt;
+    return data;
+  }
+}
