@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/models/diseases.dart';
 
 class DiseaseCard extends StatelessWidget {
-  final disease;
+  final Disease disease;
   const DiseaseCard({
     @required this.disease,
     Key key,
@@ -45,7 +46,7 @@ class DiseaseCard extends StatelessWidget {
                 left: 10,
                 right: 10,
                 child: Text(
-                  disease.name,
+                  disease.disease,
                   style: TextStyle(
                       fontFamily:
                           Theme.of(context).textTheme.headline.fontFamily,
