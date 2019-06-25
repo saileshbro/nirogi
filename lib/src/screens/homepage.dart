@@ -9,6 +9,7 @@ import 'package:nirogi/src/themes/themes.dart';
 import 'package:nirogi/src/widgets/diseases_card.dart';
 import 'package:nirogi/src/widgets/drawer.dart';
 import 'package:nirogi/src/widgets/news_card.dart';
+import 'package:nirogi/src/widgets/symptoms_card.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -113,8 +114,8 @@ class _HomePageState extends State<HomePage> {
         itemCount: topDisease.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
-          return DiseaseCard(
-            disease: topSymptoms[index],
+          return SymptomCard(
+            symptom: topSymptoms[index],
           );
         },
         separatorBuilder: (BuildContext context, int index) {
