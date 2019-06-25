@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/news.dart';
 
 class NewsCard extends StatelessWidget {
-  final News news;
+  final NewsItem news;
   NewsCard({@required this.news}) : assert(news != null);
 
   @override
@@ -17,7 +17,7 @@ class NewsCard extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Image.network(
-                news.imgUrl,
+                news.imageUrl,
                 width: 0.28 * MediaQuery.of(context).size.width,
                 height: 0.1 * MediaQuery.of(context).size.height,
                 fit: BoxFit.fill,
@@ -65,7 +65,7 @@ class NewsCard extends StatelessWidget {
                                   width: 5,
                                 ),
                                 Text(
-                                  news.source,
+                                  news.writtenBy,
                                   style: Theme.of(context).textTheme.body2,
                                 ),
                               ],
@@ -80,7 +80,7 @@ class NewsCard extends StatelessWidget {
                                   width: 5,
                                 ),
                                 Text(
-                                  news.date,
+                                  news.updatedAt,
                                   style: Theme.of(context).textTheme.body2,
                                 ),
                               ],

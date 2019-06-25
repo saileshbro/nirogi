@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/models/posts.dart';
 
 class PostBlock extends StatelessWidget {
-  final post;
+  final Post post;
   const PostBlock({
     @required this.post,
     Key key,
@@ -9,7 +10,6 @@ class PostBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
-    final double width = MediaQuery.of(context).size.width;
     return GestureDetector(
         onTap: () {
           print('Here');
@@ -52,7 +52,7 @@ class PostBlock extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       Text(
-                        '${post.time} hours ago',
+                        '${post.createdAt}',
                         textAlign: TextAlign.justify,
                         maxLines: 5,
                         style: Theme.of(context).textTheme.body2.copyWith(
@@ -86,7 +86,9 @@ class PostBlock extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            '+ ${post.upvotes}',
+                            post.voteCount > 0
+                                ? "+${post.voteCount}"
+                                : "${post.voteCount}",
                             textAlign: TextAlign.justify,
                             maxLines: 5,
                             style: Theme.of(context).textTheme.body2.copyWith(
@@ -104,7 +106,7 @@ class PostBlock extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            '${post.comments}',
+                            '${post.commentCount}',
                             textAlign: TextAlign.justify,
                             maxLines: 5,
                             style: Theme.of(context).textTheme.body2.copyWith(
