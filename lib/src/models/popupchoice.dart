@@ -28,3 +28,9 @@ const List<ForumChoice> forumChoice = const <ForumChoice>[
     icon: 'assets/images/icons/recent.png',
   ),
 ];
+
+class DropDownChoice {
+  const DropDownChoice({this.title, this.icon});
+  final String title;
+  final String icon;
+}
