@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/popupchoice.dart';
 import 'package:nirogi/src/models/posts.dart';
 import 'package:nirogi/src/widgets/choice_card.dart';
-import 'package:nirogi/src/widgets/drawer.dart';
 import 'package:nirogi/src/widgets/post_block.dart';
 
 class ProfilePage extends StatefulWidget {
