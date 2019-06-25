@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/screens/eachPost.dart';
 
 class ForumBlock extends StatelessWidget {
   final post;
@@ -10,7 +11,13 @@ class ForumBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('Here');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => EachPost(
+                    post: post,
+                  )),
+        );
       },
       child: Container(
         height: 90,
