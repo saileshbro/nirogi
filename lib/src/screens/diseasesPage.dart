@@ -7,6 +7,7 @@ import 'package:nirogi/src/widgets/search_box.dart';
 class DiseasesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
         drawer: AppDrawer(),
         appBar: AppBar(
@@ -15,11 +16,11 @@ class DiseasesPage extends StatelessWidget {
             children: <Widget>[
               Text('Diseases', style: Theme.of(context).textTheme.headline),
               SizedBox(
-                width: 14,
+                width: 0.03 * width,
               ),
               Image.asset(
                 'assets/images/icons/disease.png',
-                width: 30,
+                width: 0.07 * width,
               ),
             ],
           ),
@@ -42,9 +43,12 @@ class _BuildDiseaseList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.only(right: 10, left: 10, bottom: 10),
+        padding: EdgeInsets.only(
+            right: 0.02 * width, left: 0.02 * width, bottom: 0.01 * height),
         child: ListView.separated(
           shrinkWrap: true,
           physics: BouncingScrollPhysics(),
@@ -57,7 +61,7 @@ class _BuildDiseaseList extends StatelessWidget {
           },
           separatorBuilder: (BuildContext context, int index) {
             return SizedBox(
-              height: 15,
+              height: 0.02 * height,
             );
           },
         ),

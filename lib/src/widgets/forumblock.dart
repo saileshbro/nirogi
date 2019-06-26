@@ -9,6 +9,8 @@ class ForumBlock extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -21,14 +23,14 @@ class ForumBlock extends StatelessWidget {
         );
       },
       child: Container(
-        padding: EdgeInsets.only(bottom: 10, top: 10),
+        padding: EdgeInsets.only(bottom: 0.01 * height, top: 0.01 * height),
         child: Column(
           children: <Widget>[
             Row(
               children: <Widget>[
                 Container(
-                  height: 60,
-                  width: 60,
+                  height: 0.09 * height,
+                  width: 0.14 * width,
                   decoration: BoxDecoration(
                     color: Colors.red[50],
                     shape: BoxShape.circle,
@@ -41,7 +43,7 @@ class ForumBlock extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 0.02 * width,
                 ),
                 Flexible(
                   child: Column(
@@ -70,7 +72,7 @@ class ForumBlock extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 0.02 * width,
                       ),
                     ],
                   ),
@@ -87,7 +89,7 @@ class ForumBlock extends StatelessWidget {
                       ),
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 0.02 * width,
                 ),
                 Expanded(
                   child: Row(
@@ -96,7 +98,7 @@ class ForumBlock extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Image.asset('assets/images/icons/upvote.png',
-                              height: 20),
+                              height: 0.03 * height),
                           SizedBox(
                             width: 5,
                           ),
@@ -111,7 +113,7 @@ class ForumBlock extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Image.asset('assets/images/icons/comment.png',
-                              height: 15),
+                              height: 0.02 * height),
                           SizedBox(
                             width: 5,
                           ),
@@ -126,7 +128,7 @@ class ForumBlock extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Image.asset('assets/images/icons/recent.png',
-                              height: 15),
+                              height: 0.02 * height),
                           SizedBox(
                             width: 5,
                           ),
@@ -141,7 +143,7 @@ class ForumBlock extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Image.asset('assets/images/icons/view.png',
-                              height: 15),
+                              height: 0.02 * height),
                           SizedBox(
                             width: 5,
                           ),

@@ -8,9 +8,12 @@ class CommentCard extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      padding: EdgeInsets.only(top: 10),
+      margin: EdgeInsets.only(bottom: 0.01 * height),
+      padding: EdgeInsets.only(top: 0.01 * height),
       child: Column(
         children: <Widget>[
           Row(
@@ -23,7 +26,7 @@ class CommentCard extends StatelessWidget {
                     onTap: () {},
                     child: Image.asset(
                       'assets/images/icons/upArrow.png',
-                      width: 25,
+                      width: 0.06 * width,
                       color: Colors.grey,
                     ),
                   ),
@@ -43,14 +46,14 @@ class CommentCard extends StatelessWidget {
                     onTap: () {},
                     child: Image.asset(
                       'assets/images/icons/downArrow.png',
-                      width: 25,
+                      width: 0.06 * width,
                       color: Colors.grey,
                     ),
                   ),
                 ],
               ),
               SizedBox(
-                width: 15,
+                width: 0.03 * width,
               ),
               Expanded(
                 child: Text(
@@ -64,7 +67,7 @@ class CommentCard extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 10,
+            height: 0.02 * width,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -99,11 +102,11 @@ class CommentCard extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                width: 10,
+                width: 0.06 * width,
               ),
               Container(
                 height: 40,
-                width: 40,
+                width: 0.09 * width,
                 decoration: BoxDecoration(
                   color: Colors.red[50],
                   shape: BoxShape.circle,
