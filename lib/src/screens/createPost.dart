@@ -155,13 +155,14 @@ class _CreatePostState extends State<CreatePost> {
                                   );
                                 }).toList()),
                           ),
-                          GestureDetector(
-                            onTap: () {},
+                          FlatButton(
+                            onPressed: () {},
                             child: Text(
-                              'Save',
+                              'SAVE',
                               style: Theme.of(context).textTheme.body2.copyWith(
                                     fontSize: 20,
                                     color: Colors.blue,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           )
