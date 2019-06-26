@@ -3,6 +3,7 @@ import 'package:nirogi/src/models/symptoms.dart';
 import 'package:nirogi/src/widgets/diseases_block.dart';
 import 'package:nirogi/src/widgets/drawer.dart';
 import 'package:nirogi/src/widgets/search_box.dart';
+import 'package:nirogi/src/widgets/symptoms_block.dart';
 
 class SymptomsPage extends StatelessWidget {
   @override
@@ -55,8 +56,8 @@ class _BuildSymptomList extends StatelessWidget {
           itemCount: allSymptoms.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (BuildContext context, int index) {
-            return DiseaseBlock(
-              disease: allSymptoms[index],
+            return SymptomBlock(
+              symptom: allSymptoms[index],
             );
           },
           separatorBuilder: (BuildContext context, int index) {

@@ -166,7 +166,7 @@ class _EachPostState extends State<EachPost> {
                                   SizedBox(
                                     width: 0.02 * width,
                                   ),
-                                  Image.asset('assets/images/icons/view.png',
+                                  Image.asset('assets/images/icons/eye.png',
                                       height: 0.02 * width),
                                   SizedBox(
                                     width: 5,

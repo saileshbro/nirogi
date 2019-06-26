@@ -7,3 +7,4 @@ export 'loginsignup.dart';
 export 'profilepage.dart';
 export 'profileedit.dart';
 export 'passwordchange.dart';
+export 'ForumPage.dart';

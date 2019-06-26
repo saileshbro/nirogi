@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                     child: _isCollapsed
                         ? Image.asset(
                             'assets/images/icons/meditation.png',
-                            width: 0.02 * width,
+                            width: 0.065 * width,
                           )
                         : SizedBox(),
                   )

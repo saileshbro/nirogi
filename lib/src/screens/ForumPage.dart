@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/forumPosts.dart';
 import 'package:nirogi/src/models/popupchoice.dart';
+import 'package:nirogi/src/screens/createPost.dart';
 import 'package:nirogi/src/widgets/choice_card.dart';
 import 'package:nirogi/src/widgets/drawer.dart';
 import 'package:nirogi/src/widgets/forumblock.dart';
+import 'package:nirogi/src/widgets/plus_floating_icon.dart';
 import 'package:nirogi/src/widgets/search_box.dart';
 
 class ForumPage extends StatefulWidget {
@@ -16,7 +18,24 @@ class _ForumPageState extends State<ForumPage> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
+      floatingActionButton: Container(
+        margin: EdgeInsets.only(bottom: 0.033 * height),
+        child: FloatingActionButton(
+          heroTag: 'createPost',
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CreatePost(),
+              ),
+            );
+          },
+          backgroundColor: Colors.white,
+          child: PlusFloatingIcon(),
+        ),
+      ),
       drawer: AppDrawer(),
       appBar: AppBar(
         title: Row(

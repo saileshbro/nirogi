@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/models/symptoms.dart';
 
 class SymptomBlock extends StatelessWidget {
-  final symptom;
+  final Symptom symptom;
   const SymptomBlock({
     @required this.symptom,
     Key key,
@@ -40,7 +41,7 @@ class SymptomBlock extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        symptom.name,
+                        symptom.symptom,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.start,
                         maxLines: 3,

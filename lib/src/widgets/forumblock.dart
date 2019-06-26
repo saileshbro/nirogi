@@ -62,11 +62,12 @@ class ForumBlock extends StatelessWidget {
                         child: Container(
                           margin: EdgeInsets.only(top: 10),
                           padding: EdgeInsets.all(5),
-                          color: Colors.grey[300],
+                          color: Colors.blueGrey[700],
                           child: Text(
                             post.category,
                             style: Theme.of(context).textTheme.body2.copyWith(
                                   fontSize: 15,
+                                  color: Colors.white,
                                 ),
                           ),
                         ),
@@ -142,7 +143,7 @@ class ForumBlock extends StatelessWidget {
                       ),
                       Row(
                         children: <Widget>[
-                          Image.asset('assets/images/icons/view.png',
+                          Image.asset('assets/images/icons/eye.png',
                               height: 0.02 * height),
                           SizedBox(
                             width: 5,

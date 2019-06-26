@@ -85,7 +85,8 @@ class _MyAppState extends State<MyApp> {
               "/about": (context) => AboutPage(),
               "/profile": (context) => ProfilePage(),
               "/editprofile": (context) => EditProfile(),
-              "/changepw": (context) => ChangePassword()
+              "/changepw": (context) => ChangePassword(),
+              "/forum": (context) => ForumPage()
             },
             debugShowCheckedModeBanner: false,
             theme: state.themeData,
