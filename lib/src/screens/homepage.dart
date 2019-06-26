@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
           return <Widget>[
             SliverAppBar(
               pinned: true,
-              expandedHeight: 0.19 * height,
+              expandedHeight: 0.1875 * height,
               flexibleSpace: _isCollapsed ? SizedBox() : heroClipPath(context),
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -207,7 +207,8 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.only(top: 0.02 * height),
           child: ClipPath(
             child: Container(
-              height: 170,
+              margin: EdgeInsets.only(top: 1),
+              height: 0.199 * height,
               color: Colors.red[700],
             ),
             clipper: HomePageBorderClipper(),
@@ -249,37 +250,21 @@ class _HomePageState extends State<HomePage> {
     final height = MediaQuery.of(context).size.height;
     return Container(
       padding: EdgeInsets.only(bottom: 0.02 * height),
-      child: MediaQuery.of(context).orientation == Orientation.portrait
-          ? ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                return NewsCard(
-                  news: topNews[index],
-                );
-              },
-              itemCount: topNews.length,
-              separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(
-                  height: 0.02 * height,
-                );
-              },
-            )
-          : GridView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: topNews.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                childAspectRatio: 3,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return NewsCard(
-                  news: topNews[index],
-                );
-              },
-            ),
+      child: ListView.separated(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (BuildContext context, int index) {
+          return NewsCard(
+            news: topNews[index],
+          );
+        },
+        itemCount: topNews.length,
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(
+            height: 0.02 * height,
+          );
+        },
+      ),
     );
   }
 }
