@@ -66,9 +66,6 @@ class _EditProfileState extends State<EditProfile> {
           child: Container(
             child: Stack(
               children: <Widget>[
-                Container(
-                  height: height,
-                ),
                 Column(
                   children: <Widget>[
                     SizedBox(
