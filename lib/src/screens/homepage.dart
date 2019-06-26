@@ -38,6 +38,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       drawer: AppDrawer(),
@@ -47,7 +49,7 @@ class _HomePageState extends State<HomePage> {
           return <Widget>[
             SliverAppBar(
               pinned: true,
-              expandedHeight: 170,
+              expandedHeight: 0.1875 * height,
               flexibleSpace: _isCollapsed ? SizedBox() : heroClipPath(context),
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -57,13 +59,13 @@ class _HomePageState extends State<HomePage> {
                     style: Theme.of(context).textTheme.headline,
                   ),
                   SizedBox(
-                    width: 14,
+                    width: 0.02 * width,
                   ),
                   Container(
                     child: _isCollapsed
                         ? Image.asset(
                             'assets/images/icons/meditation.png',
-                            width: 30,
+                            width: 0.02 * width,
                           )
                         : SizedBox(),
                   )
@@ -79,23 +81,23 @@ class _HomePageState extends State<HomePage> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                heading('Common Diseases'),
+                heading('Common Diseases', context),
                 SizedBox(
-                  height: 10,
+                  height: 0.01 * height,
                 ),
-                buildCommonDiseases(),
+                buildCommonDiseases(context),
                 SizedBox(
-                  height: 25,
+                  height: 0.02 * height,
                 ),
-                heading('Common Symptoms'),
+                heading('Common Symptoms', context),
                 SizedBox(
-                  height: 10,
+                  height: 0.01 * height,
                 ),
-                buildCommonSymptoms(),
+                buildCommonSymptoms(context),
                 SizedBox(
-                  height: 25,
+                  height: 0.02 * height,
                 ),
-                heading('Top News'),
+                heading('Top News', context),
                 buildTopNews(context),
               ],
             ),
@@ -105,10 +107,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container buildCommonSymptoms() {
+  Container buildCommonSymptoms(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Container(
-      height: 200,
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      height: 0.23 * height,
+      padding: EdgeInsets.symmetric(horizontal: 0.02 * width),
       child: ListView.separated(
         physics: BouncingScrollPhysics(),
         itemCount: topDisease.length,
@@ -120,14 +124,16 @@ class _HomePageState extends State<HomePage> {
         },
         separatorBuilder: (BuildContext context, int index) {
           return SizedBox(
-            width: 15,
+            width: 0.03 * width,
           );
         },
       ),
     );
   }
 
-  Column heading(String heading) {
+  Column heading(String heading, BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -145,14 +151,14 @@ class _HomePageState extends State<HomePage> {
             Container(
               height: 3.0,
               color: Colors.red,
-              width: 90,
+              width: 0.18 * width,
             ),
             SizedBox(
               width: 5,
             ),
             Container(
-              height: 20,
-              width: 20,
+              height: 0.02 * height,
+              width: 0.04 * width,
               child: Image.asset('assets/images/icons/blood-drop.png'),
             ),
             SizedBox(
@@ -160,7 +166,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(
               height: 3.0,
-              width: 150,
+              width: 0.26 * width,
               color: Colors.red,
             ),
           ],
@@ -169,10 +175,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container buildCommonDiseases() {
+  Container buildCommonDiseases(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Container(
-      height: 200,
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      height: 0.23 * height,
+      padding: EdgeInsets.symmetric(horizontal: 0.02 * width),
       child: ListView.separated(
         physics: BouncingScrollPhysics(),
         itemCount: topDisease.length,
@@ -184,7 +192,7 @@ class _HomePageState extends State<HomePage> {
         },
         separatorBuilder: (BuildContext context, int index) {
           return SizedBox(
-            width: 15,
+            width: 0.03 * width,
           );
         },
       ),
@@ -192,26 +200,30 @@ class _HomePageState extends State<HomePage> {
   }
 
   Stack heroClipPath(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Stack(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: 0.02 * height),
           child: ClipPath(
             child: Container(
-              height: 170,
+              margin: EdgeInsets.only(top: 1),
+              height: 0.199 * height,
               color: Colors.red[700],
             ),
             clipper: HomePageBorderClipper(),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: 0.02 * height),
           child: ClipPath(
             clipper: HomePageClipper(),
             child: Container(
-              padding: EdgeInsets.fromLTRB(30, 10, 20, 35),
+              padding: EdgeInsets.fromLTRB(
+                  0.06 * width, 0.01 * height, 0.04 * width, 0.04 * height),
               width: MediaQuery.of(context).size.width,
-              height: 165,
+              height: 0.19 * height,
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
               ),
@@ -236,39 +248,24 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildTopNews(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Container(
-      padding: EdgeInsets.only(bottom: 20),
-      child: MediaQuery.of(context).orientation == Orientation.portrait
-          ? ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                return NewsCard(
-                  news: topNews[index],
-                );
-              },
-              itemCount: topNews.length,
-              separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(
-                  height: 20,
-                );
-              },
-            )
-          : GridView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: topNews.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                childAspectRatio: 3,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return NewsCard(
-                  news: topNews[index],
-                );
-              },
-            ),
+      padding: EdgeInsets.only(bottom: 0.02 * height),
+      child: ListView.separated(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (BuildContext context, int index) {
+          return NewsCard(
+            news: topNews[index],
+          );
+        },
+        itemCount: topNews.length,
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(
+            height: 0.02 * height,
+          );
+        },
+      ),
     );
   }
 }

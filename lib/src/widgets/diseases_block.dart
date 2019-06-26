@@ -8,6 +8,8 @@ class DiseaseBlock extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         print('Here');
@@ -22,8 +24,8 @@ class DiseaseBlock extends StatelessWidget {
               Container(
                 child: Image.network(
                   disease.imageUrl,
-                  height: 120,
-                  width: 140,
+                  height: 0.19 * height,
+                  width: 0.34 * width,
                   fit: BoxFit.contain,
                 ),
               ),
@@ -32,7 +34,7 @@ class DiseaseBlock extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 10.0),
+                  padding: EdgeInsets.only(right: 0.02 * width),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +50,7 @@ class DiseaseBlock extends StatelessWidget {
                             ),
                       ),
                       SizedBox(
-                        height: 13,
+                        height: 0.02 * height,
                       ),
                       Text(disease.body,
                           overflow: TextOverflow.ellipsis,

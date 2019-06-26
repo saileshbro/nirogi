@@ -79,6 +79,21 @@ class AboutPageCard extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   Text(
+                    "Supervisor",
+                    style: Theme.of(context).textTheme.headline.copyWith(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                  ),
+                  buildChip(
+                      context,
+                      'https://media.licdn.com/dms/image/C5603AQHDI5qWk6KXOw/profile-displayphoto-shrink_800_800/0?e=1566432000&v=beta&t=Jkcrwl-EgbzJ4YOZgTRYV4w0Q1iycfqV_06kOfia3qM',
+                      "https://np.linkedin.com/in/gajendra-sharma-6266b3103",
+                      "Dr. Gajendra Sharma",
+                      ""),
+                  SizedBox(height: 20),
+                  Text(
                     "Developers",
                     style: Theme.of(context).textTheme.headline.copyWith(
                           fontSize: 18,
@@ -110,21 +125,6 @@ class AboutPageCard extends StatelessWidget {
                       "https://github.com/sabil62",
                       "Sabil Shrestha",
                       "(51)"),
-                  SizedBox(height: 20),
-                  Text(
-                    "Supervisor",
-                    style: Theme.of(context).textTheme.headline.copyWith(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                  ),
-                  buildChip(
-                      context,
-                      'https://media.licdn.com/dms/image/C5603AQHDI5qWk6KXOw/profile-displayphoto-shrink_800_800/0?e=1566432000&v=beta&t=Jkcrwl-EgbzJ4YOZgTRYV4w0Q1iycfqV_06kOfia3qM',
-                      "https://np.linkedin.com/in/gajendra-sharma-6266b3103",
-                      "Dr. Gajendra Sharma",
-                      ""),
                 ],
               ),
             ),
