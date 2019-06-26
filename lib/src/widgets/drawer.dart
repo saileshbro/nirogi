@@ -82,24 +82,33 @@ class _AppDrawerState extends State<AppDrawer> {
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Column(
               children: <Widget>[
-                UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(color: Colors.teal),
-                  onDetailsPressed: () {
+                InkWell(
+                  onTap: () {
                     Navigator.pop(context);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return ProfilePage();
-                    }));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return ProfilePage();
+                        },
+                      ),
+                    );
                   },
-                  accountEmail: Text(
-                    "saileshbro@gmail.com",
-                    style: Theme.of(context).textTheme.body1,
-                  ),
-                  accountName: Text("Sailesh Dahal",
-                      style: Theme.of(context).textTheme.headline),
-                  currentAccountPicture: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      "https://avatars2.githubusercontent.com/u/43571990?s=460&v=4",
+                  child: UserAccountsDrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                    ),
+                    accountEmail: Text(
+                      "saileshbro@gmail.com",
+                      style: Theme.of(context).textTheme.body1,
+                    ),
+                    accountName: Text("Sailesh Dahal",
+                        style: Theme.of(context).textTheme.headline),
+                    currentAccountPicture: CircleAvatar(
+                      backgroundColor: Colors.red[700],
+                      backgroundImage: NetworkImage(
+                        "https://avatars2.githubusercontent.com/u/43571990?s=460&v=4",
+                      ),
                     ),
                   ),
                 ),
@@ -135,8 +144,6 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     buildListTile(context, "About Us",
                         "assets/images/icons/about.png", "/about"),
-                    buildListTile(context, "Contact Us",
-                        "assets/images/icons/contact.png", "/contact"),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Divider(
