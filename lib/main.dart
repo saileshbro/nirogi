@@ -83,7 +83,6 @@ class _MyAppState extends State<MyApp> {
               "/symptoms": (context) => SymptomsPage(),
               "/news": (context) => HealthNewsPage(),
               "/about": (context) => AboutPage(),
-              "/contact": (context) => ContactPage(),
               "/profile": (context) => ProfilePage(),
               "/editprofile": (context) => EditProfile(),
               "/changepw": (context) => ChangePassword()
