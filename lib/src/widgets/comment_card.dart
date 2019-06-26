@@ -10,12 +10,14 @@ class CommentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 10),
+      padding: EdgeInsets.only(top: 10),
       child: Column(
         children: <Widget>[
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   GestureDetector(
                     onTap: () {},
@@ -48,7 +50,7 @@ class CommentCard extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                width: 10,
+                width: 15,
               ),
               Expanded(
                 child: Text(
@@ -56,16 +58,19 @@ class CommentCard extends StatelessWidget {
                   style: Theme.of(context).textTheme.body2.copyWith(
                         fontSize: 16,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               )
             ],
           ),
+          SizedBox(
+            height: 10,
+          ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Expanded(
-                child: SizedBox(),
-              ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     comment.name,
@@ -73,6 +78,9 @@ class CommentCard extends StatelessWidget {
                           fontSize: 16,
                           color: Colors.red[700],
                         ),
+                  ),
+                  SizedBox(
+                    height: 4,
                   ),
                   Row(
                     children: <Widget>[
