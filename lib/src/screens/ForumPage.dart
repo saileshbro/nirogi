@@ -82,7 +82,6 @@ class _BuildPostsList extends StatelessWidget {
             return Divider(
               color: Colors.grey,
               height: 10,
-              indent: 65,
             );
           },
         ),
