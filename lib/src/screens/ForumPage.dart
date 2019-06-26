@@ -14,6 +14,7 @@ class ForumPage extends StatefulWidget {
 class _ForumPageState extends State<ForumPage> {
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).size);
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
