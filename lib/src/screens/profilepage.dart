@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/popupchoice.dart';
 import 'package:nirogi/src/models/posts.dart';
 import 'package:nirogi/src/widgets/choice_card.dart';
+import 'package:nirogi/src/widgets/plus_floating_icon.dart';
 import 'package:nirogi/src/widgets/post_block.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -20,14 +21,8 @@ class _ProfilePageState extends State<ProfilePage> {
         child: FloatingActionButton(
           heroTag: 'createPost',
           onPressed: () {},
-          backgroundColor: Color(0xff5B86E5),
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(
-                0.03 * width, 0.016 * width, 0.03 * width, 0.016 * width),
-            child: Image.asset(
-              'assets/images/icons/news.png',
-            ),
-          ),
+          backgroundColor: Colors.white,
+          child: PlusFloatingIcon(),
         ),
       ),
       appBar: AppBar(
@@ -185,24 +180,24 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ],
                           ),
-                          Positioned(
-                            top: 1,
-                            right: 10,
-                            child: Container(
-                              height: 0.05 * height,
-                              child: FloatingActionButton(
-                                heroTag: "notification",
-                                backgroundColor:
-                                    Color(0xff5B86E5).withOpacity(0.8),
-                                onPressed: () {},
-                                child: Image.asset(
-                                  'assets/images/icons/notification.png',
-                                  width: 0.07 * width,
-                                  height: 0.04 * height,
-                                ),
-                              ),
-                            ),
-                          )
+                          // Positioned(
+                          //   top: 1,
+                          //   right: 10,
+                          //   child: Container(
+                          //     height: 0.05 * height,
+                          //     child: FloatingActionButton(
+                          //       heroTag: "notification",
+                          //       backgroundColor:
+                          //           Color(0xff5B86E5).withOpacity(0.8),
+                          //       onPressed: () {},
+                          //       child: Image.asset(
+                          //         'assets/images/icons/notification.png',
+                          //         width: 0.07 * width,
+                          //         height: 0.04 * height,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // )
                         ],
                       ),
                     ],
