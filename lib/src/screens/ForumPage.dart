@@ -11,10 +11,15 @@ class ForumPage extends StatefulWidget {
   _ForumPageState createState() => _ForumPageState();
 }
 
+// 411.4,683.4
 class _ForumPageState extends State<ForumPage> {
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     print(MediaQuery.of(context).size);
+=======
+    final width = MediaQuery.of(context).size.width;
+>>>>>>> 370cc988f02ffb9d741cec8f3ff2c860c14ac710
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
@@ -23,11 +28,11 @@ class _ForumPageState extends State<ForumPage> {
           children: <Widget>[
             Text('Health Forum', style: Theme.of(context).textTheme.headline),
             SizedBox(
-              width: 14,
+              width: 0.03 * width,
             ),
             Image.asset(
               'assets/images/icons/forum.png',
-              width: 40,
+              width: 0.09 * width,
             ),
           ],
         ),
@@ -66,9 +71,12 @@ class _BuildPostsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.only(right: 10, left: 10, bottom: 10),
+        padding: EdgeInsets.only(
+            right: 0.02 * width, left: 0.04 * width, bottom: 0.01 * height),
         child: ListView.separated(
           shrinkWrap: true,
           physics: BouncingScrollPhysics(),
@@ -82,7 +90,7 @@ class _BuildPostsList extends StatelessWidget {
           separatorBuilder: (BuildContext context, int index) {
             return Divider(
               color: Colors.grey,
-              height: 10,
+              height: 0.01 * height,
             );
           },
         ),

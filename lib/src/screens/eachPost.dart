@@ -23,7 +23,8 @@ class _EachPostState extends State<EachPost> {
   );
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       floatingActionButton: Container(
         margin: EdgeInsets.only(bottom: 0.033 * height),
@@ -42,11 +43,11 @@ class _EachPostState extends State<EachPost> {
           children: <Widget>[
             Text('Post', style: Theme.of(context).textTheme.headline),
             SizedBox(
-              width: 14,
+              width: 0.03 * width,
             ),
             Image.asset(
               'assets/images/icons/post.png',
-              width: 30,
+              width: 0.07 * width,
             ),
           ],
         ),
@@ -58,8 +59,8 @@ class _EachPostState extends State<EachPost> {
           child: Column(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(top: 10),
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                margin: EdgeInsets.only(top: 0.01 * height),
+                padding: EdgeInsets.symmetric(horizontal: 0.03 * width),
                 child: Column(
                   children: <Widget>[
                     Row(
@@ -72,12 +73,12 @@ class _EachPostState extends State<EachPost> {
                               onTap: () {},
                               child: Image.asset(
                                 'assets/images/icons/upArrow.png',
-                                width: 25,
+                                width: 0.06 * width,
                                 color: Colors.grey,
                               ),
                             ),
                             SizedBox(
-                              height: 15,
+                              height: 0.02 * width,
                             ),
                             Text(
                               widget.post.voteCount.toString(),
@@ -86,20 +87,20 @@ class _EachPostState extends State<EachPost> {
                                   ),
                             ),
                             SizedBox(
-                              height: 15,
+                              height: 0.02 * width,
                             ),
                             GestureDetector(
                               onTap: () {},
                               child: Image.asset(
                                 'assets/images/icons/downArrow.png',
-                                width: 25,
+                                width: 0.06 * width,
                                 color: Colors.grey,
                               ),
                             ),
                           ],
                         ),
                         SizedBox(
-                          width: 20,
+                          width: 0.04 * width,
                         ),
                         Expanded(
                           child: Column(
@@ -136,7 +137,7 @@ class _EachPostState extends State<EachPost> {
                                 ),
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 0.01 * height,
                               ),
                               Text(
                                 widget.post.body,
@@ -149,7 +150,7 @@ class _EachPostState extends State<EachPost> {
                               Row(
                                 children: <Widget>[
                                   Image.asset('assets/images/icons/recent.png',
-                                      height: 15),
+                                      height: 0.02 * height),
                                   SizedBox(
                                     width: 5,
                                   ),
@@ -163,10 +164,10 @@ class _EachPostState extends State<EachPost> {
                                         ),
                                   ),
                                   SizedBox(
-                                    width: 10,
+                                    width: 0.02 * width,
                                   ),
                                   Image.asset('assets/images/icons/view.png',
-                                      height: 15),
+                                      height: 0.02 * width),
                                   SizedBox(
                                     width: 5,
                                   ),
@@ -196,8 +197,8 @@ class _EachPostState extends State<EachPost> {
                                     width: 5,
                                   ),
                                   Container(
-                                    height: 50,
-                                    width: 50,
+                                    height: 0.08 * width,
+                                    width: 0.12 * width,
                                     decoration: BoxDecoration(
                                       color: Colors.red[50],
                                       shape: BoxShape.circle,
@@ -265,10 +266,10 @@ class _EachPostState extends State<EachPost> {
                             children: <Widget>[
                               Image.asset(
                                 value.icon,
-                                width: 20,
+                                width: 0.04 * width,
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 0.02 * width,
                               ),
                               Text(value.title,
                                   style: Theme.of(context)
@@ -299,8 +300,14 @@ class _BuildCommentsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: EdgeInsets.only(right: 10, top: 10, left: 20, bottom: 10),
+      padding: EdgeInsets.only(
+          right: 0.02 * width,
+          top: 0.01 * height,
+          left: 0.04 * width,
+          bottom: 0.01 * height),
       child: ListView.separated(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
@@ -314,7 +321,7 @@ class _BuildCommentsList extends StatelessWidget {
         separatorBuilder: (BuildContext context, int index) {
           return Divider(
             color: Colors.grey,
-            height: 10,
+            height: 0.01 * height,
           );
         },
       ),
