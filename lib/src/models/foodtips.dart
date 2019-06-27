@@ -1,5 +1,5 @@
 class FoodTips {
-  String diseaseName;
+  String diseaseName; 
   List<String> toEat;
   List<String> toAvoid;
   FoodTips({this.diseaseName, this.toEat, this.toAvoid});

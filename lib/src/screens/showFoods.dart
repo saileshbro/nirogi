@@ -17,27 +17,29 @@ class ShowFoods extends StatelessWidget {
             Text(foodTips.diseaseName,
                 style: Theme.of(context).textTheme.headline),
             SizedBox(
-              width: 35,
+              width: 65,
             ),
           ],
         ),
       ),
       body: SingleChildScrollView(
-              child: Column(
+        child: Column(
           children: <Widget>[
             TipsBox(
-              foodTips: foodTips.toEat,
+              foods: foodTips.toEat,
               heading: 'Foods To Eat: ',
-              headingBackground: Colors.green[200],
-              background: Colors.green[100],
-              foodBackground: Colors.greenAccent,
+              headingColor: Colors.green[600],
+              lineColor: Colors.green,
+              backgroundColor: Colors.green[100],
+              tipIcon: Icons.check,
             ),
             TipsBox(
-              foodTips: foodTips.toAvoid,
+              foods: foodTips.toAvoid,
               heading: 'Foods To Avoid: ',
-              headingBackground: Colors.redAccent,
-              background: Colors.red[100],
-              foodBackground: Colors.red[200],
+              headingColor: Colors.redAccent,
+              lineColor: Colors.red,
+              backgroundColor: Colors.red[100],
+              tipIcon: Icons.close,
             ),
           ],
         ),
@@ -49,76 +51,76 @@ class ShowFoods extends StatelessWidget {
 class TipsBox extends StatelessWidget {
   const TipsBox({
     Key key,
-    @required this.foodTips,
+    @required this.foods,
     @required this.heading,
-    this.headingBackground, this.background, this.foodBackground,
+    this.headingColor,
+    this.lineColor,
+    this.tipIcon, this.backgroundColor,
   }) : super(key: key);
 
-  final List <String> foodTips;
+  final List<String> foods;
   final String heading;
-  final Color background;
-  final Color headingBackground;
-  final Color foodBackground;
- // final List eat;
+  final Color lineColor;
+  final Color headingColor;
+  final Color backgroundColor;
+  final IconData tipIcon;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8, 15, 8, 15),
+      padding: const EdgeInsets.fromLTRB(5, 10, 5  , 20),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0,5,0,2),
+            child: Text(
+              heading,
+              style: TextStyle(
+                  fontFamily: Theme.of(context).textTheme.headline.fontFamily,
+                  color: headingColor,
+                  fontSize: 22),
+            ),
+          ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Expanded(
-                child: Container(
-                  color: headingBackground,
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      heading,
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                  ),
+              Container(
+                height: 2.0,
+                color: lineColor,
+                width: 100,
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(6, 0, 6, 0),
+                child: Icon(
+                  tipIcon,
+                  color: lineColor,
                 ),
+              ),
+              Container(
+                height: 2.0,
+                color: lineColor,
+                width: 100,
               ),
             ],
           ),
+          SizedBox(
+            height: 3.0,
+          ),
           Container(
-            color: background,
+            height: 200,
+            padding: EdgeInsets.symmetric(horizontal: 10),
             child: ListView.separated(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              itemCount: foodTips.length,
+              physics: BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemCount: foods.length,
               itemBuilder: (BuildContext context, int index) {
-                return Material(
-                  color: foodBackground,
-                  borderRadius: BorderRadius.circular(5),
-                  elevation: 0.3,
-                  child: Container(
-                    height: 45.0,
-                    margin: EdgeInsets.symmetric(horizontal: 5, vertical: 7),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 15.0,
-                        ),
-                        Text(
-                          foodTips[index],
-                          style: TextStyle(
-                            fontSize: 17.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
+                return FoodCard(foods: foods[index], backgroundColor: backgroundColor);
               },
               separatorBuilder: (BuildContext context, int index) {
                 return SizedBox(
-                  height: 5.0,
+                  width: 13.0,
                 );
               },
             ),
@@ -128,3 +130,70 @@ class TipsBox extends StatelessWidget {
     );
   }
 }
+
+class FoodCard extends StatelessWidget {
+  const FoodCard({
+    Key key,
+    @required this.foods, this.backgroundColor,
+  }) : super(key: key);
+
+  final String foods;
+  final Color backgroundColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        color: backgroundColor,
+        height: 45.0,
+        child: Stack(
+          overflow: Overflow.clip,
+          children: <Widget>[
+            Container(
+              height: 260,
+              width: 160,
+              child: Image.asset(
+                'assets/images/icons/foodtips.png',
+                width: 30,
+              ),
+            ),
+            Positioned(
+              left: 0.0,
+              bottom: 0.0,
+              height: 290,
+              width: 160,
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [
+                        Colors.black.withOpacity(0.5),
+                        Colors.black.withOpacity(0)
+                      ],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 7,
+              left: 10,
+              child: Text(
+                foods,
+                style: TextStyle(
+                    fontFamily: Theme.of(context)
+                        .textTheme
+                        .headline
+                        .fontFamily,
+                    color: Colors.white,
+                    fontSize: 18),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+

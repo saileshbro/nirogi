@@ -118,13 +118,14 @@ class _AppDrawerState extends State<AppDrawer> {
                         "assets/images/icons/news.png", '/news'),
                     buildListTile(context, "Food Tips",
                         "assets/images/icons/foodtips.png", '/foodtips'),
-                    //TODO: foodtips apple png image background not totally transparent(go to food tips, see drawer, see apple) 
+                    buildListTile(context, "Health Tools",
+                        "assets/images/icons/tools.png", '/tools'),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Divider(
                         height: 10,
                         color: changeThemeBloc.currentState.themeData ==
-                                kLightTheme 
+                                kLightTheme
                             ? Colors.blueGrey[900].withOpacity(0.3)
                             : Colors.blueGrey[100].withOpacity(0.3),
                       ),

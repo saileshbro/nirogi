@@ -5,10 +5,10 @@ import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/repository/user_repository.dart';
-import 'package:nirogi/src/screens/foodTipsPage.dart';
 import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/screens/splashScreenPage.dart';
 import 'package:nirogi/src/widgets/loading_indicator.dart';
+
 
 void main() {
   final UserRepository userRepository = UserRepository();
@@ -87,7 +87,8 @@ class _MyAppState extends State<MyApp> {
               "/profile": (context) => ProfilePage(),
               "/editprofile": (context) => EditProfile(),
               "/changepw": (context) => ChangePassword(),
-              "/foodtips": (context) => FoodTipsPage()
+              "/foodtips": (context) => FoodTipsPage(),
+              "/tools": (context) => HealthToolsPage(),
             },
             debugShowCheckedModeBanner: false,
             theme: state.themeData,
