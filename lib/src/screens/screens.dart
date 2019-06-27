@@ -8,3 +8,5 @@ export 'profilepage.dart';
 export 'profileedit.dart';
 export 'passwordchange.dart';
 export 'ForumPage.dart';
+export 'foodTipsPage.dart';
+export 'healthToolsPage.dart';

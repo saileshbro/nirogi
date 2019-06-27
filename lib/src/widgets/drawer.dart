@@ -134,6 +134,10 @@ class _AppDrawerState extends State<AppDrawer> {
                         "assets/images/icons/news.png", '/news'),
                     buildListTile(context, "Health Forum",
                         "assets/images/icons/forum.png", '/forum'),
+                    buildListTile(context, "Food Tips",
+                        "assets/images/icons/foodtips.png", '/foodtips'),
+                    buildListTile(context, "Health Tools",
+                        "assets/images/icons/tools.png", '/tools'),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Divider(

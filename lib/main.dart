@@ -69,9 +69,8 @@ class _MyAppState extends State<MyApp> {
                   return HomePage();
                 }
                 if (state is AuthenticationUnauthenticatedState) {
-                  return LoginSignup(
-                    userRepository: widget.userRepository,
-                  );
+                  //
+                  return HomePage();
                 }
                 if (state is AuthenticationLoadingState) {
                   return LoadingIndicator();
@@ -86,7 +85,9 @@ class _MyAppState extends State<MyApp> {
               "/profile": (context) => ProfilePage(),
               "/editprofile": (context) => EditProfile(),
               "/changepw": (context) => ChangePassword(),
-              "/forum": (context) => ForumPage()
+              "/forum": (context) => ForumPage(),
+              "/foodtips": (context) => FoodTipsPage(),
+              "/tools": (context) => HealthToolsPage(),
             },
             debugShowCheckedModeBanner: false,
             theme: state.themeData,
