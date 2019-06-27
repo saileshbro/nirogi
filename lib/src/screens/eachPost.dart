@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:nirogi/src/models/popupchoice.dart';
-import 'package:nirogi/src/models/postComments.dart';
+import 'package:nirogi/src/models/comments.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/comment_card.dart';
 import 'package:nirogi/src/widgets/plus_floating_icon.dart';

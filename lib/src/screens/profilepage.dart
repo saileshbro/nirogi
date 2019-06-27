@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/popupchoice.dart';
 import 'package:nirogi/src/models/posts.dart';
+import 'package:nirogi/src/models/popupchoice.dart';
 import 'package:nirogi/src/widgets/choice_card.dart';
 import 'package:nirogi/src/widgets/plus_floating_icon.dart';
 import 'package:nirogi/src/widgets/post_block.dart';
@@ -197,10 +197,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: ListView.separated(
                     shrinkWrap: true,
                     physics: BouncingScrollPhysics(),
-                    itemCount: allPosts.length,
+                    itemCount: posts.length,
                     itemBuilder: (BuildContext context, int index) {
                       return PostBlock(
-                        post: allPosts[index],
+                        post: posts[index],
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) {

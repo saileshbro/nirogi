@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/forumPosts.dart';
+import 'package:nirogi/src/models/posts.dart';
 import 'package:nirogi/src/models/popupchoice.dart';
 import 'package:nirogi/src/screens/createPost.dart';
 import 'package:nirogi/src/widgets/choice_card.dart';

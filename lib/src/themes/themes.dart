@@ -90,9 +90,9 @@ ThemeData _buildDarkTheme() {
       ),
       elevation: 0.0,
     ),
-    primaryColor: Color(0xff121212),
-    scaffoldBackgroundColor: Color(0xff121212),
-    canvasColor: Color(0xff1e1e1e),
+    primaryColor: Color(0xff212121),
+    scaffoldBackgroundColor: Color(0xff212121),
+    canvasColor: Color(0xff303030),
     accentColor: Colors.blue,
     primaryIconTheme: IconThemeData(color: Colors.black),
     textTheme: TextTheme(

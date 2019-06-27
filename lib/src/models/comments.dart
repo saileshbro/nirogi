@@ -71,9 +71,10 @@ List<Comment> comments = [
   Comment(
     userId: 1,
     name: "Sailesh Dahal",
-    imageUrl: "public/uploads/avatar1.jpg",
+    imageUrl: "assets/images/icons/imageUrl.png",
     commentId: 4,
-    comment: "this is comment 3",
+    comment:
+        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
     voteCount: 0,
     createdAt: "27 minutes ago",
     voteStatus: null,
@@ -81,9 +82,10 @@ List<Comment> comments = [
   Comment(
     userId: 1,
     name: "Sailesh Dahal",
-    imageUrl: "public/uploads/avatar1.jpg",
+    imageUrl: "assets/images/icons/imageUrl.png",
     commentId: 4,
-    comment: "this is comment 3",
+    comment:
+        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
     voteCount: 0,
     createdAt: "27 minutes ago",
     voteStatus: null,
@@ -91,9 +93,10 @@ List<Comment> comments = [
   Comment(
     userId: 1,
     name: "Sailesh Dahal",
-    imageUrl: "public/uploads/avatar1.jpg",
+    imageUrl: "assets/images/icons/imageUrl.png",
     commentId: 4,
-    comment: "this is comment 3",
+    comment:
+        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
     voteCount: 0,
     createdAt: "27 minutes ago",
     voteStatus: null,
@@ -101,9 +104,10 @@ List<Comment> comments = [
   Comment(
     userId: 1,
     name: "Sailesh Dahal",
-    imageUrl: "public/uploads/avatar1.jpg",
+    imageUrl: "assets/images/icons/imageUrl.png",
     commentId: 4,
-    comment: "this is comment 3",
+    comment:
+        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
     voteCount: 0,
     createdAt: "27 minutes ago",
     voteStatus: -1,
@@ -111,9 +115,10 @@ List<Comment> comments = [
   Comment(
     userId: 1,
     name: "Sailesh Dahal",
-    imageUrl: "public/uploads/avatar1.jpg",
+    imageUrl: "assets/images/icons/imageUrl.png",
     commentId: 4,
-    comment: "this is comment 3",
+    comment:
+        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
     voteCount: 0,
     createdAt: "27 minutes ago",
     voteStatus: null,
@@ -121,9 +126,10 @@ List<Comment> comments = [
   Comment(
     userId: 1,
     name: "Sailesh Dahal",
-    imageUrl: "public/uploads/avatar1.jpg",
+    imageUrl: "assets/images/icons/imageUrl.png",
     commentId: 4,
-    comment: "this is comment 3",
+    comment:
+        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
     voteCount: 0,
     createdAt: "27 minutes ago",
     voteStatus: 1,
@@ -131,9 +137,10 @@ List<Comment> comments = [
   Comment(
     userId: 1,
     name: "Sailesh Dahal",
-    imageUrl: "public/uploads/avatar1.jpg",
+    imageUrl: "assets/images/icons/imageUrl.png",
     commentId: 4,
-    comment: "this is comment 3",
+    comment:
+        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
     voteCount: 0,
     createdAt: "27 minutes ago",
     voteStatus: 1,
@@ -141,9 +148,10 @@ List<Comment> comments = [
   Comment(
     userId: 1,
     name: "Sailesh Dahal",
-    imageUrl: "public/uploads/avatar1.jpg",
+    imageUrl: "assets/images/icons/imageUrl.png",
     commentId: 4,
-    comment: "this is comment 3",
+    comment:
+        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
     voteCount: 0,
     createdAt: "27 minutes ago",
     voteStatus: -1,
@@ -151,9 +159,10 @@ List<Comment> comments = [
   Comment(
     userId: 1,
     name: "Sailesh Dahal",
-    imageUrl: "public/uploads/avatar1.jpg",
+    imageUrl: "assets/images/icons/imageUrl.png",
     commentId: 4,
-    comment: "this is comment 3",
+    comment:
+        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
     voteCount: 0,
     createdAt: "27 minutes ago",
     voteStatus: 1,
@@ -161,9 +170,10 @@ List<Comment> comments = [
   Comment(
     userId: 1,
     name: "Sailesh Dahal",
-    imageUrl: "public/uploads/avatar1.jpg",
+    imageUrl: "assets/images/icons/imageUrl.png",
     commentId: 4,
-    comment: "this is comment 3",
+    comment:
+        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
     voteCount: 0,
     createdAt: "27 minutes ago",
     voteStatus: null,
@@ -171,9 +181,10 @@ List<Comment> comments = [
   Comment(
     userId: 1,
     name: "Sailesh Dahal",
-    imageUrl: "public/uploads/avatar1.jpg",
+    imageUrl: "assets/images/icons/imageUrl.png",
     commentId: 4,
-    comment: "this is comment 3",
+    comment:
+        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
     voteCount: 0,
     createdAt: "27 minutes ago",
     voteStatus: null,
