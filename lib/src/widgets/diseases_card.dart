@@ -23,7 +23,7 @@ class DiseaseCard extends StatelessWidget {
             children: <Widget>[
               Container(
                 height: 0.3 * height,
-                width: 0.3 * width,
+                width: 0.329 * width,
                 child: Image.network(
                   disease.imageUrl,
                   fit: BoxFit.contain,

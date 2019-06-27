@@ -10,6 +10,8 @@ class SymptomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {},
       child: ClipRRect(
@@ -20,8 +22,8 @@ class SymptomCard extends StatelessWidget {
             overflow: Overflow.clip,
             children: <Widget>[
               Container(
-                height: 260,
-                width: 160,
+                height: 0.3 * height,
+                width: 0.329 * width,
                 child: Image.network(
                   symptom.imageUrl,
                   fit: BoxFit.contain,
@@ -30,8 +32,8 @@ class SymptomCard extends StatelessWidget {
               Positioned(
                 left: 0.0,
                 bottom: 0.0,
-                height: 200,
-                width: 180,
+                height: 0.23 * height,
+                width: 0.52 * height,
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(colors: [
