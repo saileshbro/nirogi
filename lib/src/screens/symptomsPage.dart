@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/symptoms.dart';
-import 'package:nirogi/src/widgets/diseases_block.dart';
 import 'package:nirogi/src/widgets/drawer.dart';
 import 'package:nirogi/src/widgets/search_box.dart';
 import 'package:nirogi/src/widgets/symptoms_block.dart';

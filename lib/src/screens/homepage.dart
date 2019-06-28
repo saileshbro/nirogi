@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
     final width = MediaQuery.of(context).size.width;
     return Container(
       height: 0.23 * height,
-      padding: EdgeInsets.symmetric(horizontal: 0.02 * width),
+      padding: EdgeInsets.symmetric(horizontal: 0.01 * width),
       child: ListView.separated(
         physics: BouncingScrollPhysics(),
         itemCount: topDisease.length,
@@ -180,7 +180,7 @@ class _HomePageState extends State<HomePage> {
     final width = MediaQuery.of(context).size.width;
     return Container(
       height: 0.23 * height,
-      padding: EdgeInsets.symmetric(horizontal: 0.02 * width),
+      padding: EdgeInsets.symmetric(horizontal: 0.01 * width),
       child: ListView.separated(
         physics: BouncingScrollPhysics(),
         itemCount: topDisease.length,

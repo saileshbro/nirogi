@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/screens/calculateBMI.dart';
+import 'package:nirogi/src/screens/showDrugs.dart';
+import 'package:nirogi/src/widgets/tool_card.dart';
 import 'package:nirogi/src/widgets/drawer.dart';
 
+import 'calculateBMI.dart';
+
 class HealthToolsPage extends StatelessWidget {
-  final double elevations = 5;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,52 +33,15 @@ class HealthToolsPage extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: InkWell(
-                    child: Card(
-                      elevation: elevations,
-                      color: Colors.white70,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.all(8),
-                            child: Image.asset(
-                              'assets/images/icons/bmi.png',
-                              height: 100,
-                              width: 100,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'BMI Calculator',
-                              style: Theme.of(context).textTheme.body1.copyWith(
-                                    fontSize: 22,
-                                  ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context){
-                            return CalculateBMI();
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
+          ToolCard(
+            imageUrl: "assets/images/icons/bmi.png",
+            name: "BMI Calculator",
+            onTapWidget: CalculateBMI(),
+          ),
+          ToolCard(
+            imageUrl: "assets/images/icons/medicine.png",
+            name: "Drugs Information",
+            onTapWidget: ShowDrugs(),
           ),
         ],
       ),

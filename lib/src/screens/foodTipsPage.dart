@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:nirogi/src/models/foodtips.dart';
-import 'package:nirogi/src/screens/showFoods.dart';
 import 'package:nirogi/src/widgets/drawer.dart';
 import 'package:nirogi/src/widgets/search_box_for_foodtips.dart';
 
@@ -86,7 +85,7 @@ class FoodTipsPage extends StatelessWidget {
 }
 
 class TipsName extends StatelessWidget {
-  Disease foodtips;
+  final Disease foodtips;
   TipsName({
     Key key,
     @required this.foodtips,
