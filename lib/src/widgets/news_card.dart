@@ -38,7 +38,9 @@ class NewsCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.start,
                           maxLines: 3,
-                          style: Theme.of(context).textTheme.body1,
+                          style: Theme.of(context).textTheme.body1.copyWith(
+                                color: Colors.red[700],
+                              ),
                         ),
                         SizedBox(
                           height: 10,
@@ -46,9 +48,14 @@ class NewsCard extends StatelessWidget {
                         Text(
                           news.body,
                           maxLines: 3,
-                          style: Theme.of(context).textTheme.body2,
+                          style: Theme.of(context).textTheme.body2.copyWith(
+                                fontSize: 15,
+                              ),
                         )
                       ],
+                    ),
+                    SizedBox(
+                      height: 10,
                     ),
                     Column(
                       children: <Widget>[
@@ -66,7 +73,13 @@ class NewsCard extends StatelessWidget {
                                 ),
                                 Text(
                                   news.writtenBy,
-                                  style: Theme.of(context).textTheme.body2,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .body2
+                                      .copyWith(
+                                        color: Colors.blue,
+                                        fontSize: 15,
+                                      ),
                                 ),
                               ],
                             ),
@@ -81,7 +94,12 @@ class NewsCard extends StatelessWidget {
                                 ),
                                 Text(
                                   news.updatedAt,
-                                  style: Theme.of(context).textTheme.body2,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .body2
+                                      .copyWith(
+                                        color: Colors.blue,
+                                      ),
                                 ),
                               ],
                             )
