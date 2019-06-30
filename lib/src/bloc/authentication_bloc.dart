@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/bloc/authentication_event.dart';
 import 'package:nirogi/src/bloc/states.dart';
-import 'package:nirogi/src/repository/user_repository.dart';
+import 'package:nirogi/src/repository/repositories.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
