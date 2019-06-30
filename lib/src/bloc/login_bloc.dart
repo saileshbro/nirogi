@@ -4,7 +4,7 @@ import 'package:nirogi/src/bloc/authentication_bloc.dart';
 import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/login_event.dart';
 import 'package:nirogi/src/bloc/states.dart';
-import 'package:nirogi/src/repository/user_repository.dart';
+import 'package:nirogi/src/repository/repositories.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final UserRepository userRepository;

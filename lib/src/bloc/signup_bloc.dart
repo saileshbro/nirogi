@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/bloc/signup_event.dart';
 import 'package:nirogi/src/bloc/states.dart';
-import 'package:nirogi/src/repository/user_repository.dart';
+import 'package:nirogi/src/repository/repositories.dart';
 
 import 'authentication_bloc.dart';
 import 'authentication_event.dart';
