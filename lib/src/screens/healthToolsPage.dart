@@ -44,7 +44,7 @@ class HealthToolsPage extends StatelessWidget {
                 onTapWidget: CalculateBMI(),
               ),
               ToolCard(
-                imageUrl: "assets/images/icons/foodtips.png",
+                imageUrl: "assets/images/icons/diet.png",
                 name: "Food Tips",
                 onTapWidget: FoodTipsPage(),
               ),
@@ -53,11 +53,88 @@ class HealthToolsPage extends StatelessWidget {
                 name: "Information on Common Drugs",
                 onTapWidget: ShowDrugs(),
               ),
-              ToolCard(
-                imageUrl: "assets/images/icons/incompatible.png",
-                name: "Incompatible Foods",
-                onTapWidget: IncompatibleFoodsPage(),
-              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 18.0, vertical: 15),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: InkWell(
+                        child: Card(
+                          elevation: 5,
+                          color: Colors.white70,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 25),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Image.asset(
+                                      'assets/images/icons/fish.png',
+                                      width: 70,
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Image.asset(
+                                      'assets/images/icons/plus.png',
+                                      width: 30,
+                                      color: Colors.red[700],
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Image.asset('assets/images/icons/milk.png',
+                                        width: 70),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Image.asset(
+                                      'assets/images/icons/equal.png',
+                                      width: 30,
+                                      color: Colors.red[700],
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Image.asset('assets/images/icons/vomit.png',
+                                        width: 70)
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 8.0, right: 5, top: 8, bottom: 8),
+                                child: Text(
+                                  "Incompatible Foods",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .body1
+                                      .copyWith(
+                                        fontSize: 22,
+                                      ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return IncompatibleFoodsPage();
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),

@@ -38,7 +38,7 @@ class _EachDrugState extends State<EachDrug> {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                expandedHeight: 250.0,
+                expandedHeight: 200.0,
                 floating: false,
                 pinned: true,
                 centerTitle: true,
@@ -158,7 +158,7 @@ class TitleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 150,
-      padding: const EdgeInsets.only(bottom: 10.0),
+      padding: const EdgeInsets.only(bottom: 12.0),
       child: Text(
         "$title:  ",
         style: Theme.of(context).textTheme.body2.copyWith(
@@ -185,7 +185,7 @@ class InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: Container(
-        padding: const EdgeInsets.only(bottom: 10.0),
+        padding: const EdgeInsets.only(bottom: 12.0),
         child: Text(
           info,
           style: TextStyle(
