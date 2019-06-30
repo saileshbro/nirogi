@@ -36,7 +36,8 @@ class ToolCard extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(
+                          left: 8.0, right: 5, top: 8, bottom: 8),
                       child: Text(
                         name,
                         style: Theme.of(context).textTheme.body1.copyWith(
