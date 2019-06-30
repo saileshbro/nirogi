@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/screens/eachDrug.dart';
 import 'package:nirogi/src/widgets/search_box.dart';
 
 class ShowDrugs extends StatelessWidget {
@@ -59,7 +60,13 @@ class DrugCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (BuildContext context) {
+            return EachDrug();
+          }),
+        );
+      },
       child: Material(
         borderRadius: BorderRadius.circular(5),
         elevation: 1.0,
