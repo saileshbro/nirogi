@@ -202,32 +202,51 @@ class _CalculateBMIState extends State<CalculateBMI> {
                                       child: Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             8, 28, 8, 0),
-                                        child: Stack(
-                                          alignment: Alignment.bottomCenter,
+                                        child: Column(
                                           children: <Widget>[
-                                            Container(
-                                              height: 110,
-                                              decoration: BoxDecoration(
-                                                color: Color.fromRGBO(
-                                                    244, 244, 244, 1.0),
-                                                borderRadius:
-                                                    new BorderRadius.circular(
-                                                        80),
-                                              ),
-                                              child: LayoutBuilder(
-                                                builder: (context,
-                                                        constraints) =>
-                                                    WeightSlider(
-                                                      minValue: 30,
-                                                      maxValue: 110,
-                                                      width:
-                                                          constraints.maxWidth,
-                                                    ),
+                                            Text(
+                                              weightValue.toString(),
+                                              style: TextStyle(
+                                                fontSize: 30.0,
                                               ),
                                             ),
-                                            Icon(
-                                              Icons.keyboard_arrow_up,
-                                              size: 30,
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                GestureDetector(
+                                                  child: CircleAvatar(
+                                                    child: Icon(Icons.remove),
+                                                  ),
+                                                  onTap: () {
+                                                    if (weightValue > 30) {
+                                                      setState(() {
+                                                        weightValue--;
+                                                      });
+                                                    }
+                                                  },
+                                                ),
+                                                SizedBox(
+                                                  width: 30,
+                                                ),
+                                                GestureDetector(
+                                                  child: CircleAvatar(
+                                                    child: Icon(Icons.add),
+                                                  ),
+                                                  onTap: () {
+                                                    if (weightValue < 150) {
+                                                      setState(() {
+                                                        weightValue++;
+                                                      });
+                                                    }
+                                                  },
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
@@ -250,6 +269,7 @@ class _CalculateBMIState extends State<CalculateBMI> {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               Text(
                                 'HEIGHT (cm)',
@@ -267,15 +287,50 @@ class _CalculateBMIState extends State<CalculateBMI> {
                                 width: double.infinity,
                                 color: Colors.black,
                               ),
-                              Slider(
-                                value: bodyHeight.toDouble(),
-                                max: 220,
-                                min: 100,
-                                onChanged: (double newValue) {
-                                  setState(() {
-                                    bodyHeight = newValue.round();
-                                  });
-                                },
+                              SizedBox(
+                                height: 25,
+                              ),
+                              Text(
+                                bodyHeight.toString(),
+                                style: TextStyle(
+                                  fontSize: 30.0,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10.0),
+                                child: Slider(
+                                  value: bodyHeight.toDouble(),
+                                  max: 220,
+                                  min: 100,
+                                  onChanged: (double newValue) {
+                                    setState(() {
+                                      bodyHeight = newValue.round();
+                                    });
+                                  },
+                                ),
+                              ),
+                              Expanded(
+                                child: Stack(
+                                  alignment: AlignmentDirectional.bottomEnd,
+                                  children: <Widget>[
+                                    Positioned(
+                                      child: Image(
+                                        image: selectedGender == Gender.male
+                                            ? AssetImage(
+                                                'assets/images/icons/male.png')
+                                            : AssetImage(
+                                                'assets/images/icons/female.png'),
+                                        fit: BoxFit.fill,
+                                        color: Color(0xFFF5F5F5),
+                                        height: bodyHeight.toDouble(),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 25,
                               ),
                             ],
                           ),
@@ -303,7 +358,7 @@ class _CalculateBMIState extends State<CalculateBMI> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) {
-                        double bmi = (weightValue / pow((bodyHeight/100),2));
+                        double bmi = (weightValue / pow((bodyHeight / 100), 2));
                         return ShowBMI(
                           bmi: bmi,
                         );
@@ -334,75 +389,6 @@ class Line extends StatelessWidget {
       width: 0.5,
       color: Color(0xFFA9A9A9),
       height: 23,
-    );
-  }
-}
-
-class TempCards extends StatelessWidget {
-  const TempCards({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        child: Text('label'),
-        width: double.infinity,
-        height: double.infinity,
-      ),
-    );
-  }
-}
-
-class WeightSlider extends StatelessWidget {
-  WeightSlider({
-    Key key,
-    @required this.minValue,
-    @required this.maxValue,
-    @required this.width,
-  }) : super(key: key);
-
-  final int minValue;
-  final int maxValue;
-  final double width;
-
-  double get itemExtent => width / 3;
-
-  int indexToValue(int index) => minValue + (index - 1);
-
-  @override
-  build(BuildContext context) {
-    int itemCount = (maxValue - minValue) + 3;
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemExtent: itemExtent,
-      itemCount: itemCount,
-      physics: BouncingScrollPhysics(),
-      itemBuilder: (BuildContext context, int index) {
-        final int value = indexToValue(index);
-        bool isExtra = index == 0 || index == itemCount - 1;
-
-        return GestureDetector(
-          behavior: HitTestBehavior
-              .translucent, 
-          onTap: () {
-            print(value);
-          },
-          child: isExtra
-              ? Container()
-              : FittedBox(
-                  child: Text(
-                    value.toString(),
-                    style: TextStyle(
-                        color: Color.fromRGBO(196, 197, 203, 1.0),
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  fit: BoxFit.scaleDown,
-                ),
-        );
-      },
     );
   }
 }
