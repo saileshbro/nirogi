@@ -122,8 +122,8 @@ class _AppDrawerState extends State<AppDrawer> {
                         height: 10,
                         color: changeThemeBloc.currentState.themeData ==
                                 kLightTheme
-                            ? Colors.blueGrey[900].withOpacity(0.3)
-                            : Colors.blueGrey[100].withOpacity(0.3),
+                            ? Colors.blueGrey[900].withOpacity(0.5)
+                            : Colors.blueGrey[100].withOpacity(0.5),
                       ),
                     ),
                     buildListTile(context, "Diseasaes",
@@ -132,11 +132,19 @@ class _AppDrawerState extends State<AppDrawer> {
                         "assets/images/icons/symptoms.png", "/symptoms"),
                     buildListTile(context, "Health News",
                         "assets/images/icons/news.png", '/news'),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Divider(
+                        height: 10,
+                        color: changeThemeBloc.currentState.themeData ==
+                                kLightTheme
+                            ? Colors.blueGrey[900].withOpacity(0.5)
+                            : Colors.blueGrey[100].withOpacity(0.5),
+                      ),
+                    ),
                     buildListTile(context, "Health Forum",
                         "assets/images/icons/forum.png", '/forum'),
-                    buildListTile(context, "Food Tips",
-                        "assets/images/icons/foodtips.png", '/foodtips'),
-                    buildListTile(context, "Health Tools",
+                    buildListTile(context, "Health Tools and Tips",
                         "assets/images/icons/tools.png", '/tools'),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -144,22 +152,12 @@ class _AppDrawerState extends State<AppDrawer> {
                         height: 10,
                         color: changeThemeBloc.currentState.themeData ==
                                 kLightTheme
-                            ? Colors.blueGrey[900].withOpacity(0.3)
-                            : Colors.blueGrey[100].withOpacity(0.3),
+                            ? Colors.blueGrey[900].withOpacity(0.5)
+                            : Colors.blueGrey[100].withOpacity(0.5),
                       ),
                     ),
                     buildListTile(context, "About Us",
                         "assets/images/icons/about.png", "/about"),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Divider(
-                        height: 10,
-                        color: changeThemeBloc.currentState.themeData ==
-                                kLightTheme
-                            ? Colors.blueGrey[900].withOpacity(0.3)
-                            : Colors.blueGrey[100].withOpacity(0.3),
-                      ),
-                    ),
                     buildListTile(context, 'Logout',
                         'assets/images/icons/logout.png', '/logout'),
                     Padding(
@@ -168,8 +166,8 @@ class _AppDrawerState extends State<AppDrawer> {
                         height: 10,
                         color: changeThemeBloc.currentState.themeData ==
                                 kLightTheme
-                            ? Colors.blueGrey[900].withOpacity(0.3)
-                            : Colors.blueGrey[100].withOpacity(0.3),
+                            ? Colors.blueGrey[900].withOpacity(0.5)
+                            : Colors.blueGrey[100].withOpacity(0.5),
                       ),
                     ),
                     SizedBox(

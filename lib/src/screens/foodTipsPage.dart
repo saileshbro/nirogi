@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:nirogi/src/models/foodtips.dart';
-import 'package:nirogi/src/widgets/drawer.dart';
 import 'package:nirogi/src/widgets/search_box_for_foodtips.dart';
 
 //Shows the list of diseases
@@ -24,7 +23,6 @@ class FoodTipsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: AppDrawer(),
         appBar: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,

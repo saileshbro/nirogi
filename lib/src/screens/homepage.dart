@@ -3,6 +3,8 @@ import 'package:nirogi/src/bloc/change_theme_bloc.dart';
 import 'package:nirogi/src/models/diseases.dart';
 import 'package:nirogi/src/models/news.dart';
 import 'package:nirogi/src/models/symptoms.dart';
+import 'package:flutter_page_indicator/flutter_page_indicator.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:nirogi/src/themes/clippers.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/themes/themes.dart';
@@ -97,8 +99,30 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 0.02 * height,
                 ),
+                heading('Common Drugs', context),
+                SizedBox(
+                  height: 0.02 * height,
+                ),
+                Container(
+                  height: 350,
+                  child: new Swiper(
+                    viewportFraction: 0.7,
+                    scale: 0.9,
+                    itemBuilder: (BuildContext context, int index) {
+                      return buildSlider(context);
+                    },
+                    indicatorLayout: PageIndicatorLayout.COLOR,
+                    autoplay: true,
+                    itemCount: 3,
+                    containerWidth: 200,
+                    control: new SwiperControl(color: Colors.red[700]),
+                  ),
+                ),
+                SizedBox(
+                  height: 0.03 * height,
+                ),
                 heading('Top News', context),
-                buildTopNews(context),
+                _buildTopNews(context),
               ],
             ),
           ),
@@ -247,7 +271,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildTopNews(BuildContext context) {
+  Widget _buildTopNews(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Container(
       padding: EdgeInsets.only(bottom: 0.02 * height),
@@ -265,6 +289,155 @@ class _HomePageState extends State<HomePage> {
             height: 0.02 * height,
           );
         },
+      ),
+    );
+  }
+
+  Widget buildSlider(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    return GestureDetector(
+      onTap: () {},
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.symmetric(horizontal: 10.0),
+          child: Stack(
+            children: <Widget>[
+              Container(
+                height: height,
+                width: width,
+                child: RotatedBox(
+                  child: Image.network(
+                    "https://healthtools.aarp.org/images/gold/DrugItem_7618.jpg",
+                    fit: BoxFit.fill,
+                  ),
+                  quarterTurns: 5,
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: FractionalOffset.topLeft,
+                        end: FractionalOffset.bottomRight,
+                        colors: [
+                      Color(0xff43c6ac).withOpacity(0.4),
+                      Color(0xffffeeee).withOpacity(0.4),
+                      Color(0xfff8ffae).withOpacity(0.4),
+                      Color(0xff43c6ac).withOpacity(0.4),
+                    ])),
+              ),
+              Container(
+                height: height * 0.75,
+                width: width,
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Acitomycillin',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .body1
+                                      .copyWith(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.red[700],
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Acitomycin',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .body1
+                                      .copyWith(
+                                        fontSize: 24,
+                                        fontFamily: 'Alex',
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.brown[700],
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: "Dose :  ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .body1
+                                            .copyWith(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.red[700],
+                                            ),
+                                      ),
+                                      TextSpan(
+                                        text: "4000 gm",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .body1
+                                            .copyWith(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: 18,
+                right: 10,
+                left: 10,
+                child: Container(
+                  width: width * 0.8,
+                  child: Text(
+                    'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up on',
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.body2.copyWith(
+                        fontSize: 16,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w700),
+                    textAlign: TextAlign.justify,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

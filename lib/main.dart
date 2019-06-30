@@ -86,7 +86,6 @@ class _MyAppState extends State<MyApp> {
               "/editprofile": (context) => EditProfile(),
               "/changepw": (context) => ChangePassword(),
               "/forum": (context) => ForumPage(),
-              "/foodtips": (context) => FoodTipsPage(),
               "/tools": (context) => HealthToolsPage(),
             },
             debugShowCheckedModeBanner: false,
