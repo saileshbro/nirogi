@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/screens/calculateBMI.dart';
+import 'package:nirogi/src/screens/incompatibleFoodsPage.dart';
 import 'package:nirogi/src/screens/showDrugs.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
-import 'package:nirogi/src/widgets/tool_card.dart';
 import 'package:nirogi/src/widgets/drawer.dart';
+import 'package:nirogi/src/widgets/tool_card.dart';
 import 'calculateBMI.dart';
 import 'foodTipsPage.dart';
 
@@ -50,6 +52,11 @@ class HealthToolsPage extends StatelessWidget {
                 imageUrl: "assets/images/icons/medicine.png",
                 name: "Information on Common Drugs",
                 onTapWidget: ShowDrugs(),
+              ),
+              ToolCard(
+                imageUrl: "assets/images/icons/incompatible.png",
+                name: "Incompatible Foods",
+                onTapWidget: IncompatibleFoodsPage(),
               ),
             ],
           ),

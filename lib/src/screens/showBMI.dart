@@ -36,7 +36,7 @@ class ShowBMI extends StatelessWidget {
               ],
             ),
             CircleAvatar(backgroundColor: Color(0xFFEDFBF9),
-            radius: 90,
+            radius: 80,
                           child: Text(
                 bmi.toStringAsFixed(1),
                 style: TextStyle(
@@ -44,6 +44,41 @@ class ShowBMI extends StatelessWidget {
                     fontSize: 40,
                     color: Color(0xFF08D8BF),),
               ),
+            ),
+            Column(
+              children: <Widget>[
+               Result(
+                 condition: 'Underweight',
+                 bmi: '< 18.5',
+                 isIt: bmi < 18.5 ? true : false,
+               ),
+               Result(
+                 condition: 'Normal',
+                 bmi: '18.5 - 25',
+                 isIt:  18.5 < bmi && bmi < 25 ? true : false,
+               ),
+               Result(
+                 condition: 'Overweight',
+                 bmi: '25 - 30',
+                 isIt: 25 < bmi && bmi < 30 ? true : false,
+               ),
+               Result(
+                 condition: 'Obese',
+                 bmi: '30 - 35',
+                 isIt: 30 < bmi && bmi < 35 ? true : false,
+               ),
+               Result(
+                 condition: 'Severely Obese',
+                 bmi: '35 - 40',
+                 isIt: 35 < bmi && bmi < 40 ? true : false,
+               ),
+               Result(
+                 condition: 'Very Severely Obese',
+                 bmi: '> 40',
+                 isIt: bmi > 40 ? true : false,
+               ),
+               
+              ],
             ),
             GestureDetector(
               onTap: (){
@@ -59,6 +94,39 @@ class ShowBMI extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class Result extends StatelessWidget {
+  final String condition;
+  final String bmi;
+  final bool isIt;
+  const Result({
+    Key key, this.condition, this.bmi, this.isIt,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical:6.0, horizontal: 45),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(condition,
+          style: TextStyle(
+            fontSize: 19,
+            fontWeight: FontWeight.w400,
+            color: isIt == false ? Colors.black : Color(0xFF08D8BF),
+          ),),
+          Text(bmi,
+          style: TextStyle(
+            fontSize: 19,
+            fontWeight: FontWeight.w400,
+            color: isIt == false ? Colors.black : Color(0xFF08D8BF),
+          ),),
+        ],
       ),
     );
   }
