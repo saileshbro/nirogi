@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/screens/showDrugs.dart';
+import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/tool_card.dart';
 import 'package:nirogi/src/widgets/drawer.dart';
-
 import 'calculateBMI.dart';
+import 'foodTipsPage.dart';
 
 class HealthToolsPage extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class HealthToolsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Health Tools',
+              'Health Tools and Tips',
               style: Theme.of(context).textTheme.headline,
             ),
             SizedBox(
@@ -28,22 +29,32 @@ class HealthToolsPage extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 10,
+      body: ScrollConfiguration(
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 10,
+              ),
+              ToolCard(
+                imageUrl: "assets/images/icons/bmi.png",
+                name: "BMI Calculator",
+                onTapWidget: CalculateBMI(),
+              ),
+              ToolCard(
+                imageUrl: "assets/images/icons/foodtips.png",
+                name: "Food Tips",
+                onTapWidget: FoodTipsPage(),
+              ),
+              ToolCard(
+                imageUrl: "assets/images/icons/medicine.png",
+                name: "Information on Common Drugs",
+                onTapWidget: ShowDrugs(),
+              ),
+            ],
           ),
-          ToolCard(
-            imageUrl: "assets/images/icons/bmi.png",
-            name: "BMI Calculator",
-            onTapWidget: CalculateBMI(),
-          ),
-          ToolCard(
-            imageUrl: "assets/images/icons/medicine.png",
-            name: "Drugs Information",
-            onTapWidget: ShowDrugs(),
-          ),
-        ],
+        ),
+        behavior: RemoveEndOfListIndicator(),
       ),
     );
   }
