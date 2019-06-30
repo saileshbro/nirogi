@@ -1,63 +1,100 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/widgets/drawer.dart';
+import 'package:nirogi/src/widgets/search_box.dart';
 
 class ShowDrugs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(),
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Health Tools',
+              'Common Drugs',
               style: Theme.of(context).textTheme.headline,
             ),
             SizedBox(
               width: 14,
             ),
             Image.asset(
-              'assets/images/icons/tools.png',
+              'assets/images/icons/medicine.png',
               width: 30,
             ),
           ],
         ),
       ),
-      body: Caroussel(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          SearchBox(),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(right: 10, left: 10, bottom: 10),
+              child: Container(
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  itemCount: 10,
+                  itemBuilder: (BuildContext context, int index) {
+                    return DrugCard();
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      height: 15.0,
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
-class Caroussel extends StatefulWidget {
-  @override
-  _CarousselState createState() => _CarousselState();
-}
-
-class _CarousselState extends State<Caroussel> {
+class DrugCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    return Stack(
-      children: <Widget>[
-        Center(
-          child: Container(
-            width: width,
-            height: 300,
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-            ),
+    return GestureDetector(
+      onTap: () {},
+      child: Material(
+        borderRadius: BorderRadius.circular(5),
+        elevation: 1.0,
+        child: Container(
+          height: 60.0,
+          margin: EdgeInsets.symmetric(horizontal: 5, vertical: 7),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.fromLTRB(5, 0, 13, 0),
+                child: CircleAvatar(
+                  radius: 23,
+                  child: Text(
+                    'A',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                    ),
+                  ),
+                  backgroundColor: Colors.lightBlue[400],
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  'Amixocillin',
+                  style: Theme.of(context).textTheme.body1.copyWith(
+                        fontSize: 20,
+                      ),
+                ),
+              ),
+            ],
           ),
         ),
-        Positioned(
-          top: 127,
-          child: Container(
-            height: 350,
-            width: width / 2,
-            color: Colors.red,
-          ),
-        )
-      ],
+      ),
     );
   }
 }
