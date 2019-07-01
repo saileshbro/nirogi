@@ -51,3 +51,5 @@ class ProvinceRepository {
     }
   }
 }
+
+final ProvinceRepository provinceRepository = ProvinceRepository();
