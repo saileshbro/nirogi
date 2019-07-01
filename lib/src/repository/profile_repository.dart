@@ -1,92 +1,80 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:http/http.dart' show Client;
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/constants/env.dart';
-import 'package:nirogi/src/models/diseases.dart';
+import 'package:nirogi/src/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class DiseaseRepository {
+class ProfileRepository {
   final client = Client();
-  Future<List<Disease>> getTopDiseases() async {
+  Future<User> getMyProfile() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.get(
-        "$baseUrl/diseases/top",
-        headers: {
-          HttpHeaders.authorizationHeader: "Bearer $token",
-        },
-      );
+      final response = await client.get("$baseUrl/users/me", headers: {
+        HttpHeaders.authorizationHeader: "Bearer $token",
+      });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
         throw responseData['error'];
       } else {
-        return Diseases.fromJson(jsonDecode(response.body)).diseases;
+        return User.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
       throw e.toString();
     }
   }
 
-  Future<List<Disease>> getAllDiseases() async {
+  Future<List<User>> getAllUsers() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.get(
-        "$baseUrl/diseases",
-        headers: {
-          HttpHeaders.authorizationHeader: "Bearer $token",
-        },
-      );
+      final response = await client.get("$baseUrl/users", headers: {
+        HttpHeaders.authorizationHeader: "Bearer $token",
+      });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
         throw responseData['error'];
       } else {
-        return Diseases.fromJson(jsonDecode(response.body)).diseases;
+        return Users.fromJson(jsonDecode(response.body)).users;
       }
     } catch (e) {
       throw e.toString();
     }
   }
 
-  Future<Disease> getDisease({@required int diseaseId}) async {
+  Future<User> getUserProfile({@required int userId}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.get(
-        "$baseUrl/disease/$diseaseId",
-        headers: {
-          HttpHeaders.authorizationHeader: "Bearer $token",
-        },
-      );
+      final response = await client.get("$baseUrl/users/$userId", headers: {
+        HttpHeaders.authorizationHeader: "Bearer $token",
+      });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
         throw responseData['error'];
       } else {
-        return Disease.fromJson(jsonDecode(response.body));
+        return User.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
       throw e.toString();
     }
   }
 
-  Future<String> addDisease({@required Disease disease}) async {
+  Future<User> updateProfile() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.post(
-        "$baseUrl/diseases",
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
-        body: jsonEncode(disease.toJson()),
-      );
+      final response = await client.patch("$baseUrl/users/me", headers: {
+        HttpHeaders.authorizationHeader: "Bearer $token",
+      });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
         throw responseData['error'];
-      } else if (responseData.containsKey('message')) {
-        return responseData['message'];
       } else {
-        throw "Unexpected error occured!";
+        return User.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
       throw e.toString();

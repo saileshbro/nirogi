@@ -1,19 +1,20 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:http/http.dart' show Client;
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/constants/env.dart';
-import 'package:nirogi/src/models/diseases.dart';
+import 'package:nirogi/src/models/drug.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class DiseaseRepository {
-  final client = Client();
-  Future<List<Disease>> getTopDiseases() async {
+class DrugRepository {
+  final Client client = Client();
+  Future<List<Drug>> getCommonDrug() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/diseases/top",
+        '$baseUrl/drugs/common',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -22,19 +23,19 @@ class DiseaseRepository {
       if (responseData.containsKey('error')) {
         throw responseData['error'];
       } else {
-        return Diseases.fromJson(jsonDecode(response.body)).diseases;
+        return Drugs.fromJson(jsonDecode(response.body)).drugs;
       }
     } catch (e) {
       throw e.toString();
     }
   }
 
-  Future<List<Disease>> getAllDiseases() async {
+  Future<Drug> getDrug({@required String genericName}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/diseases",
+        '$baseUrl/drug/$genericName',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -43,19 +44,19 @@ class DiseaseRepository {
       if (responseData.containsKey('error')) {
         throw responseData['error'];
       } else {
-        return Diseases.fromJson(jsonDecode(response.body)).diseases;
+        return Drug.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
       throw e.toString();
     }
   }
 
-  Future<Disease> getDisease({@required int diseaseId}) async {
+  Future<List<Drug>> searchDrug({@required String query}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/disease/$diseaseId",
+        '$baseUrl/drugs/search?query=$query',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -64,29 +65,7 @@ class DiseaseRepository {
       if (responseData.containsKey('error')) {
         throw responseData['error'];
       } else {
-        return Disease.fromJson(jsonDecode(response.body));
-      }
-    } catch (e) {
-      throw e.toString();
-    }
-  }
-
-  Future<String> addDisease({@required Disease disease}) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    final token = preferences.getString('token');
-    try {
-      final response = await client.post(
-        "$baseUrl/diseases",
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
-        body: jsonEncode(disease.toJson()),
-      );
-      Map<String, dynamic> responseData = jsonDecode(response.body);
-      if (responseData.containsKey('error')) {
-        throw responseData['error'];
-      } else if (responseData.containsKey('message')) {
-        return responseData['message'];
-      } else {
-        throw "Unexpected error occured!";
+        return Drugs.fromJson(jsonDecode(response.body)).drugs;
       }
     } catch (e) {
       throw e.toString();
