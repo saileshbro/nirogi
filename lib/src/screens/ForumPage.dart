@@ -13,7 +13,6 @@ class ForumPage extends StatefulWidget {
   _ForumPageState createState() => _ForumPageState();
 }
 
-// 411.4,683.4
 class _ForumPageState extends State<ForumPage> {
   @override
   Widget build(BuildContext context) {

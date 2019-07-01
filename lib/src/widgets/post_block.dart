@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/posts.dart';
+import 'package:nirogi/src/screens/eachPost.dart';
 
 class PostBlock extends StatelessWidget {
   final Post post;
@@ -12,7 +13,14 @@ class PostBlock extends StatelessWidget {
     final double height = MediaQuery.of(context).size.height;
     return GestureDetector(
         onTap: () {
-          print('Here');
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EachPost(
+                    post: post,
+                  ),
+            ),
+          );
         },
         child: Material(
           borderRadius: BorderRadius.circular(5),

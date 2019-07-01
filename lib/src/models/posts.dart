@@ -1,12 +1,12 @@
 import 'package:nirogi/src/models/comments.dart';
 
-class EachPost {
+class OnePost {
   Post post;
   List<Comment> comments;
 
-  EachPost({this.post, this.comments});
+  OnePost({this.post, this.comments});
 
-  EachPost.fromJson(Map<String, dynamic> json) {
+  OnePost.fromJson(Map<String, dynamic> json) {
     post = json['post'] != null ? new Post.fromJson(json['post']) : null;
     if (json['comments'] != null) {
       comments = new List<Comment>();
