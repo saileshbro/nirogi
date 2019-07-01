@@ -38,6 +38,10 @@ class _CalculateBMIState extends State<CalculateBMI> {
             SizedBox(
               width: 14,
             ),
+            Image.asset(
+              'assets/images/icons/bmi.png',
+              width: 30,
+            ),
           ],
         ),
       ),

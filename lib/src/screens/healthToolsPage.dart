@@ -6,6 +6,7 @@ import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/drawer.dart';
 import 'package:nirogi/src/widgets/tool_card.dart';
 import 'calculateBMI.dart';
+import 'bloodDonationPage.dart';
 import 'foodTipsPage.dart';
 
 class HealthToolsPage extends StatelessWidget {
@@ -39,11 +40,6 @@ class HealthToolsPage extends StatelessWidget {
                 height: 10,
               ),
               ToolCard(
-                imageUrl: "assets/images/icons/bmi.png",
-                name: "BMI Calculator",
-                onTapWidget: CalculateBMI(),
-              ),
-              ToolCard(
                 imageUrl: "assets/images/icons/foodtips.png",
                 name: "Food Tips",
                 onTapWidget: FoodTipsPage(),
@@ -57,6 +53,16 @@ class HealthToolsPage extends StatelessWidget {
                 imageUrl: "assets/images/icons/incompatible.png",
                 name: "Incompatible Foods",
                 onTapWidget: IncompatibleFoodsPage(),
+              ),
+              ToolCard(
+                imageUrl: "assets/images/icons/bmi.png",
+                name: "BMI Calculator",
+                onTapWidget: CalculateBMI(),
+              ),
+              ToolCard(
+                imageUrl: "assets/images/icons/blooddonation.png",
+                name: "Blood Donation Date",
+                onTapWidget: BloodDonation(),
               ),
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:nirogi/src/models/incompatiblefoods.dart';
 
 class IncompatibleFoodsPage extends StatelessWidget {
@@ -6,86 +7,46 @@ class IncompatibleFoodsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('Incompatible Foods',
-                style: Theme.of(context).textTheme.headline),
-            SizedBox(
-              width: 39,
-            ),
-          ],
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Container(
-          child: Column(
+        appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Card(
-                elevation: 5,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      Text(
-                        'Don\'t Eat:',
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                      Container(
-                        color: Color(0xFFA9A9A9),
-                        width: 1,
-                        height: 25,
-                      ),
-                      Text(
-                        'With',
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 50,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              Text('Incompatible Foods',
+                  style: Theme.of(context).textTheme.headline),
               SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        itemCount: foodData.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return FoodBox(
-                            thefood: foodData[index],
-                          );
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return SizedBox(
-                            height: 15.0,
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+                width: 14,
               ),
             ],
           ),
         ),
-      ),
-    );
+        body: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 15,
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  child: Swiper(
+                    viewportFraction: 0.85,
+                    scale: 0.5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return FoodBox(
+                        thefood: foodData[index],
+                      );
+                    },
+                    itemCount: foodData.length,
+                    control: SwiperControl(color: Colors.pinkAccent[100]),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+          ],
+        ));
   }
 }
 
@@ -95,75 +56,113 @@ class FoodBox extends StatelessWidget {
     Key key,
     this.thefood,
   }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(100),
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(4)),
+      child: Card(
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  'Don\'t Eat:',
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+                SizedBox(
+                  height: 150,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        thefood.foodName,
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontFamily: 'Karla',
+                        ),
+                      ),
+                      Expanded(
+                          child:
+                              Image.asset('assets/images/icons/foodtips.png'))
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  'With:',
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+                 TheList(thefood: thefood),
+              ],
+            ),
+          ),
+          color: Color(0xFFF8F8FF),
+        ),
+      ),
+    );
+  }
+}
+
+class TheList extends StatelessWidget {
+  const TheList({
+    Key key,
+    @required this.thefood,
+  }) : super(key: key);
+
+  final IncompatibleFoods thefood;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    thefood.foodName,
-                    style: TextStyle(
-                      fontSize: 21,
+    return Expanded(
+      child: Stack(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Center(
+              child: SingleChildScrollView(
+                            child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    ListView.separated(
+                      shrinkWrap: true,
+                      physics: BouncingScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                      itemCount: thefood.incompatibleFoods.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return FoodName(
+                          foods: thefood.incompatibleFoods[index],
+                        );
+                      },
+                      separatorBuilder:
+                          (BuildContext context, int index) {
+                        return Container(
+                          color: Color(0xFFA9A9A9),
+                          width: 100,
+                          height: 1.50,
+                        );
+                      },
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image(
-                      image: AssetImage('assets/images/icons/foodtips.png'),
-                      fit: BoxFit.contain,
-                    ),
-                  )
-                ],
+                  ],
+                ),
               ),
             ),
-            Container(
-              color: Color(0xFFA9A9A9),
-              width: 1,
-              height: 150,
-            ),
-            SizedBox(
-              width: 20,
-            ),
-            Expanded(
-              child: Stack(
-                children: <Widget>[
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: thefood.incompatibleFoods.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return FoodName(
-                            foods: thefood.incompatibleFoods[index],
-                          );
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return Container(
-                            color: Color(0xFFA9A9A9),
-                            width: 100,
-                            height: 1.50,
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              width: 20,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -179,11 +178,10 @@ class FoodName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-    //  color: Colors.red[100],
       child: Padding(
-        padding: const EdgeInsets.all(1.0),
+        padding: const EdgeInsets.all(5.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center ,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
               foods,
