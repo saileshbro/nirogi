@@ -1,28 +1,23 @@
 import 'package:nirogi/src/models/comments.dart';
 
-class EachPost {
-  Post post;
-  List<Comment> comments;
+class Posts {
+  List<Post> posts;
 
-  EachPost({this.post, this.comments});
+  Posts({this.posts});
 
-  EachPost.fromJson(Map<String, dynamic> json) {
-    post = json['post'] != null ? new Post.fromJson(json['post']) : null;
-    if (json['comments'] != null) {
-      comments = new List<Comment>();
-      json['comments'].forEach((v) {
-        comments.add(new Comment.fromJson(v));
+  Posts.fromJson(Map<String, dynamic> json) {
+    if (json['posts'] != null) {
+      posts = new List<Post>();
+      json['posts'].forEach((v) {
+        posts.add(new Post.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.post != null) {
-      data['post'] = this.post.toJson();
-    }
-    if (this.comments != null) {
-      data['comments'] = this.comments.map((v) => v.toJson()).toList();
+    if (this.posts != null) {
+      data['posts'] = this.posts.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -35,13 +30,14 @@ class Post {
   int views;
   int voteCount;
   int commentCount;
-  String updatedAt;
+  String createdAt;
   int categoryId;
   String category;
   int userId;
   String name;
   String imageUrl;
-  dynamic voteStatus;
+  int voteStatus;
+  List<Comment> comments;
 
   Post(
       {this.postId,
@@ -50,13 +46,14 @@ class Post {
       this.views,
       this.voteCount,
       this.commentCount,
-      this.updatedAt,
+      this.createdAt,
       this.categoryId,
       this.category,
       this.userId,
       this.name,
       this.imageUrl,
-      this.voteStatus});
+      this.voteStatus,
+      this.comments});
 
   Post.fromJson(Map<String, dynamic> json) {
     postId = json['post_id'];
@@ -65,13 +62,19 @@ class Post {
     views = json['views'];
     voteCount = json['vote_count'];
     commentCount = json['comment_count'];
-    updatedAt = json['updated_at'];
+    createdAt = json['created_at'];
     categoryId = json['category_id'];
     category = json['category'];
     userId = json['user_id'];
     name = json['name'];
     imageUrl = json['imageUrl'];
     voteStatus = json['vote_status'];
+    if (json['comments'] != null) {
+      comments = new List<Comment>();
+      json['comments'].forEach((v) {
+        comments.add(new Comment.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -82,13 +85,16 @@ class Post {
     data['views'] = this.views;
     data['vote_count'] = this.voteCount;
     data['comment_count'] = this.commentCount;
-    data['updated_at'] = this.updatedAt;
+    data['created_at'] = this.createdAt;
     data['category_id'] = this.categoryId;
     data['category'] = this.category;
     data['user_id'] = this.userId;
     data['name'] = this.name;
     data['imageUrl'] = this.imageUrl;
     data['vote_status'] = this.voteStatus;
+    if (this.comments != null) {
+      data['comments'] = this.comments.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
@@ -102,7 +108,7 @@ List<Post> posts = [
     views: 146,
     voteCount: 146,
     commentCount: 146,
-    updatedAt: "7 hours",
+    createdAt: "7 hours",
     categoryId: 6,
     category: "Infections",
     userId: 1,
@@ -118,7 +124,7 @@ List<Post> posts = [
     views: 146,
     voteCount: 146,
     commentCount: 146,
-    updatedAt: "7 hours",
+    createdAt: "7 hours",
     categoryId: 6,
     category: "Infections",
     userId: 1,
@@ -134,7 +140,7 @@ List<Post> posts = [
     views: 146,
     voteCount: 146,
     commentCount: 146,
-    updatedAt: "7 hours",
+    createdAt: "7 hours",
     categoryId: 6,
     category: "Infections",
     userId: 1,
@@ -151,7 +157,7 @@ List<Post> posts = [
     views: 146,
     voteCount: 146,
     commentCount: 146,
-    updatedAt: "7 hours",
+    createdAt: "7 hours",
     categoryId: 6,
     category: "Infections",
     userId: 1,
@@ -167,7 +173,7 @@ List<Post> posts = [
     views: 146,
     voteCount: 146,
     commentCount: 146,
-    updatedAt: "7 hours",
+    createdAt: "7 hours",
     categoryId: 6,
     category: "Infections",
     userId: 1,
@@ -183,7 +189,7 @@ List<Post> posts = [
     views: 146,
     voteCount: 146,
     commentCount: 146,
-    updatedAt: "7 hours",
+    createdAt: "7 hours",
     categoryId: 6,
     category: "Infections",
     userId: 1,
@@ -199,7 +205,7 @@ List<Post> posts = [
     views: 146,
     voteCount: 146,
     commentCount: 146,
-    updatedAt: "7 hours",
+    createdAt: "7 hours",
     categoryId: 6,
     category: "Infections",
     userId: 1,
@@ -215,7 +221,7 @@ List<Post> posts = [
     views: 146,
     voteCount: 146,
     commentCount: 146,
-    updatedAt: "7 hours",
+    createdAt: "7 hours",
     categoryId: 6,
     category: "Infections",
     userId: 1,
@@ -231,7 +237,7 @@ List<Post> posts = [
     views: 146,
     voteCount: 146,
     commentCount: 146,
-    updatedAt: "7 hours",
+    createdAt: "7 hours",
     categoryId: 6,
     category: "Infections",
     userId: 1,
@@ -247,7 +253,7 @@ List<Post> posts = [
     views: 146,
     voteCount: 146,
     commentCount: 146,
-    updatedAt: "7 hours",
+    createdAt: "7 hours",
     categoryId: 6,
     category: "Infections",
     userId: 1,
@@ -263,7 +269,7 @@ List<Post> posts = [
     views: 146,
     voteCount: 146,
     commentCount: 146,
-    updatedAt: "7 hours",
+    createdAt: "7 hours",
     categoryId: 6,
     category: "Infections",
     userId: 1,
