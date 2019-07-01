@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:nirogi/src/models/incompatiblefoods.dart';
+import 'package:nirogi/src/themes/scrollOverlay.dart';
 
 class IncompatibleFoodsPage extends StatelessWidget {
   final IncompatibleFoods data = IncompatibleFoods();
@@ -107,11 +108,11 @@ class FoodBox extends StatelessWidget {
                     fontSize: 25,
                   ),
                 ),
-                 TheList(thefood: thefood),
+                TheList(thefood: thefood),
               ],
             ),
           ),
-          color: Color(0xFFF8F8FF),
+          color: Theme.of(context).canvasColor,
         ),
       ),
     );
@@ -133,31 +134,27 @@ class TheList extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(12.0),
-            child: Center(
-              child: SingleChildScrollView(
-                            child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    ListView.separated(
-                      shrinkWrap: true,
-                      physics: BouncingScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                      itemCount: thefood.incompatibleFoods.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return FoodName(
-                          foods: thefood.incompatibleFoods[index],
-                        );
-                      },
-                      separatorBuilder:
-                          (BuildContext context, int index) {
-                        return Container(
-                          color: Color(0xFFA9A9A9),
-                          width: 100,
-                          height: 1.50,
-                        );
-                      },
-                    ),
-                  ],
+            child: Card(
+              child: Center(
+                child: ScrollConfiguration(
+                  behavior: RemoveEndOfListIndicator(),
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: thefood.incompatibleFoods.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return FoodName(
+                        foods: thefood.incompatibleFoods[index],
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return Container(
+                        color: Color(0xFFA9A9A9),
+                        width: 100,
+                        height: 1.50,
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
