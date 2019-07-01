@@ -13,7 +13,7 @@ class ProfileRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.get("$baseUrl/users/me", headers: {
+      final response = await client.get("$baseUrl/api/users/me", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -31,7 +31,7 @@ class ProfileRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.get("$baseUrl/users", headers: {
+      final response = await client.get("$baseUrl/api/users", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -49,7 +49,7 @@ class ProfileRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.get("$baseUrl/users/$userId", headers: {
+      final response = await client.get("$baseUrl/api/users/$userId", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -67,7 +67,7 @@ class ProfileRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.patch("$baseUrl/users/me", headers: {
+      final response = await client.patch("$baseUrl/api/users/me", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);

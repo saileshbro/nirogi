@@ -13,7 +13,7 @@ class FirstAidRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.get("$baseUrl/firstaids", headers: {
+      final response = await client.get("$baseUrl/api/firstaids", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -32,7 +32,7 @@ class FirstAidRepository {
     final token = preferences.getString('token');
     try {
       final response =
-          await client.get("$baseUrl/firstaid/$firstAidId", headers: {
+          await client.get("$baseUrl/api/firstaid/$firstAidId", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);

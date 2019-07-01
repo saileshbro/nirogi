@@ -14,7 +14,7 @@ class ProvinceRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        '$baseUrl/provinces',
+        '$baseUrl/api/provinces',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -35,7 +35,7 @@ class ProvinceRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        '$baseUrl/province/$provinceId',
+        '$baseUrl/api/province/$provinceId',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },

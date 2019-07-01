@@ -14,7 +14,7 @@ class DrugRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        '$baseUrl/drugs/common',
+        '$baseUrl/api/drugs/common',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -35,7 +35,7 @@ class DrugRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        '$baseUrl/drug/$genericName',
+        '$baseUrl/api/drug/$genericName',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -56,7 +56,7 @@ class DrugRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        '$baseUrl/drugs/search?query=$query',
+        '$baseUrl/api/drugs/search?query=$query',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },

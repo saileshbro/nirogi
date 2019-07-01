@@ -13,7 +13,7 @@ class DiseaseRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/diseases/top",
+        "$baseUrl/api/diseases/top",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -34,7 +34,7 @@ class DiseaseRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/diseases",
+        "$baseUrl/api/diseases",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -55,7 +55,7 @@ class DiseaseRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/disease/$diseaseId",
+        "$baseUrl/api/disease/$diseaseId",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -76,7 +76,7 @@ class DiseaseRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.post(
-        "$baseUrl/diseases",
+        "$baseUrl/api/diseases",
         headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
         body: jsonEncode(disease.toJson()),
       );

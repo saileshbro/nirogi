@@ -14,7 +14,7 @@ class NewsReposirory {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        '$baseUrl/news',
+        '$baseUrl/api/news',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -35,7 +35,7 @@ class NewsReposirory {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        '$baseUrl/news/$newsId',
+        '$baseUrl/api/news/$newsId',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },

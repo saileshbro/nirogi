@@ -15,7 +15,7 @@ class FoodTipsRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        '$baseUrl/tips/diseases',
+        '$baseUrl/api/tips/diseases',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -36,7 +36,7 @@ class FoodTipsRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        '$baseUrl/tips/disease/$diseaseId',
+        '$baseUrl/api/tips/disease/$diseaseId',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -52,3 +52,5 @@ class FoodTipsRepository {
     }
   }
 }
+
+final FoodTipsRepository foodTipsRepository = FoodTipsRepository();

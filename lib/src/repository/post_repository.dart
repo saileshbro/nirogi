@@ -13,7 +13,8 @@ class PostRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.get("$baseUrl/posts?sort=$sort", headers: {
+      final response =
+          await client.get("$baseUrl/api/posts?sort=$sort", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -32,7 +33,7 @@ class PostRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.post(
-        "$baseUrl/posts",
+        "$baseUrl/api/posts",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -53,7 +54,7 @@ class PostRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.get('$baseUrl/post/$postId',
+      final response = await client.get('$baseUrl/api/post/$postId',
           headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -72,7 +73,7 @@ class PostRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.patch(
-        '$baseUrl/post/$postId',
+        '$baseUrl/api/post/$postId',
         headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
         body: jsonEncode(updatePost.toJson()),
       );
@@ -93,7 +94,7 @@ class PostRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.delete('$baseUrl/post/$postId',
+      final response = await client.delete('$baseUrl/api/post/$postId',
           headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -112,7 +113,7 @@ class PostRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.post('$baseUrl/post/$postId/upvote',
+      final response = await client.post('$baseUrl/api/post/$postId/upvote',
           headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -131,7 +132,7 @@ class PostRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.post('$baseUrl/post/$postId/downvote',
+      final response = await client.post('$baseUrl/api/post/$postId/downvote',
           headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -152,7 +153,7 @@ class PostRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.post(
-        '$baseUrl/post/$postId/comment',
+        '$baseUrl/api/post/$postId/comment',
         headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
         body: jsonEncode(comment.toJson()),
       );
@@ -175,7 +176,7 @@ class PostRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/post/$postId/comments?sort=$sort",
+        "$baseUrl/api/post/$postId/comments?sort=$sort",
         headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -195,7 +196,7 @@ class PostRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/post/$postId/comment/$commentId",
+        "$baseUrl/api/post/$postId/comment/$commentId",
         headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -218,7 +219,7 @@ class PostRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.patch(
-        "$baseUrl/post/$postId/comment/$commentId",
+        "$baseUrl/api/post/$postId/comment/$commentId",
         headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
         body: jsonEncode(comment.toJson()),
       );
@@ -241,7 +242,7 @@ class PostRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.post(
-        "$baseUrl/post/$postId/comment/$commentId/upvote",
+        "$baseUrl/api/post/$postId/comment/$commentId/upvote",
         headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -263,7 +264,7 @@ class PostRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.post(
-        "$baseUrl/post/$postId/comment/$commentId/downvote",
+        "$baseUrl/api/post/$postId/comment/$commentId/downvote",
         headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -285,7 +286,7 @@ class PostRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.delete(
-        "$baseUrl/post/$postId/comment/$commentId",
+        "$baseUrl/api/post/$postId/comment/$commentId",
         headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);

@@ -1,3 +1,5 @@
+import 'package:nirogi/src/repository/firstaid_repository.dart';
+
 class Firstaids {
   List<Firstaid> firstaids;
 
@@ -45,3 +47,5 @@ class Firstaid {
     return data;
   }
 }
+
+final FirstAidRepository firstAidRepository = FirstAidRepository();
