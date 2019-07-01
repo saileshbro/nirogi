@@ -66,7 +66,9 @@ class DrugCard extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(builder: (BuildContext context) {
-            return EachDrug();
+            return EachDrug(
+              eachdrug: drug,
+            );
           }),
         );
       },

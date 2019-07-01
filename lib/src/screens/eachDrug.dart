@@ -4,11 +4,19 @@ import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/query_card.dart';
 
 class EachDrug extends StatefulWidget {
+  final Drug eachdrug;
+  const EachDrug({
+    this.eachdrug,
+  });
   @override
-  _EachDrugState createState() => _EachDrugState();
+  _EachDrugState createState() => _EachDrugState(eachdrug: eachdrug);
 }
 
 class _EachDrugState extends State<EachDrug> {
+  final Drug eachdrug;
+  _EachDrugState({
+    this.eachdrug,
+  });
   ScrollController _customController;
 
   bool _isCollapsed = false;
@@ -44,7 +52,7 @@ class _EachDrugState extends State<EachDrug> {
                 centerTitle: true,
                 title: _isCollapsed
                     ? Text(
-                        drug.brandName,
+                        eachdrug.brandName,
                         style: Theme.of(context).textTheme.body1.copyWith(
                               fontSize: 20,
                               color: Colors.red[700],
@@ -61,7 +69,7 @@ class _EachDrugState extends State<EachDrug> {
                       ),
                 flexibleSpace: FlexibleSpaceBar(
                     background: Image.network(
-                  drug.imageUrl,
+                  eachdrug.imageUrl,
                   fit: BoxFit.cover,
                 )),
               ),
@@ -70,8 +78,10 @@ class _EachDrugState extends State<EachDrug> {
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                _DrugInfoCard(),
-                _BuildDrugQuery(),
+                _DrugInfoCard(eachdrug: eachdrug),
+                _BuildDrugQuery(
+                  eachdrug: eachdrug,
+                ),
               ],
             ),
           ),
@@ -82,6 +92,10 @@ class _EachDrugState extends State<EachDrug> {
 }
 
 class _DrugInfoCard extends StatelessWidget {
+  final Drug eachdrug;
+  _DrugInfoCard({
+    this.eachdrug,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -96,7 +110,7 @@ class _DrugInfoCard extends StatelessWidget {
               children: <Widget>[
                 TitleCard(title: "Brand Name"),
                 InfoCard(
-                  info: drug.brandName,
+                  info: eachdrug.brandName,
                   fontFamily: "Karla",
                   color: Colors.black,
                   fontsize: 18.0,
@@ -108,7 +122,7 @@ class _DrugInfoCard extends StatelessWidget {
               children: <Widget>[
                 TitleCard(title: "Generic Name"),
                 InfoCard(
-                  info: drug.genericName,
+                  info: eachdrug.genericName,
                   fontFamily: "Alex",
                   color: Colors.red[700],
                   fontsize: 23.0,
@@ -120,7 +134,7 @@ class _DrugInfoCard extends StatelessWidget {
               children: <Widget>[
                 TitleCard(title: "Dose"),
                 InfoCard(
-                  info: drug.dose,
+                  info: eachdrug.dose,
                   fontFamily: "Karla",
                   color: Colors.black,
                   fontsize: 18.0,
@@ -132,7 +146,7 @@ class _DrugInfoCard extends StatelessWidget {
               children: <Widget>[
                 TitleCard(title: "Summary"),
                 InfoCard(
-                  info: drug.summary,
+                  info: eachdrug.summary,
                   fontFamily: "Karla",
                   color: Colors.black,
                   fontsize: 16.0,
@@ -190,7 +204,6 @@ class InfoCard extends StatelessWidget {
           info,
           style: TextStyle(
               fontSize: fontsize, color: color, fontFamily: fontFamily),
-          textAlign: TextAlign.start,
           maxLines: 5,
           overflow: TextOverflow.ellipsis,
         ),
@@ -200,9 +213,10 @@ class InfoCard extends StatelessWidget {
 }
 
 class _BuildDrugQuery extends StatelessWidget {
-  const _BuildDrugQuery({
-    Key key,
-  }) : super(key: key);
+  final Drug eachdrug;
+  _BuildDrugQuery({
+    this.eachdrug,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -218,7 +232,7 @@ class _BuildDrugQuery extends StatelessWidget {
         scrollDirection: Axis.vertical,
         itemBuilder: (BuildContext context, int index) {
           return QueryCard(
-            sectionInfo: drug.sections[index],
+            sectionInfo: eachdrug.sections[index],
           );
         },
         separatorBuilder: (BuildContext context, int index) {

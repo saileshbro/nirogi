@@ -140,6 +140,7 @@ final Drugs commonDrugs = Drugs(
     genericName: "clindamycin",
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_5289.jpg",
     summary: "It is used to treat certain kinds of bacterial infections",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Rifadin",
@@ -147,6 +148,7 @@ final Drugs commonDrugs = Drugs(
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_7123.jpg",
     summary:
         "It is used to treat or prevent certain kinds of bacterial infections",
+    dose: "500mg",
   ),
   Drug(
     brandName: "HydroDIURIL",
@@ -154,12 +156,14 @@ final Drugs commonDrugs = Drugs(
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_6801.jpg",
     summary:
         "It increases the amount of urine passed, which causes the body to lose salt and water",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Ampicillin",
     genericName: "ampicillin",
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_4013.jpg",
     summary: "It is used to treat certain kinds of bacterial infections",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Azithromycin",
@@ -167,6 +171,7 @@ final Drugs commonDrugs = Drugs(
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_8643.jpg",
     summary:
         "It is used to treat or prevent certain kinds of bacterial infections",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Melfiat 105 Unicelles",
@@ -174,15 +179,18 @@ final Drugs commonDrugs = Drugs(
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_1440.jpg",
     summary:
         "It is used with a reduced calorie diet and exercise to help you lose weight",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Nortriptyline",
     genericName: "nortriptyline",
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_2337.jpg",
     summary: "It is used to treat depression.",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Metoprolol Succ ER",
+    dose: "500mg",
     genericName: "metoprolol",
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_14629.jpg",
     summary:
@@ -193,12 +201,14 @@ final Drugs commonDrugs = Drugs(
     genericName: "ranitidine",
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_10156.jpg",
     summary: "It is used to treat stomach or intestinal ulcers",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Dicloxacillin",
     genericName: "dicloxacillin",
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_2417.jpg",
     summary: "It is used to treat certain kinds of bacterial infections",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Atenolol",
@@ -206,6 +216,7 @@ final Drugs commonDrugs = Drugs(
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_14326.jpg",
     summary:
         "Beta-blockers reduce the workload on the heart and help it to beat more regularly",
+    dose: "500mg",
   ),
   Drug(
     brandName: "VoSpire ER",
@@ -213,6 +224,7 @@ final Drugs commonDrugs = Drugs(
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_7542.jpg",
     summary:
         "It helps open up the airways in your lungs to make it easier to breathe",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Ibuprofen IB",
@@ -220,9 +232,11 @@ final Drugs commonDrugs = Drugs(
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_14836.jpg",
     summary:
         "It is used for dental pain, fever, headaches or migraines, osteoarthritis, rheumatoid arthritis, or painful monthly periods",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Doxycycline Hyc DR",
+    dose: "500mg",
     genericName: "doxycycline",
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_16882.jpg",
     summary: "It kills certain bacteria or stops their growth",
@@ -235,6 +249,7 @@ final Drugs commonDrugs = Drugs(
   ),
   Drug(
     brandName: "Lasix",
+    dose: "500mg",
     genericName: "furosemide",
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_7316.jpg",
     summary:
@@ -245,6 +260,7 @@ final Drugs commonDrugs = Drugs(
     genericName: "amoxicillin",
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_15629.jpg",
     summary: "It is used to treat certain kinds of bacterial infections",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Keftab",
@@ -252,6 +268,7 @@ final Drugs commonDrugs = Drugs(
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_5100.jpg",
     summary:
         "It is used to treat certain kinds of bacterial infections It will not work for colds, flu, or other viral infections",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Levothyroxine 88mcg",
@@ -259,6 +276,7 @@ final Drugs commonDrugs = Drugs(
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_4317.jpg",
     summary:
         "This medicine can improve symptoms of thyroid deficiency such as slow speech, lack of energy, weight gain, hair loss, dry skin, and feeling cold",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Lisinopril",
@@ -266,6 +284,7 @@ final Drugs commonDrugs = Drugs(
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_11701.jpg",
     summary:
         "This medicine is used to treat high blood pressure and heart failure",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Simvastatin",
@@ -273,6 +292,7 @@ final Drugs commonDrugs = Drugs(
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_12959.jpg",
     summary:
         "It lowers the level of cholesterol and triglycerides in the blood",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Caromega",
@@ -280,11 +300,13 @@ final Drugs commonDrugs = Drugs(
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_7472.jpg",
     summary:
         "MULTIVITAMIN with MINERAL and IRON combinations are used to help provide provide good nutrition.",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Hyoscyamine",
     genericName: "hyoscyamine",
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_4331.jpg",
     summary: "It is used to treat stomach and bladder problems",
+    dose: "500mg",
   ),
 ]..sort((Drug a, Drug b) => a.brandName.compareTo(b.brandName)));

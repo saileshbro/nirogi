@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/bloc/change_theme_bloc.dart';
 import 'package:nirogi/src/models/diseases.dart';
+import 'package:nirogi/src/models/drug.dart';
 import 'package:nirogi/src/models/news.dart';
 import 'package:nirogi/src/models/symptoms.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:nirogi/src/screens/eachDrug.dart';
 import 'package:nirogi/src/themes/clippers.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/themes/themes.dart';
@@ -104,16 +106,16 @@ class _HomePageState extends State<HomePage> {
                   height: 0.02 * height,
                 ),
                 Container(
-                  height: 350,
+                  height: 300,
                   child: new Swiper(
                     viewportFraction: 0.7,
                     scale: 0.9,
                     itemBuilder: (BuildContext context, int index) {
-                      return buildSlider(context);
+                      return DrugSlider(drug: commonDrugs.drugs[index]);
                     },
                     indicatorLayout: PageIndicatorLayout.COLOR,
                     autoplay: true,
-                    itemCount: 3,
+                    itemCount: commonDrugs.drugs.length,
                     containerWidth: 200,
                     control: new SwiperControl(color: Colors.red[700]),
                   ),
@@ -292,12 +294,26 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
 
-  Widget buildSlider(BuildContext context) {
+class DrugSlider extends StatelessWidget {
+  final Drug drug;
+  const DrugSlider({
+    this.drug,
+  });
+  @override
+  Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (BuildContext context) {
+          return EachDrug(
+            eachdrug: drug,
+          );
+        }));
+      },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(
@@ -311,7 +327,7 @@ class _HomePageState extends State<HomePage> {
                 width: width,
                 child: RotatedBox(
                   child: Image.network(
-                    "https://healthtools.aarp.org/images/gold/DrugItem_7618.jpg",
+                    drug.imageUrl,
                     fit: BoxFit.fill,
                   ),
                   quarterTurns: 5,
@@ -343,7 +359,7 @@ class _HomePageState extends State<HomePage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Acitomycillin',
+                                  drug.brandName,
                                   style: Theme.of(context)
                                       .textTheme
                                       .body1
@@ -362,12 +378,12 @@ class _HomePageState extends State<HomePage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Acitomycin',
+                                  drug.genericName,
                                   style: Theme.of(context)
                                       .textTheme
                                       .body1
                                       .copyWith(
-                                        fontSize: 24,
+                                        fontSize: 26,
                                         fontFamily: 'Alex',
                                         fontWeight: FontWeight.w600,
                                         color: Colors.brown[700],
@@ -396,7 +412,7 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                       ),
                                       TextSpan(
-                                        text: "4000 gm",
+                                        text: drug.dose,
                                         style: Theme.of(context)
                                             .textTheme
                                             .body1
@@ -424,7 +440,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   width: width * 0.8,
                   child: Text(
-                    'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up on',
+                    drug.summary,
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.body2.copyWith(
