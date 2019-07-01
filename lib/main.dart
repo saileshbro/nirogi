@@ -5,6 +5,7 @@ import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/repository/repositories.dart';
+import 'package:nirogi/src/screens/provincePage.dart';
 import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/screens/splashScreenPage.dart';
 import 'package:nirogi/src/widgets/loading_indicator.dart';
@@ -87,6 +88,7 @@ class _MyAppState extends State<MyApp> {
               "/changepw": (context) => ChangePassword(),
               "/forum": (context) => ForumPage(),
               "/tools": (context) => HealthToolsPage(),
+              "/province": (context) => ProvincePage(),
             },
             debugShowCheckedModeBanner: false,
             theme: state.themeData,

@@ -144,6 +144,8 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                     buildListTile(context, "Health Forum",
                         "assets/images/icons/forum.png", '/forum'),
+                    buildListTile(context, "Province Health Info",
+                        "assets/images/icons/nepal.png", '/province'),
                     buildListTile(context, "Health Tools and Tips",
                         "assets/images/icons/healthtool.png", '/tools'),
                     Padding(
