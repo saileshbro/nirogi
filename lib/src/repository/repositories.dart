@@ -1,2 +1,10 @@
-export 'user_repository.dart';
 export 'disease_repository.dart';
+export 'drug_repository.dart';
+export 'firstaid_repository.dart';
+export 'foodtips_repository.dart';
+export 'news_repository.dart';
+export 'post_repository.dart';
+export 'profile_repository.dart';
+export 'province_repository.dart';
+export 'symptom_repository.dart';
+export 'user_repository.dart';
