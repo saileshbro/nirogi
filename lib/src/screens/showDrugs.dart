@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/models/drug.dart';
+import 'package:nirogi/src/screens/eachDrug.dart';
 import 'package:nirogi/src/widgets/search_box.dart';
 
 class ShowDrugs extends StatelessWidget {
@@ -36,9 +38,9 @@ class ShowDrugs extends StatelessWidget {
                   shrinkWrap: true,
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
-                  itemCount: 10,
+                  itemCount: commonDrugs.drugs.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return DrugCard();
+                    return DrugCard(drug: commonDrugs.drugs[index]);
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return SizedBox(
@@ -56,10 +58,20 @@ class ShowDrugs extends StatelessWidget {
 }
 
 class DrugCard extends StatelessWidget {
+  final Drug drug;
+  const DrugCard({this.drug});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (BuildContext context) {
+            return EachDrug(
+              eachdrug: drug,
+            );
+          }),
+        );
+      },
       child: Material(
         borderRadius: BorderRadius.circular(5),
         elevation: 1.0,
@@ -74,7 +86,7 @@ class DrugCard extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 23,
                   child: Text(
-                    'A',
+                    drug.brandName[0],
                     style: TextStyle(
                       fontSize: 30,
                       color: Colors.white,
@@ -85,7 +97,7 @@ class DrugCard extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  'Amixocillin',
+                  drug.brandName,
                   style: Theme.of(context).textTheme.body1.copyWith(
                         fontSize: 20,
                       ),
