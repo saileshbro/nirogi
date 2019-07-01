@@ -4,7 +4,6 @@ import 'package:nirogi/src/models/diseases.dart';
 import 'package:nirogi/src/models/foodtips.dart';
 import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/screens/showFoods.dart';
-import 'package:nirogi/src/widgets/search_box_for_foodtips.dart';
 
 class FoodTipsPage extends StatelessWidget {
   final FoodTipsRepository _repository = FoodTipsRepository();
@@ -32,8 +31,6 @@ class FoodTipsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SearchBoxf(),
-            //TODO: Search function
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(right: 10, left: 10, bottom: 10),
