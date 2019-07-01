@@ -36,7 +36,7 @@ class Post {
   int userId;
   String name;
   String imageUrl;
-  int voteStatus;
+  dynamic voteStatus;
   List<Comment> comments;
 
   Post(
