@@ -55,7 +55,7 @@ class ForumBlock extends StatelessWidget {
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.body1.copyWith(
-                            fontSize: 16, fontWeight: FontWeight.w600),
+                            fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                       GestureDetector(
                         onTap: () {},

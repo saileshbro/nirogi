@@ -145,7 +145,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     buildListTile(context, "Health Forum",
                         "assets/images/icons/forum.png", '/forum'),
                     buildListTile(context, "Health Tools and Tips",
-                        "assets/images/icons/tools.png", '/tools'),
+                        "assets/images/icons/healthtool.png", '/tools'),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Divider(
@@ -289,7 +289,7 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
           title: Text(
             name,
-            style: Theme.of(context).textTheme.body1,
+            style: Theme.of(context).textTheme.body2.copyWith(fontSize: 16),
           ),
         ),
       );
@@ -307,7 +307,7 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
           title: Text(
             name,
-            style: Theme.of(context).textTheme.body1,
+            style: Theme.of(context).textTheme.body2.copyWith(fontSize: 16),
           ),
         ),
       );

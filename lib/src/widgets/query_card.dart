@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:nirogi/src/models/eachdrug.dart';
+import 'package:nirogi/src/models/drug.dart';
 
 class QueryCard extends StatelessWidget {
   final Section sectionInfo;

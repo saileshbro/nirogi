@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/eachdrug.dart';
+import 'package:nirogi/src/models/drug.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/query_card.dart';
 

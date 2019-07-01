@@ -26,6 +26,7 @@ class Drug {
   String genericName;
   String imageUrl;
   String summary;
+  String dose;
   List<Section> sections;
 
   Drug(
@@ -33,6 +34,7 @@ class Drug {
       this.genericName,
       this.imageUrl,
       this.summary,
+      this.dose,
       this.sections});
 
   Drug.fromJson(Map<String, dynamic> json) {
@@ -40,6 +42,7 @@ class Drug {
     genericName = json['genericName'];
     imageUrl = json['imageUrl'];
     summary = json['summary'];
+    dose = json['dose'];
     if (json['sections'] != null) {
       sections = new List<Section>();
       json['sections'].forEach((v) {
@@ -54,6 +57,7 @@ class Drug {
     data['genericName'] = this.genericName;
     data['imageUrl'] = this.imageUrl;
     data['summary'] = this.summary;
+    data['dose'] = this.dose;
     if (this.sections != null) {
       data['sections'] = this.sections.map((v) => v.toJson()).toList();
     }
@@ -84,6 +88,7 @@ final Drug drug = new Drug(
     brandName: "HydroDIURIL",
     genericName: "hydrochlorothiazide",
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_6801.jpg",
+    dose: "500mg",
     summary:
         "It increases the amount of urine passed, which causes the body to lose salt and water",
     sections: [
@@ -128,7 +133,8 @@ final Drug drug = new Drug(
           content:
               "Keep out of the reach of children.<br /><br />Store at room temperature between 15 and 30 degrees C (59 and 86 degrees F). Do not freeze. Protect from light and moisture. Keep container closed tightly. Throw away any unused medicine after the expiration date.<p></p><p>Remember, keep this and all other medicines out of the reach of children, never share your medicines with others, and use this medication only for the indication prescribed.</p>")
     ]);
-final Drugs commonDrugs = Drugs(drugs: [
+final Drugs commonDrugs = Drugs(
+    drugs: [
   Drug(
     brandName: "Cleocin",
     genericName: "clindamycin",
@@ -281,4 +287,4 @@ final Drugs commonDrugs = Drugs(drugs: [
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_4331.jpg",
     summary: "It is used to treat stomach and bladder problems",
   ),
-]);
+]..sort((Drug a, Drug b) => a.brandName.compareTo(b.brandName)));

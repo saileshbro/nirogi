@@ -25,7 +25,7 @@ class HealthToolsPage extends StatelessWidget {
               width: 14,
             ),
             Image.asset(
-              'assets/images/icons/tools.png',
+              'assets/images/icons/healthtool.png',
               width: 30,
             ),
           ],
@@ -68,40 +68,27 @@ class HealthToolsPage extends StatelessWidget {
                             children: <Widget>[
                               Container(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 25),
+                                    horizontal: 10, vertical: 15),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                    Image.asset(
-                                      'assets/images/icons/fish.png',
-                                      width: 70,
-                                    ),
-                                    SizedBox(
-                                      width: 15,
-                                    ),
-                                    Image.asset(
-                                      'assets/images/icons/plus.png',
-                                      width: 30,
-                                      color: Colors.red[700],
-                                    ),
-                                    SizedBox(
-                                      width: 15,
-                                    ),
-                                    Image.asset('assets/images/icons/milk.png',
-                                        width: 70),
-                                    SizedBox(
-                                      width: 15,
-                                    ),
-                                    Image.asset(
-                                      'assets/images/icons/equal.png',
-                                      width: 30,
-                                      color: Colors.red[700],
-                                    ),
-                                    SizedBox(
-                                      width: 15,
-                                    ),
-                                    Image.asset('assets/images/icons/vomit.png',
-                                        width: 70)
+                                    Stack(
+                                      children: <Widget>[
+                                        Image.asset(
+                                          'assets/images/icons/breakfast.png',
+                                          width: 120,
+                                        ),
+                                        Positioned(
+                                          bottom: 0,
+                                          right: 0,
+                                          child: Image.asset(
+                                            'assets/images/icons/close.png',
+                                            width: 40,
+                                            color: Colors.red[700],
+                                          ),
+                                        ),
+                                      ],
+                                    )
                                   ],
                                 ),
                               ),
