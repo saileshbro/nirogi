@@ -1,23 +1,13 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:http/http.dart' as http;
+import 'package:nirogi/src/models/diseases.dart';
 import 'package:nirogi/src/models/foodtips.dart';
+import 'package:nirogi/src/repository/repositories.dart';
+import 'package:nirogi/src/screens/showFoods.dart';
 import 'package:nirogi/src/widgets/search_box_for_foodtips.dart';
 
-//Shows the list of diseases
-
 class FoodTipsPage extends StatelessWidget {
-  Future<List<Disease>> fetchPost() async {
-    final response =
-        await http.get('http://192.168.0.5:8000/api/tips/diseases');
-    if (response.statusCode == 200) {
-      return Diseases.fromJson(jsonDecode(response.body)).diseases;
-    } else {
-      throw Exception('Failed to load post');
-    }
-  }
+  final FoodTipsRepository _repository = FoodTipsRepository();
 
   final FoodTips foodtips = FoodTips();
   @override
@@ -47,7 +37,7 @@ class FoodTipsPage extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(right: 10, left: 10, bottom: 10),
                 child: FutureBuilder(
-                    future: fetchPost(),
+                    future: _repository.getFoodTipsDiseases(),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (snapshot.hasData) {
                         return Container(
@@ -57,7 +47,7 @@ class FoodTipsPage extends StatelessWidget {
                             scrollDirection: Axis.vertical,
                             itemCount: snapshot.data.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return TipsName(foodtips: snapshot.data[index]);
+                              return TipsName(disease: snapshot.data[index]);
                             },
                             separatorBuilder:
                                 (BuildContext context, int index) {
@@ -72,7 +62,9 @@ class FoodTipsPage extends StatelessWidget {
                           child: Text("Error"),
                         );
                       } else {
-                        return Container();
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
                       }
                     }),
               ),
@@ -83,25 +75,26 @@ class FoodTipsPage extends StatelessWidget {
 }
 
 class TipsName extends StatelessWidget {
-  final Disease foodtips;
+  final Disease disease;
   TipsName({
     Key key,
-    @required this.foodtips,
+    @required this.disease,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.of(context).push(
-        //   MaterialPageRoute(
-        //     builder: (BuildContext context) {
-        //       return ShowFoods(
-        //         foodTips: foodtips,
-        //       );
-        //     },
-        //   ),
-        // );
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return ShowFoods(
+                disease: disease.disease,
+                diseaseId: disease.diseaseId,
+              );
+            },
+          ),
+        );
       },
       child: Material(
         borderRadius: BorderRadius.circular(5),
@@ -117,7 +110,7 @@ class TipsName extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 23,
                   child: Text(
-                    foodtips.disease[0],
+                    disease.disease[0],
                     style: TextStyle(
                       fontSize: 30,
                       color: Colors.white,
@@ -128,7 +121,7 @@ class TipsName extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  foodtips.disease,
+                  disease.disease,
                   style: Theme.of(context).textTheme.body1.copyWith(
                         fontSize: 20,
                       ),
@@ -139,50 +132,5 @@ class TipsName extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class Diseases {
-  List<Disease> diseases;
-
-  Diseases({this.diseases});
-
-  Diseases.fromJson(Map<String, dynamic> json) {
-    if (json['diseases'] != null) {
-      diseases = new List<Disease>();
-      json['diseases'].forEach((v) {
-        diseases.add(new Disease.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.diseases != null) {
-      data['diseases'] = this.diseases.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Disease {
-  int diseaseId;
-  String disease;
-  String imageUrl;
-
-  Disease({this.diseaseId, this.disease, this.imageUrl});
-
-  Disease.fromJson(Map<String, dynamic> json) {
-    diseaseId = json['disease_id'];
-    disease = json['disease'];
-    imageUrl = json['imageUrl'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['disease_id'] = this.diseaseId;
-    data['disease'] = this.disease;
-    data['imageUrl'] = this.imageUrl;
-    return data;
   }
 }
