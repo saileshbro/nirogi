@@ -33,6 +33,7 @@ class FoodTipsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             SearchBoxf(),
+            //TODO: Search function
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(right: 10, left: 10, bottom: 10),

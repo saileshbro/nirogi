@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' show Client;
 import 'package:nirogi/src/constants/env.dart';
