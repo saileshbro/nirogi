@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
@@ -212,11 +213,23 @@ class InfoCard extends StatelessWidget {
   }
 }
 
-class _BuildDrugQuery extends StatelessWidget {
+class _BuildDrugQuery extends StatefulWidget {
   final Drug eachdrug;
   _BuildDrugQuery({
     this.eachdrug,
   });
+
+  @override
+  __BuildDrugQueryState createState() => __BuildDrugQueryState();
+}
+
+class __BuildDrugQueryState extends State<_BuildDrugQuery> {
+  Future<Drug> drug;
+  @override
+  void initState() {
+    super.initState();
+    drug = drugRepository.getDrug(genericName: widget.eachdrug.genericName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -225,22 +238,48 @@ class _BuildDrugQuery extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(
           right: 0.03 * width, left: 0.03 * width, bottom: 0.01 * height),
-      child: ListView.separated(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: drug.sections.length,
-        scrollDirection: Axis.vertical,
-        itemBuilder: (BuildContext context, int index) {
-          return QueryCard(
-            sectionInfo: eachdrug.sections[index],
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return Divider(
-            height: 25,
-            color: Colors.red[700],
-          );
-        },
+      child: Container(
+        child: FutureBuilder(
+          future: drug,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return ListView.separated(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: snapshot.data.sections.length,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (BuildContext context, int index) {
+                  return QueryCard(
+                    sectionInfo: snapshot.data.sections[index],
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return Divider(
+                    height: 25,
+                    color: Colors.red[700],
+                  );
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Container(
+                margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height -
+                        MediaQuery.of(context).size.height * 2.5 / 3),
+                child: Center(
+                  child: Text('error'),
+                ),
+              );
+            } else
+              return Container(
+                margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height -
+                        MediaQuery.of(context).size.height * 2.5 / 3),
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+          },
+        ),
       ),
     );
   }

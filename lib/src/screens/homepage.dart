@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/bloc/change_theme_bloc.dart';
-import 'package:nirogi/src/models/diseases.dart';
-import 'package:nirogi/src/models/drug.dart';
-import 'package:nirogi/src/models/news.dart';
-import 'package:nirogi/src/models/symptoms.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:nirogi/src/bloc/change_theme_bloc.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/themes/clippers.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/themes/themes.dart';
-import 'package:nirogi/src/widgets/diseases_card.dart';
-import 'package:nirogi/src/widgets/drawer.dart';
-import 'package:nirogi/src/widgets/news_card.dart';
-import 'package:nirogi/src/widgets/symptoms_card.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   ScrollController _customController;
+
   Future<List<Disease>> topDiseases;
   Future<List<Symptom>> topSymptoms;
   Future<List<Drug>> commonDrug;
@@ -118,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                     if (snapshot.hasData) {
                       return Container(
                         height: 300,
-                        child: new Swiper(
+                        child: Swiper(
                           viewportFraction: 0.7,
                           scale: 0.9,
                           itemBuilder: (BuildContext context, int index) {

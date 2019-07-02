@@ -1,20 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-
-import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 
 List<String> images = [
-  "$baseUrl/public/images/province/province700.jpg",
-  "$baseUrl/public/images/province/province600.jpg",
-  "$baseUrl/public/images/province/province500.jpg",
-  "$baseUrl/public/images/province/province400.jpg",
-  "$baseUrl/public/images/province/province300.jpg",
-  "$baseUrl/public/images/province/province200.jpg",
-  "$baseUrl/public/images/province/province100.jpg",
+  "assets/images/province/Province700.jpg",
+  "assets/images/province/Province600.jpg",
+  "assets/images/province/Province500.jpg",
+  "assets/images/province/Province400.jpg",
+  "assets/images/province/Province300.jpg",
+  "assets/images/province/Province200.jpg",
+  "assets/images/province/Province100.jpg",
 ];
 
 class ProvincePage extends StatefulWidget {
@@ -41,75 +39,60 @@ class _ProvincePageState extends State<ProvincePage> {
           style: Theme.of(context).textTheme.headline,
         ),
       ),
-      body: FutureBuilder(
-        future: provinceRepository.getProvinces(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
-            return Column(
-              children: <Widget>[
-                SizedBox(height: 60),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Text(
-                      'Select a Province',
-                      style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          shadows: [
-                            Shadow(
-                              color: Colors.grey[500],
-                              offset: Offset(1, 2),
-                              blurRadius: 4,
-                            )
-                          ]),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () {
-                    int activeProvince = 8 - (currentPage.round().floor() + 1);
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return EachProvincePage(
-                        provinceId: activeProvince,
-                        title: 'Province $activeProvince',
-                      );
-                    }));
-                  },
-                  child: Stack(
-                    children: <Widget>[
-                      CardScrollWidget(currentPage),
-                      Positioned.fill(
-                        child: ScrollConfiguration(
-                          child: PageView.builder(
-                            itemCount: snapshot.data.length,
-                            controller: controller,
-                            reverse: true,
-                            itemBuilder: (context, index) {
-                              return Container();
-                            },
-                          ),
-                          behavior: RemoveEndOfListIndicator(),
-                        ),
+      body: Column(
+        children: <Widget>[
+          SizedBox(height: 60),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Text(
+                'Select a Province',
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        color: Colors.grey[500],
+                        offset: Offset(1, 2),
+                        blurRadius: 4,
                       )
-                    ],
+                    ]),
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
+          GestureDetector(
+            onTap: () {
+              int activeProvince = 8 - (currentPage.round().floor() + 1);
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (BuildContext context) {
+                return EachProvincePage(
+                  provinceId: activeProvince,
+                  title: 'Province $activeProvince',
+                );
+              }));
+            },
+            child: Stack(
+              children: <Widget>[
+                CardScrollWidget(currentPage),
+                Positioned.fill(
+                  child: ScrollConfiguration(
+                    child: PageView.builder(
+                      itemCount: images.length,
+                      controller: controller,
+                      reverse: true,
+                      itemBuilder: (context, index) {
+                        return Container();
+                      },
+                    ),
+                    behavior: RemoveEndOfListIndicator(),
                   ),
-                ),
+                )
               ],
-            );
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text("error"),
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -176,7 +159,7 @@ class CardScrollWidget extends StatelessWidget {
                   child: Stack(
                     fit: StackFit.expand,
                     children: <Widget>[
-                      Image.network(images[i], fit: BoxFit.cover),
+                      Image.asset(images[i], fit: BoxFit.cover),
                     ],
                   ),
                 ),
