@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/screens/screens.dart';
 
 class DiseaseCard extends StatelessWidget {
   final Disease disease;
@@ -13,7 +14,14 @@ class DiseaseCard extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (BuildContext context) {
+          return EachDisease(
+            disease: disease,
+          );
+        }));
+      },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(
