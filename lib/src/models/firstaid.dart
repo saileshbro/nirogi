@@ -1,5 +1,3 @@
-import 'package:nirogi/src/repository/firstaid_repository.dart';
-
 class Firstaids {
   List<Firstaid> firstaids;
 
