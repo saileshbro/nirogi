@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/screens/screens.dart';
 
 class ForumBlock extends StatelessWidget {
@@ -34,12 +35,18 @@ class ForumBlock extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.red[50],
                     shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: AssetImage(
-                        post.imageUrl,
-                      ),
-                      fit: BoxFit.contain,
-                    ),
+                    image: post.imageUrl == null
+                        ? DecorationImage(
+                            image: NetworkImage(
+                              "$baseUrl/${post.imageUrl}",
+                            ),
+                            fit: BoxFit.contain,
+                          )
+                        : DecorationImage(
+                            image:
+                                AssetImage("assets/images/icons/imageUrl.png"),
+                            fit: BoxFit.contain,
+                          ),
                   ),
                 ),
                 SizedBox(
