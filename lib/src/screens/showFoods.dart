@@ -1,48 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/foodtips.dart';
+import 'package:nirogi/src/repository/repositories.dart';
 
 class ShowFoods extends StatelessWidget {
-  final FoodTips foodTips;
-  ShowFoods({
-    Key key,
-    @required this.foodTips,
-  }) : super(key: key);
+  final FoodTipsRepository _foodTipsRepository = FoodTipsRepository();
+  final int diseaseId;
+  final String disease;
+  ShowFoods({Key key, @required this.diseaseId, @required this.disease})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(foodTips.diseaseName,
-                style: Theme.of(context).textTheme.headline),
-            SizedBox(
-              width: 65,
-            ),
-          ],
-        ),
+        centerTitle: true,
+        title: Text(disease, style: Theme.of(context).textTheme.headline),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            TipsBox(
-              foods: foodTips.toEat,
-              heading: 'Foods To Eat: ',
-              headingColor: Colors.green[600],
-              lineColor: Colors.green,
-              backgroundColor: Colors.green[100],
-              tipIcon: Icons.check,
-            ),
-            TipsBox(
-              foods: foodTips.toAvoid,
-              heading: 'Foods To Avoid: ',
-              headingColor: Colors.redAccent,
-              lineColor: Colors.red,
-              backgroundColor: Colors.red[100],
-              tipIcon: Icons.close,
-            ),
-          ],
-        ),
+      body: FutureBuilder<FoodTips>(
+        future: _foodTipsRepository.getFoodTipsForDisease(diseaseId: diseaseId),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            return SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  TipsBox(
+                    foods: snapshot.data.toeat,
+                    heading: 'Foods To Eat: ',
+                    headingColor: Colors.green[600],
+                    lineColor: Colors.green,
+                    backgroundColor: Colors.green[100],
+                    tipIcon: Icons.check,
+                  ),
+                  TipsBox(
+                    foods: snapshot.data.toavoid,
+                    heading: 'Foods To Avoid: ',
+                    headingColor: Colors.redAccent,
+                    lineColor: Colors.red,
+                    backgroundColor: Colors.red[100],
+                    tipIcon: Icons.close,
+                  ),
+                ],
+              ),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text("error"),
+            );
+          } else
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+        },
       ),
     );
   }
@@ -55,10 +62,11 @@ class TipsBox extends StatelessWidget {
     @required this.heading,
     this.headingColor,
     this.lineColor,
-    this.tipIcon, this.backgroundColor,
+    this.tipIcon,
+    this.backgroundColor,
   }) : super(key: key);
 
-  final List<String> foods;
+  final List<dynamic> foods;
   final String heading;
   final Color lineColor;
   final Color headingColor;
@@ -68,13 +76,13 @@ class TipsBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(5, 10, 5  , 20),
+      padding: const EdgeInsets.fromLTRB(5, 10, 5, 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(0,5,0,2),
+            padding: const EdgeInsets.fromLTRB(0, 5, 0, 2),
             child: Text(
               heading,
               style: TextStyle(
@@ -116,7 +124,8 @@ class TipsBox extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: foods.length,
               itemBuilder: (BuildContext context, int index) {
-                return FoodCard(foods: foods[index], backgroundColor: backgroundColor);
+                return FoodCard(
+                    foods: foods[index].name, backgroundColor: backgroundColor);
               },
               separatorBuilder: (BuildContext context, int index) {
                 return SizedBox(
@@ -134,7 +143,8 @@ class TipsBox extends StatelessWidget {
 class FoodCard extends StatelessWidget {
   const FoodCard({
     Key key,
-    @required this.foods, this.backgroundColor,
+    @required this.foods,
+    this.backgroundColor,
   }) : super(key: key);
 
   final String foods;
@@ -165,13 +175,10 @@ class FoodCard extends StatelessWidget {
               width: 160,
               child: Container(
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Colors.black.withOpacity(0.5),
-                        Colors.black.withOpacity(0)
-                      ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter),
+                  gradient: LinearGradient(colors: [
+                    Colors.black.withOpacity(0.5),
+                    Colors.black.withOpacity(0)
+                  ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
                 ),
               ),
             ),
@@ -181,10 +188,7 @@ class FoodCard extends StatelessWidget {
               child: Text(
                 foods,
                 style: TextStyle(
-                    fontFamily: Theme.of(context)
-                        .textTheme
-                        .headline
-                        .fontFamily,
+                    fontFamily: Theme.of(context).textTheme.headline.fontFamily,
                     color: Colors.white,
                     fontSize: 18),
               ),
@@ -195,5 +199,3 @@ class FoodCard extends StatelessWidget {
     );
   }
 }
-
-

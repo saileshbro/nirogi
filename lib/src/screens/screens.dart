@@ -10,3 +10,4 @@ export 'passwordchange.dart';
 export 'ForumPage.dart';
 export 'foodTipsPage.dart';
 export 'healthToolsPage.dart';
+export 'firstAidPage.dart';

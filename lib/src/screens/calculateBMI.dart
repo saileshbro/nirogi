@@ -38,6 +38,10 @@ class _CalculateBMIState extends State<CalculateBMI> {
             SizedBox(
               width: 14,
             ),
+            Image.asset(
+              'assets/images/icons/bmi.png',
+              width: 30,
+            ),
           ],
         ),
       ),
@@ -322,7 +326,9 @@ class _CalculateBMIState extends State<CalculateBMI> {
                                             : AssetImage(
                                                 'assets/images/icons/female.png'),
                                         fit: BoxFit.fill,
-                                        color: Color(0xFFF5F5F5),
+                                        color: selectedGender == Gender.female
+                                            ? activeFemaleColor
+                                            : activeMaleColor,
                                         height: bodyHeight.toDouble(),
                                       ),
                                     ),

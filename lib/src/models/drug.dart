@@ -25,24 +25,24 @@ class Drug {
   String brandName;
   String genericName;
   String imageUrl;
-  String summary;
   String dose;
+  String summary;
   List<Section> sections;
 
   Drug(
       {this.brandName,
       this.genericName,
       this.imageUrl,
-      this.summary,
       this.dose,
+      this.summary,
       this.sections});
 
   Drug.fromJson(Map<String, dynamic> json) {
     brandName = json['brandName'];
     genericName = json['genericName'];
     imageUrl = json['imageUrl'];
-    summary = json['summary'];
     dose = json['dose'];
+    summary = json['summary'];
     if (json['sections'] != null) {
       sections = new List<Section>();
       json['sections'].forEach((v) {
@@ -56,8 +56,8 @@ class Drug {
     data['brandName'] = this.brandName;
     data['genericName'] = this.genericName;
     data['imageUrl'] = this.imageUrl;
-    data['summary'] = this.summary;
     data['dose'] = this.dose;
+    data['summary'] = this.summary;
     if (this.sections != null) {
       data['sections'] = this.sections.map((v) => v.toJson()).toList();
     }

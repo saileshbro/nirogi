@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' show Client;
 import 'package:nirogi/src/constants/env.dart';
@@ -14,7 +13,7 @@ class UserRepository {
   }) async {
     final user = User(email: email, password: password);
     try {
-      final response = await client.post('$baseUrl/users/login',
+      final response = await client.post('$baseUrl/api/users/login',
           body: jsonEncode(user.toJson()),
           headers: {'Content-Type': 'application/json'});
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -36,7 +35,7 @@ class UserRepository {
   }) async {
     final user = User(email: email, password: password, name: name);
     try {
-      final response = await client.post('$baseUrl/users/signup',
+      final response = await client.post('$baseUrl/api/users/signup',
           body: jsonEncode(user.toJson()),
           headers: {'Content-Type': 'application/json'});
       Map<String, dynamic> responseData = jsonDecode(response.body);

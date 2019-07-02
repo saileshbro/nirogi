@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:http/http.dart' show Client;
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/constants/env.dart';
-import 'package:nirogi/src/screens/screens.dart';
+import 'package:nirogi/src/models/diseases.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DiseaseRepository {
@@ -14,7 +13,7 @@ class DiseaseRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/diseases/top",
+        "$baseUrl/api/diseases/top",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -35,7 +34,7 @@ class DiseaseRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/diseases",
+        "$baseUrl/api/diseases",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -56,7 +55,7 @@ class DiseaseRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/disease/$diseaseId",
+        "$baseUrl/api/disease/$diseaseId",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -77,7 +76,7 @@ class DiseaseRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.post(
-        "$baseUrl/diseases",
+        "$baseUrl/api/diseases",
         headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
         body: jsonEncode(disease.toJson()),
       );

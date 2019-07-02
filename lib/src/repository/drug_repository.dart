@@ -1,37 +1,20 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:http/http.dart' show Client;
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/constants/env.dart';
-import 'package:nirogi/src/models/symptoms.dart';
+import 'package:nirogi/src/models/drug.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SymptomRepository {
-  final client = Client();
-  Future<List<Symptom>> getTopSymptoms() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    final token = preferences.getString('token');
-    try {
-      final response = await client.get("$baseUrl/api/symptoms/top", headers: {
-        HttpHeaders.authorizationHeader: "Bearer $token",
-      });
-      Map<String, dynamic> responseData = jsonDecode(response.body);
-      if (responseData.containsKey('error')) {
-        throw responseData['error'];
-      } else {
-        return Symptoms.fromJson(jsonDecode(response.body)).symptoms;
-      }
-    } catch (e) {
-      throw e.toString();
-    }
-  }
-
-  Future<List<Symptom>> getAllSymptoms() async {
+class DrugRepository {
+  final Client client = Client();
+  Future<List<Drug>> getCommonDrug() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/api/symptoms",
+        '$baseUrl/api/drugs/common',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -40,19 +23,19 @@ class SymptomRepository {
       if (responseData.containsKey('error')) {
         throw responseData['error'];
       } else {
-        return Symptoms.fromJson(jsonDecode(response.body)).symptoms;
+        return Drugs.fromJson(jsonDecode(response.body)).drugs;
       }
     } catch (e) {
       throw e.toString();
     }
   }
 
-  Future<Symptom> getSymptom({@required int symptomId}) async {
+  Future<Drug> getDrug({@required String genericName}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/api/disease/$symptomId",
+        '$baseUrl/api/drug/$genericName',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -61,29 +44,28 @@ class SymptomRepository {
       if (responseData.containsKey('error')) {
         throw responseData['error'];
       } else {
-        return Symptom.fromJson(jsonDecode(response.body));
+        return Drug.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
       throw e.toString();
     }
   }
 
-  Future<String> addSymptom({@required Symptom symptom}) async {
+  Future<List<Drug>> searchDrug({@required String query}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.post(
-        "$baseUrl/api/diseases",
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
-        body: jsonEncode(symptom.toJson()),
+      final response = await client.get(
+        '$baseUrl/api/drugs/search?query=$query',
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+        },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
         throw responseData['error'];
-      } else if (responseData.containsKey('message')) {
-        return responseData['message'];
       } else {
-        throw "Unexpected error occured!";
+        return Drugs.fromJson(jsonDecode(response.body)).drugs;
       }
     } catch (e) {
       throw e.toString();

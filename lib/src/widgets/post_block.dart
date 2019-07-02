@@ -61,7 +61,7 @@ class PostBlock extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       Text(
-                        '${post.updatedAt}',
+                        '${post.createdAt}',
                         textAlign: TextAlign.justify,
                         maxLines: 5,
                         style: Theme.of(context).textTheme.body2.copyWith(

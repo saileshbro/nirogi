@@ -132,7 +132,7 @@ class _EachDiseaseState extends State<EachDisease> {
   Future<Disease> getDisease() async {
     try {
       final response =
-          await http.get('$baseUrl/disease/${widget.disease.diseaseId}');
+          await http.get('$baseUrl/api/disease/${widget.disease.diseaseId}');
       final disease = Disease.fromJson(jsonDecode(response.body));
       return disease;
     } catch (e) {
