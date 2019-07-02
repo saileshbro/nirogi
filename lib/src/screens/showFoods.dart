@@ -125,7 +125,10 @@ class TipsBox extends StatelessWidget {
               itemCount: foods.length,
               itemBuilder: (BuildContext context, int index) {
                 return FoodCard(
-                    foods: foods[index].name, backgroundColor: backgroundColor);
+                  foods: foods[index].name,
+                  backgroundColor: backgroundColor,
+                  imageUrl: foods[index].imageUrl,
+                );
               },
               separatorBuilder: (BuildContext context, int index) {
                 return SizedBox(
@@ -144,10 +147,12 @@ class FoodCard extends StatelessWidget {
   const FoodCard({
     Key key,
     @required this.foods,
+    @required this.imageUrl,
     this.backgroundColor,
   }) : super(key: key);
 
   final String foods;
+  final String imageUrl;
   final Color backgroundColor;
 
   @override
@@ -163,8 +168,8 @@ class FoodCard extends StatelessWidget {
             Container(
               height: 260,
               width: 160,
-              child: Image.asset(
-                'assets/images/icons/foodtips.png',
+              child: Image.network(
+                imageUrl,
                 width: 30,
               ),
             ),
