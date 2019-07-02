@@ -24,3 +24,5 @@ export 'eachProvincePage.dart';
 export 'eachDrug.dart';
 export 'dev_info_page.dart';
 export 'eachPost.dart';
+export 'eachDisease.dart';
+export 'eachSymptom.dart';
