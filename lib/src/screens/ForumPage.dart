@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nirogi/src/bloc/blocs.dart';
+import 'package:nirogi/src/bloc/events.dart';
+import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
@@ -9,6 +13,14 @@ class ForumPage extends StatefulWidget {
 }
 
 class _ForumPageState extends State<ForumPage> {
+  String sort = 'popular';
+  String changedSort = '';
+  @override
+  void initState() {
+    super.initState();
+    getPostsBloc.dispatch(GetAllPostsEvent(sort: sort));
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -47,7 +59,15 @@ class _ForumPageState extends State<ForumPage> {
         ),
         actions: <Widget>[
           PopupMenuButton<ForumChoice>(
-            onSelected: (ForumChoice choice) {},
+            initialValue: sort == "popular" ? forumChoice[0] : forumChoice[1],
+            onSelected: (ForumChoice choice) {
+              if (choice.sort != sort) {
+                setState(() {
+                  sort = choice.sort;
+                });
+                getPostsBloc.dispatch(GetAllPostsEvent(sort: sort));
+              }
+            },
             itemBuilder: (BuildContext context) {
               return forumChoice.map((ForumChoice forumChoice) {
                 return PopupMenuItem<ForumChoice>(
@@ -61,23 +81,60 @@ class _ForumPageState extends State<ForumPage> {
           )
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          SearchBox(),
-          _BuildPostsList(),
-        ],
+      body: BlocBuilder(
+        bloc: getPostsBloc,
+        builder: (BuildContext context, state) {
+          if (state is PostsUninitialisedState) {
+            return Container(
+              child: Center(
+                child: Text('not loaded'),
+              ),
+            );
+          } else if (state is PostsEmptyState) {
+            return Container(
+              child: Center(
+                child: Text("No posts found"),
+              ),
+            );
+          } else if (state is PostsFetchingState) {
+            return Container(
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          } else if (state is PostsErrorState) {
+            return Container(
+              child: Center(
+                child: Text("error"),
+              ),
+            );
+          }
+          final stateAsPostsFetchedState = state as PostsFetchedState;
+          final posts = stateAsPostsFetchedState.posts;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              _BuildPostsList(
+                posts: posts,
+              ),
+            ],
+          );
+        },
       ),
     );
   }
 }
 
-class _BuildPostsList extends StatelessWidget {
-  const _BuildPostsList({
-    Key key,
-  }) : super(key: key);
+class _BuildPostsList extends StatefulWidget {
+  final List<Post> posts;
+  _BuildPostsList({@required this.posts});
 
+  @override
+  __BuildPostsListState createState() => __BuildPostsListState();
+}
+
+class __BuildPostsListState extends State<_BuildPostsList> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -89,11 +146,11 @@ class _BuildPostsList extends StatelessWidget {
         child: ListView.separated(
           shrinkWrap: true,
           physics: BouncingScrollPhysics(),
-          itemCount: posts.length,
+          itemCount: widget.posts.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (BuildContext context, int index) {
             return ForumBlock(
-              post: posts[index],
+              post: widget.posts[index],
             );
           },
           separatorBuilder: (BuildContext context, int index) {
