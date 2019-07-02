@@ -23,15 +23,17 @@ class ForumChoiceCard extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Row(
       children: <Widget>[
-        Text(choice.title,
-            style: Theme.of(context).textTheme.body1.copyWith(fontSize: 14)),
-        SizedBox(
-          width: 0.03 * width,
-        ),
         Image.asset(
           choice.icon,
           width: 0.06 * width,
-        )
+        ),
+        SizedBox(
+          width: 0.03 * width,
+        ),
+        Text(choice.title,
+            style: Theme.of(context).textTheme.body1.copyWith(
+                  fontSize: 18,
+                )),
       ],
     );
   }

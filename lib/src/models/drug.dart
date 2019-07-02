@@ -246,6 +246,7 @@ final Drugs commonDrugs = Drugs(
     genericName: "metformin",
     imageUrl: "https://healthtools.aarp.org/images/gold/DrugItem_5065.jpg",
     summary: "It is used to treat type 2 diabetes",
+    dose: "500mg",
   ),
   Drug(
     brandName: "Lasix",

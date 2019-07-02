@@ -3,8 +3,11 @@ import 'package:flutter/painting.dart';
 import 'package:nirogi/src/models/popupchoice.dart';
 import 'package:nirogi/src/models/comments.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
+import 'package:nirogi/src/widgets/choice_card.dart';
 import 'package:nirogi/src/widgets/comment_card.dart';
 import 'package:nirogi/src/widgets/plus_floating_icon.dart';
+
+import 'editPost.dart';
 
 class EachPost extends StatefulWidget {
   final post;
@@ -168,16 +171,42 @@ class _EachPostState extends State<EachPost> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(
-                                  widget.post.title,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .body1
-                                      .copyWith(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                  textAlign: TextAlign.justify,
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      widget.post.title,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .body1
+                                          .copyWith(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                    PopupMenuButton<ForumChoice>(
+                                      onSelected: (ForumChoice choice) {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(builder:
+                                                (BuildContext context) {
+                                          return EditPost(post: widget.post);
+                                        }));
+                                      },
+                                      itemBuilder: (BuildContext context) {
+                                        return editchoice
+                                            .map((ForumChoice editchoice) {
+                                          return PopupMenuItem<ForumChoice>(
+                                            child: ForumChoiceCard(
+                                              choice: editchoice,
+                                            ),
+                                            value: editchoice,
+                                          );
+                                        }).toList();
+                                      },
+                                    )
+                                  ],
                                 ),
                                 GestureDetector(
                                   onTap: () {},
@@ -190,7 +219,7 @@ class _EachPostState extends State<EachPost> {
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     child: Text(
-                                      widget.post.category,
+                                      widget.post.category.category,
                                       style: Theme.of(context)
                                           .textTheme
                                           .body2
@@ -213,6 +242,9 @@ class _EachPostState extends State<EachPost> {
                                       ),
                                   textAlign: TextAlign.justify,
                                 ),
+                                SizedBox(
+                                  height: 10,
+                                ),
                                 Row(
                                   children: <Widget>[
                                     Image.asset(
@@ -222,7 +254,7 @@ class _EachPostState extends State<EachPost> {
                                       width: 5,
                                     ),
                                     Text(
-                                      widget.post.createdAt.toString(),
+                                      widget.post.createdAt,
                                       style: Theme.of(context)
                                           .textTheme
                                           .body2
@@ -307,7 +339,14 @@ class _EachPostState extends State<EachPost> {
                             ),
                       ),
                       Expanded(
-                        child: SizedBox(),
+                        child: Text(
+                          'Comments',
+                          style: Theme.of(context).textTheme.body2.copyWith(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                              ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                       DropdownButton<DropDownChoice>(
                         value: dropdownValue,
