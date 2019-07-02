@@ -51,3 +51,5 @@ class NewsReposirory {
     }
   }
 }
+
+final NewsReposirory newsReposirory = NewsReposirory();

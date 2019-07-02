@@ -6,6 +6,7 @@ import 'package:nirogi/src/models/news.dart';
 import 'package:nirogi/src/models/symptoms.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/screens/eachDrug.dart';
 import 'package:nirogi/src/themes/clippers.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
@@ -22,13 +23,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   ScrollController _customController;
-
+  Future<List<Disease>> topDiseases;
+  Future<List<Symptom>> topSymptoms;
+  Future<List<Drug>> commonDrug;
+  Future<List<NewsItem>> topNews;
   bool _isCollapsed = false;
 
   @override
   void initState() {
     super.initState();
-
+    topDiseases = diseaseRepository.getTopDiseases();
+    topSymptoms = symptomRepository.getTopSymptoms();
+    commonDrug = drugRepository.getCommonDrug();
+    topNews = newsReposirory.getAllNews();
     _customController = ScrollController()
       ..addListener(
         () => setState(
@@ -89,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 0.01 * height,
                 ),
-                buildCommonDiseases(context),
+                buildCommonDiseases(context, topDiseases),
                 SizedBox(
                   height: 0.02 * height,
                 ),
@@ -97,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 0.01 * height,
                 ),
-                buildCommonSymptoms(context),
+                buildCommonSymptoms(context, topSymptoms),
                 SizedBox(
                   height: 0.02 * height,
                 ),
@@ -105,20 +112,35 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 0.02 * height,
                 ),
-                Container(
-                  height: 300,
-                  child: new Swiper(
-                    viewportFraction: 0.7,
-                    scale: 0.9,
-                    itemBuilder: (BuildContext context, int index) {
-                      return DrugSlider(drug: commonDrugs.drugs[index]);
-                    },
-                    indicatorLayout: PageIndicatorLayout.COLOR,
-                    autoplay: true,
-                    itemCount: commonDrugs.drugs.length,
-                    containerWidth: 200,
-                    control: new SwiperControl(color: Colors.red[700]),
-                  ),
+                FutureBuilder(
+                  future: commonDrug,
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      return Container(
+                        height: 300,
+                        child: new Swiper(
+                          viewportFraction: 0.7,
+                          scale: 0.9,
+                          itemBuilder: (BuildContext context, int index) {
+                            return DrugSlider(drug: snapshot.data[index]);
+                          },
+                          indicatorLayout: PageIndicatorLayout.COLOR,
+                          autoplay: true,
+                          itemCount: snapshot.data.length,
+                          containerWidth: 200,
+                          control: new SwiperControl(color: Colors.red[700]),
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Center(
+                        child: Text(snapshot.error),
+                      );
+                    } else {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
                 ),
                 SizedBox(
                   height: 0.03 * height,
@@ -133,27 +155,42 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container buildCommonSymptoms(BuildContext context) {
+  Container buildCommonSymptoms(
+      BuildContext context, Future<List<Symptom>> topSymptoms) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Container(
       height: 0.23 * height,
       padding: EdgeInsets.symmetric(horizontal: 0.01 * width),
-      child: ListView.separated(
-        physics: BouncingScrollPhysics(),
-        itemCount: topDisease.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (BuildContext context, int index) {
-          return SymptomCard(
-            symptom: topSymptoms[index],
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return SizedBox(
-            width: 0.03 * width,
-          );
-        },
-      ),
+      child: FutureBuilder(
+          future: topSymptoms,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return ListView.separated(
+                physics: BouncingScrollPhysics(),
+                itemCount: topDisease.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return SymptomCard(
+                    symptom: snapshot.data[index],
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(
+                    width: 0.03 * width,
+                  );
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text(snapshot.error),
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
     );
   }
 
@@ -201,25 +238,41 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container buildCommonDiseases(BuildContext context) {
+  Container buildCommonDiseases(
+      BuildContext context, Future<List<Disease>> topDiseases) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Container(
       height: 0.23 * height,
       padding: EdgeInsets.symmetric(horizontal: 0.01 * width),
-      child: ListView.separated(
-        physics: BouncingScrollPhysics(),
-        itemCount: topDisease.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (BuildContext context, int index) {
-          return DiseaseCard(
-            disease: topDisease[index],
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return SizedBox(
-            width: 0.03 * width,
-          );
+      child: FutureBuilder<List<Disease>>(
+        future: topDiseases,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            return ListView.separated(
+              physics: BouncingScrollPhysics(),
+              itemCount: snapshot.data.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                return DiseaseCard(
+                  disease: snapshot.data[index],
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  width: 0.03 * width,
+                );
+              },
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text(snapshot.error.toString()),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
         },
       ),
     );
@@ -275,23 +328,38 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildTopNews(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    return Container(
-      padding: EdgeInsets.only(bottom: 0.02 * height),
-      child: ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (BuildContext context, int index) {
-          return NewsCard(
-            news: topNews[index],
+    return FutureBuilder(
+      future: topNews,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          return Container(
+            padding: EdgeInsets.only(bottom: 0.02 * height),
+            child: ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (BuildContext context, int index) {
+                return NewsCard(
+                  news: snapshot.data[index],
+                );
+              },
+              itemCount: snapshot.data.length,
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  height: 0.02 * height,
+                );
+              },
+            ),
           );
-        },
-        itemCount: topNews.length,
-        separatorBuilder: (BuildContext context, int index) {
-          return SizedBox(
-            height: 0.02 * height,
+        } else if (snapshot.hasError) {
+          return Center(
+            child: Text(snapshot.error.toString()),
           );
-        },
-      ),
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     );
   }
 }

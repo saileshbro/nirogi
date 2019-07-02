@@ -93,3 +93,5 @@ class DiseaseRepository {
     }
   }
 }
+
+final DiseaseRepository diseaseRepository = DiseaseRepository();

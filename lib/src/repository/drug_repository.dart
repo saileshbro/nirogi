@@ -72,3 +72,5 @@ class DrugRepository {
     }
   }
 }
+
+final DrugRepository drugRepository = DrugRepository();
