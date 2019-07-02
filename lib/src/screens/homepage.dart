@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                     viewportFraction: 0.7,
                     scale: 0.9,
                     itemBuilder: (BuildContext context, int index) {
-                      return DrugSlider(drug: commonDrugs.drugs[index]);
+                      return DrugWidget(drug: commonDrugs.drugs[index]);
                     },
                     indicatorLayout: PageIndicatorLayout.COLOR,
                     autoplay: true,
@@ -296,9 +296,9 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class DrugSlider extends StatelessWidget {
+class DrugWidget extends StatelessWidget {
   final Drug drug;
-  const DrugSlider({
+  const DrugWidget({
     this.drug,
   });
   @override
@@ -397,31 +397,35 @@ class DrugSlider extends StatelessWidget {
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: RichText(
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: "Dose :  ",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .body1
-                                            .copyWith(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.red[700],
-                                            ),
-                                      ),
-                                      TextSpan(
-                                        text: drug.dose,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .body1
-                                            .copyWith(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                      )
-                                    ],
+                                child: Flexible(
+                                  child: RichText(
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: "Dose :  ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .body1
+                                              .copyWith(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.red[700],
+                                              ),
+                                        ),
+                                        TextSpan(
+                                          text: drug.dose,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .body1
+                                              .copyWith(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
