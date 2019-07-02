@@ -343,6 +343,7 @@ class _EachPostState extends State<EachPost> {
                           'Comments',
                           style: Theme.of(context).textTheme.body2.copyWith(
                                 fontSize: 18,
+                                fontWeight: FontWeight.w600,
                               ),
                           textAlign: TextAlign.center,
                         ),
