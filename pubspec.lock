@@ -83,6 +83,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.1"
+  flutter_fluid_slider:
+    dependency: "direct main"
+    description:
+      name: flutter_fluid_slider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   flutter_html:
     dependency: "direct main"
     description:

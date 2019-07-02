@@ -8,6 +8,7 @@ import 'package:nirogi/src/widgets/tool_card.dart';
 import 'calculateBMI.dart';
 import 'bloodDonationPage.dart';
 import 'foodTipsPage.dart';
+import 'dailyWater.dart';
 
 class HealthToolsPage extends StatelessWidget {
   @override
@@ -127,6 +128,11 @@ class HealthToolsPage extends StatelessWidget {
                 imageUrl: "assets/images/icons/blooddonation.png",
                 name: "Blood Donation Date",
                 onTapWidget: BloodDonation(),
+              ),
+              ToolCard(
+                imageUrl: "assets/images/icons/water.png",
+                name: "Daily Water Requirement",
+                onTapWidget: DailyWater(),
               ),
             ],
           ),
