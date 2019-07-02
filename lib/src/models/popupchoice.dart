@@ -12,6 +12,13 @@ const List<Choice> choice = const <Choice>[
   ),
 ];
 
+const List<ForumChoice> editchoice = const <ForumChoice>[
+  const ForumChoice(
+    title: 'Edit Post',
+    icon: 'assets/images/icons/edit.png',
+  ),
+];
+
 class ForumChoice {
   const ForumChoice({this.title, this.icon});
   final String title;

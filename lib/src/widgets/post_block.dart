@@ -37,6 +37,7 @@ class PostBlock extends StatelessWidget {
                     maxLines: 3,
                     style: Theme.of(context).textTheme.body1.copyWith(
                           fontSize: 16,
+                          fontWeight: FontWeight.w500,
                           color: Colors.red[700],
                         ),
                   ),
