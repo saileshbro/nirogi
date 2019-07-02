@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:http/http.dart' show Client;
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/constants/env.dart';
@@ -52,4 +51,4 @@ class NewsReposirory {
   }
 }
 
-final NewsReposirory newsReposirory = NewsReposirory();
+final NewsReposirory newsRepository = NewsReposirory();

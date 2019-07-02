@@ -52,7 +52,7 @@ class SymptomRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.get(
-        "$baseUrl/api/disease/$symptomId",
+        "$baseUrl/api/symptom/$symptomId",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
         },
@@ -73,7 +73,7 @@ class SymptomRepository {
     final token = preferences.getString('token');
     try {
       final response = await client.post(
-        "$baseUrl/api/diseases",
+        "$baseUrl/api/symptoms",
         headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
         body: jsonEncode(symptom.toJson()),
       );
