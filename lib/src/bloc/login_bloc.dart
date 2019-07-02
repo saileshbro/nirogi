@@ -20,9 +20,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (event is LoginButtonPressedEvent) {
       yield LoginLoadingState();
       try {
-        final token = await userRepository.authenticate(
+        final user = await userRepository.authenticate(
             email: event.email, password: event.password);
-        authenticationBloc.dispatch(LoggedInEvent(token: token));
+        authenticationBloc.dispatch(LoggedInEvent(
+          token: user.token,
+          name: user.name,
+          imageUrl: user.imageUrl,
+        ));
         yield LoginInitialState();
       } catch (e) {
         yield LoginFailureState(error: e.toString());

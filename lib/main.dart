@@ -11,7 +11,6 @@ import 'package:nirogi/src/screens/splashScreenPage.dart';
 import 'package:nirogi/src/widgets/loading_indicator.dart';
 
 void main() {
-  final UserRepository userRepository = UserRepository();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
     runApp(MyApp(
@@ -70,7 +69,6 @@ class _MyAppState extends State<MyApp> {
                   return HomePage();
                 }
                 if (state is AuthenticationUnauthenticatedState) {
-                  //
                   return LoginSignup(
                     userRepository: widget.userRepository,
                   );

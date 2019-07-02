@@ -21,9 +21,10 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     if (event is SignupButtonPressedEvent) {
       yield SignupLoadingState();
       try {
-        final token = await userRepository.signup(
+        final user = await userRepository.signup(
             email: event.email, password: event.password, name: event.name);
-        authenticationBloc.dispatch(LoggedInEvent(token: token));
+        authenticationBloc.dispatch(LoggedInEvent(
+            token: user.token, name: user.name, imageUrl: user.imageUrl));
         yield SignupInitialState();
       } catch (e) {
         yield SignupFailureState(error: e.toString());
