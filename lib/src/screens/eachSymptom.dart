@@ -5,22 +5,22 @@ import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:html/dom.dart' as dom;
 
-class EachDisease extends StatefulWidget {
-  final Disease disease;
-  EachDisease({@required this.disease});
+class EachSymptom extends StatefulWidget {
+  final Symptom symptom;
+  EachSymptom({@required this.symptom});
   @override
-  _EachDiseaseState createState() => _EachDiseaseState();
+  _EachSymptomState createState() => _EachSymptomState();
 }
 
-class _EachDiseaseState extends State<EachDisease> {
+class _EachSymptomState extends State<EachSymptom> {
   ScrollController _customController;
-  Future<Disease> disease;
+  Future<Symptom> symptom;
   bool _isCollapsed = false;
 
   @override
   void initState() {
     super.initState();
-    disease = diseaseRepository.getDisease(diseaseId: widget.disease.diseaseId);
+    symptom = symptomRepository.getSymptom(symptomId: widget.symptom.symptomId);
     _customController = ScrollController()
       ..addListener(
         () => setState(
@@ -36,8 +36,8 @@ class _EachDiseaseState extends State<EachDisease> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: FutureBuilder<Disease>(
-        future: disease,
+      body: FutureBuilder<Symptom>(
+        future: symptom,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             return ScrollConfiguration(
@@ -54,7 +54,7 @@ class _EachDiseaseState extends State<EachDisease> {
                       centerTitle: true,
                       title: _isCollapsed
                           ? Text(
-                              widget.disease.disease,
+                              widget.symptom.symptom,
                               style: Theme.of(context).textTheme.body1.copyWith(
                                     fontSize: 20,
                                     color: Colors.red[700],
@@ -62,7 +62,7 @@ class _EachDiseaseState extends State<EachDisease> {
                                   ),
                             )
                           : Text(
-                              widget.disease.disease,
+                              widget.symptom.symptom,
                               style: Theme.of(context).textTheme.body1.copyWith(
                                     fontSize: 20,
                                     color: Colors.transparent,
@@ -71,7 +71,7 @@ class _EachDiseaseState extends State<EachDisease> {
                             ),
                       flexibleSpace: FlexibleSpaceBar(
                         background: Image.network(
-                          widget.disease.imageUrl,
+                          widget.symptom.imageUrl,
                           fit: BoxFit.cover,
                         ),
                       ),

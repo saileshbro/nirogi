@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 import 'createPost.dart';
@@ -10,6 +11,13 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  Future<List<Post>> myPosts;
+  @override
+  void initState() {
+    super.initState();
+    myPosts = postRepository.getAllMyPosts();
+  }
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -191,19 +199,34 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   padding: EdgeInsets.symmetric(vertical: 10),
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    physics: BouncingScrollPhysics(),
-                    itemCount: posts.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return PostBlock(
-                        post: posts[index],
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return SizedBox(
-                        height: 0.02 * height,
-                      );
+                  child: FutureBuilder(
+                    future: myPosts,
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.separated(
+                          shrinkWrap: true,
+                          physics: BouncingScrollPhysics(),
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return PostBlock(
+                              post: snapshot.data[index],
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return SizedBox(
+                              height: 0.02 * height,
+                            );
+                          },
+                        );
+                      } else if (snapshot.hasError) {
+                        return Center(
+                          child: Text("error"),
+                        );
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
                     },
                   ),
                 ),

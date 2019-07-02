@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
     topDiseases = diseaseRepository.getTopDiseases();
     topSymptoms = symptomRepository.getTopSymptoms();
     commonDrug = drugRepository.getCommonDrug();
-    topNews = newsReposirory.getAllNews();
+    topNews = newsRepository.getAllNews();
     _customController = ScrollController()
       ..addListener(
         () => setState(

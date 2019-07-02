@@ -14,7 +14,7 @@ class _HealthNewsPageState extends State<HealthNewsPage> {
   @override
   void initState() {
     super.initState();
-    allNews = newsReposirory.getAllNews();
+    allNews = newsRepository.getAllNews();
   }
 
   @override
