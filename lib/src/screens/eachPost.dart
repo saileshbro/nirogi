@@ -222,7 +222,7 @@ class _EachPostState extends State<EachPost> {
                                       width: 5,
                                     ),
                                     Text(
-                                      widget.post.updatedAt.toString(),
+                                      widget.post.createdAt.toString(),
                                       style: Theme.of(context)
                                           .textTheme
                                           .body2

@@ -1,3 +1,4 @@
+import 'package:nirogi/src/models/category.dart';
 import 'package:nirogi/src/models/comments.dart';
 
 class Posts {
@@ -31,13 +32,12 @@ class Post {
   int voteCount;
   int commentCount;
   String createdAt;
-  int categoryId;
-  String category;
   int userId;
   String name;
   String imageUrl;
   dynamic voteStatus;
-  List<Comment> comments;
+  Category category;
+  List<Comments> comments;
 
   Post(
       {this.postId,
@@ -47,12 +47,11 @@ class Post {
       this.voteCount,
       this.commentCount,
       this.createdAt,
-      this.categoryId,
-      this.category,
       this.userId,
       this.name,
       this.imageUrl,
       this.voteStatus,
+      this.category,
       this.comments});
 
   Post.fromJson(Map<String, dynamic> json) {
@@ -63,16 +62,17 @@ class Post {
     voteCount = json['vote_count'];
     commentCount = json['comment_count'];
     createdAt = json['created_at'];
-    categoryId = json['category_id'];
-    category = json['category'];
     userId = json['user_id'];
     name = json['name'];
     imageUrl = json['imageUrl'];
     voteStatus = json['vote_status'];
+    category = json['category'] != null
+        ? new Category.fromJson(json['category'])
+        : null;
     if (json['comments'] != null) {
-      comments = new List<Comment>();
+      comments = new List<Comments>();
       json['comments'].forEach((v) {
-        comments.add(new Comment.fromJson(v));
+        comments.add(new Comments.fromJson(v));
       });
     }
   }
@@ -86,12 +86,13 @@ class Post {
     data['vote_count'] = this.voteCount;
     data['comment_count'] = this.commentCount;
     data['created_at'] = this.createdAt;
-    data['category_id'] = this.categoryId;
-    data['category'] = this.category;
     data['user_id'] = this.userId;
     data['name'] = this.name;
     data['imageUrl'] = this.imageUrl;
     data['vote_status'] = this.voteStatus;
+    if (this.category != null) {
+      data['category'] = this.category.toJson();
+    }
     if (this.comments != null) {
       data['comments'] = this.comments.map((v) => v.toJson()).toList();
     }
@@ -109,8 +110,10 @@ List<Post> posts = [
     voteCount: 146,
     commentCount: 146,
     createdAt: "7 hours",
-    categoryId: 6,
-    category: "Infections",
+    category: Category(
+      categoryId: 6,
+      category: "Infections",
+    ),
     userId: 1,
     name: "Sailesh Dahal",
     imageUrl: "assets/images/icons/imageUrl.png",
@@ -125,8 +128,10 @@ List<Post> posts = [
     voteCount: 146,
     commentCount: 146,
     createdAt: "7 hours",
-    categoryId: 6,
-    category: "Infections",
+    category: Category(
+      categoryId: 6,
+      category: "Infections",
+    ),
     userId: 1,
     name: "Sailesh Dahal",
     imageUrl: "assets/images/icons/imageUrl.png",
@@ -141,8 +146,10 @@ List<Post> posts = [
     voteCount: 146,
     commentCount: 146,
     createdAt: "7 hours",
-    categoryId: 6,
-    category: "Infections",
+    category: Category(
+      categoryId: 6,
+      category: "Infections",
+    ),
     userId: 1,
     name: "Sailesh Dahal",
     imageUrl: "assets/images/icons/imageUrl.png",
@@ -158,8 +165,10 @@ List<Post> posts = [
     voteCount: 146,
     commentCount: 146,
     createdAt: "7 hours",
-    categoryId: 6,
-    category: "Infections",
+    category: Category(
+      categoryId: 6,
+      category: "Infections",
+    ),
     userId: 1,
     name: "Sailesh Dahal",
     imageUrl: "assets/images/icons/imageUrl.png",
@@ -174,8 +183,10 @@ List<Post> posts = [
     voteCount: 146,
     commentCount: 146,
     createdAt: "7 hours",
-    categoryId: 6,
-    category: "Infections",
+    category: Category(
+      categoryId: 6,
+      category: "Infections",
+    ),
     userId: 1,
     name: "Sailesh Dahal",
     imageUrl: "assets/images/icons/imageUrl.png",
@@ -190,8 +201,10 @@ List<Post> posts = [
     voteCount: 146,
     commentCount: 146,
     createdAt: "7 hours",
-    categoryId: 6,
-    category: "Infections",
+    category: Category(
+      categoryId: 6,
+      category: "Infections",
+    ),
     userId: 1,
     name: "Sailesh Dahal",
     imageUrl: "assets/images/icons/imageUrl.png",
@@ -206,8 +219,10 @@ List<Post> posts = [
     voteCount: 146,
     commentCount: 146,
     createdAt: "7 hours",
-    categoryId: 6,
-    category: "Infections",
+    category: Category(
+      categoryId: 6,
+      category: "Infections",
+    ),
     userId: 1,
     name: "Sailesh Dahal",
     imageUrl: "assets/images/icons/imageUrl.png",
@@ -222,8 +237,10 @@ List<Post> posts = [
     voteCount: 146,
     commentCount: 146,
     createdAt: "7 hours",
-    categoryId: 6,
-    category: "Infections",
+    category: Category(
+      categoryId: 6,
+      category: "Infections",
+    ),
     userId: 1,
     name: "Sailesh Dahal",
     imageUrl: "assets/images/icons/imageUrl.png",
@@ -238,8 +255,10 @@ List<Post> posts = [
     voteCount: 146,
     commentCount: 146,
     createdAt: "7 hours",
-    categoryId: 6,
-    category: "Infections",
+    category: Category(
+      categoryId: 6,
+      category: "Infections",
+    ),
     userId: 1,
     name: "Sailesh Dahal",
     imageUrl: "assets/images/icons/imageUrl.png",
@@ -254,8 +273,10 @@ List<Post> posts = [
     voteCount: 146,
     commentCount: 146,
     createdAt: "7 hours",
-    categoryId: 6,
-    category: "Infections",
+    category: Category(
+      categoryId: 6,
+      category: "Infections",
+    ),
     userId: 1,
     name: "Sailesh Dahal",
     imageUrl: "assets/images/icons/imageUrl.png",
@@ -270,8 +291,10 @@ List<Post> posts = [
     voteCount: 146,
     commentCount: 146,
     createdAt: "7 hours",
-    categoryId: 6,
-    category: "Infections",
+    category: Category(
+      categoryId: 6,
+      category: "Infections",
+    ),
     userId: 1,
     name: "Sailesh Dahal",
     imageUrl: "assets/images/icons/imageUrl.png",

@@ -71,7 +71,9 @@ class _MyAppState extends State<MyApp> {
                 }
                 if (state is AuthenticationUnauthenticatedState) {
                   //
-                  return HomePage();
+                  return LoginSignup(
+                    userRepository: widget.userRepository,
+                  );
                 }
                 if (state is AuthenticationLoadingState) {
                   return LoadingIndicator();

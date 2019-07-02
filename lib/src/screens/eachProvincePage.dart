@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:nirogi/src/constants/env.dart';
-import 'package:nirogi/src/models/firstaid.dart';
 import 'package:nirogi/src/repository/province_repository.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:html/dom.dart' as dom;
@@ -48,7 +47,7 @@ class _EachProvincePageState extends State<EachProvincePage> {
                 controller: _customController,
                 slivers: <Widget>[
                   SliverAppBar(
-                    expandedHeight: 350.0,
+                    expandedHeight: 300.0,
                     floating: false,
                     pinned: true,
                     centerTitle: true,
@@ -72,7 +71,7 @@ class _EachProvincePageState extends State<EachProvincePage> {
                     flexibleSpace: FlexibleSpaceBar(
                         background: Image.network(
                       "$baseUrl/${snapshot.data.imageUrl}",
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fitWidth,
                     )),
                   ),
                   SliverList(
