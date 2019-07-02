@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
-import 'package:nirogi/src/widgets/password_change_form.dart';
+import 'package:nirogi/src/widgets/widgets.dart';
 
 class ChangePassword extends StatelessWidget {
   @override

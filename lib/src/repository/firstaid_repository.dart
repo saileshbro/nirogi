@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' show Client;
 import 'package:nirogi/src/constants/env.dart';
-import 'package:nirogi/src/models/firstaid.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FirstAidRepository {
@@ -46,3 +46,5 @@ class FirstAidRepository {
     }
   }
 }
+
+FirstAidRepository firstAidRepository = FirstAidRepository();

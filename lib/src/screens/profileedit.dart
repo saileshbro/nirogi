@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nirogi/src/functions/functions.dart';
-import 'package:nirogi/src/models/popupchoice.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
-import 'package:nirogi/src/widgets/choice_card.dart';
+import 'package:nirogi/src/widgets/widgets.dart';
 
 class EditProfile extends StatefulWidget {
   @override

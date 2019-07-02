@@ -1,6 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'showBMI.dart';
-import "dart:math";
+import 'package:nirogi/src/screens/screens.dart';
 
 enum Gender {
   male,

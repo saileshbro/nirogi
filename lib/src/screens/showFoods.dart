@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/foodtips.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/repository/repositories.dart';
 
 class ShowFoods extends StatelessWidget {

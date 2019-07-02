@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:nirogi/src/models/incompatiblefoods.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 
 class IncompatibleFoodsPage extends StatelessWidget {

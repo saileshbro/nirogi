@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/news.dart';
+import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
-import 'package:nirogi/src/widgets/drawer.dart';
-import 'package:nirogi/src/widgets/news_card.dart';
+import 'package:nirogi/src/widgets/widgets.dart';
 
-class HealthNewsPage extends StatelessWidget {
+class HealthNewsPage extends StatefulWidget {
+  @override
+  _HealthNewsPageState createState() => _HealthNewsPageState();
+}
+
+class _HealthNewsPageState extends State<HealthNewsPage> {
+  Future<List<NewsItem>> allNews;
+  @override
+  void initState() {
+    super.initState();
+    allNews = newsReposirory.getAllNews();
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -33,26 +45,41 @@ class HealthNewsPage extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget buildTopNews(BuildContext context) {
-  final height = MediaQuery.of(context).size.height;
-  return Container(
-    padding: EdgeInsets.only(top: 0.02 * height, bottom: 0.02 * height),
-    child: ListView.separated(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (BuildContext context, int index) {
-        return NewsCard(
-          news: topNews[index],
-        );
+  Widget buildTopNews(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    return FutureBuilder(
+      future: allNews,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          return Container(
+            padding: EdgeInsets.only(top: 0.02 * height, bottom: 0.02 * height),
+            child: ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (BuildContext context, int index) {
+                return NewsCard(
+                  news: snapshot.data[index],
+                );
+              },
+              itemCount: snapshot.data.length,
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  height: 0.03 * height,
+                );
+              },
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return Center(
+            child: Text(snapshot.error.toString()),
+          );
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
       },
-      itemCount: topNews.length,
-      separatorBuilder: (BuildContext context, int index) {
-        return SizedBox(
-          height: 0.03 * height,
-        );
-      },
-    ),
-  );
+    );
+  }
 }

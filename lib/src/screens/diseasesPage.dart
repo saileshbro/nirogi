@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/diseases.dart';
-import 'package:nirogi/src/widgets/diseases_block.dart';
-import 'package:nirogi/src/widgets/drawer.dart';
-import 'package:nirogi/src/widgets/search_box.dart';
+import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/repository/repositories.dart';
+import 'package:nirogi/src/widgets/widgets.dart';
 
 class DiseasesPage extends StatelessWidget {
   @override
@@ -29,43 +28,75 @@ class DiseasesPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SearchBox(),
-            _BuildDiseaseList(),
+            BuildDiseaseList(),
           ],
         ));
   }
 }
 
-class _BuildDiseaseList extends StatelessWidget {
-  const _BuildDiseaseList({
+class BuildDiseaseList extends StatefulWidget {
+  const BuildDiseaseList({
     Key key,
   }) : super(key: key);
+
+  @override
+  _BuildDiseaseListState createState() => _BuildDiseaseListState();
+}
+
+class _BuildDiseaseListState extends State<BuildDiseaseList> {
+  Future<List<Disease>> allDiseases;
+  @override
+  void initState() {
+    allDiseases = diseaseRepository.getAllDiseases();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return Expanded(
-      child: Padding(
-        padding: EdgeInsets.only(
-            right: 0.02 * width, left: 0.02 * width, bottom: 0.01 * height),
-        child: ListView.separated(
-          shrinkWrap: true,
-          physics: BouncingScrollPhysics(),
-          itemCount: allDiseases.length,
-          scrollDirection: Axis.vertical,
-          itemBuilder: (BuildContext context, int index) {
-            return DiseaseBlock(
-              disease: allDiseases[index],
-            );
-          },
-          separatorBuilder: (BuildContext context, int index) {
-            return SizedBox(
-              height: 0.02 * height,
-            );
-          },
-        ),
-      ),
+    return FutureBuilder(
+      future: allDiseases,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          return Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(
+                  right: 0.02 * width,
+                  left: 0.02 * width,
+                  bottom: 0.01 * height),
+              child: ListView.separated(
+                shrinkWrap: true,
+                physics: BouncingScrollPhysics(),
+                itemCount: snapshot.data.length,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (BuildContext context, int index) {
+                  return DiseaseBlock(
+                    disease: snapshot.data[index],
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(
+                    height: 0.02 * height,
+                  );
+                },
+              ),
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return Expanded(
+            child: Center(
+              child: Text('error'),
+            ),
+          );
+        } else {
+          return Expanded(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+      },
     );
   }
 }

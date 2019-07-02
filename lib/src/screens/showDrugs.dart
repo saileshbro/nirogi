@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/drug.dart';
-import 'package:nirogi/src/screens/eachDrug.dart';
-import 'package:nirogi/src/widgets/search_box.dart';
+import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/screens/screens.dart';
 
 class ShowDrugs extends StatelessWidget {
   @override
@@ -29,7 +28,6 @@ class ShowDrugs extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          SearchBox(),
           Expanded(
             child: Padding(
               padding: EdgeInsets.only(right: 10, left: 10, bottom: 10),

@@ -7,7 +7,6 @@ import 'package:nirogi/src/models/symptoms.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:nirogi/src/repository/repositories.dart';
-import 'package:nirogi/src/screens/eachDrug.dart';
 import 'package:nirogi/src/themes/clippers.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/themes/themes.dart';
@@ -127,9 +126,9 @@ class _HomePageState extends State<HomePage> {
                           },
                           indicatorLayout: PageIndicatorLayout.COLOR,
                           autoplay: true,
+                          loop: false,
                           itemCount: snapshot.data.length,
                           containerWidth: 200,
-                          control: new SwiperControl(color: Colors.red[700]),
                         ),
                       );
                     } else if (snapshot.hasError) {

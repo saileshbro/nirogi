@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:nirogi/src/screens/dev_info_page.dart';
+import 'package:nirogi/src/screens/screens.dart';
 
 class AboutPageCard extends StatelessWidget {
   @override

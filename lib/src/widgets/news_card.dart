@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/news.dart';
+import 'package:nirogi/src/models/models.dart';
 
 class NewsCard extends StatelessWidget {
   final NewsItem news;
@@ -7,6 +7,7 @@ class NewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(news);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8),
       child: Material(
@@ -47,7 +48,7 @@ class NewsCard extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          news.body,
+                          news.description,
                           maxLines: 3,
                           style: Theme.of(context).textTheme.body2.copyWith(
                                 fontSize: 14,

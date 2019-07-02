@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/symptoms.dart';
+import 'package:nirogi/src/models/models.dart';
 
 class SymptomBlock extends StatelessWidget {
   final Symptom symptom;
@@ -53,7 +53,7 @@ class SymptomBlock extends StatelessWidget {
                       SizedBox(
                         height: 0.02 * height,
                       ),
-                      Text(symptom.body,
+                      Text(symptom.description,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.justify,
                           maxLines: 5,

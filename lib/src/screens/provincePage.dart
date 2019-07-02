@@ -4,7 +4,7 @@ import 'dart:math';
 
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/repository/repositories.dart';
-import 'package:nirogi/src/screens/eachProvincePage.dart';
+import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 
 List<String> images = [

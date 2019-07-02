@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/posts.dart';
-import 'package:nirogi/src/models/popupchoice.dart';
-import 'package:nirogi/src/widgets/choice_card.dart';
-import 'package:nirogi/src/widgets/plus_floating_icon.dart';
-import 'package:nirogi/src/widgets/post_block.dart';
+import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/widgets/widgets.dart';
 
 import 'createPost.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/category.dart';
-import 'package:nirogi/src/models/posts.dart';
+import 'package:nirogi/src/models/models.dart';
+
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 
 class EditPost extends StatefulWidget {

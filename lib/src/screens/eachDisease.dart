@@ -1,8 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/constants/env.dart';
-import 'package:nirogi/src/models/diseases.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_html/flutter_html.dart';

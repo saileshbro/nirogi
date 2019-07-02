@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/diseases.dart';
+import 'package:nirogi/src/models/models.dart';
 
 class DiseaseCard extends StatelessWidget {
   final Disease disease;

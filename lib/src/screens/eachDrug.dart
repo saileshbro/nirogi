@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/drug.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
-import 'package:nirogi/src/widgets/query_card.dart';
+import 'package:nirogi/src/widgets/widgets.dart';
 
 class EachDrug extends StatefulWidget {
   final Drug eachdrug;

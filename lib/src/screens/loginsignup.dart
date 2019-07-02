@@ -3,10 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/themes/clippers.dart';
-import 'package:nirogi/src/themes/scrollOverlay.dart';
-import 'package:nirogi/src/widgets/login_form.dart';
-import 'package:nirogi/src/widgets/signup_form.dart';
 import "package:flare_flutter/flare_actor.dart";
+import 'package:nirogi/src/themes/scrollOverlay.dart';
+import 'package:nirogi/src/widgets/widgets.dart';
 
 class LoginSignup extends StatefulWidget {
   final UserRepository userRepository;

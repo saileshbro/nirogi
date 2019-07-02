@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/drug.dart';
-import 'package:nirogi/src/screens/eachDrug.dart';
+import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/screens/screens.dart';
 
 class DrugWidget extends StatelessWidget {
   final Drug drug;
@@ -103,36 +103,36 @@ class DrugWidget extends StatelessWidget {
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Flexible(
-                                  child: RichText(
-                                    maxLines: 3,
-                                    overflow: TextOverflow.ellipsis,
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: "Dose :  ",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .body1
-                                              .copyWith(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.red[700],
-                                              ),
-                                        ),
-                                        TextSpan(
-                                          text: drug.dose,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .body1
-                                              .copyWith(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        )
-                                      ],
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Dose :  ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .body1
+                                          .copyWith(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.red[700],
+                                          ),
                                     ),
-                                  ),
+                                    Text(
+                                      drug.dose.split(",").length > 4
+                                          ? drug.dose
+                                              .split(",")
+                                              .sublist(1, 4)
+                                              .join("\n")
+                                          : drug.dose.replaceAll(",", "\n"),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .body1
+                                          .copyWith(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    )
+                                  ],
                                 ),
                               ),
                             ],

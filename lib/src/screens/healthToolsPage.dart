@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/screens/calculateBMI.dart';
-import 'package:nirogi/src/screens/incompatibleFoodsPage.dart';
 import 'package:nirogi/src/screens/screens.dart';
-import 'package:nirogi/src/screens/showDrugs.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
-import 'package:nirogi/src/widgets/drawer.dart';
-import 'package:nirogi/src/widgets/tool_card.dart';
-import 'calculateBMI.dart';
-import 'bloodDonationPage.dart';
-import 'foodTipsPage.dart';
+import 'package:nirogi/src/widgets/widgets.dart';
 
 class HealthToolsPage extends StatelessWidget {
   @override

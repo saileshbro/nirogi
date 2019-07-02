@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/posts.dart';
-import 'package:nirogi/src/models/popupchoice.dart';
-import 'package:nirogi/src/screens/createPost.dart';
-import 'package:nirogi/src/widgets/choice_card.dart';
-import 'package:nirogi/src/widgets/drawer.dart';
-import 'package:nirogi/src/widgets/forumblock.dart';
-import 'package:nirogi/src/widgets/plus_floating_icon.dart';
-import 'package:nirogi/src/widgets/search_box.dart';
+import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/screens/screens.dart';
+import 'package:nirogi/src/widgets/widgets.dart';
 
 class ForumPage extends StatefulWidget {
   @override

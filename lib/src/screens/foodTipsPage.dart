@@ -1,9 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/models/diseases.dart';
-import 'package:nirogi/src/models/foodtips.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/repository/repositories.dart';
-import 'package:nirogi/src/screens/showFoods.dart';
+import 'package:nirogi/src/screens/screens.dart';
 
 class FoodTipsPage extends StatelessWidget {
   final FoodTipsRepository _repository = FoodTipsRepository();

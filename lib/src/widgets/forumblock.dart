@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/screens/eachPost.dart';
+import 'package:nirogi/src/screens/screens.dart';
 
 class ForumBlock extends StatelessWidget {
   final post;

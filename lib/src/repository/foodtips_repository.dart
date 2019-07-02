@@ -4,8 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' show Client;
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/constants/env.dart';
-import 'package:nirogi/src/models/diseases.dart';
-import 'package:nirogi/src/models/foodtips.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FoodTipsRepository {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nirogi/src/widgets/about_card.dart';
-import 'package:nirogi/src/widgets/drawer.dart';
+import 'package:nirogi/src/widgets/widgets.dart';
 
 class AboutPage extends StatelessWidget {
   @override

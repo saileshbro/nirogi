@@ -47,5 +47,3 @@ class Firstaid {
     return data;
   }
 }
-
-final FirstAidRepository firstAidRepository = FirstAidRepository();

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/constants/env.dart';
-import 'package:nirogi/src/models/firstaid.dart';
-import 'package:nirogi/src/screens/eachFirstAidPage.dart';
+import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/repository/repositories.dart';
+import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 
 class FirstAidPage extends StatefulWidget {
@@ -31,7 +32,6 @@ class _FirstAidPageState extends State<FirstAidPage> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: FutureBuilder<List<Firstaid>>(
