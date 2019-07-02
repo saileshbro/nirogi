@@ -134,7 +134,7 @@ class ForumBlock extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            post.updatedAt.toString(),
+                            post.createddAt.toString(),
                             style: Theme.of(context).textTheme.body2.copyWith(
                                   fontSize: 15,
                                 ),
