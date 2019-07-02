@@ -219,7 +219,7 @@ class _EachPostState extends State<EachPost> {
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     child: Text(
-                                      widget.post.category,
+                                      widget.post.category.category,
                                       style: Theme.of(context)
                                           .textTheme
                                           .body2
@@ -254,7 +254,7 @@ class _EachPostState extends State<EachPost> {
                                       width: 5,
                                     ),
                                     Text(
-                                      widget.post.createdAt.toString(),
+                                      widget.post.createdAt,
                                       style: Theme.of(context)
                                           .textTheme
                                           .body2

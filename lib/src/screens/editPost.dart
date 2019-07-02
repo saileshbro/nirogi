@@ -1,19 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/category.dart';
+import 'package:nirogi/src/models/posts.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 
 class EditPost extends StatefulWidget {
-  final post;
+  final Post post;
   const EditPost({
     @required this.post,
     Key key,
-  }) : super(key: key);
+  })  : assert(post != null),
+        super(key: key);
+
   @override
-  _EditPostState createState() => _EditPostState();
+  _EditPostState createState() =>
+      _EditPostState(categoryId: post.category.categoryId);
 }
 
 class _EditPostState extends State<EditPost> {
-  Category categoryValue = categories[0];
+  int categoryId;
+  static Category categoryValue;
+  _EditPostState({@required this.categoryId}) {
+    categoryValue = categories[this.categoryId - 1];
+  }
+  int getCategoryId() {
+    return this.categoryId;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

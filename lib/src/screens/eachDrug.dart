@@ -46,7 +46,7 @@ class _EachDrugState extends State<EachDrug> {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                expandedHeight: 200.0,
+                expandedHeight: 230.0,
                 floating: false,
                 pinned: true,
                 centerTitle: true,

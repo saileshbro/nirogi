@@ -64,7 +64,7 @@ class ForumBlock extends StatelessWidget {
                           padding: EdgeInsets.all(5),
                           color: Colors.blueGrey[700],
                           child: Text(
-                            post.category,
+                            post.category.category,
                             style: Theme.of(context).textTheme.body2.copyWith(
                                   fontSize: 15,
                                   color: Colors.white,
@@ -134,7 +134,7 @@ class ForumBlock extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            post.createddAt.toString(),
+                            post.createdAt,
                             style: Theme.of(context).textTheme.body2.copyWith(
                                   fontSize: 15,
                                 ),
