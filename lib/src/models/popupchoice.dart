@@ -20,20 +20,22 @@ const List<ForumChoice> editchoice = const <ForumChoice>[
 ];
 
 class ForumChoice {
-  const ForumChoice({this.title, this.icon});
+  const ForumChoice({this.title, this.icon, this.sort});
   final String title;
   final String icon;
+  final String sort;
 }
 
 const List<ForumChoice> forumChoice = const <ForumChoice>[
   const ForumChoice(
     title: 'Most Popular',
     icon: 'assets/images/icons/popular.png',
+    sort: 'popular',
   ),
   const ForumChoice(
-    title: 'Most Recent',
-    icon: 'assets/images/icons/recent.png',
-  ),
+      title: 'Most Recent',
+      icon: 'assets/images/icons/recent.png',
+      sort: 'recent'),
 ];
 
 class DropDownChoice {
