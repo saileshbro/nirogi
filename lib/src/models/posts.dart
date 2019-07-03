@@ -1,5 +1,4 @@
-import 'package:nirogi/src/models/category.dart';
-import 'package:nirogi/src/models/comments.dart';
+import 'package:nirogi/src/models/models.dart';
 
 class Posts {
   List<Post> posts;
@@ -36,8 +35,8 @@ class Post {
   String name;
   String imageUrl;
   dynamic voteStatus;
+  bool canModifyPost;
   Category category;
-  List<Comments> comments;
 
   Post(
       {this.postId,
@@ -51,8 +50,8 @@ class Post {
       this.name,
       this.imageUrl,
       this.voteStatus,
-      this.category,
-      this.comments});
+      this.canModifyPost,
+      this.category});
 
   Post.fromJson(Map<String, dynamic> json) {
     postId = json['post_id'];
@@ -66,15 +65,10 @@ class Post {
     name = json['name'];
     imageUrl = json['imageUrl'];
     voteStatus = json['vote_status'];
+    canModifyPost = json['can_modify_post'];
     category = json['category'] != null
         ? new Category.fromJson(json['category'])
         : null;
-    if (json['comments'] != null) {
-      comments = new List<Comments>();
-      json['comments'].forEach((v) {
-        comments.add(new Comments.fromJson(v));
-      });
-    }
   }
 
   Map<String, dynamic> toJson() {
@@ -90,214 +84,10 @@ class Post {
     data['name'] = this.name;
     data['imageUrl'] = this.imageUrl;
     data['vote_status'] = this.voteStatus;
+    data['can_modify_post'] = this.canModifyPost;
     if (this.category != null) {
       data['category'] = this.category.toJson();
-    }
-    if (this.comments != null) {
-      data['comments'] = this.comments.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
-
-List<Post> posts = [
-  Post(
-    postId: 3,
-    title: "The solution for extreme toothache",
-    body:
-        "This is The solution for extreme toothache This is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothache",
-    views: 146,
-    voteCount: 146,
-    commentCount: 146,
-    createdAt: "7 hours",
-    category: Category(
-      categoryId: 11,
-      category: "Pregnancy and Newborn",
-    ),
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    voteStatus: null,
-  ),
-  Post(
-    postId: 3,
-    title: "The solution for extreme toothache",
-    body:
-        " This is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothache",
-    views: 146,
-    voteCount: 146,
-    commentCount: 146,
-    createdAt: "7 hours",
-    category: Category(
-      categoryId: 11,
-      category: "Pregnancy and Newborn",
-    ),
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    voteStatus: null,
-  ),
-  Post(
-    postId: 3,
-    title: "The solution for extreme toothache",
-    body:
-        " This is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothache",
-    views: 146,
-    voteCount: 146,
-    commentCount: 146,
-    createdAt: "7 hours",
-    category: Category(
-      categoryId: 11,
-      category: "Pregnancy and Newborn",
-    ),
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    voteStatus: null,
-  ),
-  Post(
-    postId: 3,
-    title:
-        "The solution for extreme toothacheThe solution for extreme toothache",
-    body:
-        " This is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothache",
-    views: 146,
-    voteCount: 146,
-    commentCount: 146,
-    createdAt: "7 hours",
-    category: Category(
-      categoryId: 11,
-      category: "Pregnancy and Newborn",
-    ),
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    voteStatus: null,
-  ),
-  Post(
-    postId: 3,
-    title: "The solution for extreme toothache",
-    body:
-        " This is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothache",
-    views: 146,
-    voteCount: 146,
-    commentCount: 146,
-    createdAt: "7 hours",
-    category: Category(
-      categoryId: 11,
-      category: "Pregnancy and Newborn",
-    ),
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    voteStatus: null,
-  ),
-  Post(
-    postId: 3,
-    title: "The solution for extreme toothache",
-    body:
-        " This is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothache",
-    views: 146,
-    voteCount: 146,
-    commentCount: 146,
-    createdAt: "7 hours",
-    category: Category(
-      categoryId: 11,
-      category: "Pregnancy and Newborn",
-    ),
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    voteStatus: null,
-  ),
-  Post(
-    postId: 3,
-    title: "The solution for extreme toothache",
-    body:
-        " This is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothache",
-    views: 146,
-    voteCount: 146,
-    commentCount: 146,
-    createdAt: "7 hours",
-    category: Category(
-      categoryId: 11,
-      category: "Pregnancy and Newborn",
-    ),
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    voteStatus: null,
-  ),
-  Post(
-    postId: 3,
-    title: "The solution for extreme toothache",
-    body:
-        " This is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothache",
-    views: 146,
-    voteCount: 146,
-    commentCount: 146,
-    createdAt: "7 hours",
-    category: Category(
-      categoryId: 11,
-      category: "Pregnancy and Newborn",
-    ),
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    voteStatus: null,
-  ),
-  Post(
-    postId: 3,
-    title: "The solution for extreme toothache",
-    body:
-        " This is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothache",
-    views: 146,
-    voteCount: 146,
-    commentCount: 146,
-    createdAt: "7 hours",
-    category: Category(
-      categoryId: 11,
-      category: "Pregnancy and Newborn",
-    ),
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    voteStatus: null,
-  ),
-  Post(
-    postId: 3,
-    title: "The solution for extreme toothache",
-    body:
-        " This is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothache",
-    views: 146,
-    voteCount: 146,
-    commentCount: 146,
-    createdAt: "7 hours",
-    category: Category(
-      categoryId: 11,
-      category: "Pregnancy and Newborn",
-    ),
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    voteStatus: null,
-  ),
-  Post(
-    postId: 3,
-    title: "The solution for extreme toothache",
-    body:
-        " This is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothacheThis is The solution for extreme toothache",
-    views: 146,
-    voteCount: 146,
-    commentCount: 146,
-    createdAt: "7 hours",
-    category: Category(
-      categoryId: 11,
-      category: "Pregnancy and Newborn",
-    ),
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    voteStatus: null,
-  ),
-];

@@ -30,17 +30,18 @@ class Comment {
   int voteCount;
   String createdAt;
   dynamic voteStatus;
+  bool canModifyComment;
 
-  Comment({
-    this.userId,
-    this.name,
-    this.imageUrl,
-    this.commentId,
-    this.comment,
-    this.voteCount,
-    this.createdAt,
-    this.voteStatus,
-  });
+  Comment(
+      {this.userId,
+      this.name,
+      this.imageUrl,
+      this.commentId,
+      this.comment,
+      this.voteCount,
+      this.createdAt,
+      this.voteStatus,
+      this.canModifyComment});
 
   Comment.fromJson(Map<String, dynamic> json) {
     userId = json['user_id'];
@@ -51,6 +52,7 @@ class Comment {
     voteCount = json['vote_count'];
     createdAt = json['created_at'];
     voteStatus = json['vote_status'];
+    canModifyComment = json['can_modify_comment'];
   }
 
   Map<String, dynamic> toJson() {
@@ -63,130 +65,7 @@ class Comment {
     data['vote_count'] = this.voteCount;
     data['created_at'] = this.createdAt;
     data['vote_status'] = this.voteStatus;
+    data['can_modify_comment'] = this.canModifyComment;
     return data;
   }
 }
-
-List<Comment> comments = [
-  Comment(
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    commentId: 4,
-    comment:
-        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
-    voteCount: 0,
-    createdAt: "27 minutes ago",
-    voteStatus: null,
-  ),
-  Comment(
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    commentId: 4,
-    comment:
-        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
-    voteCount: 0,
-    createdAt: "27 minutes ago",
-    voteStatus: null,
-  ),
-  Comment(
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    commentId: 4,
-    comment:
-        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
-    voteCount: 0,
-    createdAt: "27 minutes ago",
-    voteStatus: null,
-  ),
-  Comment(
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    commentId: 4,
-    comment:
-        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
-    voteCount: 0,
-    createdAt: "27 minutes ago",
-    voteStatus: -1,
-  ),
-  Comment(
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    commentId: 4,
-    comment:
-        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
-    voteCount: 0,
-    createdAt: "27 minutes ago",
-    voteStatus: null,
-  ),
-  Comment(
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    commentId: 4,
-    comment:
-        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
-    voteCount: 0,
-    createdAt: "27 minutes ago",
-    voteStatus: 1,
-  ),
-  Comment(
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    commentId: 4,
-    comment:
-        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
-    voteCount: 0,
-    createdAt: "27 minutes ago",
-    voteStatus: 1,
-  ),
-  Comment(
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    commentId: 4,
-    comment:
-        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
-    voteCount: 0,
-    createdAt: "27 minutes ago",
-    voteStatus: -1,
-  ),
-  Comment(
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    commentId: 4,
-    comment:
-        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
-    voteCount: 0,
-    createdAt: "27 minutes ago",
-    voteStatus: 1,
-  ),
-  Comment(
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    commentId: 4,
-    comment:
-        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
-    voteCount: 0,
-    createdAt: "27 minutes ago",
-    voteStatus: null,
-  ),
-  Comment(
-    userId: 1,
-    name: "Sailesh Dahal",
-    imageUrl: "assets/images/icons/imageUrl.png",
-    commentId: 4,
-    comment:
-        "this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3this is comment 3",
-    voteCount: 0,
-    createdAt: "27 minutes ago",
-    voteStatus: null,
-  ),
-];

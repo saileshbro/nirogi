@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
             if (snapshot.hasData) {
               return ListView.separated(
                 physics: BouncingScrollPhysics(),
-                itemCount: topDisease.length,
+                itemCount: snapshot.data.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
                   return SymptomCard(
