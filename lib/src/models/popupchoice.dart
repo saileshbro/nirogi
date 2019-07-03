@@ -14,8 +14,19 @@ const List<Choice> choice = const <Choice>[
 
 const List<ForumChoice> editchoice = const <ForumChoice>[
   const ForumChoice(
-    title: 'Edit Post',
+    title: 'Edit',
     icon: 'assets/images/icons/edit.png',
+  ),
+  const ForumChoice(
+    title: 'Delete',
+    icon: 'assets/images/icons/delete.png',
+  ),
+];
+
+const List<ForumChoice> deletechoice = const <ForumChoice>[
+  const ForumChoice(
+    title: 'Delete',
+    icon: 'assets/images/icons/delete.png',
   ),
 ];
 
