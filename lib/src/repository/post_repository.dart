@@ -45,7 +45,8 @@ class PostRepository {
     }
   }
 
-  Future<Post> addPost({@required Post post}) async {
+  Future<String> addPost({@required Post post}) async {
+    print(jsonEncode(post.toJson()));
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
@@ -53,14 +54,17 @@ class PostRepository {
         "$baseUrl/api/posts",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json'
         },
         body: jsonEncode(post.toJson()),
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
         throw responseData['error'];
+      } else if (responseData.containsKey('message')) {
+        return responseData['message'];
       } else {
-        return Post.fromJson(jsonDecode(response.body));
+        throw "Unexpected error occured!";
       }
     } catch (e) {
       throw e.toString();

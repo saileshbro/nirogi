@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:nirogi/src/bloc/blocs.dart';
+import 'package:nirogi/src/bloc/events.dart';
+import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/models/models.dart';
 
 import 'package:nirogi/src/themes/scrollOverlay.dart';
@@ -17,6 +22,7 @@ class EditPost extends StatefulWidget {
 }
 
 class _EditPostState extends State<EditPost> {
+  GlobalKey<FormState> _createPostField = GlobalKey<FormState>();
   int categoryId;
   static Category categoryValue;
   _EditPostState({@required this.categoryId}) {
@@ -83,9 +89,19 @@ class _EditPostState extends State<EditPost> {
                   height: 10,
                 ),
                 Form(
+                  key: _createPostField,
                   child: Column(
                     children: <Widget>[
                       TextFormField(
+                        onSaved: (String value) {
+                          widget.post.title = value.trim();
+                        },
+                        validator: (String value) {
+                          if (value.trim().isEmpty) {
+                            return "Empty title provided.";
+                          }
+                          return null;
+                        },
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.black,
@@ -114,6 +130,15 @@ class _EditPostState extends State<EditPost> {
                         height: 10,
                       ),
                       TextFormField(
+                        onSaved: (String value) {
+                          widget.post.body = value.trim();
+                        },
+                        validator: (String value) {
+                          if (value.trim().isEmpty) {
+                            return "Empty body provided.";
+                          }
+                          return null;
+                        },
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.black,
@@ -175,7 +200,16 @@ class _EditPostState extends State<EditPost> {
                                 }).toList()),
                           ),
                           FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              if (_createPostField.currentState.validate()) {
+                                _createPostField.currentState.save();
+                                print(widget.post.toJson());
+                                addPostBloc.dispatch(EditPostEvent(
+                                    post: widget.post,
+                                    postId: widget.post.postId));
+                                Navigator.pop(context);
+                              }
+                            },
                             child: Text(
                               'SAVE',
                               style: Theme.of(context).textTheme.body2.copyWith(
@@ -189,6 +223,42 @@ class _EditPostState extends State<EditPost> {
                       ),
                     ],
                   ),
+                ),
+                BlocBuilder(
+                  bloc: addPostBloc,
+                  builder: (BuildContext context, AddPostState state) {
+                    if (state is AddPostUninitiatedState) {
+                      return SizedBox();
+                    } else if (state is AddPostSendingState) {
+                      return Container(
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    } else if (state is AddPostSucessState) {
+                      Fluttertoast.showToast(
+                          msg: state.message,
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIos: 1,
+                          backgroundColor: Colors.black,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                      return SizedBox();
+                    } else {
+                      var errorstate = state as AddPostErrorState;
+                      Fluttertoast.showToast(
+                          msg: errorstate.error,
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIos: 1,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+
+                      return SizedBox();
+                    }
+                  },
                 )
               ],
             ),

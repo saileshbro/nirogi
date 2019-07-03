@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nirogi/src/bloc/addpost_bloc.dart';
+import 'package:nirogi/src/bloc/events.dart';
+import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CreatePost extends StatefulWidget {
   @override
@@ -8,6 +13,8 @@ class CreatePost extends StatefulWidget {
 }
 
 class _CreatePostState extends State<CreatePost> {
+  GlobalKey<FormState> _createPostField = GlobalKey<FormState>();
+  final Post post = Post(category: categories[0]);
   Category categoryValue = categories[0];
   @override
   Widget build(BuildContext context) {
@@ -66,9 +73,19 @@ class _CreatePostState extends State<CreatePost> {
                   height: 10,
                 ),
                 Form(
+                  key: _createPostField,
                   child: Column(
                     children: <Widget>[
                       TextFormField(
+                        onSaved: (String value) {
+                          post.title = value.trim();
+                        },
+                        validator: (String value) {
+                          if (value.trim().isEmpty) {
+                            return "Empty title provided.";
+                          }
+                          return null;
+                        },
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.black,
@@ -96,6 +113,15 @@ class _CreatePostState extends State<CreatePost> {
                         height: 10,
                       ),
                       TextFormField(
+                        onSaved: (String value) {
+                          post.body = value.trim();
+                        },
+                        validator: (String value) {
+                          if (value.trim().isEmpty) {
+                            return "Empty body provided.";
+                          }
+                          return null;
+                        },
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.black,
@@ -135,6 +161,8 @@ class _CreatePostState extends State<CreatePost> {
                                   setState(() {
                                     categoryValue = newValue;
                                   });
+
+                                  post.category = categoryValue;
                                 },
                                 items: categories
                                     .map<DropdownMenuItem<Category>>(
@@ -156,7 +184,14 @@ class _CreatePostState extends State<CreatePost> {
                                 }).toList()),
                           ),
                           FlatButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              if (_createPostField.currentState.validate()) {
+                                _createPostField.currentState.save();
+                                addPostBloc
+                                    .dispatch(CreateNewPostevent(post: post));
+                                Navigator.pop(context);
+                              }
+                            },
                             child: Text(
                               'SAVE',
                               style: Theme.of(context).textTheme.body2.copyWith(
@@ -170,6 +205,42 @@ class _CreatePostState extends State<CreatePost> {
                       ),
                     ],
                   ),
+                ),
+                BlocBuilder(
+                  bloc: addPostBloc,
+                  builder: (BuildContext context, AddPostState state) {
+                    if (state is AddPostUninitiatedState) {
+                      return SizedBox();
+                    } else if (state is AddPostSendingState) {
+                      return Container(
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    } else if (state is AddPostSucessState) {
+                      Fluttertoast.showToast(
+                          msg: state.message,
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIos: 1,
+                          backgroundColor: Colors.black,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                      return SizedBox();
+                    } else {
+                      var errorstate = state as AddPostErrorState;
+                      Fluttertoast.showToast(
+                          msg: errorstate.error,
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIos: 1,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+
+                      return SizedBox();
+                    }
+                  },
                 )
               ],
             ),

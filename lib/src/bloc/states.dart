@@ -4,3 +4,4 @@ export 'login_state.dart';
 export 'signup_state.dart';
 export 'getposts_state.dart';
 export 'getcomments_state.dart';
+export 'addpost_state.dart';
