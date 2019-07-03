@@ -1,12 +1,86 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/bloc/blocs.dart';
+import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/constants/env.dart';
+import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/repository/repositories.dart';
+import 'package:nirogi/src/widgets/widgets.dart';
 
-class CommentCard extends StatelessWidget {
+class CommentCard extends StatefulWidget {
   final comment;
   const CommentCard({
     @required this.comment,
     Key key,
   }) : super(key: key);
+
+  @override
+  _CommentCardState createState() => _CommentCardState();
+}
+
+class _CommentCardState extends State<CommentCard> {
+  void _showDeleteCommentModal() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.all(5),
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              'Delete?',
+              style: Theme.of(context)
+                  .textTheme
+                  .body1
+                  .copyWith(fontSize: 16, color: Colors.red[700]),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          content: Text(
+            'Do you really want to delete this comment?',
+            style: Theme.of(context).textTheme.body2.copyWith(fontSize: 14),
+            textAlign: TextAlign.center,
+          ),
+          actions: <Widget>[
+            FlatButton(
+              color: Colors.transparent,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'Cancel',
+                style: Theme.of(context).textTheme.body2.copyWith(
+                      fontSize: 16,
+                      color: Colors.grey,
+                    ),
+              ),
+            ),
+            FlatButton(
+              color: Colors.transparent,
+              onPressed: () {
+                postRepository.deleteComment(
+                    commentId: widget.comment.commentId,
+                    postId: widget.comment.postId);
+                Navigator.of(context).pop();
+                setState(() {
+                  getAllCommentsBloc.dispatch(GetAllCommentsEvent(
+                      sort: 'time', postId: widget.comment.postId));
+                });
+                print('delete');
+              },
+              child: Text(
+                'Delete',
+                style: Theme.of(context).textTheme.body2.copyWith(
+                      fontSize: 16,
+                      color: Colors.red[700],
+                    ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -35,7 +109,7 @@ class CommentCard extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    comment.voteCount.toString(),
+                    widget.comment.voteCount.toString(),
                     style: Theme.of(context).textTheme.body2.copyWith(
                           fontSize: 18,
                         ),
@@ -57,14 +131,33 @@ class CommentCard extends StatelessWidget {
                 width: 0.03 * width,
               ),
               Expanded(
-                child: Text(
-                  comment.comment,
-                  style: Theme.of(context).textTheme.body2.copyWith(
-                        fontSize: 16,
-                      ),
-                  textAlign: TextAlign.justify,
-                ),
-              )
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    widget.comment.comment,
+                    style: Theme.of(context).textTheme.body2.copyWith(
+                          fontSize: 16,
+                        ),
+                    textAlign: TextAlign.justify,
+                  ),
+                  PopupMenuButton<ForumChoice>(
+                    onSelected: (ForumChoice choice) {
+                      _showDeleteCommentModal();
+                    },
+                    itemBuilder: (BuildContext context) {
+                      return deletechoice.map((ForumChoice deletechoice) {
+                        return PopupMenuItem<ForumChoice>(
+                          child: ForumChoiceCard(
+                            choice: deletechoice,
+                          ),
+                          value: deletechoice,
+                        );
+                      }).toList();
+                    },
+                  ),
+                ],
+              ))
             ],
           ),
           SizedBox(
@@ -77,7 +170,7 @@ class CommentCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    comment.name,
+                    widget.comment.name,
                     style: Theme.of(context).textTheme.body2.copyWith(
                           fontSize: 16,
                           color: Colors.red[700],
@@ -93,7 +186,7 @@ class CommentCard extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        comment.createdAt.toString(),
+                        widget.comment.createdAt.toString(),
                         style: Theme.of(context).textTheme.body2.copyWith(
                               fontSize: 15,
                             ),
@@ -113,7 +206,7 @@ class CommentCard extends StatelessWidget {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: NetworkImage(
-                      '$baseUrl/${comment.imageUrl}',
+                      '$baseUrl/${widget.comment.imageUrl}',
                     ),
                     fit: BoxFit.contain,
                   ),

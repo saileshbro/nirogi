@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
+import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/getcomments_event.dart';
 import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
@@ -22,6 +24,66 @@ class EachPost extends StatefulWidget {
 }
 
 class _EachPostState extends State<EachPost> {
+  void _showDeletePostModal() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.all(5),
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              'Delete?',
+              style: Theme.of(context)
+                  .textTheme
+                  .body1
+                  .copyWith(fontSize: 16, color: Colors.red[700]),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          content: Text(
+            'Do you really want to delete this post?',
+            style: Theme.of(context).textTheme.body2.copyWith(fontSize: 14),
+            textAlign: TextAlign.center,
+          ),
+          actions: <Widget>[
+            FlatButton(
+              color: Colors.transparent,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'Cancel',
+                style: Theme.of(context).textTheme.body2.copyWith(
+                      fontSize: 16,
+                      color: Colors.grey,
+                    ),
+              ),
+            ),
+            FlatButton(
+              color: Colors.transparent,
+              onPressed: () {
+                postRepository.deletePost(postId: widget.post.postId);
+                Navigator.popUntil(context, ModalRoute.withName('/forum'));
+                setState(() {
+                  getPostsBloc.dispatch(GetAllPostsEvent(sort: 'popular'));
+                });
+                print('delete');
+              },
+              child: Text(
+                'Delete',
+                style: Theme.of(context).textTheme.body2.copyWith(
+                      fontSize: 16,
+                      color: Colors.red[700],
+                    ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   TextEditingController _controller = TextEditingController();
   bool isButtonClicked = false;
   DropDownChoice dropdownValue = const DropDownChoice(
@@ -183,24 +245,36 @@ class _EachPostState extends State<EachPost> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    Text(
-                                      widget.post.title,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .body1
-                                          .copyWith(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                      textAlign: TextAlign.justify,
+                                    Flexible(
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 5.0),
+                                        child: Text(
+                                          widget.post.title,
+                                          maxLines: 3,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .body1
+                                              .copyWith(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                      ),
                                     ),
                                     PopupMenuButton<ForumChoice>(
                                       onSelected: (ForumChoice choice) {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(builder:
-                                                (BuildContext context) {
-                                          return EditPost(post: widget.post);
-                                        }));
+                                        if (choice.title == 'Edit') {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(builder:
+                                                  (BuildContext context) {
+                                            return EditPost(post: widget.post);
+                                          }));
+                                        } else {
+                                          _showDeletePostModal();
+                                        }
                                       },
                                       itemBuilder: (BuildContext context) {
                                         return editchoice
@@ -213,7 +287,7 @@ class _EachPostState extends State<EachPost> {
                                           );
                                         }).toList();
                                       },
-                                    )
+                                    ),
                                   ],
                                 ),
                                 GestureDetector(
@@ -290,15 +364,22 @@ class _EachPostState extends State<EachPost> {
                                     Expanded(
                                       child: SizedBox(),
                                     ),
-                                    Text(
-                                      widget.post.name,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .body2
-                                          .copyWith(
-                                            fontSize: 16,
-                                            color: Colors.red[700],
-                                          ),
+                                    Container(
+                                      child: Text(
+                                        widget.post.name.split(' ')[0].length >
+                                                12
+                                            ? widget.post.name
+                                                .split(' ')[0]
+                                                .substring(0, 12)
+                                            : widget.post.name.split(' ')[0],
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .body2
+                                            .copyWith(
+                                              fontSize: 16,
+                                              color: Colors.red[700],
+                                            ),
+                                      ),
                                     ),
                                     SizedBox(
                                       width: 5,
@@ -316,7 +397,7 @@ class _EachPostState extends State<EachPost> {
                                           fit: BoxFit.contain,
                                         ),
                                       ),
-                                    ),
+                                    )
                                   ],
                                 )
                               ],
