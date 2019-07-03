@@ -28,7 +28,7 @@ class ForumChoiceCard extends StatelessWidget {
           width: 0.06 * width,
         ),
         SizedBox(
-          width: 0.03 * width,
+          width: 0.04 * width,
         ),
         Text(choice.title,
             style: Theme.of(context).textTheme.body1.copyWith(

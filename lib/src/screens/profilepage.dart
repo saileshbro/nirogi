@@ -11,6 +11,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  int noOfPosts;
   Future<List<Post>> myPosts;
   @override
   void initState() {
@@ -46,7 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
           children: <Widget>[
             Text('Profile', style: Theme.of(context).textTheme.headline),
             SizedBox(
-              width: 0.035 * width,
+              width: 0.02 * width,
             ),
             Image.asset(
               'assets/images/icons/profile.png',
@@ -78,12 +79,12 @@ class _ProfilePageState extends State<ProfilePage> {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  Container(),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           Stack(
                             children: <Widget>[
@@ -91,11 +92,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                 padding: EdgeInsets.only(
                                   left: 0.025 * width,
                                   right: 0.036 * width,
-                                  top: 0.013 * height,
+                                  top: 0.007 * height,
                                 ),
                                 child: Container(
-                                  height: 0.189 * height,
-                                  width: 0.35 * width,
+                                  height: 0.16 * height,
+                                  width: 0.25 * width,
                                   child: Image.asset(
                                     'assets/images/icons/profile.png',
                                   ),
@@ -105,10 +106,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                               Positioned(
-                                top: 0.135 * height,
-                                left: 0.255 * width,
+                                top: 0.117 * height,
+                                left: 0.17 * width,
                                 child: Container(
-                                  height: 0.054 * height,
+                                  height: 0.05 * height,
                                   child: FloatingActionButton(
                                     heroTag: "editProfile",
                                     backgroundColor:
@@ -127,67 +128,115 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ],
                           ),
-                          Column(
-                            children: <Widget>[
-                              SizedBox(
-                                height: 0.06 * height,
-                              ),
-                              Text(
-                                'Sarayu Gautam',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline
-                                    .copyWith(color: Colors.red[700]),
-                              ),
-                              Text(
-                                'Naikap, Kathmandu',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .body2
-                                    .copyWith(fontSize: 16),
-                              ),
-                              SizedBox(
-                                height: 35,
-                              ),
-                              Column(
-                                children: <Widget>[
-                                  Text(
-                                    'Your Posts',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .body1
-                                        .copyWith(fontSize: 20),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Container(
-                                        height: 1.0,
-                                        color: Colors.red,
-                                        width: 0.127 * width,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Container(
-                                        height: 10,
-                                        width: 10,
-                                        child: Image.asset(
-                                            'assets/images/icons/blood-drop.png'),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Container(
-                                        height: 1.0,
-                                        width: 0.178 * width,
-                                        color: Colors.red,
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ],
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                SizedBox(
+                                  height: height * 0.06,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Column(
+                                      children: <Widget>[
+                                        Text(
+                                          'Sarayu Gautam',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .body2
+                                              .copyWith(
+                                                  color: Colors.red[700],
+                                                  fontSize: 20),
+                                        ),
+                                        Text(
+                                          'Naikap, Kathmandu',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .body2
+                                              .copyWith(fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        Image.asset(
+                                          'assets/images/icons/createpost.png',
+                                          width: 0.075 * width,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 8.0, left: 5),
+                                          child: Text(
+                                            noOfPosts.toString(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .body2
+                                                .copyWith(fontSize: 15),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 25,
+                                ),
+                                Column(
+                                  children: <Widget>[
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Image.asset(
+                                          'assets/images/icons/post.png',
+                                          width: 0.075 * width,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          'Posts',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .body1
+                                              .copyWith(fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Container(
+                                          height: 1.0,
+                                          color: Colors.red,
+                                          width: 0.115 * width,
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Container(
+                                          height: 10,
+                                          width: 10,
+                                          child: Image.asset(
+                                              'assets/images/icons/blood-drop.png'),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Container(
+                                          height: 1.0,
+                                          width: 0.13 * width,
+                                          color: Colors.red,
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -203,6 +252,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     future: myPosts,
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (snapshot.hasData) {
+                        noOfPosts = snapshot.data.length;
+                        print(noOfPosts);
                         return ListView.separated(
                           shrinkWrap: true,
                           physics: BouncingScrollPhysics(),

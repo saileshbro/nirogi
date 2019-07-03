@@ -57,19 +57,16 @@ class ForumBlock extends StatelessWidget {
                         style: Theme.of(context).textTheme.body1.copyWith(
                             fontSize: 16, fontWeight: FontWeight.w500),
                       ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          margin: EdgeInsets.only(top: 10),
-                          padding: EdgeInsets.all(5),
-                          color: Colors.blueGrey[700],
-                          child: Text(
-                            post.category.category,
-                            style: Theme.of(context).textTheme.body2.copyWith(
-                                  fontSize: 15,
-                                  color: Colors.white,
-                                ),
-                          ),
+                      Container(
+                        margin: EdgeInsets.only(top: 10),
+                        padding: EdgeInsets.all(5),
+                        color: Colors.blueGrey[700],
+                        child: Text(
+                          post.category.category,
+                          style: Theme.of(context).textTheme.body2.copyWith(
+                                fontSize: 15,
+                                color: Colors.white,
+                              ),
                         ),
                       ),
                       SizedBox(
@@ -83,7 +80,9 @@ class ForumBlock extends StatelessWidget {
             Row(
               children: <Widget>[
                 Text(
-                  post.name,
+                  post.name.split(' ')[0].length > 12
+                      ? post.name.split(' ')[0].substring(0, 12)
+                      : post.name.split(' ')[0],
                   style: Theme.of(context).textTheme.body2.copyWith(
                         fontSize: 16,
                         color: Colors.red[700],

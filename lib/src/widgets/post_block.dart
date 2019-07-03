@@ -30,16 +30,37 @@ class PostBlock extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(0.01 * height),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    post.title,
-                    textAlign: TextAlign.justify,
-                    maxLines: 3,
-                    style: Theme.of(context).textTheme.body1.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.red[700],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Flexible(
+                        child: Text(
+                          post.title,
+                          textAlign: TextAlign.justify,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.body1.copyWith(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.red[700],
+                              ),
                         ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 10),
+                        padding: EdgeInsets.all(5),
+                        color: Colors.blueGrey[700],
+                        child: Text(
+                          post.category.category,
+                          style: Theme.of(context).textTheme.body2.copyWith(
+                                fontSize: 15,
+                                color: Colors.white,
+                              ),
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 0.01 * height,
@@ -47,7 +68,8 @@ class PostBlock extends StatelessWidget {
                   Text(
                     post.body,
                     textAlign: TextAlign.justify,
-                    maxLines: 5,
+                    maxLines: 6,
+                    overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)
                         .textTheme
                         .body2
@@ -57,21 +79,20 @@ class PostBlock extends StatelessWidget {
                     height: 0.02 * height,
                   ),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Text(
                         '${post.createdAt}',
                         textAlign: TextAlign.justify,
                         maxLines: 5,
                         style: Theme.of(context).textTheme.body2.copyWith(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                            fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                       Row(
                         children: <Widget>[
                           Image.asset(
                             'assets/images/icons/eye.png',
-                            height: 0.04 * height,
+                            height: 0.03 * height,
                           ),
                           SizedBox(
                             width: 5,
@@ -89,7 +110,7 @@ class PostBlock extends StatelessWidget {
                         children: <Widget>[
                           Image.asset(
                             'assets/images/icons/upvote.png',
-                            height: 0.04 * height,
+                            height: 0.03 * height,
                           ),
                           SizedBox(
                             width: 5,
@@ -109,7 +130,7 @@ class PostBlock extends StatelessWidget {
                         children: <Widget>[
                           Image.asset(
                             'assets/images/icons/comment.png',
-                            height: 0.04 * height,
+                            height: 0.03 * height,
                           ),
                           SizedBox(
                             width: 5,
