@@ -84,7 +84,7 @@ class NewsCard extends StatelessWidget {
                                     width: 5,
                                   ),
                                   Text(
-                                    news.writtenBy,
+                                    news.writtenBy.split(',')[0],
                                     style: Theme.of(context)
                                         .textTheme
                                         .body2
