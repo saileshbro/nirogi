@@ -33,21 +33,14 @@ class ForumBlock extends StatelessWidget {
                   height: 0.09 * height,
                   width: 0.14 * width,
                   decoration: BoxDecoration(
-                    color: Colors.red[50],
-                    shape: BoxShape.circle,
-                    image: post.imageUrl == null
-                        ? DecorationImage(
-                            image: NetworkImage(
-                              "$baseUrl/${post.imageUrl}",
-                            ),
-                            fit: BoxFit.contain,
-                          )
-                        : DecorationImage(
-                            image:
-                                AssetImage("assets/images/icons/imageUrl.png"),
-                            fit: BoxFit.contain,
-                          ),
-                  ),
+                      color: Colors.red[50],
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          "$baseUrl/${post.imageUrl}",
+                        ),
+                        fit: BoxFit.contain,
+                      )),
                 ),
                 SizedBox(
                   width: 0.02 * width,

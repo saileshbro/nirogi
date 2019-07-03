@@ -14,7 +14,6 @@ class ForumPage extends StatefulWidget {
 
 class _ForumPageState extends State<ForumPage> {
   String sort = 'popular';
-  String changedSort = '';
   @override
   void initState() {
     super.initState();

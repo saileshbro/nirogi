@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/screens/screens.dart';
 
-class ShowDrugs extends StatelessWidget {
+class ShowDrugs extends StatefulWidget {
+  @override
+  _ShowDrugsState createState() => _ShowDrugsState();
+}
+
+class _ShowDrugsState extends State<ShowDrugs> {
+  Future<List<Drug>> allDrugs;
+  @override
+  void initState() {
+    super.initState();
+    allDrugs = drugRepository.getCommonDrug();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,32 +37,51 @@ class ShowDrugs extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(right: 10, left: 10, bottom: 10),
-              child: Container(
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  physics: BouncingScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemCount: commonDrugs.drugs.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return DrugCard(drug: commonDrugs.drugs[index]);
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      height: 15.0,
-                    );
-                  },
+      body: FutureBuilder(
+        future: allDrugs,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 10, left: 10, bottom: 10),
+                    child: Container(
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return DrugCard(drug: snapshot.data[index]);
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return SizedBox(
+                            height: 15.0,
+                          );
+                        },
+                      ),
+                    ),
+                  ),
                 ),
+              ],
+            );
+          } else if (snapshot.hasError) {
+            return Container(
+              child: Center(
+                child: Text('error'),
               ),
-            ),
-          ),
-        ],
+            );
+          } else {
+            return Container(
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+        },
       ),
     );
   }

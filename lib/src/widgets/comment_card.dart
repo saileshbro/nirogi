@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/constants/env.dart';
 
 class CommentCard extends StatelessWidget {
   final comment;
@@ -111,8 +112,8 @@ class CommentCard extends StatelessWidget {
                   color: Colors.red[50],
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: AssetImage(
-                      comment.imageUrl,
+                    image: NetworkImage(
+                      '$baseUrl/${comment.imageUrl}',
                     ),
                     fit: BoxFit.contain,
                   ),

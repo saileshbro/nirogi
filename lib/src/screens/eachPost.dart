@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nirogi/src/bloc/blocs.dart';
+import 'package:nirogi/src/bloc/getcomments_event.dart';
+import 'package:nirogi/src/bloc/states.dart';
+import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class EachPost extends StatefulWidget {
-  final post;
+  final Post post;
   const EachPost({
     @required this.post,
     Key key,
@@ -20,9 +25,16 @@ class _EachPostState extends State<EachPost> {
   TextEditingController _controller = TextEditingController();
   bool isButtonClicked = false;
   DropDownChoice dropdownValue = const DropDownChoice(
-    title: 'vote',
+    title: 'votes',
     icon: 'assets/images/icons/upvote.png',
   );
+
+  @override
+  void initState() {
+    super.initState();
+    getAllCommentsBloc.dispatch(GetAllCommentsEvent(
+        postId: widget.post.postId, sort: dropdownValue.title));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +54,7 @@ class _EachPostState extends State<EachPost> {
                     children: <Widget>[
                       CircleAvatar(
                         backgroundImage:
-                            AssetImage('assets/images/icons/imageUrl.png'),
+                            NetworkImage('assets/images/icons/imageUrl.png'),
                       ),
                       SizedBox(width: 0.04 * width),
                       Flexible(
@@ -298,8 +310,8 @@ class _EachPostState extends State<EachPost> {
                                         color: Colors.red[50],
                                         shape: BoxShape.circle,
                                         image: DecorationImage(
-                                          image: AssetImage(
-                                            widget.post.imageUrl,
+                                          image: NetworkImage(
+                                            "$baseUrl/${widget.post.imageUrl}",
                                           ),
                                           fit: BoxFit.contain,
                                         ),
@@ -351,10 +363,13 @@ class _EachPostState extends State<EachPost> {
                           setState(() {
                             dropdownValue = choice;
                           });
+                          getAllCommentsBloc.dispatch(GetAllCommentsEvent(
+                              postId: widget.post.postId,
+                              sort: dropdownValue.title));
                         },
                         items: <DropDownChoice>[
                           const DropDownChoice(
-                            title: 'vote',
+                            title: 'votes',
                             icon: 'assets/images/icons/upvote.png',
                           ),
                           const DropDownChoice(
@@ -418,29 +433,67 @@ class _BuildCommentsList extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: EdgeInsets.only(
-          right: 0.02 * width,
-          top: 0.01 * height,
-          left: 0.04 * width,
-          bottom: 0.01 * height),
-      child: ListView.separated(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: comments.length,
-        scrollDirection: Axis.vertical,
-        itemBuilder: (BuildContext context, int index) {
-          return CommentCard(
-            comment: comments[index],
+    return BlocBuilder(
+      bloc: getAllCommentsBloc,
+      builder: (BuildContext context, state) {
+        if (state is CommentsUninitialisedState) {
+          return Container(
+            child: Center(
+              child: Text('not loaded'),
+            ),
           );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return Divider(
-            color: Colors.grey,
-            height: 0.01 * height,
+        } else if (state is CommentsEmptyState) {
+          return Container(
+            child: Center(
+              child: Text("No posts found"),
+            ),
           );
-        },
-      ),
+        } else if (state is CommentsFetchingState) {
+          return Container(
+            height: 40,
+            margin:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.3),
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else if (state is CommentsErrorState) {
+          return Container(
+            height: 40,
+            margin:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.3),
+            child: Center(
+              child: Text("error"),
+            ),
+          );
+        }
+        final stateAsCommentsFetchedState = state as CommentsFetchedState;
+        final comments = stateAsCommentsFetchedState.comments;
+        return Padding(
+          padding: EdgeInsets.only(
+              right: 0.02 * width,
+              top: 0.01 * height,
+              left: 0.04 * width,
+              bottom: 0.01 * height),
+          child: ListView.separated(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: comments.length,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (BuildContext context, int index) {
+              return CommentCard(
+                comment: comments[index],
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return Divider(
+                color: Colors.grey,
+                height: 0.01 * height,
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
