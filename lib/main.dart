@@ -98,7 +98,9 @@ class _MyAppState extends State<MyApp> {
               "/profile": (context) => ProfilePage(
                     loggedInUser: loggedinUser,
                   ),
-              "/editprofile": (context) => EditProfile(),
+              "/editprofile": (context) => EditProfile(
+                    loggedInUser: loggedinUser,
+                  ),
               "/changepw": (context) => ChangePasswordPage(),
               "/forum": (context) => ForumPage(loggedInUser: loggedinUser),
               "/tools": (context) =>

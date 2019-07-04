@@ -23,3 +23,12 @@ class SignupFailureState extends SignupState {
   @override
   String toString() => 'SignupFailure { error: $error }';
 }
+
+class SignupSuccessState extends SignupState {
+  final String message;
+
+  SignupSuccessState({@required this.message}) : super([message]);
+
+  @override
+  String toString() => 'SignupSuccess { message: $message }';
+}

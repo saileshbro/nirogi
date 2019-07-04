@@ -68,7 +68,6 @@ class _CommentCardState extends State<CommentCard> {
                   getAllCommentsBloc.dispatch(GetAllCommentsEvent(
                       sort: 'time', postId: widget.comment.postid));
                 });
-                print('delete');
               },
               child: Text(
                 'Delete',

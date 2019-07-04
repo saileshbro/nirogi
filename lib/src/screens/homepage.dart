@@ -44,7 +44,6 @@ class _HomePageState extends State<HomePage> {
               },
             ),
       );
-    print(widget.loggedInUser.toJson());
   }
 
   @override

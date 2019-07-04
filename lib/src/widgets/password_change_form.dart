@@ -199,8 +199,6 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
                 _formKey.currentState.save();
                 managePasswordBloc.dispatch(
                     ChangePasswordEvent(changePassword: changePassword));
-
-                print(changePassword.toJson());
               }
             },
           ),

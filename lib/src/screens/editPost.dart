@@ -206,7 +206,6 @@ class _EditPostState extends State<EditPost> {
                             onPressed: () {
                               if (_createPostField.currentState.validate()) {
                                 _createPostField.currentState.save();
-                                print(widget.post.toJson());
                                 addPostBloc.dispatch(EditPostEvent(
                                     post: widget.post,
                                     postId: widget.post.postId));

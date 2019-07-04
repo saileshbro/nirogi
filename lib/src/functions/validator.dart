@@ -4,7 +4,7 @@ dynamic validateEmail(String email) {
   if (exp.allMatches(email).length > 0) {
     return null;
   } else {
-    return 'Enter a valid email';
+    return 'Enter a valid email.';
   }
 }
 
@@ -23,6 +23,6 @@ dynamic validateName(String name) {
   if (exp.allMatches(name).length > 0) {
     return null;
   } else {
-    return 'Invalid name';
+    return 'Enter a valid name.';
   }
 }

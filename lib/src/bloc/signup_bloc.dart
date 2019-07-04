@@ -34,6 +34,15 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       } catch (e) {
         yield SignupFailureState(error: e.toString());
       }
+    } else if (event is UpdateProfileEvent) {
+      yield SignupLoadingState();
+      try {
+        final message =
+            await profileRepository.updateProfile(updateUser: event.user);
+        yield SignupSuccessState(message: message);
+      } catch (e) {
+        yield SignupFailureState(error: e.toString());
+      }
     }
   }
 }

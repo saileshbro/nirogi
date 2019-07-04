@@ -68,7 +68,6 @@ class PostRepository {
   }
 
   Future<String> addPost({@required Post post}) async {
-    print(jsonEncode(post.toJson()));
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
