@@ -17,6 +17,7 @@ class ProvinceRepository {
         '$baseUrl/api/provinces',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -38,6 +39,7 @@ class ProvinceRepository {
         '$baseUrl/api/province/$provinceId',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);

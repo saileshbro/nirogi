@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/getcomments_event.dart';
 import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
-import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class EachPost extends StatefulWidget {
-  final Post post;
-  const EachPost({
+  Post post;
+  EachPost({
     @required this.post,
     Key key,
   }) : super(key: key);
@@ -24,6 +24,15 @@ class EachPost extends StatefulWidget {
 }
 
 class _EachPostState extends State<EachPost> {
+  PostBloc addPostBloc;
+  @override
+  void initState() {
+    super.initState();
+    getAllCommentsBloc.dispatch(GetAllCommentsEvent(
+        postId: widget.post.postId, sort: dropdownValue.title));
+    addPostBloc = PostBloc();
+  }
+
   void _showDeletePostModal() {
     showDialog(
       context: context,
@@ -63,12 +72,10 @@ class _EachPostState extends State<EachPost> {
             FlatButton(
               color: Colors.transparent,
               onPressed: () {
-                postRepository.deletePost(postId: widget.post.postId);
-                Navigator.popUntil(context, ModalRoute.withName('/forum'));
-                setState(() {
-                  getPostsBloc.dispatch(GetAllPostsEvent(sort: 'popular'));
-                });
-                print('delete');
+                addPostBloc
+                    .dispatch(DeletePostEvent(postId: widget.post.postId));
+                Navigator.pop(context);
+                getPostsBloc.dispatch(GetAllPostsEvent(sort: 'popular'));
               },
               child: Text(
                 'Delete',
@@ -90,13 +97,6 @@ class _EachPostState extends State<EachPost> {
     title: 'votes',
     icon: 'assets/images/icons/upvote.png',
   );
-
-  @override
-  void initState() {
-    super.initState();
-    getAllCommentsBloc.dispatch(GetAllCommentsEvent(
-        postId: widget.post.postId, sort: dropdownValue.title));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -267,11 +267,20 @@ class _EachPostState extends State<EachPost> {
                                     PopupMenuButton<ForumChoice>(
                                       onSelected: (ForumChoice choice) {
                                         if (choice.title == 'Edit') {
+                                          Fluttertoast.cancel();
+
                                           Navigator.of(context).push(
-                                              MaterialPageRoute(builder:
-                                                  (BuildContext context) {
-                                            return EditPost(post: widget.post);
-                                          }));
+                                            MaterialPageRoute(
+                                              builder: (BuildContext context) {
+                                                return EditPost(
+                                                    post: widget.post);
+                                              },
+                                            ),
+                                          ).then((editedPost) {
+                                            setState(() {
+                                              widget.post = editedPost;
+                                            });
+                                          });
                                         } else {
                                           _showDeletePostModal();
                                         }
@@ -405,6 +414,44 @@ class _EachPostState extends State<EachPost> {
                           ),
                         ],
                       ),
+                      BlocListener(
+                        child: SizedBox(),
+                        bloc: addPostBloc,
+                        listener: (BuildContext context, state) {
+                          if (state is AddPostUninitiatedState) {
+                            return SizedBox();
+                          } else if (state is AddPostSendingState) {
+                            return Container(
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            );
+                          } else if (state is AddPostSucessState) {
+                            Fluttertoast.showToast(
+                                msg: state.message,
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIos: 1,
+                                backgroundColor: Colors.black,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                            Navigator.pop(context);
+                            return SizedBox();
+                          } else {
+                            var errorstate = state as AddPostErrorState;
+                            Fluttertoast.showToast(
+                                msg: errorstate.error,
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIos: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                            Navigator.pop(context);
+                            return SizedBox();
+                          }
+                        },
+                      )
                     ],
                   ),
                 ),

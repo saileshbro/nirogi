@@ -15,6 +15,7 @@ class ProfileRepository {
     try {
       final response = await client.get("$baseUrl/api/users/me", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json',
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -33,6 +34,7 @@ class ProfileRepository {
     try {
       final response = await client.get("$baseUrl/api/users", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json',
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -51,6 +53,7 @@ class ProfileRepository {
     try {
       final response = await client.get("$baseUrl/api/users/$userId", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json',
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -69,6 +72,7 @@ class ProfileRepository {
     try {
       final response = await client.patch("$baseUrl/api/users/me", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json',
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {

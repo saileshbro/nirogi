@@ -28,8 +28,11 @@ class _EditPostState extends State<EditPost> {
   _EditPostState({@required this.categoryId}) {
     categoryValue = categories[this.categoryId - 1];
   }
-  int getCategoryId() {
-    return this.categoryId;
+  PostBloc addPostBloc;
+  @override
+  void initState() {
+    super.initState();
+    addPostBloc = PostBloc();
   }
 
   @override
@@ -207,7 +210,6 @@ class _EditPostState extends State<EditPost> {
                                 addPostBloc.dispatch(EditPostEvent(
                                     post: widget.post,
                                     postId: widget.post.postId));
-                                Navigator.pop(context);
                               }
                             },
                             child: Text(
@@ -224,9 +226,10 @@ class _EditPostState extends State<EditPost> {
                     ],
                   ),
                 ),
-                BlocBuilder(
+                BlocListener(
                   bloc: addPostBloc,
-                  builder: (BuildContext context, AddPostState state) {
+                  child: SizedBox(),
+                  listener: (BuildContext context, PostState state) {
                     if (state is AddPostUninitiatedState) {
                       return SizedBox();
                     } else if (state is AddPostSendingState) {
@@ -244,6 +247,7 @@ class _EditPostState extends State<EditPost> {
                           backgroundColor: Colors.black,
                           textColor: Colors.white,
                           fontSize: 16.0);
+                      Navigator.pop(context, widget.post);
                       return SizedBox();
                     } else {
                       var errorstate = state as AddPostErrorState;
@@ -255,7 +259,7 @@ class _EditPostState extends State<EditPost> {
                           backgroundColor: Colors.red,
                           textColor: Colors.white,
                           fontSize: 16.0);
-
+                      Navigator.pop(context, widget.post);
                       return SizedBox();
                     }
                   },

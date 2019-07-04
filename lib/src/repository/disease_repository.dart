@@ -16,6 +16,7 @@ class DiseaseRepository {
         "$baseUrl/api/diseases/top",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -37,6 +38,7 @@ class DiseaseRepository {
         "$baseUrl/api/diseases",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -58,6 +60,7 @@ class DiseaseRepository {
         "$baseUrl/api/disease/$diseaseId",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -77,7 +80,10 @@ class DiseaseRepository {
     try {
       final response = await client.post(
         "$baseUrl/api/diseases",
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json'
+        },
         body: jsonEncode(disease.toJson()),
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);

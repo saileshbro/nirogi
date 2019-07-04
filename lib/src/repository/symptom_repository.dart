@@ -14,6 +14,7 @@ class SymptomRepository {
     try {
       final response = await client.get("$baseUrl/api/symptoms/top", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json',
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -34,6 +35,7 @@ class SymptomRepository {
         "$baseUrl/api/symptoms",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -55,6 +57,7 @@ class SymptomRepository {
         "$baseUrl/api/symptom/$symptomId",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -74,7 +77,10 @@ class SymptomRepository {
     try {
       final response = await client.post(
         "$baseUrl/api/symptoms",
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json'
+        },
         body: jsonEncode(symptom.toJson()),
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);

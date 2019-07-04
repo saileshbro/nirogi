@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nirogi/src/bloc/addpost_bloc.dart';
+import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/models/models.dart';
@@ -16,6 +16,13 @@ class _CreatePostState extends State<CreatePost> {
   GlobalKey<FormState> _createPostField = GlobalKey<FormState>();
   final Post post = Post(category: categories[0]);
   Category categoryValue = categories[0];
+  PostBloc addPostBloc;
+  @override
+  void initState() {
+    super.initState();
+    addPostBloc = PostBloc();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -189,7 +196,6 @@ class _CreatePostState extends State<CreatePost> {
                                 _createPostField.currentState.save();
                                 addPostBloc
                                     .dispatch(CreateNewPostevent(post: post));
-                                Navigator.pop(context);
                               }
                             },
                             child: Text(
@@ -206,9 +212,10 @@ class _CreatePostState extends State<CreatePost> {
                     ],
                   ),
                 ),
-                BlocBuilder(
+                BlocListener(
+                  child: SizedBox(),
                   bloc: addPostBloc,
-                  builder: (BuildContext context, AddPostState state) {
+                  listener: (BuildContext context, PostState state) {
                     if (state is AddPostUninitiatedState) {
                       return SizedBox();
                     } else if (state is AddPostSendingState) {
@@ -226,6 +233,8 @@ class _CreatePostState extends State<CreatePost> {
                           backgroundColor: Colors.black,
                           textColor: Colors.white,
                           fontSize: 16.0);
+                      Navigator.pop(context);
+
                       return SizedBox();
                     } else {
                       var errorstate = state as AddPostErrorState;
@@ -237,7 +246,7 @@ class _CreatePostState extends State<CreatePost> {
                           backgroundColor: Colors.red,
                           textColor: Colors.white,
                           fontSize: 16.0);
-
+                      Navigator.pop(context);
                       return SizedBox();
                     }
                   },

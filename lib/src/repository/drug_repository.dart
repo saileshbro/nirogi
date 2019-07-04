@@ -16,6 +16,7 @@ class DrugRepository {
         '$baseUrl/api/drugs/common',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -37,6 +38,7 @@ class DrugRepository {
         '$baseUrl/api/drug/$genericName',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -58,6 +60,7 @@ class DrugRepository {
         '$baseUrl/api/drugs/search?query=$query',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);

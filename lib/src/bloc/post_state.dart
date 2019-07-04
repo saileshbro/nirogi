@@ -1,17 +1,17 @@
 import 'package:meta/meta.dart';
 
-abstract class AddPostState {}
+abstract class PostState {}
 
-class AddPostUninitiatedState extends AddPostState {}
+class AddPostUninitiatedState extends PostState {}
 
-class AddPostSendingState extends AddPostState {}
+class AddPostSendingState extends PostState {}
 
-class AddPostErrorState extends AddPostState {
+class AddPostErrorState extends PostState {
   final String error;
   AddPostErrorState({@required this.error}) : assert(error != null);
 }
 
-class AddPostSucessState extends AddPostState {
+class AddPostSucessState extends PostState {
   final String message;
   AddPostSucessState({@required this.message}) : assert(message != null);
 }

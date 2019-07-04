@@ -15,6 +15,7 @@ class FirstAidRepository {
     try {
       final response = await client.get("$baseUrl/api/firstaids", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json',
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -34,6 +35,7 @@ class FirstAidRepository {
       final response =
           await client.get("$baseUrl/api/firstaid/$firstAidId", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json',
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {

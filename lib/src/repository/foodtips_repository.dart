@@ -17,6 +17,7 @@ class FoodTipsRepository {
         '$baseUrl/api/tips/diseases',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -38,6 +39,7 @@ class FoodTipsRepository {
         '$baseUrl/api/tips/disease/$diseaseId',
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);

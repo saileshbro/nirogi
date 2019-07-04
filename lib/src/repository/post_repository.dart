@@ -15,6 +15,7 @@ class PostRepository {
       final response =
           await client.get("$baseUrl/api/posts?sort=$sort", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json',
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -33,6 +34,7 @@ class PostRepository {
     try {
       final response = await client.get("$baseUrl/api/posts/me", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json',
       });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -75,8 +77,10 @@ class PostRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.get('$baseUrl/api/post/$postId',
-          headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
+      final response = await client.get('$baseUrl/api/post/$postId', headers: {
+        HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json'
+      });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
         throw responseData['error'];
@@ -95,7 +99,10 @@ class PostRepository {
     try {
       final response = await client.patch(
         '$baseUrl/api/post/$postId',
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json'
+        },
         body: jsonEncode(updatePost.toJson()),
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -115,8 +122,11 @@ class PostRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.delete('$baseUrl/api/post/$postId',
-          headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
+      final response =
+          await client.delete('$baseUrl/api/post/$postId', headers: {
+        HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json'
+      });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
         throw responseData['error'];
@@ -134,8 +144,11 @@ class PostRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.post('$baseUrl/api/post/$postId/upvote',
-          headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
+      final response =
+          await client.post('$baseUrl/api/post/$postId/upvote', headers: {
+        HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json'
+      });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
         throw responseData['error'];
@@ -153,8 +166,11 @@ class PostRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      final response = await client.post('$baseUrl/api/post/$postId/downvote',
-          headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
+      final response =
+          await client.post('$baseUrl/api/post/$postId/downvote', headers: {
+        HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json'
+      });
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
         throw responseData['error'];
@@ -175,7 +191,10 @@ class PostRepository {
     try {
       final response = await client.post(
         '$baseUrl/api/post/$postId/comment',
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json'
+        },
         body: jsonEncode(comment.toJson()),
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -198,7 +217,10 @@ class PostRepository {
     try {
       final response = await client.get(
         "$baseUrl/api/post/$postId/comments?sort=$sort",
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json'
+        },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -218,7 +240,10 @@ class PostRepository {
     try {
       final response = await client.get(
         "$baseUrl/api/post/$postId/comment/$commentId",
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json'
+        },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -241,7 +266,10 @@ class PostRepository {
     try {
       final response = await client.patch(
         "$baseUrl/api/post/$postId/comment/$commentId",
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json'
+        },
         body: jsonEncode(comment.toJson()),
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -264,7 +292,10 @@ class PostRepository {
     try {
       final response = await client.post(
         "$baseUrl/api/post/$postId/comment/$commentId/upvote",
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json'
+        },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -286,7 +317,10 @@ class PostRepository {
     try {
       final response = await client.post(
         "$baseUrl/api/post/$postId/comment/$commentId/downvote",
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json'
+        },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {
@@ -308,7 +342,10 @@ class PostRepository {
     try {
       final response = await client.delete(
         "$baseUrl/api/post/$postId/comment/$commentId",
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json'
+        },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {

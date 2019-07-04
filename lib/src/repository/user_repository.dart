@@ -83,6 +83,7 @@ class UserRepository {
         "$baseUrl/api/users/me",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);

@@ -116,6 +116,7 @@ class _ForumPageState extends State<ForumPage> {
             children: <Widget>[
               _BuildPostsList(
                 posts: posts,
+                sort: sort,
               ),
             ],
           );
@@ -127,7 +128,8 @@ class _ForumPageState extends State<ForumPage> {
 
 class _BuildPostsList extends StatefulWidget {
   final List<Post> posts;
-  _BuildPostsList({@required this.posts});
+  final String sort;
+  _BuildPostsList({@required this.posts, @required this.sort});
 
   @override
   __BuildPostsListState createState() => __BuildPostsListState();
@@ -142,22 +144,27 @@ class __BuildPostsListState extends State<_BuildPostsList> {
       child: Padding(
         padding: EdgeInsets.only(
             right: 0.02 * width, left: 0.04 * width, bottom: 0.01 * height),
-        child: ListView.separated(
-          shrinkWrap: true,
-          physics: BouncingScrollPhysics(),
-          itemCount: widget.posts.length,
-          scrollDirection: Axis.vertical,
-          itemBuilder: (BuildContext context, int index) {
-            return ForumBlock(
-              post: widget.posts[index],
-            );
+        child: RefreshIndicator(
+          onRefresh: () {
+            getPostsBloc.dispatch(GetAllPostsEvent(sort: widget.sort));
           },
-          separatorBuilder: (BuildContext context, int index) {
-            return Divider(
-              color: Colors.grey,
-              height: 0.01 * height,
-            );
-          },
+          child: ListView.separated(
+            shrinkWrap: true,
+            physics: BouncingScrollPhysics(),
+            itemCount: widget.posts.length,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (BuildContext context, int index) {
+              return ForumBlock(
+                post: widget.posts[index],
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return Divider(
+                color: Colors.grey,
+                height: 0.01 * height,
+              );
+            },
+          ),
         ),
       ),
     );
