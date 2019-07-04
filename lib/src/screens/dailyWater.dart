@@ -242,72 +242,8 @@ class _DailyWaterState extends State<DailyWater>
               SizedBox(
                 height: 25,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 30),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Recommended Daily Water Intake',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.w500),
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                Text(
-                                  waterInLitre,
-                                  style: TextStyle(
-                                    color: Color(0xFF33BBEA),
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 28,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'OR',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  waterInGlass,
-                                  style: TextStyle(
-                                    color: Color(0xFF1375BC),
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 26,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: SizedBox(
-                        width: 170,
-                        child: Image(
-                          image: AssetImage('assets/images/icons/drinkman.png'),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              WaterRecommendationBox(
+                  waterInLitre: waterInLitre, waterInGlass: waterInGlass),
               SizedBox(
                 height: 25,
               ),
@@ -419,6 +355,86 @@ class _DailyWaterState extends State<DailyWater>
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class WaterRecommendationBox extends StatelessWidget {
+  const WaterRecommendationBox({
+    Key key,
+    @required this.waterInLitre,
+    @required this.waterInGlass,
+  }) : super(key: key);
+
+  final String waterInLitre;
+  final String waterInGlass;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 10, 10, 30),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Recommended Daily Water Intake',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Text(
+                        waterInLitre,
+                        style: TextStyle(
+                          color: Color(0xFF33BBEA),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 28,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'OR',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        waterInGlass,
+                        style: TextStyle(
+                          color: Color(0xFF1375BC),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 26,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: SizedBox(
+              width: 170,
+              child: Image(
+                image: AssetImage('assets/images/icons/drinkman.png'),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
