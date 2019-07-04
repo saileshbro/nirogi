@@ -7,3 +7,4 @@ export 'getcomments_state.dart';
 export 'post_state.dart';
 export 'managepassword_state.dart';
 export 'comment_state.dart';
+export 'vote_state.dart';

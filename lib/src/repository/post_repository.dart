@@ -185,17 +185,17 @@ class PostRepository {
   }
 
   Future<String> commentPost(
-      {@required postId, @required Comment comment}) async {
+      {@required postId, @required Comment newComment}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
       final response = await client.post(
-        '$baseUrl/api/post/$postId/comment',
+        "$baseUrl/api/post/$postId/comment",
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $token",
           HttpHeaders.contentTypeHeader: 'application/json'
         },
-        body: jsonEncode(comment.toJson()),
+        body: jsonEncode(newComment.toJson()),
       );
       Map<String, dynamic> responseData = jsonDecode(response.body);
       if (responseData.containsKey('error')) {

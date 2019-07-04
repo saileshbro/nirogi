@@ -7,3 +7,4 @@ export 'getcomments_bloc.dart';
 export 'post_bloc.dart';
 export 'managepassword_bloc.dart';
 export 'comment_bloc.dart';
+export 'vote_bloc.dart';

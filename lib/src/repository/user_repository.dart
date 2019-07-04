@@ -56,17 +56,23 @@ class UserRepository {
     preferences.remove('token');
     preferences.remove('name');
     preferences.remove('imageUrl');
+    preferences.remove('address');
+    preferences.remove('email');
     return;
   }
 
   Future<void> persistToken(
       {@required String token,
       @required String name,
-      @required String imageUrl}) async {
+      @required String email,
+      @required String imageUrl,
+      @required String address}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString('token', token);
     preferences.setString('name', name);
+    preferences.setString('email', email);
     preferences.setString('imageUrl', imageUrl ?? "");
+    preferences.setString('address', address ?? "");
     return;
   }
 

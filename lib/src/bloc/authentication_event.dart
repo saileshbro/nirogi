@@ -14,9 +14,16 @@ class LoggedInEvent extends AuthenticationEvent {
   final String token;
   final String name;
   final String imageUrl;
+  final String email;
+  final String address;
 
-  LoggedInEvent({@required this.token, @required this.name, this.imageUrl})
-      : super([token, name, imageUrl]);
+  LoggedInEvent(
+      {@required this.token,
+      @required this.name,
+      this.imageUrl,
+      this.address,
+      @required this.email})
+      : super([token, name, imageUrl, address, email]);
 
   @override
   String toString() => 'LoggedIn { token: $token }';

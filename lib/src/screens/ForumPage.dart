@@ -145,7 +145,7 @@ class __BuildPostsListState extends State<_BuildPostsList> {
         padding: EdgeInsets.only(
             right: 0.02 * width, left: 0.04 * width, bottom: 0.01 * height),
         child: RefreshIndicator(
-          onRefresh: () {
+          onRefresh: () async {
             getPostsBloc.dispatch(GetAllPostsEvent(sort: widget.sort));
           },
           child: ListView.separated(

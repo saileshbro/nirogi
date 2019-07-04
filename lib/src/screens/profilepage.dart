@@ -253,7 +253,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           state as PostsFetchedState;
                       final posts = stateAsPostsFetchedState.posts;
                       return RefreshIndicator(
-                        onRefresh: () {
+                        onRefresh: () async {
                           getPostsBloc.dispatch(GetAllMyPostsEvent());
                         },
                         child: ListView.separated(

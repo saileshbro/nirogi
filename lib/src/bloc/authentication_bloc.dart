@@ -26,10 +26,11 @@ class AuthenticationBloc
     if (event is LoggedInEvent) {
       yield AuthenticationLoadingState();
       await userRepository.persistToken(
-        imageUrl: event.imageUrl,
-        name: event.name,
-        token: event.token,
-      );
+          imageUrl: event.imageUrl,
+          name: event.name,
+          token: event.token,
+          email: event.email,
+          address: event.address);
       yield AuthenticationAuthenticatedState();
     }
     if (event is LoggedOutEvent) {

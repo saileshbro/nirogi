@@ -14,7 +14,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
       String message;
       if (event is CreateNewCommentevent) {
         message = await postRepository.commentPost(
-            comment: event.comment, postId: event.postId);
+            newComment: event.comment, postId: event.postId);
         yield CommentSucessState(message: message);
       } else if (event is EditCommentEvent) {
         message = await postRepository.updateComment(

@@ -7,3 +7,4 @@ export 'getcomments_event.dart';
 export 'post_event.dart';
 export 'managepassword_event.dart';
 export 'comment_event.dart';
+export 'vote_event.dart';

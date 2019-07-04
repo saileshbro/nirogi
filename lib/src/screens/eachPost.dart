@@ -3,6 +3,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
+import 'package:nirogi/src/bloc/comment_state.dart';
 import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/getcomments_event.dart';
 import 'package:nirogi/src/bloc/states.dart';
@@ -25,7 +26,9 @@ class EachPost extends StatefulWidget {
 }
 
 class _EachPostState extends State<EachPost> {
+  final Comment comment = Comment();
   PostBloc addPostBloc;
+  CommentBloc commentBloc;
   @override
   void initState() {
     super.initState();
@@ -92,13 +95,12 @@ class _EachPostState extends State<EachPost> {
     );
   }
 
-  TextEditingController _controller = TextEditingController();
+  GlobalKey<FormFieldState> _textFieldKey = GlobalKey<FormFieldState>();
   bool isButtonClicked = false;
   DropDownChoice dropdownValue = const DropDownChoice(
     title: 'votes',
     icon: 'assets/images/icons/upvote.png',
   );
-
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -121,8 +123,14 @@ class _EachPostState extends State<EachPost> {
                       ),
                       SizedBox(width: 0.04 * width),
                       Flexible(
-                        child: TextField(
-                          controller: _controller,
+                        child: TextFormField(
+                          key: _textFieldKey,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return "Cannot create a empty comment";
+                            }
+                            return null;
+                          },
                           style: Theme.of(context).textTheme.body2.copyWith(
                                 fontSize: 16,
                               ),
@@ -143,8 +151,48 @@ class _EachPostState extends State<EachPost> {
                         padding: EdgeInsets.all(0),
                         icon: Icon(Icons.send),
                         color: Colors.red[700],
-                        onPressed: () {
-                          print(_controller.text);
+                        onPressed: () async {
+                          if (_textFieldKey.currentState.validate()) {
+                            comment.comment = _textFieldKey.currentState.value;
+                            commentBloc.dispatch(CreateNewCommentevent(
+                              comment: comment,
+                              postId: widget.post.postId,
+                            ));
+                            getAllCommentsBloc.dispatch(GetAllCommentsEvent(
+                                postId: widget.post.postId,
+                                sort: dropdownValue.title));
+                          }
+                        },
+                      ),
+                      BlocBuilder(
+                        bloc: commentBloc,
+                        builder: (BuildContext context, state) {
+                          if (state is CommentUninitiatedState) {
+                            return SizedBox();
+                          } else if (state is CommentSendingState) {
+                            return SizedBox();
+                          } else if (state is CommentSucessState) {
+                            Fluttertoast.showToast(
+                                msg: state.message,
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIos: 1,
+                                backgroundColor: Colors.black,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                            return SizedBox();
+                          } else {
+                            var errorstate = state as CommentErrorState;
+                            Fluttertoast.showToast(
+                                msg: errorstate.error,
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIos: 1,
+                                backgroundColor: Colors.black,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                            return SizedBox();
+                          }
                         },
                       )
                     ],
@@ -160,6 +208,7 @@ class _EachPostState extends State<EachPost> {
                 heroTag: 'Add Comment',
                 tooltip: 'Add Comment',
                 onPressed: () {
+                  commentBloc = new CommentBloc();
                   setState(() {
                     isButtonClicked = !isButtonClicked;
                   });
@@ -447,7 +496,7 @@ class _EachPostState extends State<EachPost> {
                                 backgroundColor: Colors.black,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
-                            Navigator.pop(context);
+                            // Navigator.pop(context);
                             return SizedBox();
                           } else {
                             var errorstate = state as AddPostErrorState;
@@ -459,7 +508,7 @@ class _EachPostState extends State<EachPost> {
                                 backgroundColor: Colors.red,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
-                            Navigator.pop(context);
+                            // Navigator.pop(context);
                             return SizedBox();
                           }
                         },

@@ -71,12 +71,16 @@ class _HealthNewsPageState extends State<HealthNewsPage> {
             ),
           );
         } else if (snapshot.hasError) {
-          return Center(
-            child: Text(snapshot.error.toString()),
+          return Container(
+            child: Center(
+              child: Text(snapshot.error.toString()),
+            ),
           );
         } else {
-          return Center(
-            child: CircularProgressIndicator(),
+          return Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         }
       },
