@@ -96,9 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               width: 0.25 * width,
                               child: Image.asset(
                                 'assets/images/icons/profile.png',
-                              ),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),

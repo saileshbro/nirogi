@@ -28,6 +28,7 @@ class ForumBlock extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
                   height: 0.09 * height,
@@ -39,7 +40,7 @@ class ForumBlock extends StatelessWidget {
                         image: NetworkImage(
                           "$baseUrl/${post.imageUrl}",
                         ),
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                       )),
                 ),
                 SizedBox(
@@ -47,7 +48,7 @@ class ForumBlock extends StatelessWidget {
                 ),
                 Flexible(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(

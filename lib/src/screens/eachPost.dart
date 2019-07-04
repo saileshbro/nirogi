@@ -388,6 +388,9 @@ class _EachPostState extends State<EachPost> {
                                             MaterialPageRoute(builder:
                                                 (BuildContext context) {
                                           return ViewProfile(
+                                            address: widget.post.address,
+                                            imageUrl: widget.post.imageUrl,
+                                            name: widget.post.name,
                                             userId: widget.post.userId,
                                           );
                                         }));
@@ -418,8 +421,8 @@ class _EachPostState extends State<EachPost> {
                                             width: 5,
                                           ),
                                           Container(
-                                            height: 0.08 * width,
-                                            width: 0.12 * width,
+                                            height: 0.1 * width,
+                                            width: 0.1 * width,
                                             decoration: BoxDecoration(
                                               color: Colors.red[50],
                                               shape: BoxShape.circle,
@@ -427,7 +430,7 @@ class _EachPostState extends State<EachPost> {
                                                 image: NetworkImage(
                                                   "$baseUrl/${widget.post.imageUrl}",
                                                 ),
-                                                fit: BoxFit.contain,
+                                                fit: BoxFit.cover,
                                               ),
                                             ),
                                           )

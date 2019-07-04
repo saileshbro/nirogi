@@ -8,7 +8,7 @@ import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class CommentCard extends StatefulWidget {
-  final comment;
+  final Comment comment;
   final bool canModifyPost;
   const CommentCard({
     @required this.comment,
@@ -62,11 +62,11 @@ class _CommentCardState extends State<CommentCard> {
               onPressed: () {
                 postRepository.deleteComment(
                     commentId: widget.comment.commentId,
-                    postId: widget.comment.postId);
+                    postId: widget.comment.postid);
                 Navigator.of(context).pop();
                 setState(() {
                   getAllCommentsBloc.dispatch(GetAllCommentsEvent(
-                      sort: 'time', postId: widget.comment.postId));
+                      sort: 'time', postId: widget.comment.postid));
                 });
                 print('delete');
               },
@@ -178,6 +178,9 @@ class _CommentCardState extends State<CommentCard> {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (BuildContext context) {
                 return ViewProfile(
+                  address: widget.comment.address,
+                  imageUrl: widget.comment.imageUrl,
+                  name: widget.comment.name,
                   userId: widget.comment.userId,
                 );
               }));
@@ -228,7 +231,7 @@ class _CommentCardState extends State<CommentCard> {
                       image: NetworkImage(
                         '$baseUrl/${widget.comment.imageUrl}',
                       ),
-                      fit: BoxFit.contain,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
