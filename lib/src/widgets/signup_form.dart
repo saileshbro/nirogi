@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nirogi/src/bloc/authentication_bloc.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
@@ -48,13 +49,14 @@ class _SignupFormState extends State<SignupForm> {
       builder: (BuildContext context, SignupState state) {
         if (state is SignupFailureState) {
           _onWidgetDidBuild(() {
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: Text('${state.error}'),
+            Fluttertoast.showToast(
+                msg: state.error,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIos: 1,
                 backgroundColor: Colors.red,
-                duration: Duration(milliseconds: 800),
-              ),
-            );
+                textColor: Colors.white,
+                fontSize: 16.0);
           });
         }
         return Stack(

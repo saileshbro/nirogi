@@ -17,7 +17,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   @override
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
-    if (event is LoginButtonPressedEvent) {
+    if (event is LoginInitialEvent) {
+      yield LoginInitialState();
+    } else if (event is LoginButtonPressedEvent) {
       yield LoginLoadingState();
       try {
         final user = await userRepository.authenticate(

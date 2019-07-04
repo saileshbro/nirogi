@@ -4,17 +4,19 @@ import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/repository/repositories.dart';
 
-class GetPostsBloc extends Bloc<GetAllPostsEvent, GetPostsState> {
+class GetPostsBloc extends Bloc<GetPostsEvent, GetPostsState> {
   @override
   GetPostsState get initialState => PostsUninitialisedState();
 
   @override
-  Stream<GetPostsState> mapEventToState(GetAllPostsEvent event) async* {
+  Stream<GetPostsState> mapEventToState(GetPostsEvent event) async* {
     yield PostsFetchingState();
     try {
       List<Post> posts;
       if (event is GetAllPostsEvent) {
         posts = await postRepository.getAllPost(sort: event.sort);
+      } else if (event is GetAllMyPostsEvent) {
+        posts = await postRepository.getAllMyPosts();
       }
       if (posts.length == 0) {
         yield PostsEmptyState();

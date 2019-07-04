@@ -84,4 +84,50 @@ class ProfileRepository {
       throw e.toString();
     }
   }
+
+  Future<String> changePassword(
+      {@required ChangePassword passwordModel}) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final token = preferences.getString('token');
+    try {
+      final response = await client.post('$baseUrl/api/users/changepw',
+          headers: {
+            HttpHeaders.authorizationHeader: "Bearer $token",
+            HttpHeaders.contentTypeHeader: 'application/json'
+          },
+          body: jsonEncode(passwordModel.toJson()));
+      Map<String, dynamic> responseData = jsonDecode(response.body);
+      if (responseData.containsKey('error')) {
+        throw responseData['error'];
+      } else if (responseData.containsKey('message')) {
+        return responseData['message'];
+      } else {
+        throw "Unexpected error occured!";
+      }
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<String> forgetPassword({@required String email}) async {
+    try {
+      final Map<String, dynamic> body = new Map<String, dynamic>();
+      body["email"] = email;
+      final response = await client.post('$baseUrl/api/users/forgot',
+          headers: {HttpHeaders.contentTypeHeader: 'application/json'},
+          body: jsonEncode(body));
+      Map<String, dynamic> responseData = jsonDecode(response.body);
+      if (responseData.containsKey('error')) {
+        throw responseData['error'];
+      } else if (responseData.containsKey('message')) {
+        return responseData['message'];
+      } else {
+        throw "Unexpected error occured!";
+      }
+    } catch (e) {
+      throw e.toString();
+    }
+  }
 }
+
+final ProfileRepository profileRepository = ProfileRepository();

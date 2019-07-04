@@ -26,7 +26,11 @@ class DrugRepository {
         return Drugs.fromJson(jsonDecode(response.body)).drugs;
       }
     } catch (e) {
-      throw e.toString();
+      if (e is Exception) {
+        throw "Exception";
+      } else {
+        throw e.toString();
+      }
     }
   }
 

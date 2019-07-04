@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:nirogi/src/bloc/blocs.dart';
+import 'package:nirogi/src/bloc/events.dart';
+import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/functions/functions.dart';
+import 'package:nirogi/src/models/models.dart';
 
 class PasswordChangeForm extends StatefulWidget {
   @override
@@ -8,6 +14,18 @@ class PasswordChangeForm extends StatefulWidget {
 }
 
 class _PasswordChangeFormState extends State<PasswordChangeForm> {
+  ManagePasswordBloc managePasswordBloc;
+  GlobalKey<FormState> _formKey;
+  GlobalKey<FormFieldState> _newpwKey;
+  final ChangePassword changePassword = ChangePassword();
+  @override
+  void initState() {
+    super.initState();
+    _formKey = GlobalKey<FormState>();
+    _newpwKey = GlobalKey<FormFieldState>();
+    managePasswordBloc = ManagePasswordBloc();
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -30,12 +48,16 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
                 )
               ]),
           child: Form(
+            key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 0.006 * height),
                   child: TextFormField(
+                    onSaved: (value) {
+                      changePassword.currentpw = value;
+                    },
                     validator: (password) => validatePassword(password),
                     obscureText: true,
                     style: TextStyle(
@@ -59,7 +81,13 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 0.006 * height),
                   child: TextFormField(
-                    validator: (password) => validatePassword(password),
+                    key: _newpwKey,
+                    onSaved: (value) {
+                      changePassword.newpw = value;
+                    },
+                    validator: (password) {
+                      return validatePassword(password);
+                    },
                     obscureText: true,
                     style: TextStyle(
                       fontSize: 16,
@@ -80,6 +108,15 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
                   ),
                 ),
                 TextFormField(
+                  validator: (value) {
+                    if (value != _newpwKey.currentState.value) {
+                      return "Password didn't match";
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    changePassword.confirmpw = value;
+                  },
                   obscureText: true,
                   style: TextStyle(
                     fontSize: 16,
@@ -112,14 +149,60 @@ class _PasswordChangeFormState extends State<PasswordChangeForm> {
               borderRadius: BorderRadius.circular(20),
             ),
             elevation: 5,
-            child: Text(
-              'CHANGE',
-              style: Theme.of(context)
-                  .textTheme
-                  .button
-                  .copyWith(color: Colors.red[700]),
+            child: BlocBuilder(
+              bloc: managePasswordBloc,
+              builder: (BuildContext context, state) {
+                if (state is ManagePasswordUninitialisedState) {
+                  return Text(
+                    'CHANGE',
+                    style: Theme.of(context)
+                        .textTheme
+                        .button
+                        .copyWith(color: Colors.red[700]),
+                  );
+                } else if (state is ManagePasswordRequestingState) {
+                  return CircularProgressIndicator(
+                    strokeWidth: 1,
+                  );
+                } else if (state is ManagePasswordSuccessState) {
+                  Fluttertoast.showToast(
+                      msg: state.message,
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIos: 1,
+                      backgroundColor: Colors.black,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+
+                  Navigator.of(context).pop();
+                } else if (state is ManagePasswordErrorState) {
+                  Fluttertoast.showToast(
+                      msg: state.error,
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIos: 1,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                  return Text(
+                    'CHANGE',
+                    style: Theme.of(context)
+                        .textTheme
+                        .button
+                        .copyWith(color: Colors.red[700]),
+                  );
+                }
+              },
             ),
-            onPressed: () {},
+            onPressed: () {
+              if (_formKey.currentState.validate()) {
+                _formKey.currentState.save();
+                managePasswordBloc.dispatch(
+                    ChangePasswordEvent(changePassword: changePassword));
+
+                print(changePassword.toJson());
+              }
+            },
           ),
         )
       ],

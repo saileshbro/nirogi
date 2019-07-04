@@ -5,3 +5,5 @@ export 'signup_event.dart';
 export 'getposts_event.dart';
 export 'getcomments_event.dart';
 export 'post_event.dart';
+export 'managepassword_event.dart';
+export 'comment_event.dart';
