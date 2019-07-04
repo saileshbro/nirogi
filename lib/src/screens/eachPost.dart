@@ -14,6 +14,7 @@ import 'package:nirogi/src/widgets/widgets.dart';
 
 class EachPost extends StatefulWidget {
   Post post;
+
   EachPost({
     @required this.post,
     Key key,
@@ -204,11 +205,14 @@ class _EachPostState extends State<EachPost> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               GestureDetector(
-                                onTap: () {},
+                                onTap:
+                                    widget.post.voteStatus == 1 ? null : () {},
                                 child: Image.asset(
                                   'assets/images/icons/upArrow.png',
                                   width: 0.06 * width,
-                                  color: Colors.grey,
+                                  color: widget.post.voteStatus == 1
+                                      ? Colors.red[700]
+                                      : Colors.grey,
                                 ),
                               ),
                               SizedBox(
@@ -225,11 +229,14 @@ class _EachPostState extends State<EachPost> {
                                 height: 0.02 * width,
                               ),
                               GestureDetector(
-                                onTap: () {},
+                                onTap:
+                                    widget.post.voteStatus == -1 ? null : () {},
                                 child: Image.asset(
                                   'assets/images/icons/downArrow.png',
                                   width: 0.06 * width,
-                                  color: Colors.grey,
+                                  color: widget.post.voteStatus == -1
+                                      ? Colors.red[700]
+                                      : Colors.grey,
                                 ),
                               ),
                             ],
@@ -264,39 +271,44 @@ class _EachPostState extends State<EachPost> {
                                         ),
                                       ),
                                     ),
-                                    PopupMenuButton<ForumChoice>(
-                                      onSelected: (ForumChoice choice) {
-                                        if (choice.title == 'Edit') {
-                                          Fluttertoast.cancel();
+                                    widget.post.canModifyPost == true
+                                        ? PopupMenuButton<ForumChoice>(
+                                            onSelected: (ForumChoice choice) {
+                                              if (choice.title == 'Edit') {
+                                                Fluttertoast.cancel();
 
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (BuildContext context) {
-                                                return EditPost(
-                                                    post: widget.post);
-                                              },
-                                            ),
-                                          ).then((editedPost) {
-                                            setState(() {
-                                              widget.post = editedPost;
-                                            });
-                                          });
-                                        } else {
-                                          _showDeletePostModal();
-                                        }
-                                      },
-                                      itemBuilder: (BuildContext context) {
-                                        return editchoice
-                                            .map((ForumChoice editchoice) {
-                                          return PopupMenuItem<ForumChoice>(
-                                            child: ForumChoiceCard(
-                                              choice: editchoice,
-                                            ),
-                                            value: editchoice,
-                                          );
-                                        }).toList();
-                                      },
-                                    ),
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return EditPost(
+                                                          post: widget.post);
+                                                    },
+                                                  ),
+                                                ).then((editedPost) {
+                                                  setState(() {
+                                                    widget.post = editedPost;
+                                                  });
+                                                });
+                                              } else {
+                                                _showDeletePostModal();
+                                              }
+                                            },
+                                            itemBuilder:
+                                                (BuildContext context) {
+                                              return editchoice.map(
+                                                  (ForumChoice editchoice) {
+                                                return PopupMenuItem<
+                                                    ForumChoice>(
+                                                  child: ForumChoiceCard(
+                                                    choice: editchoice,
+                                                  ),
+                                                  value: editchoice,
+                                                );
+                                              }).toList();
+                                            },
+                                          )
+                                        : SizedBox(),
                                   ],
                                 ),
                                 GestureDetector(
@@ -530,7 +542,9 @@ class _EachPostState extends State<EachPost> {
                     ],
                   ),
                 ),
-                _BuildCommentsList(),
+                _BuildCommentsList(
+                  canModifyPost: widget.post.canModifyPost,
+                ),
               ],
             ),
           ),
@@ -553,7 +567,9 @@ class _EachPostState extends State<EachPost> {
 }
 
 class _BuildCommentsList extends StatelessWidget {
-  const _BuildCommentsList({
+  final bool canModifyPost;
+  _BuildCommentsList({
+    @required this.canModifyPost,
     Key key,
   }) : super(key: key);
 
@@ -611,6 +627,7 @@ class _BuildCommentsList extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return CommentCard(
                 comment: comments[index],
+                canModifyPost: canModifyPost,
               );
             },
             separatorBuilder: (BuildContext context, int index) {
