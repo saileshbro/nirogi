@@ -5,3 +5,5 @@ export 'signup_bloc.dart';
 export 'getposts_bloc.dart';
 export 'getcomments_bloc.dart';
 export 'post_bloc.dart';
+export 'managepassword_bloc.dart';
+export 'comment_bloc.dart';

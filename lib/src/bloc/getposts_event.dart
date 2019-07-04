@@ -6,3 +6,5 @@ class GetAllPostsEvent extends GetPostsEvent {
   final String sort;
   GetAllPostsEvent({@required this.sort}) : assert(sort != null);
 }
+
+class GetAllMyPostsEvent extends GetPostsEvent {}

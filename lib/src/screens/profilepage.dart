@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nirogi/src/bloc/blocs.dart';
+import 'package:nirogi/src/bloc/getposts_event.dart';
+import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/models/models.dart';
-import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
-
 import 'createPost.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -12,11 +14,10 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   int noOfPosts;
-  Future<List<Post>> myPosts;
   @override
   void initState() {
     super.initState();
-    myPosts = postRepository.getAllMyPosts();
+    getPostsBloc.dispatch(GetAllMyPostsEvent());
   }
 
   @override
@@ -248,19 +249,48 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   padding: EdgeInsets.symmetric(vertical: 10),
-                  child: FutureBuilder(
-                    future: myPosts,
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                      if (snapshot.hasData) {
-                        noOfPosts = snapshot.data.length;
-                        print(noOfPosts);
-                        return ListView.separated(
+                  child: BlocBuilder(
+                    bloc: getPostsBloc,
+                    builder: (BuildContext context, state) {
+                      if (state is PostsUninitialisedState) {
+                        return Container(
+                          child: Center(
+                            child: Text('not loaded'),
+                          ),
+                        );
+                      } else if (state is PostsEmptyState) {
+                        return Container(
+                          child: Center(
+                            child: Text("No posts found"),
+                          ),
+                        );
+                      } else if (state is PostsFetchingState) {
+                        return Container(
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      } else if (state is PostsErrorState) {
+                        return Container(
+                          child: Center(
+                            child: Text("error"),
+                          ),
+                        );
+                      }
+                      final stateAsPostsFetchedState =
+                          state as PostsFetchedState;
+                      final posts = stateAsPostsFetchedState.posts;
+                      return RefreshIndicator(
+                        onRefresh: () {
+                          getPostsBloc.dispatch(GetAllMyPostsEvent());
+                        },
+                        child: ListView.separated(
                           shrinkWrap: true,
                           physics: BouncingScrollPhysics(),
-                          itemCount: snapshot.data.length,
+                          itemCount: posts.length,
                           itemBuilder: (BuildContext context, int index) {
                             return PostBlock(
-                              post: snapshot.data[index],
+                              post: posts[index],
                             );
                           },
                           separatorBuilder: (BuildContext context, int index) {
@@ -268,16 +298,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               height: 0.02 * height,
                             );
                           },
-                        );
-                      } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text("error"),
-                        );
-                      } else {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
+                        ),
+                      );
                     },
                   ),
                 ),

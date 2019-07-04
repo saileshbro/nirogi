@@ -184,7 +184,7 @@ class PostRepository {
     }
   }
 
-  Future<Comment> commentPost(
+  Future<String> commentPost(
       {@required postId, @required Comment comment}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');

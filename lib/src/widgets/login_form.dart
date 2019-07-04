@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/states.dart';
@@ -24,7 +25,31 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  GlobalKey<FormState> _key = GlobalKey<FormState>();
+  final FocusNode focusNode1 = FocusNode();
+  final FocusNode focusNode2 = FocusNode();
+  static GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  static GlobalKey<FormFieldState> _emailKey = new GlobalKey<FormFieldState>();
+  static GlobalKey<FormFieldState> _passwordKey =
+      new GlobalKey<FormFieldState>();
+  User user = User(email: "", password: '', name: '');
+  LoginBloc get _loginBloc => widget.loginBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    focusNode1.addListener(_onFocusChanged);
+    focusNode2.addListener(_onFocusChanged);
+  }
+
+  void _onFocusChanged() {
+    _loginBloc.dispatch((LoginInitialEvent()));
+  }
+
+  String email;
+
   void _showDialog() {
+    ManagePasswordBloc managePasswordBloc = ManagePasswordBloc();
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -41,7 +66,11 @@ class _LoginFormState extends State<LoginForm> {
           content: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Form(
+              key: _key,
               child: TextFormField(
+                onSaved: (value) {
+                  email = value;
+                },
                 validator: (email) {
                   return validateEmail(email);
                 },
@@ -69,38 +98,74 @@ class _LoginFormState extends State<LoginForm> {
             Container(
               padding: EdgeInsets.only(right: 10),
               child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                elevation: 5,
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                onPressed: () {},
-                child: Text(
-                  'RESET',
-                  style: Theme.of(context).textTheme.body2.copyWith(
-                        fontSize: 16,
-                        color: Colors.white,
-                      ),
-                ),
-              ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 5,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  onPressed: () {
+                    if (_key.currentState.validate()) {
+                      _key.currentState.save();
+                      print(email);
+                      managePasswordBloc
+                          .dispatch(ForgetPasswordEvent(email: email));
+                    }
+                  },
+                  child: BlocBuilder(
+                    bloc: managePasswordBloc,
+                    builder: (BuildContext context, state) {
+                      if (state is ManagePasswordUninitialisedState) {
+                        return Text(
+                          'RESET',
+                          style: Theme.of(context).textTheme.body2.copyWith(
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                        );
+                      } else if (state is ManagePasswordRequestingState) {
+                        return CircularProgressIndicator(
+                          strokeWidth: 1,
+                        );
+                      } else if (state is ManagePasswordSuccessState) {
+                        Fluttertoast.showToast(
+                            msg: state.message,
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIos: 1,
+                            backgroundColor: Colors.black,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                        return Text(
+                          'RESET',
+                          style: Theme.of(context).textTheme.body2.copyWith(
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                        );
+                      } else if (state is ManagePasswordErrorState) {
+                        Fluttertoast.showToast(
+                            msg: state.error,
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIos: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                        return Text(
+                          'RESET',
+                          style: Theme.of(context).textTheme.body2.copyWith(
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                        );
+                      }
+                    },
+                  )),
             )
           ],
         );
       },
     );
-  }
-
-  static GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  static GlobalKey<FormFieldState> _emailKey = new GlobalKey<FormFieldState>();
-  static GlobalKey<FormFieldState> _passwordKey =
-      new GlobalKey<FormFieldState>();
-  User user = User(email: "", password: '', name: '');
-  LoginBloc get _loginBloc => widget.loginBloc;
-
-  void _onWidgetDidBuild(Function callback) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      callback();
-    });
   }
 
   @override
@@ -111,15 +176,14 @@ class _LoginFormState extends State<LoginForm> {
       bloc: _loginBloc,
       builder: (BuildContext context, LoginState state) {
         if (state is LoginFailureState) {
-          _onWidgetDidBuild(() {
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: Text('${state.error}'),
-                backgroundColor: Colors.red,
-                duration: Duration(milliseconds: 800),
-              ),
-            );
-          });
+          Fluttertoast.showToast(
+              msg: state.error,
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIos: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0);
         }
         return Stack(
           children: <Widget>[
@@ -145,6 +209,7 @@ class _LoginFormState extends State<LoginForm> {
                   children: <Widget>[
                     TextFormField(
                       key: _emailKey,
+                      focusNode: focusNode1,
                       validator: (email) {
                         return validateEmail(email);
                       },
@@ -170,6 +235,7 @@ class _LoginFormState extends State<LoginForm> {
                       height: 0.014 * MediaQuery.of(context).size.height,
                     ),
                     TextFormField(
+                      focusNode: focusNode2,
                       key: _passwordKey,
                       validator: (password) {
                         if (password.length > 7) {
@@ -240,7 +306,6 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
-                    FocusScope.of(context).requestFocus(new FocusNode());
                     user.email = _emailKey.currentState.value;
                     user.password = _passwordKey.currentState.value;
                     _loginBloc.dispatch(LoginButtonPressedEvent(
