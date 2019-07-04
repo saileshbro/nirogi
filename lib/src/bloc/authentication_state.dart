@@ -15,10 +15,12 @@ class AuthenticationAuthenticatedState extends AuthenticationState {
   final String email;
   final String address;
   final String imageUrl;
+  final String token;
   AuthenticationAuthenticatedState(
       {@required this.name,
       @required this.email,
       @required this.address,
+      @required this.token,
       @required this.imageUrl});
   @override
   String toString() => 'AuthenticationAuthenticated';

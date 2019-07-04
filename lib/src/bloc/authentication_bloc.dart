@@ -25,6 +25,7 @@ class AuthenticationBloc
           email: preferences.getString('email'),
           imageUrl: preferences.getString('imageUrl'),
           name: preferences.getString('name'),
+          token: preferences.getString('token'),
         );
       } else {
         yield AuthenticationUnauthenticatedState();
@@ -42,6 +43,7 @@ class AuthenticationBloc
           imageUrl: event.imageUrl,
           name: event.name,
           email: event.email,
+          token: event.token,
           address: event.address);
     }
     if (event is LoggedOutEvent) {

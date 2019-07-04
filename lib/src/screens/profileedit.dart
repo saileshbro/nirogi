@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:nirogi/main.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
-import 'package:nirogi/src/bloc/signup_event.dart';
+import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/functions/functions.dart';
@@ -14,9 +15,7 @@ import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class EditProfile extends StatefulWidget {
-  final User loggedInUser;
-
-  const EditProfile({Key key, @required this.loggedInUser}) : super(key: key);
+  EditProfile({Key key}) : super(key: key);
   @override
   _EditProfileState createState() => _EditProfileState();
 }
@@ -105,7 +104,7 @@ class _EditProfileState extends State<EditProfile> {
                               ),
                               child: CircleAvatar(
                                 backgroundImage: NetworkImage(
-                                  "$baseUrl/${widget.loggedInUser.imageUrl}",
+                                  "$baseUrl/${loggedinUser.imageUrl}",
                                 ),
                               ),
                             ),
@@ -146,7 +145,7 @@ class _EditProfileState extends State<EditProfile> {
                                 onSaved: (name) {
                                   updateuser.name = name;
                                 },
-                                initialValue: widget.loggedInUser.name,
+                                initialValue: loggedinUser.name,
                                 validator: (name) => validateName(name),
                                 style: TextStyle(
                                   fontSize: 16,
@@ -179,7 +178,7 @@ class _EditProfileState extends State<EditProfile> {
                                 onSaved: (email) {
                                   updateuser.email = email;
                                 },
-                                initialValue: widget.loggedInUser.email,
+                                initialValue: loggedinUser.email,
                                 validator: (email) => validateEmail(email),
                                 style: TextStyle(
                                   fontSize: 16,
@@ -212,7 +211,7 @@ class _EditProfileState extends State<EditProfile> {
                                 onSaved: (address) {
                                   updateuser.address = address;
                                 },
-                                initialValue: widget.loggedInUser.address ?? "",
+                                initialValue: loggedinUser.address ?? "",
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -271,6 +270,7 @@ class _EditProfileState extends State<EditProfile> {
                                     backgroundColor: Colors.black,
                                     textColor: Colors.white,
                                     fontSize: 16.0);
+                                Navigator.pop(context);
                                 return Text(
                                   'Save Changes',
                                   style: Theme.of(context)
@@ -289,6 +289,7 @@ class _EditProfileState extends State<EditProfile> {
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                     fontSize: 16.0);
+                                Navigator.pop(context);
                                 return Text(
                                   'Save Changes',
                                   style: Theme.of(context)
@@ -303,9 +304,11 @@ class _EditProfileState extends State<EditProfile> {
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
+                              loggedinUser.address = updateuser.address;
+                              loggedinUser.email = updateuser.email;
+                              loggedinUser.name = updateuser.name;
                               signupBloc.dispatch(
                                   UpdateProfileEvent(user: updateuser));
-                              print(updateuser.toJson());
                             }
                           },
                         ),

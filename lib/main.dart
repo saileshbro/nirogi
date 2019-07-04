@@ -33,6 +33,8 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
+User loggedinUser;
+
 class _MyAppState extends State<MyApp> {
   AuthenticationBloc authenticationBloc;
 
@@ -53,7 +55,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    User loggedinUser;
     return BlocProvider<AuthenticationBloc>(
       bloc: authenticationBloc,
       child: BlocBuilder<ChangeThemeEvent, ChangeThemeState>(
@@ -73,10 +74,9 @@ class _MyAppState extends State<MyApp> {
                     email: authstate.email,
                     imageUrl: authstate.imageUrl,
                     name: authstate.name,
+                    token: authstate.token,
                   );
-                  return HomePage(
-                    loggedInUser: loggedinUser,
-                  );
+                  return HomePage();
                 }
                 if (authstate is AuthenticationUnauthenticatedState) {
                   return LoginSignup(
@@ -89,25 +89,16 @@ class _MyAppState extends State<MyApp> {
               },
             ),
             routes: <String, WidgetBuilder>{
-              "/diseases": (context) =>
-                  DiseasesPage(loggedInUser: loggedinUser),
-              "/symptoms": (context) =>
-                  SymptomsPage(loggedInUser: loggedinUser),
-              "/news": (context) => HealthNewsPage(loggedInUser: loggedinUser),
-              "/about": (context) => AboutPage(loggedInUser: loggedinUser),
-              "/profile": (context) => ProfilePage(
-                    loggedInUser: loggedinUser,
-                  ),
-              "/editprofile": (context) => EditProfile(
-                    loggedInUser: loggedinUser,
-                  ),
+              "/diseases": (context) => DiseasesPage(),
+              "/symptoms": (context) => SymptomsPage(),
+              "/news": (context) => HealthNewsPage(),
+              "/about": (context) => AboutPage(),
+              "/profile": (context) => ProfilePage(),
+              "/editprofile": (context) => EditProfile(),
               "/changepw": (context) => ChangePasswordPage(),
-              "/forum": (context) => ForumPage(loggedInUser: loggedinUser),
-              "/tools": (context) =>
-                  HealthToolsPage(loggedInUser: loggedinUser),
-              "/province": (context) => ProvincePage(
-                    loggedInUser: loggedinUser,
-                  ),
+              "/forum": (context) => ForumPage(),
+              "/tools": (context) => HealthToolsPage(),
+              "/province": (context) => ProvincePage(),
             },
             debugShowCheckedModeBanner: false,
             theme: state.themeData,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nirogi/main.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/getposts_event.dart';
 import 'package:nirogi/src/bloc/states.dart';
@@ -9,9 +10,6 @@ import 'package:nirogi/src/widgets/widgets.dart';
 import 'createPost.dart';
 
 class ProfilePage extends StatefulWidget {
-  final User loggedInUser;
-
-  const ProfilePage({Key key, @required this.loggedInUser}) : super(key: key);
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -99,7 +97,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               height: 0.16 * height,
                               width: 0.25 * width,
                               child: Image.network(
-                                "$baseUrl/${widget.loggedInUser.imageUrl}",
+                                "$baseUrl/${loggedinUser.imageUrl}",
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -115,7 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Column(
                                       children: <Widget>[
                                         Text(
-                                          widget.loggedInUser.name,
+                                          loggedinUser.name,
                                           style: Theme.of(context)
                                               .textTheme
                                               .body2
@@ -124,7 +122,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   fontSize: 20),
                                         ),
                                         Text(
-                                          widget.loggedInUser.address ?? "",
+                                          loggedinUser.address ?? "",
                                           style: Theme.of(context)
                                               .textTheme
                                               .body2
