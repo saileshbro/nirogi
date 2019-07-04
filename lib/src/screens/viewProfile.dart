@@ -5,12 +5,16 @@ import 'package:nirogi/src/widgets/widgets.dart';
 
 import 'createPost.dart';
 
-class ProfilePage extends StatefulWidget {
+class ViewProfile extends StatefulWidget {
+  final int userId;
+  const ViewProfile({
+    @required this.userId,
+  });
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  _ViewProfileState createState() => _ViewProfileState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ViewProfileState extends State<ViewProfile> {
   Future<List<Post>> myPosts;
   @override
   void initState() {
@@ -23,22 +27,6 @@ class _ProfilePageState extends State<ProfilePage> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      floatingActionButton: Container(
-        margin: EdgeInsets.only(bottom: 0.033 * height),
-        child: FloatingActionButton(
-          heroTag: 'createPost',
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CreatePost(),
-              ),
-            );
-          },
-          backgroundColor: Colors.white,
-          child: PlusFloatingIcon(),
-        ),
-      ),
       appBar: AppBar(
         elevation: 0,
         title: Row(

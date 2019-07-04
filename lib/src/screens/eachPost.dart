@@ -311,25 +311,22 @@ class _EachPostState extends State<EachPost> {
                                         : SizedBox(),
                                   ],
                                 ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Container(
-                                    margin: EdgeInsets.only(top: 5),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 4),
-                                    decoration: BoxDecoration(
-                                      color: Colors.red[100],
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Text(
-                                      widget.post.category.category,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .body2
-                                          .copyWith(
-                                            fontSize: 12,
-                                          ),
-                                    ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 5),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: Colors.red[100],
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Text(
+                                    widget.post.category.category,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .body2
+                                        .copyWith(
+                                          fontSize: 12,
+                                        ),
                                   ),
                                 ),
                                 SizedBox(
@@ -385,40 +382,58 @@ class _EachPostState extends State<EachPost> {
                                     Expanded(
                                       child: SizedBox(),
                                     ),
-                                    Container(
-                                      child: Text(
-                                        widget.post.name.split(' ')[0].length >
-                                                12
-                                            ? widget.post.name
-                                                .split(' ')[0]
-                                                .substring(0, 12)
-                                            : widget.post.name.split(' ')[0],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .body2
-                                            .copyWith(
-                                              fontSize: 16,
-                                              color: Colors.red[700],
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(builder:
+                                                (BuildContext context) {
+                                          return ViewProfile(
+                                            userId: widget.post.userId,
+                                          );
+                                        }));
+                                      },
+                                      child: Row(
+                                        children: <Widget>[
+                                          Container(
+                                            child: Text(
+                                              widget.post.name
+                                                          .split(' ')[0]
+                                                          .length >
+                                                      12
+                                                  ? widget.post.name
+                                                      .split(' ')[0]
+                                                      .substring(0, 12)
+                                                  : widget.post.name
+                                                      .split(' ')[0],
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .body2
+                                                  .copyWith(
+                                                    fontSize: 16,
+                                                    color: Colors.red[700],
+                                                  ),
                                             ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Container(
-                                      height: 0.08 * width,
-                                      width: 0.12 * width,
-                                      decoration: BoxDecoration(
-                                        color: Colors.red[50],
-                                        shape: BoxShape.circle,
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                            "$baseUrl/${widget.post.imageUrl}",
                                           ),
-                                          fit: BoxFit.contain,
-                                        ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Container(
+                                            height: 0.08 * width,
+                                            width: 0.12 * width,
+                                            decoration: BoxDecoration(
+                                              color: Colors.red[50],
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                image: NetworkImage(
+                                                  "$baseUrl/${widget.post.imageUrl}",
+                                                ),
+                                                fit: BoxFit.contain,
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
-                                    )
+                                    ),
                                   ],
                                 )
                               ],

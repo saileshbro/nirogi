@@ -4,6 +4,7 @@ import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/repository/repositories.dart';
+import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class CommentCard extends StatefulWidget {
@@ -172,56 +173,67 @@ class _CommentCardState extends State<CommentCard> {
           SizedBox(
             height: 0.02 * width,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    widget.comment.name,
-                    style: Theme.of(context).textTheme.body2.copyWith(
-                          fontSize: 16,
-                          color: Colors.red[700],
-                        ),
-                  ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Image.asset('assets/images/icons/recent.png', height: 15),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        widget.comment.createdAt.toString(),
-                        style: Theme.of(context).textTheme.body2.copyWith(
-                              fontSize: 15,
-                            ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: 0.06 * width,
-              ),
-              Container(
-                height: 40,
-                width: 0.09 * width,
-                decoration: BoxDecoration(
-                  color: Colors.red[50],
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      '$baseUrl/${widget.comment.imageUrl}',
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (BuildContext context) {
+                return ViewProfile(
+                  userId: widget.comment.userId,
+                );
+              }));
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      widget.comment.name,
+                      style: Theme.of(context).textTheme.body2.copyWith(
+                            fontSize: 16,
+                            color: Colors.red[700],
+                          ),
                     ),
-                    fit: BoxFit.contain,
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Image.asset('assets/images/icons/recent.png',
+                            height: 15),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          widget.comment.createdAt.toString(),
+                          style: Theme.of(context).textTheme.body2.copyWith(
+                                fontSize: 15,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 0.02 * width,
+                ),
+                Container(
+                  height: 40,
+                  width: 0.09 * width,
+                  decoration: BoxDecoration(
+                    color: Colors.red[50],
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        '$baseUrl/${widget.comment.imageUrl}',
+                      ),
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )
         ],
       ),

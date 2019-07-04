@@ -26,3 +26,4 @@ export 'dev_info_page.dart';
 export 'eachPost.dart';
 export 'eachDisease.dart';
 export 'eachSymptom.dart';
+export 'viewProfile.dart';
