@@ -96,9 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               width: 0.25 * width,
                               child: Image.asset(
                                 'assets/images/icons/profile.png',
-                              ),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
@@ -141,7 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                 context, '/editprofile');
                                           },
                                           child: Text(
-                                            'Edit Post',
+                                            'Edit Profile',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .body2
@@ -219,7 +217,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: BlocBuilder(
                     bloc: getPostsBloc,

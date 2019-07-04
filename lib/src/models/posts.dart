@@ -33,6 +33,7 @@ class Post {
   String createdAt;
   int userId;
   String name;
+  String address;
   String imageUrl;
   dynamic voteStatus;
   bool canModifyPost;
@@ -48,6 +49,7 @@ class Post {
       this.createdAt,
       this.userId,
       this.name,
+      this.address,
       this.imageUrl,
       this.voteStatus,
       this.canModifyPost,
@@ -63,6 +65,7 @@ class Post {
     createdAt = json['created_at'];
     userId = json['user_id'];
     name = json['name'];
+    address = json['address'];
     imageUrl = json['imageUrl'];
     voteStatus = json['vote_status'];
     canModifyPost = json['can_modify_post'];
@@ -82,6 +85,7 @@ class Post {
     data['created_at'] = this.createdAt;
     data['user_id'] = this.userId;
     data['name'] = this.name;
+    data['address'] = this.address;
     data['imageUrl'] = this.imageUrl;
     data['vote_status'] = this.voteStatus;
     data['can_modify_post'] = this.canModifyPost;

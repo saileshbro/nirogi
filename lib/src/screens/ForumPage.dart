@@ -143,7 +143,10 @@ class __BuildPostsListState extends State<_BuildPostsList> {
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
-            right: 0.02 * width, left: 0.04 * width, bottom: 0.01 * height),
+            top: 0.01 * height,
+            right: 0.02 * width,
+            left: 0.04 * width,
+            bottom: 0.01 * height),
         child: RefreshIndicator(
           onRefresh: () async {
             getPostsBloc.dispatch(GetAllPostsEvent(sort: widget.sort));
@@ -161,7 +164,7 @@ class __BuildPostsListState extends State<_BuildPostsList> {
             separatorBuilder: (BuildContext context, int index) {
               return Divider(
                 color: Colors.grey,
-                height: 0.01 * height,
+                height: 0.015 * height,
               );
             },
           ),

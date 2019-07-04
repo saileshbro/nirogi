@@ -48,6 +48,9 @@ class PostBlock extends StatelessWidget {
                               ),
                         ),
                       ),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Container(
                         margin: EdgeInsets.only(top: 10),
                         padding: EdgeInsets.all(5),

@@ -23,7 +23,9 @@ class Comments {
 
 class Comment {
   int userId;
+  int postid;
   String name;
+  String address;
   String imageUrl;
   int commentId;
   String comment;
@@ -34,7 +36,9 @@ class Comment {
 
   Comment(
       {this.userId,
+      this.postid,
       this.name,
+      this.address,
       this.imageUrl,
       this.commentId,
       this.comment,
@@ -45,7 +49,9 @@ class Comment {
 
   Comment.fromJson(Map<String, dynamic> json) {
     userId = json['user_id'];
+    postid = json['post_id'];
     name = json['name'];
+    address = json['address'];
     imageUrl = json['imageUrl'];
     commentId = json['comment_id'];
     comment = json['comment'];
@@ -58,7 +64,9 @@ class Comment {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['user_id'] = this.userId;
+    data['post_id'] = this.postid;
     data['name'] = this.name;
+    data['address'] = this.address;
     data['imageUrl'] = this.imageUrl;
     data['comment_id'] = this.commentId;
     data['comment'] = this.comment;

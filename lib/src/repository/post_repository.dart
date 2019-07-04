@@ -47,6 +47,26 @@ class PostRepository {
     }
   }
 
+  Future<List<Post>> getUsersPosts({@required int userId}) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final token = preferences.getString('token');
+    try {
+      final response =
+          await client.get("$baseUrl/api/posts/user/$userId", headers: {
+        HttpHeaders.authorizationHeader: "Bearer $token",
+        HttpHeaders.contentTypeHeader: 'application/json',
+      });
+      Map<String, dynamic> responseData = jsonDecode(response.body);
+      if (responseData.containsKey('error')) {
+        throw responseData['error'];
+      } else {
+        return Posts.fromJson(jsonDecode(response.body)).posts;
+      }
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
   Future<String> addPost({@required Post post}) async {
     print(jsonEncode(post.toJson()));
     SharedPreferences preferences = await SharedPreferences.getInstance();
