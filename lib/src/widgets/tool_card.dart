@@ -14,11 +14,11 @@ class ToolCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 15),
-      child: Row(
-        children: <Widget>[
-          Expanded(
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            height: 180,
             child: InkWell(
               child: Card(
                 elevation: 5,
@@ -27,23 +27,21 @@ class ToolCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.all(8),
+                      margin: EdgeInsets.only(top: 10, bottom: 20),
                       child: Image.asset(
                         imageUrl,
-                        height: 100,
-                        width: 100,
+                        height: 90,
+                        width: 90,
                         fit: BoxFit.contain,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 8.0, right: 5, top: 8, bottom: 8),
-                      child: Text(
-                        name,
-                        style: Theme.of(context).textTheme.body1.copyWith(
-                              fontSize: 22,
-                            ),
-                      ),
+                    Text(
+                      name,
+                      style: Theme.of(context).textTheme.body1.copyWith(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                      textAlign: TextAlign.center,
                     )
                   ],
                 ),
@@ -59,8 +57,8 @@ class ToolCard extends StatelessWidget {
               },
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

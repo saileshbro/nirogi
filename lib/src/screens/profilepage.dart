@@ -13,7 +13,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  int noOfPosts;
   @override
   void initState() {
     super.initState();
@@ -87,55 +86,26 @@ class _ProfilePageState extends State<ProfilePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          Stack(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  left: 0.025 * width,
-                                  right: 0.036 * width,
-                                  top: 0.007 * height,
-                                ),
-                                child: Container(
-                                  height: 0.16 * height,
-                                  width: 0.25 * width,
-                                  child: Image.asset(
-                                    'assets/images/icons/profile.png',
-                                  ),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 0.025 * width,
+                              right: 0.036 * width,
+                            ),
+                            child: Container(
+                              height: 0.16 * height,
+                              width: 0.25 * width,
+                              child: Image.asset(
+                                'assets/images/icons/profile.png',
                               ),
-                              Positioned(
-                                top: 0.117 * height,
-                                left: 0.17 * width,
-                                child: Container(
-                                  height: 0.05 * height,
-                                  child: FloatingActionButton(
-                                    heroTag: "editProfile",
-                                    backgroundColor:
-                                        Color(0xff5B86E5).withOpacity(0.8),
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, '/editprofile');
-                                    },
-                                    child: Image.asset(
-                                      'assets/images/icons/edit.png',
-                                      height: 0.033 * height,
-                                      width: 0.07 * width,
-                                    ),
-                                  ),
-                                ),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
                               ),
-                            ],
+                            ),
                           ),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                SizedBox(
-                                  height: height * 0.06,
-                                ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -160,24 +130,26 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ),
                                       ],
                                     ),
-                                    Row(
-                                      children: <Widget>[
-                                        Image.asset(
-                                          'assets/images/icons/createpost.png',
-                                          width: 0.075 * width,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 8.0, left: 5),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: OutlineButton(
+                                          borderSide: BorderSide(
+                                            color: Colors.blue,
+                                          ),
+                                          onPressed: () {
+                                            Navigator.pushNamed(
+                                                context, '/editprofile');
+                                          },
                                           child: Text(
-                                            noOfPosts.toString(),
+                                            'Edit Post',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .body2
-                                                .copyWith(fontSize: 15),
-                                          ),
-                                        ),
-                                      ],
+                                                .copyWith(
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                          )),
                                     )
                                   ],
                                 ),

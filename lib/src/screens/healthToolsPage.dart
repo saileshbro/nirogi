@@ -27,12 +27,14 @@ class HealthToolsPage extends StatelessWidget {
         ),
       ),
       body: ScrollConfiguration(
-        child: SingleChildScrollView(
-          child: Column(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
+          child: GridView.count(
+            primary: false,
+            padding: const EdgeInsets.only(bottom: 15),
+            crossAxisSpacing: 10.0,
+            crossAxisCount: 2,
             children: <Widget>[
-              SizedBox(
-                height: 10,
-              ),
               ToolCard(
                 imageUrl: "assets/images/icons/diet.png",
                 name: "Food Tips",
@@ -48,12 +50,11 @@ class HealthToolsPage extends StatelessWidget {
                 name: "First Aid",
                 onTapWidget: FirstAidPage(),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 18.0, vertical: 15),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      height: 180,
                       child: InkWell(
                         child: Card(
                           elevation: 5,
@@ -62,8 +63,7 @@ class HealthToolsPage extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 15),
+                                margin: EdgeInsets.only(top: 10, bottom: 20),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
@@ -71,14 +71,14 @@ class HealthToolsPage extends StatelessWidget {
                                       children: <Widget>[
                                         Image.asset(
                                           'assets/images/icons/breakfast.png',
-                                          width: 120,
+                                          width: 90,
                                         ),
                                         Positioned(
                                           bottom: 0,
                                           right: 0,
                                           child: Image.asset(
                                             'assets/images/icons/close.png',
-                                            width: 40,
+                                            width: 30,
                                             color: Colors.red[700],
                                           ),
                                         ),
@@ -87,18 +87,14 @@ class HealthToolsPage extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 8.0, right: 5, top: 8, bottom: 8),
-                                child: Text(
-                                  "Incompatible Foods",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .body1
-                                      .copyWith(
-                                        fontSize: 22,
-                                      ),
-                                ),
+                              Text(
+                                "Incompatible Foods",
+                                style:
+                                    Theme.of(context).textTheme.body1.copyWith(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                textAlign: TextAlign.center,
                               )
                             ],
                           ),
@@ -114,8 +110,8 @@ class HealthToolsPage extends StatelessWidget {
                         },
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               ToolCard(
                 imageUrl: "assets/images/icons/bmi.png",

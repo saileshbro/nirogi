@@ -8,8 +8,10 @@ import 'package:nirogi/src/widgets/widgets.dart';
 
 class CommentCard extends StatefulWidget {
   final comment;
+  final bool canModifyPost;
   const CommentCard({
     @required this.comment,
+    @required this.canModifyPost,
     Key key,
   }) : super(key: key);
 
@@ -98,11 +100,13 @@ class _CommentCardState extends State<CommentCard> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   GestureDetector(
-                    onTap: () {},
+                    onTap: widget.comment.voteStatus == 1 ? null : () {},
                     child: Image.asset(
                       'assets/images/icons/upArrow.png',
                       width: 0.06 * width,
-                      color: Colors.grey,
+                      color: widget.comment.voteStatus == 1
+                          ? Colors.red[700]
+                          : Colors.grey,
                     ),
                   ),
                   SizedBox(
@@ -118,11 +122,13 @@ class _CommentCardState extends State<CommentCard> {
                     height: 5,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: widget.comment.voteStatus == -1 ? null : () {},
                     child: Image.asset(
                       'assets/images/icons/downArrow.png',
                       width: 0.06 * width,
-                      color: Colors.grey,
+                      color: widget.comment.voteStatus == -1
+                          ? Colors.red[700]
+                          : Colors.grey,
                     ),
                   ),
                 ],
@@ -141,21 +147,24 @@ class _CommentCardState extends State<CommentCard> {
                         ),
                     textAlign: TextAlign.justify,
                   ),
-                  PopupMenuButton<ForumChoice>(
-                    onSelected: (ForumChoice choice) {
-                      _showDeleteCommentModal();
-                    },
-                    itemBuilder: (BuildContext context) {
-                      return deletechoice.map((ForumChoice deletechoice) {
-                        return PopupMenuItem<ForumChoice>(
-                          child: ForumChoiceCard(
-                            choice: deletechoice,
-                          ),
-                          value: deletechoice,
-                        );
-                      }).toList();
-                    },
-                  ),
+                  widget.comment.canModifyComment == true ||
+                          widget.canModifyPost == true
+                      ? PopupMenuButton<ForumChoice>(
+                          onSelected: (ForumChoice choice) {
+                            _showDeleteCommentModal();
+                          },
+                          itemBuilder: (BuildContext context) {
+                            return deletechoice.map((ForumChoice deletechoice) {
+                              return PopupMenuItem<ForumChoice>(
+                                child: ForumChoiceCard(
+                                  choice: deletechoice,
+                                ),
+                                value: deletechoice,
+                              );
+                            }).toList();
+                          },
+                        )
+                      : SizedBox(),
                 ],
               ))
             ],
