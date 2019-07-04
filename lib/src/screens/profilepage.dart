@@ -3,11 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/getposts_event.dart';
 import 'package:nirogi/src/bloc/states.dart';
+import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 import 'createPost.dart';
 
 class ProfilePage extends StatefulWidget {
+  final User loggedInUser;
+
+  const ProfilePage({Key key, @required this.loggedInUser}) : super(key: key);
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -94,8 +98,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Container(
                               height: 0.16 * height,
                               width: 0.25 * width,
-                              child: Image.asset(
-                                'assets/images/icons/profile.png',
+                              child: Image.network(
+                                "$baseUrl/${widget.loggedInUser.imageUrl}",
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -111,7 +115,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Column(
                                       children: <Widget>[
                                         Text(
-                                          'Sarayu Gautam',
+                                          widget.loggedInUser.name,
                                           style: Theme.of(context)
                                               .textTheme
                                               .body2
@@ -120,7 +124,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   fontSize: 20),
                                         ),
                                         Text(
-                                          'Naikap, Kathmandu',
+                                          widget.loggedInUser.address ?? "",
                                           style: Theme.of(context)
                                               .textTheme
                                               .body2

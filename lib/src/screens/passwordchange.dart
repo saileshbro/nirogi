@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
-class ChangePassword extends StatelessWidget {
+class ChangePasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;

@@ -5,6 +5,10 @@ import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class HealthNewsPage extends StatefulWidget {
+  final User loggedInUser;
+
+  const HealthNewsPage({Key key, @required this.loggedInUser})
+      : super(key: key);
   @override
   _HealthNewsPageState createState() => _HealthNewsPageState();
 }
@@ -21,7 +25,9 @@ class _HealthNewsPageState extends State<HealthNewsPage> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: AppDrawer(),
+      drawer: AppDrawer(
+        loggedInuser: widget.loggedInUser,
+      ),
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,

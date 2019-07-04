@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class AboutPage extends StatelessWidget {
+  final User loggedInUser;
+
+  const AboutPage({Key key, @required this.loggedInUser}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -31,7 +35,9 @@ class AboutPage extends StatelessWidget {
               ],
             ),
           ),
-          drawer: AppDrawer(),
+          drawer: AppDrawer(
+            loggedInuser: loggedInUser,
+          ),
           body: Container(
             child: AboutPageCard(),
           ),

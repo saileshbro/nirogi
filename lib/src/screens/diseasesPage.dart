@@ -4,11 +4,16 @@ import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class DiseasesPage extends StatelessWidget {
+  final User loggedInUser;
+
+  const DiseasesPage({Key key, @required this.loggedInUser}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-        drawer: AppDrawer(),
+        drawer: AppDrawer(
+          loggedInuser: loggedInUser,
+        ),
         appBar: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,

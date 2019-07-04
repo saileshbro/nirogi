@@ -8,6 +8,9 @@ import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class ForumPage extends StatefulWidget {
+  final User loggedInUser;
+
+  const ForumPage({Key key, @required this.loggedInUser}) : super(key: key);
   @override
   _ForumPageState createState() => _ForumPageState();
 }
@@ -41,7 +44,9 @@ class _ForumPageState extends State<ForumPage> {
           child: PlusFloatingIcon(),
         ),
       ),
-      drawer: AppDrawer(),
+      drawer: AppDrawer(
+        loggedInuser: widget.loggedInUser,
+      ),
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,

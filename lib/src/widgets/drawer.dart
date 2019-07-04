@@ -3,11 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nirogi/src/bloc/authentication_bloc.dart';
 import 'package:nirogi/src/bloc/authentication_event.dart';
 import 'package:nirogi/src/bloc/change_theme_bloc.dart';
+import 'package:nirogi/src/constants/env.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/themes/themes.dart';
 
 class AppDrawer extends StatefulWidget {
+  final User loggedInuser;
+  AppDrawer({@required this.loggedInuser}) : assert(loggedInuser != null);
   @override
   _AppDrawerState createState() => _AppDrawerState();
 }
@@ -89,7 +93,9 @@ class _AppDrawerState extends State<AppDrawer> {
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return ProfilePage();
+                          return ProfilePage(
+                            loggedInUser: widget.loggedInuser,
+                          );
                         },
                       ),
                     );
@@ -99,15 +105,15 @@ class _AppDrawerState extends State<AppDrawer> {
                       color: Colors.transparent,
                     ),
                     accountEmail: Text(
-                      "saileshbro@gmail.com",
+                      widget.loggedInuser.email,
                       style: Theme.of(context).textTheme.body1,
                     ),
-                    accountName: Text("Sailesh Dahal",
+                    accountName: Text(widget.loggedInuser.name,
                         style: Theme.of(context).textTheme.headline),
                     currentAccountPicture: CircleAvatar(
                       backgroundColor: Colors.red[700],
                       backgroundImage: NetworkImage(
-                        "https://avatars2.githubusercontent.com/u/43571990?s=460&v=4",
+                        "$baseUrl/${widget.loggedInuser.imageUrl}",
                       ),
                     ),
                   ),

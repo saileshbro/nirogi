@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/states.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/screens/provincePage.dart';
 import 'package:nirogi/src/screens/screens.dart';
@@ -52,6 +53,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    User loggedinUser;
     return BlocProvider<AuthenticationBloc>(
       bloc: authenticationBloc,
       child: BlocBuilder<ChangeThemeEvent, ChangeThemeState>(
@@ -61,34 +63,49 @@ class _MyAppState extends State<MyApp> {
             title: 'Hami Nirogi',
             home: BlocBuilder<AuthenticationEvent, AuthenticationState>(
               bloc: authenticationBloc,
-              builder: (BuildContext context, AuthenticationState state) {
-                if (state is AuthenticationUninitialisedState) {
+              builder: (BuildContext context, AuthenticationState authstate) {
+                if (authstate is AuthenticationUninitialisedState) {
                   return SplashPage();
                 }
-                if (state is AuthenticationAuthenticatedState) {
-                  return HomePage();
+                if (authstate is AuthenticationAuthenticatedState) {
+                  loggedinUser = User(
+                    address: authstate.address,
+                    email: authstate.email,
+                    imageUrl: authstate.imageUrl,
+                    name: authstate.name,
+                  );
+                  return HomePage(
+                    loggedInUser: loggedinUser,
+                  );
                 }
-                if (state is AuthenticationUnauthenticatedState) {
+                if (authstate is AuthenticationUnauthenticatedState) {
                   return LoginSignup(
                     userRepository: widget.userRepository,
                   );
                 }
-                if (state is AuthenticationLoadingState) {
+                if (authstate is AuthenticationLoadingState) {
                   return LoadingIndicator();
                 }
               },
             ),
             routes: <String, WidgetBuilder>{
-              "/diseases": (context) => DiseasesPage(),
-              "/symptoms": (context) => SymptomsPage(),
-              "/news": (context) => HealthNewsPage(),
-              "/about": (context) => AboutPage(),
-              "/profile": (context) => ProfilePage(),
+              "/diseases": (context) =>
+                  DiseasesPage(loggedInUser: loggedinUser),
+              "/symptoms": (context) =>
+                  SymptomsPage(loggedInUser: loggedinUser),
+              "/news": (context) => HealthNewsPage(loggedInUser: loggedinUser),
+              "/about": (context) => AboutPage(loggedInUser: loggedinUser),
+              "/profile": (context) => ProfilePage(
+                    loggedInUser: loggedinUser,
+                  ),
               "/editprofile": (context) => EditProfile(),
-              "/changepw": (context) => ChangePassword(),
-              "/forum": (context) => ForumPage(),
-              "/tools": (context) => HealthToolsPage(),
-              "/province": (context) => ProvincePage(),
+              "/changepw": (context) => ChangePasswordPage(),
+              "/forum": (context) => ForumPage(loggedInUser: loggedinUser),
+              "/tools": (context) =>
+                  HealthToolsPage(loggedInUser: loggedinUser),
+              "/province": (context) => ProvincePage(
+                    loggedInUser: loggedinUser,
+                  ),
             },
             debugShowCheckedModeBanner: false,
             theme: state.themeData,

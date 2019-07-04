@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class HealthToolsPage extends StatelessWidget {
+  final User loggedInUser;
+
+  const HealthToolsPage({Key key, @required this.loggedInUser})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(),
+      drawer: AppDrawer(
+        loggedInuser: loggedInUser,
+      ),
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,

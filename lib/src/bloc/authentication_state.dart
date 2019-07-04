@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
 abstract class AuthenticationState extends Equatable {}
 
@@ -10,6 +11,15 @@ class AuthenticationUninitialisedState extends AuthenticationState {
 }
 
 class AuthenticationAuthenticatedState extends AuthenticationState {
+  final String name;
+  final String email;
+  final String address;
+  final String imageUrl;
+  AuthenticationAuthenticatedState(
+      {@required this.name,
+      @required this.email,
+      @required this.address,
+      @required this.imageUrl});
   @override
   String toString() => 'AuthenticationAuthenticated';
 }

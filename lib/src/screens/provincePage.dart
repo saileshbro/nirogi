@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'dart:math';
 import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
+import 'package:nirogi/src/widgets/widgets.dart';
 
 List<String> images = [
   "assets/images/province/Province700.jpg",
@@ -15,6 +17,9 @@ List<String> images = [
 ];
 
 class ProvincePage extends StatefulWidget {
+  final User loggedInUser;
+
+  const ProvincePage({Key key, @required this.loggedInUser}) : super(key: key);
   @override
   _ProvincePageState createState() => _ProvincePageState();
 }
@@ -31,6 +36,9 @@ class _ProvincePageState extends State<ProvincePage> {
     });
 
     return Scaffold(
+      drawer: AppDrawer(
+        loggedInuser: widget.loggedInUser,
+      ),
       appBar: AppBar(
         centerTitle: true,
         title: Text(
