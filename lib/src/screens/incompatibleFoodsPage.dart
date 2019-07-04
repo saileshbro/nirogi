@@ -5,6 +5,8 @@ import 'package:nirogi/src/themes/scrollOverlay.dart';
 
 class IncompatibleFoodsPage extends StatelessWidget {
   final IncompatibleFoods data = IncompatibleFoods();
+  final int indexer;
+  IncompatibleFoodsPage({Key key, @required this.indexer}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +32,7 @@ class IncompatibleFoodsPage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   child: Swiper(
+                    index: indexer,
                     viewportFraction: 0.85,
                     scale: 0.5,
                     itemBuilder: (BuildContext context, int index) {
@@ -180,6 +183,14 @@ class FoodName extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            //TODO: Add Images here
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Image(
+            //     image: AssetImage('assets/images/icons/foodtips.png'),
+            //     fit: BoxFit.contain,
+            //   ),
+            // ),
             Text(
               foods,
               style: TextStyle(

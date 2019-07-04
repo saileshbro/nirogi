@@ -33,10 +33,10 @@ class _DailyWaterState extends State<DailyWater> {
             SizedBox(
               width: 14,
             ),
-            Image.asset(
-              'assets/images/icons/water.png',
-              width: 30,
-            ),
+            // Image.asset(
+            //   'assets/images/icons/water.png',
+            //   width: 30,
+            // ),
           ],
         ),
       ),
@@ -216,7 +216,23 @@ class _DailyWaterState extends State<DailyWater> {
                   ],
                 ),
               ),
-             
+             Icon(Icons.keyboard_arrow_down),
+              Icon(Icons.keyboard_arrow_down),
+              Icon(Icons.keyboard_arrow_down),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 28, 8, 8),
+                child: Text(
+                  'Additional Settings',
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500,color: Colors.teal[700]),
+                  
+                ),
+              ),
+              Container(
+                width: 230,
+                height: 1,
+                color: Colors.black,
+              ),
+              
             ],
           ),
         ),

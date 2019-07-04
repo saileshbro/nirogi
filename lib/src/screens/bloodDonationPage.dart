@@ -61,7 +61,6 @@ class _BloodDonationState extends State<BloodDonation> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
-          //    color: Colors.white70,
           elevation: 2,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(18, 30, 18, 0),
@@ -70,29 +69,54 @@ class _BloodDonationState extends State<BloodDonation> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      'Calculate Your',
-                      style: TextStyle(
-                        fontSize: 19,
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                'Calculate Your',
+                                style: TextStyle(
+                                  fontSize: 19,
+                                ),
+                              ),
+                              Container(),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            'Eligible Date for Blood Donation',
+                            style: Theme.of(context).textTheme.headline,
+                          ),
+                          SizedBox(
+                            height: 35,
+                          ),
+                        ],
                       ),
                     ),
-                    Container(),
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: Image(
+                          image:
+                              AssetImage('assets/images/icons/blood-drop.png'),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'Eligible Date for Blood Donation',
-                  style: Theme.of(context).textTheme.headline,
-                ),
-                SizedBox(
-                  height: 35,
-                ),
                 Container(
+                  //   color: Colors.greenAccent,
                   decoration: BoxDecoration(
                     border: Border.all(),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -100,10 +124,12 @@ class _BloodDonationState extends State<BloodDonation> {
                     children: <Widget>[
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                          padding: const EdgeInsets.fromLTRB(8, 8, 4, 8),
                           child: Text(
                             'Select date of last donation :',
-                            style: Theme.of(context).textTheme.body1,
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),
@@ -133,11 +159,17 @@ class _BloodDonationState extends State<BloodDonation> {
                   ),
                 ),
                 SizedBox(
-                  height: 35,
+                  height: 30,
                 ),
                 RaisedButton(
-                  color: Colors.blue[100],
-                  child: Text('Calculate Next Eligible Date'),
+                  color: Color(0xFF629DDC),
+                  child: Text(
+                    'Calculate Next Eligible Date',
+                    style: TextStyle(fontSize: 13, color: Colors.white),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
                   onPressed: () {
                     setState(() {
                       toShow = true;
@@ -167,11 +199,13 @@ class _BloodDonationState extends State<BloodDonation> {
                               children: <Widget>[
                                 Expanded(
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
                                     children: <Widget>[
                                       Expanded(
                                         child: Padding(
-                                          padding: const EdgeInsets.fromLTRB(10,0,0,0),
+                                          padding: const EdgeInsets.fromLTRB(
+                                              10, 0, 0, 0),
                                           child: Text(
                                             'You can donate blood after $result',
                                             style: Theme.of(context)

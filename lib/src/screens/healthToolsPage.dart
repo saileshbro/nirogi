@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/screens/calculateBMI.dart';
-import 'package:nirogi/src/screens/incompatibleFoodsPage.dart';
+import 'package:nirogi/src/screens/incompatibleFoodsMenuPage.dart';
 import 'package:nirogi/src/screens/showDrugs.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/drawer.dart';
@@ -109,7 +109,7 @@ class HealthToolsPage extends StatelessWidget {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (BuildContext context) {
-                                return IncompatibleFoodsPage();
+                                return IncompatibleFoodsMenuPage();
                               },
                             ),
                           );
