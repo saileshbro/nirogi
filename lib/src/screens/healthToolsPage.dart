@@ -103,7 +103,7 @@ class HealthToolsPage extends StatelessWidget {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (BuildContext context) {
-                                return IncompatibleFoodsPage();
+                                return IncompatibleFoodsMenuPage();
                               },
                             ),
                           );
@@ -122,6 +122,11 @@ class HealthToolsPage extends StatelessWidget {
                 imageUrl: "assets/images/icons/blooddonation.png",
                 name: "Blood Donation Date",
                 onTapWidget: BloodDonation(),
+              ),
+              ToolCard(
+                imageUrl: "assets/images/icons/water.png",
+                name: "Daily Water Requirement",
+                onTapWidget: DailyWater(),
               ),
             ],
           ),

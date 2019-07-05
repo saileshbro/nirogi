@@ -18,3 +18,4 @@ export 'symptoms_block.dart';
 export 'symptoms_card.dart';
 export 'tool_card.dart';
 export 'drug_widget.dart';
+export 'incompatible_foods_menu_card.dart';
