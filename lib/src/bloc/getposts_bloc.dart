@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:nirogi/src/bloc/events.dart';
+import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/repository/repositories.dart';
@@ -19,6 +20,9 @@ class GetPostsBloc extends Bloc<GetPostsEvent, GetPostsState> {
         posts = await postRepository.getAllMyPosts();
       } else if (event is GetUsersPostsEvent) {
         posts = await postRepository.getUsersPosts(userId: event.userId);
+      } else if (event is GetCategoryPostsEvent) {
+        posts = await postRepository.viewCategoryPosts(
+            categoryId: event.categoryId);
       }
       if (posts.length == 0) {
         yield PostsEmptyState();

@@ -360,22 +360,35 @@ class _EachPostState extends State<EachPost> {
                                         : SizedBox(),
                                   ],
                                 ),
-                                Container(
-                                  margin: EdgeInsets.only(top: 5),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 4),
-                                  decoration: BoxDecoration(
-                                    color: Colors.red[100],
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Text(
-                                    widget.post.category.category,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .body2
-                                        .copyWith(
-                                          fontSize: 12,
-                                        ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) {
+                                      return CategoryForumPage(
+                                        categoryId:
+                                            widget.post.category.categoryId,
+                                      );
+                                    }));
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(top: 10),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 6),
+                                    decoration: BoxDecoration(
+                                      color: Colors.blueGrey[300],
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Text(
+                                      widget.post.category.category,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .body2
+                                          .copyWith(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
                                   ),
                                 ),
                                 SizedBox(
@@ -514,7 +527,7 @@ class _EachPostState extends State<EachPost> {
                                 backgroundColor: Colors.black,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
-                            // Navigator.pop(context);
+                          
                             return SizedBox();
                           } else {
                             var errorstate = state as AddPostErrorState;
@@ -526,7 +539,7 @@ class _EachPostState extends State<EachPost> {
                                 backgroundColor: Colors.red,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
-                            // Navigator.pop(context);
+                          
                             return SizedBox();
                           }
                         },

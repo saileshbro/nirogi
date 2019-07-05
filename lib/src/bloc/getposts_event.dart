@@ -12,4 +12,10 @@ class GetUsersPostsEvent extends GetPostsEvent {
   GetUsersPostsEvent({@required this.userId}) : assert(userId != null);
 }
 
+class GetCategoryPostsEvent extends GetPostsEvent {
+  final int categoryId;
+  GetCategoryPostsEvent({@required this.categoryId})
+      : assert(categoryId != null);
+}
+
 class GetAllMyPostsEvent extends GetPostsEvent {}

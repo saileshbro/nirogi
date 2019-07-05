@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/constants/env.dart';
+import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/screens/screens.dart';
 
 class ForumBlock extends StatelessWidget {
-  final post;
+  final Post post;
   const ForumBlock({
     @required this.post,
     Key key,
