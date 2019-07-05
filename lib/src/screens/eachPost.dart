@@ -26,11 +26,13 @@ class EachPost extends StatefulWidget {
 }
 
 class _EachPostState extends State<EachPost> {
+  GetPostsBloc getPostsBloc = GetPostsBloc();
   final Comment comment = Comment();
   PostBloc addPostBloc;
   CommentBloc commentBloc;
   @override
   void initState() {
+    getPostsBloc = GetPostsBloc();
     super.initState();
     getAllCommentsBloc.dispatch(GetAllCommentsEvent(
         postId: widget.post.postId, sort: dropdownValue.title));
@@ -366,8 +368,7 @@ class _EachPostState extends State<EachPost> {
                                         MaterialPageRoute(
                                             builder: (BuildContext context) {
                                       return CategoryForumPage(
-                                        categoryId:
-                                            widget.post.category.categoryId,
+                                        category: widget.post.category,
                                       );
                                     }));
                                   },
@@ -527,7 +528,7 @@ class _EachPostState extends State<EachPost> {
                                 backgroundColor: Colors.black,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
-                          
+
                             return SizedBox();
                           } else {
                             var errorstate = state as AddPostErrorState;
@@ -539,7 +540,7 @@ class _EachPostState extends State<EachPost> {
                                 backgroundColor: Colors.red,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
-                          
+
                             return SizedBox();
                           }
                         },

@@ -8,20 +8,20 @@ import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class CategoryForumPage extends StatefulWidget {
-  final int categoryId;
+  final Category category;
 
-  const CategoryForumPage({Key key, @required this.categoryId})
-      : super(key: key);
+  const CategoryForumPage({Key key, @required this.category}) : super(key: key);
   @override
   _CategoryForumPageState createState() => _CategoryForumPageState();
 }
 
 class _CategoryForumPageState extends State<CategoryForumPage> {
+  GetPostsBloc getPostsBloc = GetPostsBloc();
   @override
   void initState() {
     super.initState();
     getPostsBloc.dispatch(GetCategoryPostsEvent(
-      categoryId: widget.categoryId,
+      categoryId: widget.category.categoryId,
     ));
   }
 
@@ -38,7 +38,9 @@ class _CategoryForumPageState extends State<CategoryForumPage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => CreatePost(),
+                builder: (context) => CreatePost(
+                      categoryKey: widget.category.categoryId,
+                    ),
               ),
             );
           },
@@ -89,19 +91,21 @@ class _CategoryForumPageState extends State<CategoryForumPage> {
           } else if (state is PostsErrorState) {
             return Container(
               child: Center(
-                child: Text("error"),
+                child: Text("ERROR"),
               ),
             );
           }
           final stateAsPostsFetchedState = state as PostsFetchedState;
           final posts = stateAsPostsFetchedState.posts;
+          print(posts);
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               _BuildPostsList(
                 posts: posts,
-                categoryId: widget.categoryId,
+                categoryId: widget.category.categoryId,
+                getPostsBloc: getPostsBloc,
               ),
             ],
           );
@@ -112,9 +116,13 @@ class _CategoryForumPageState extends State<CategoryForumPage> {
 }
 
 class _BuildPostsList extends StatefulWidget {
+  final GetPostsBloc getPostsBloc;
   final List<Post> posts;
   final int categoryId;
-  _BuildPostsList({@required this.posts, @required this.categoryId});
+  _BuildPostsList(
+      {@required this.posts,
+      @required this.categoryId,
+      @required this.getPostsBloc});
 
   @override
   __BuildPostsListState createState() => __BuildPostsListState();
@@ -134,7 +142,7 @@ class __BuildPostsListState extends State<_BuildPostsList> {
             bottom: 0.01 * height),
         child: RefreshIndicator(
           onRefresh: () async {
-            getPostsBloc
+            widget.getPostsBloc
                 .dispatch(GetCategoryPostsEvent(categoryId: widget.categoryId));
           },
           child: ListView.separated(

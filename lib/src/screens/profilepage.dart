@@ -15,6 +15,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  GetPostsBloc getPostsBloc = GetPostsBloc();
   @override
   void initState() {
     super.initState();

@@ -22,6 +22,7 @@ class ViewProfile extends StatefulWidget {
 }
 
 class _ViewProfileState extends State<ViewProfile> {
+  final GetPostsBloc getPostsBloc = GetPostsBloc();
   @override
   void initState() {
     super.initState();

@@ -13,6 +13,7 @@ class ForumPage extends StatefulWidget {
 }
 
 class _ForumPageState extends State<ForumPage> {
+  GetPostsBloc getPostsBloc = GetPostsBloc();
   String sort = 'popular';
   @override
   void initState() {
@@ -117,6 +118,7 @@ class _ForumPageState extends State<ForumPage> {
               _BuildPostsList(
                 posts: posts,
                 sort: sort,
+                getPostsBloc: getPostsBloc,
               ),
             ],
           );
@@ -129,7 +131,9 @@ class _ForumPageState extends State<ForumPage> {
 class _BuildPostsList extends StatefulWidget {
   final List<Post> posts;
   final String sort;
-  _BuildPostsList({@required this.posts, @required this.sort});
+  final GetPostsBloc getPostsBloc;
+  _BuildPostsList(
+      {@required this.posts, @required this.sort, @required this.getPostsBloc});
 
   @override
   __BuildPostsListState createState() => __BuildPostsListState();
@@ -149,7 +153,7 @@ class __BuildPostsListState extends State<_BuildPostsList> {
             bottom: 0.01 * height),
         child: RefreshIndicator(
           onRefresh: () async {
-            getPostsBloc.dispatch(GetAllPostsEvent(sort: widget.sort));
+            widget.getPostsBloc.dispatch(GetAllPostsEvent(sort: widget.sort));
           },
           child: ListView.separated(
             shrinkWrap: true,

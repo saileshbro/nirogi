@@ -34,5 +34,3 @@ class GetPostsBloc extends Bloc<GetPostsEvent, GetPostsState> {
     }
   }
 }
-
-final GetPostsBloc getPostsBloc = GetPostsBloc();

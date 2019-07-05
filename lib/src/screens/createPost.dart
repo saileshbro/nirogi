@@ -8,17 +8,21 @@ import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CreatePost extends StatefulWidget {
+  final int categoryKey;
+  CreatePost({this.categoryKey = 1});
   @override
   _CreatePostState createState() => _CreatePostState();
 }
 
 class _CreatePostState extends State<CreatePost> {
   GlobalKey<FormState> _createPostField = GlobalKey<FormState>();
-  final Post post = Post(category: categories[0]);
-  Category categoryValue = categories[0];
+  Post post;
+  Category categoryValue;
   PostBloc addPostBloc;
   @override
   void initState() {
+    post = Post(category: categories[widget.categoryKey - 1]);
+    categoryValue = categories[widget.categoryKey - 1];
     super.initState();
     addPostBloc = PostBloc();
   }
