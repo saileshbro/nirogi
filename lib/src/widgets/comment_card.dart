@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
+import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/repository/repositories.dart';
@@ -21,6 +23,13 @@ class CommentCard extends StatefulWidget {
 }
 
 class _CommentCardState extends State<CommentCard> {
+  VoteBloc voteBloc;
+  @override
+  void initState() {
+    super.initState();
+    voteBloc = VoteBloc();
+  }
+
   void _showDeleteCommentModal() {
     showDialog(
       context: context,
@@ -96,43 +105,7 @@ class _CommentCardState extends State<CommentCard> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: widget.comment.voteStatus == 1 ? null : () {},
-                    child: Image.asset(
-                      'assets/images/icons/upArrow.png',
-                      width: 0.06 * width,
-                      color: widget.comment.voteStatus == 1
-                          ? Colors.red[700]
-                          : Colors.grey,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    widget.comment.voteCount.toString(),
-                    style: Theme.of(context).textTheme.body2.copyWith(
-                          fontSize: 18,
-                        ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  GestureDetector(
-                    onTap: widget.comment.voteStatus == -1 ? null : () {},
-                    child: Image.asset(
-                      'assets/images/icons/downArrow.png',
-                      width: 0.06 * width,
-                      color: widget.comment.voteStatus == -1
-                          ? Colors.red[700]
-                          : Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
+              votingButtons(width, context),
               SizedBox(
                 width: 0.03 * width,
               ),
@@ -238,6 +211,164 @@ class _CommentCardState extends State<CommentCard> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget votingButtons(double width, BuildContext context) {
+    return BlocListener(
+      bloc: voteBloc,
+      listener: (BuildContext context, state) {
+        if (state is UpvotedState || state is DownVotedState) {
+          widget.comment.voteStatus = state.voteStatus;
+          widget.comment.voteCount = state.voteCount;
+        }
+      },
+      child: BlocBuilder(
+        bloc: voteBloc,
+        builder: (BuildContext context, state) {
+          if (state is VoteUninitialisedState) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                GestureDetector(
+                  onTap: widget.comment.voteStatus == 1
+                      ? null
+                      : () {
+                          print("hhe");
+                          voteBloc.dispatch(CommentUpvoteEvent(
+                              postId: widget.comment.postid,
+                              commentId: widget.comment.commentId));
+                        },
+                  child: Image.asset(
+                    'assets/images/icons/upArrow.png',
+                    width: 0.06 * width,
+                    color: widget.comment.voteStatus == 1
+                        ? Colors.red[700]
+                        : Colors.grey,
+                  ),
+                ),
+                SizedBox(
+                  height: 0.02 * width,
+                ),
+                Text(
+                  widget.comment.voteCount.toString(),
+                  style: Theme.of(context).textTheme.body2.copyWith(
+                        fontSize: 18,
+                      ),
+                ),
+                SizedBox(
+                  height: 0.02 * width,
+                ),
+                GestureDetector(
+                  onTap: widget.comment.voteStatus == -1
+                      ? null
+                      : () {
+                          print("hhe");
+                          voteBloc.dispatch(CommentDownVoteEvent(
+                              postId: widget.comment.postid,
+                              commentId: widget.comment.commentId));
+                        },
+                  child: Image.asset(
+                    'assets/images/icons/downArrow.png',
+                    width: 0.06 * width,
+                    color: widget.comment.voteStatus == -1
+                        ? Colors.red[700]
+                        : Colors.grey,
+                  ),
+                ),
+              ],
+            );
+          } else if (state is UpVoteSendingState ||
+              state is DownVoteSendingState) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                GestureDetector(
+                  onTap: null,
+                  child: Image.asset(
+                    'assets/images/icons/upArrow.png',
+                    width: 0.06 * width,
+                    color: Colors.grey,
+                  ),
+                ),
+                SizedBox(
+                  height: 0.02 * width,
+                ),
+                Text(
+                  widget.comment.voteCount.toString(),
+                  style: Theme.of(context).textTheme.body2.copyWith(
+                        fontSize: 18,
+                      ),
+                ),
+                SizedBox(
+                  height: 0.02 * width,
+                ),
+                GestureDetector(
+                  onTap: null,
+                  child: Image.asset(
+                    'assets/images/icons/downArrow.png',
+                    width: 0.06 * width,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                GestureDetector(
+                  onTap: widget.comment.voteStatus == 1
+                      ? null
+                      : () {
+                          print("hhe");
+                          voteBloc.dispatch(CommentUpvoteEvent(
+                              commentId: widget.comment.commentId,
+                              postId: widget.comment.postid));
+                        },
+                  child: Image.asset(
+                    'assets/images/icons/upArrow.png',
+                    width: 0.06 * width,
+                    color: widget.comment.voteStatus == 1
+                        ? Colors.red[700]
+                        : Colors.grey,
+                  ),
+                ),
+                SizedBox(
+                  height: 0.02 * width,
+                ),
+                Text(
+                  widget.comment.voteCount.toString(),
+                  style: Theme.of(context).textTheme.body2.copyWith(
+                        fontSize: 18,
+                      ),
+                ),
+                SizedBox(
+                  height: 0.02 * width,
+                ),
+                GestureDetector(
+                  onTap: widget.comment.voteStatus == -1
+                      ? null
+                      : () {
+                          print("hhe");
+                          voteBloc.dispatch(CommentDownVoteEvent(
+                            commentId: widget.comment.commentId,
+                            postId: widget.comment.postid,
+                          ));
+                        },
+                  child: Image.asset(
+                    'assets/images/icons/downArrow.png',
+                    width: 0.06 * width,
+                    color: widget.comment.voteStatus == -1
+                        ? Colors.red[700]
+                        : Colors.grey,
+                  ),
+                ),
+              ],
+            );
+          }
+        },
       ),
     );
   }

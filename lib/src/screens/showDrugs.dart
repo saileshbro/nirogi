@@ -9,6 +9,7 @@ class ShowDrugs extends StatefulWidget {
 }
 
 class _ShowDrugsState extends State<ShowDrugs> {
+  bool canPop = false;
   Future<List<Drug>> allDrugs;
   @override
   void initState() {
@@ -20,6 +21,20 @@ class _ShowDrugsState extends State<ShowDrugs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (BuildContext context) {
+                return SearchPage();
+              }));
+            },
+            icon: Icon(
+              Icons.search,
+              size: 30,
+            ),
+          )
+        ],
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -37,51 +52,55 @@ class _ShowDrugsState extends State<ShowDrugs> {
           ],
         ),
       ),
-      body: FutureBuilder(
-        future: allDrugs,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 10, left: 10, bottom: 10),
-                    child: Container(
-                      child: ListView.separated(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return DrugCard(drug: snapshot.data[index]);
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return SizedBox(
-                            height: 15.0,
-                          );
-                        },
+      body: Padding(
+        padding: const EdgeInsets.only(top: 8.0),
+        child: FutureBuilder(
+          future: allDrugs,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              canPop = true;
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 10, left: 10),
+                      child: Container(
+                        child: ListView.separated(
+                          shrinkWrap: true,
+                          physics: BouncingScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return DrugCard(drug: snapshot.data[index]);
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return SizedBox(
+                              height: 15.0,
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return Container(
+                child: Center(
+                  child: Text('error'),
                 ),
-              ],
-            );
-          } else if (snapshot.hasError) {
-            return Container(
-              child: Center(
-                child: Text('error'),
-              ),
-            );
-          } else {
-            return Container(
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          }
-        },
+              );
+            } else {
+              return Container(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }

@@ -31,3 +31,4 @@ export 'categoryForum.dart';
 export 'incompatibleFoodsMenuPage.dart';
 export 'dailyWater.dart';
 export 'imageModify.dart';
+export 'search_page.dart';

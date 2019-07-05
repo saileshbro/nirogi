@@ -27,14 +27,17 @@ class EachPost extends StatefulWidget {
 }
 
 class _EachPostState extends State<EachPost> {
-  GetPostsBloc getPostsBloc = GetPostsBloc();
-  final Comment comment = Comment();
+  VoteBloc voteBloc;
+  GetPostsBloc getPostsBloc;
   PostBloc addPostBloc;
   CommentBloc commentBloc;
+  Comment comment;
   @override
   void initState() {
-    getPostsBloc = GetPostsBloc();
     super.initState();
+    comment = Comment();
+    voteBloc = VoteBloc();
+    getPostsBloc = GetPostsBloc();
     getAllCommentsBloc.dispatch(GetAllCommentsEvent(
         postId: widget.post.postId, sort: dropdownValue.title));
     addPostBloc = PostBloc();
@@ -252,46 +255,7 @@ class _EachPostState extends State<EachPost> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              GestureDetector(
-                                onTap:
-                                    widget.post.voteStatus == 1 ? null : () {},
-                                child: Image.asset(
-                                  'assets/images/icons/upArrow.png',
-                                  width: 0.06 * width,
-                                  color: widget.post.voteStatus == 1
-                                      ? Colors.red[700]
-                                      : Colors.grey,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 0.02 * width,
-                              ),
-                              Text(
-                                widget.post.voteCount.toString(),
-                                style:
-                                    Theme.of(context).textTheme.body2.copyWith(
-                                          fontSize: 18,
-                                        ),
-                              ),
-                              SizedBox(
-                                height: 0.02 * width,
-                              ),
-                              GestureDetector(
-                                onTap:
-                                    widget.post.voteStatus == -1 ? null : () {},
-                                child: Image.asset(
-                                  'assets/images/icons/downArrow.png',
-                                  width: 0.06 * width,
-                                  color: widget.post.voteStatus == -1
-                                      ? Colors.red[700]
-                                      : Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
+                          votingButtons(width, context),
                           SizedBox(
                             width: 0.04 * width,
                           ),
@@ -305,8 +269,7 @@ class _EachPostState extends State<EachPost> {
                                   children: <Widget>[
                                     Flexible(
                                       child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 5.0),
+                                        padding: EdgeInsets.only(top: 5.0),
                                         child: Text(
                                           widget.post.title,
                                           maxLines: 3,
@@ -632,6 +595,155 @@ class _EachPostState extends State<EachPost> {
         ),
       ),
       onWillPop: _floatingPressed,
+    );
+  }
+
+  Widget votingButtons(double width, BuildContext context) {
+    return BlocListener(
+      bloc: voteBloc,
+      listener: (BuildContext context, state) {
+        if (state is UpvotedState || state is DownVotedState) {
+          widget.post.voteStatus = state.voteStatus;
+          widget.post.voteCount = state.voteCount;
+        }
+      },
+      child: BlocBuilder(
+        bloc: voteBloc,
+        builder: (BuildContext context, state) {
+          if (state is VoteUninitialisedState) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                GestureDetector(
+                  onTap: widget.post.voteStatus == 1
+                      ? null
+                      : () {
+                          voteBloc.dispatch(
+                              PostUpvoteEvent(postId: widget.post.postId));
+                        },
+                  child: Image.asset(
+                    'assets/images/icons/upArrow.png',
+                    width: 0.06 * width,
+                    color: widget.post.voteStatus == 1
+                        ? Colors.red[700]
+                        : Colors.grey,
+                  ),
+                ),
+                SizedBox(
+                  height: 0.02 * width,
+                ),
+                Text(
+                  widget.post.voteCount.toString(),
+                  style: Theme.of(context).textTheme.body2.copyWith(
+                        fontSize: 18,
+                      ),
+                ),
+                SizedBox(
+                  height: 0.02 * width,
+                ),
+                GestureDetector(
+                  onTap: widget.post.voteStatus == -1
+                      ? null
+                      : () {
+                          voteBloc.dispatch(
+                              PostDownVoteEvent(postId: widget.post.postId));
+                        },
+                  child: Image.asset(
+                    'assets/images/icons/downArrow.png',
+                    width: 0.06 * width,
+                    color: widget.post.voteStatus == -1
+                        ? Colors.red[700]
+                        : Colors.grey,
+                  ),
+                ),
+              ],
+            );
+          } else if (state is UpVoteSendingState ||
+              state is DownVoteSendingState) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                GestureDetector(
+                  onTap: null,
+                  child: Image.asset(
+                    'assets/images/icons/upArrow.png',
+                    width: 0.06 * width,
+                    color: Colors.grey,
+                  ),
+                ),
+                SizedBox(
+                  height: 0.02 * width,
+                ),
+                Text(
+                  widget.post.voteCount.toString(),
+                  style: Theme.of(context).textTheme.body2.copyWith(
+                        fontSize: 18,
+                      ),
+                ),
+                SizedBox(
+                  height: 0.02 * width,
+                ),
+                GestureDetector(
+                  onTap: null,
+                  child: Image.asset(
+                    'assets/images/icons/downArrow.png',
+                    width: 0.06 * width,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                GestureDetector(
+                  onTap: widget.post.voteStatus == 1
+                      ? null
+                      : () {
+                          voteBloc.dispatch(
+                              PostUpvoteEvent(postId: widget.post.postId));
+                        },
+                  child: Image.asset(
+                    'assets/images/icons/upArrow.png',
+                    width: 0.06 * width,
+                    color: widget.post.voteStatus == 1
+                        ? Colors.red[700]
+                        : Colors.grey,
+                  ),
+                ),
+                SizedBox(
+                  height: 0.02 * width,
+                ),
+                Text(
+                  widget.post.voteCount.toString(),
+                  style: Theme.of(context).textTheme.body2.copyWith(
+                        fontSize: 18,
+                      ),
+                ),
+                SizedBox(
+                  height: 0.02 * width,
+                ),
+                GestureDetector(
+                  onTap: widget.post.voteStatus == -1
+                      ? null
+                      : () {
+                          voteBloc.dispatch(
+                              PostDownVoteEvent(postId: widget.post.postId));
+                        },
+                  child: Image.asset(
+                    'assets/images/icons/downArrow.png',
+                    width: 0.06 * width,
+                    color: widget.post.voteStatus == -1
+                        ? Colors.red[700]
+                        : Colors.grey,
+                  ),
+                ),
+              ],
+            );
+          }
+        },
+      ),
     );
   }
 
