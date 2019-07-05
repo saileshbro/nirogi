@@ -10,23 +10,17 @@ import 'package:nirogi/src/themes/themes.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
-  final User loggedInUser;
-  HomePage({@required @required this.loggedInUser})
-      : assert(loggedInUser != null);
   @override
-  _HomePageState createState() => _HomePageState(loggedInUser: loggedInUser);
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  final User loggedInUser;
   ScrollController _customController;
   Future<List<Disease>> topDiseases;
   Future<List<Symptom>> topSymptoms;
   Future<List<Drug>> commonDrug;
   Future<List<NewsItem>> topNews;
   bool _isCollapsed = false;
-
-  _HomePageState({@required this.loggedInUser});
 
   @override
   void initState() {
@@ -52,9 +46,7 @@ class _HomePageState extends State<HomePage> {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      drawer: AppDrawer(
-        loggedInuser: loggedInUser,
-      ),
+      drawer: AppDrawer(),
       body: NestedScrollView(
         controller: _customController,
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {

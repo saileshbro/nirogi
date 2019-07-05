@@ -398,6 +398,30 @@ class PostRepository {
       throw e.toString();
     }
   }
+
+  Future<String> incrementViewOfAPost({@required int postId}) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final token = preferences.getString('token');
+    try {
+      final response = await client.post(
+        "$baseUrl/api/post/$postId/inc",
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json'
+        },
+      );
+      Map<String, dynamic> responseData = jsonDecode(response.body);
+      if (responseData.containsKey('error')) {
+        throw responseData['error'];
+      } else if (responseData.containsKey('message')) {
+        return responseData['message'];
+      } else {
+        throw "Unexpected error occured!";
+      }
+    } catch (e) {
+      throw e.toString();
+    }
+  }
 }
 
 final PostRepository postRepository = PostRepository();

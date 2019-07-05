@@ -4,14 +4,12 @@ import 'package:nirogi/src/bloc/authentication_bloc.dart';
 import 'package:nirogi/src/bloc/authentication_event.dart';
 import 'package:nirogi/src/bloc/change_theme_bloc.dart';
 import 'package:nirogi/src/constants/env.dart';
-import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/themes/themes.dart';
+import 'package:nirogi/main.dart';
 
 class AppDrawer extends StatefulWidget {
-  final User loggedInuser;
-  AppDrawer({@required this.loggedInuser}) : assert(loggedInuser != null);
   @override
   _AppDrawerState createState() => _AppDrawerState();
 }
@@ -93,9 +91,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return ProfilePage(
-                            loggedInUser: widget.loggedInuser,
-                          );
+                          return ProfilePage();
                         },
                       ),
                     );
@@ -105,15 +101,15 @@ class _AppDrawerState extends State<AppDrawer> {
                       color: Colors.transparent,
                     ),
                     accountEmail: Text(
-                      widget.loggedInuser.email,
+                      loggedinUser.email ?? "",
                       style: Theme.of(context).textTheme.body1,
                     ),
-                    accountName: Text(widget.loggedInuser.name,
+                    accountName: Text(loggedinUser.name ?? "",
                         style: Theme.of(context).textTheme.headline),
                     currentAccountPicture: CircleAvatar(
                       backgroundColor: Colors.red[700],
                       backgroundImage: NetworkImage(
-                        "$baseUrl/${widget.loggedInuser.imageUrl}",
+                        "$baseUrl/${loggedinUser.imageUrl}",
                       ),
                     ),
                   ),

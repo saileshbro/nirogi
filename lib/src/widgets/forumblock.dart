@@ -32,7 +32,7 @@ class ForumBlock extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  height: 0.09 * height,
+                  height: 0.14 * width,
                   width: 0.14 * width,
                   decoration: BoxDecoration(
                       color: Colors.red[50],
