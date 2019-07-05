@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:nirogi/main.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/comment_state.dart';
 import 'package:nirogi/src/bloc/events.dart';
@@ -121,7 +122,7 @@ class _EachPostState extends State<EachPost> {
                     children: <Widget>[
                       CircleAvatar(
                         backgroundImage:
-                            NetworkImage('assets/images/icons/imageUrl.png'),
+                            NetworkImage("$baseUrl/${loggedinUser.imageUrl}"),
                       ),
                       SizedBox(width: 0.04 * width),
                       Flexible(
@@ -241,7 +242,6 @@ class _EachPostState extends State<EachPost> {
         body: ScrollConfiguration(
           behavior: RemoveEndOfListIndicator(),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
             child: Column(
               children: <Widget>[
                 Container(
