@@ -96,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             child: Container(
                               height: 0.16 * height,
-                              width: 0.25 * width,
+                              width: 0.16 * height,
                               child: Image.network(
                                 "$baseUrl/${loggedinUser.imageUrl}",
                                 fit: BoxFit.cover,

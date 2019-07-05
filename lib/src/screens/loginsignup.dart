@@ -85,17 +85,37 @@ class _LoginSignupState extends State<LoginSignup> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(
-                          "Already have an account",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontFamily:
-                                Theme.of(context).textTheme.body1.fontFamily,
-                            fontWeight:
-                                Theme.of(context).textTheme.body1.fontWeight,
-                            color: Colors.black,
-                          ),
-                        ),
+                        isLoginShown
+                            ? Text(
+                                "Don't have an account yet?",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: Theme.of(context)
+                                      .textTheme
+                                      .body1
+                                      .fontFamily,
+                                  fontWeight: Theme.of(context)
+                                      .textTheme
+                                      .body1
+                                      .fontWeight,
+                                  color: Colors.black,
+                                ),
+                              )
+                            : Text(
+                                "Already have an account?",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: Theme.of(context)
+                                      .textTheme
+                                      .body1
+                                      .fontFamily,
+                                  fontWeight: Theme.of(context)
+                                      .textTheme
+                                      .body1
+                                      .fontWeight,
+                                  color: Colors.black,
+                                ),
+                              ),
                         SizedBox(
                           width: 10,
                         ),
