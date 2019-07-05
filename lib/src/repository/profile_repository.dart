@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:http/http.dart' show Client;
+import 'package:dio/dio.dart';
+import 'package:http/http.dart' show Client, MultipartRequest;
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileRepository {
   final client = Client();
+  Dio dio = Dio();
   Future<User> getMyProfile() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
@@ -121,6 +122,34 @@ class ProfileRepository {
           headers: {HttpHeaders.contentTypeHeader: 'application/json'},
           body: jsonEncode(body));
       Map<String, dynamic> responseData = jsonDecode(response.body);
+      if (responseData.containsKey('error')) {
+        throw responseData['error'];
+      } else if (responseData.containsKey('message')) {
+        return responseData['message'];
+      } else {
+        throw "Unexpected error occured!";
+      }
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<String> uploadProfilePicture({@required File image}) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final token = preferences.getString('token');
+    try {
+      FormData formData = FormData();
+      formData.add('avatar', UploadFileInfo(image, image.path));
+      final response = await dio.patch("$baseUrl/api/user/me/avatar",
+          data: formData,
+          options: Options(
+            method: 'PATCH',
+            headers: {
+              "Authorization": "Bearer " + token,
+            },
+            responseType: ResponseType.json,
+          ));
+      Map<String, dynamic> responseData = jsonDecode(response.data);
       if (responseData.containsKey('error')) {
         throw responseData['error'];
       } else if (responseData.containsKey('message')) {

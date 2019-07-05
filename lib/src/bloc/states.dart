@@ -9,3 +9,4 @@ export 'managepassword_state.dart';
 export 'comment_state.dart';
 export 'vote_state.dart';
 export 'search_state.dart';
+export 'uploadImage_state.dart';

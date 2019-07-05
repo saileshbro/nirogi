@@ -9,3 +9,4 @@ export 'managepassword_bloc.dart';
 export 'comment_bloc.dart';
 export 'vote_bloc.dart';
 export 'search_bloc.dart';
+export 'uploadImage_event.dart';
