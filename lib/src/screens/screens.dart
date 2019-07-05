@@ -28,3 +28,5 @@ export 'eachDisease.dart';
 export 'eachSymptom.dart';
 export 'viewProfile.dart';
 export 'categoryForum.dart';
+export 'incompatibleFoodsMenuPage.dart';
+export 'dailyWater.dart';

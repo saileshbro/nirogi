@@ -72,7 +72,7 @@ class PostRepository {
     final token = preferences.getString('token');
     try {
       final response =
-          await client.get("$baseUrl/api/posts/user/$categoryId", headers: {
+          await client.get("$baseUrl/api/category/$categoryId", headers: {
         HttpHeaders.authorizationHeader: "Bearer $token",
         HttpHeaders.contentTypeHeader: 'application/json',
       });
