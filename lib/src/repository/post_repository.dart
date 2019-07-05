@@ -159,7 +159,7 @@ class PostRepository {
     }
   }
 
-  Future<String> upvotePost({@required postId}) async {
+  Future<int> upvotePost({@required postId}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
@@ -181,7 +181,7 @@ class PostRepository {
     }
   }
 
-  Future<String> downvotePost({@required postId}) async {
+  Future<int> downvotePost({@required postId}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
@@ -304,7 +304,7 @@ class PostRepository {
     }
   }
 
-  Future<String> upvoteComment(
+  Future<int> upvoteComment(
       {@required int postId, @required int commentId}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
@@ -329,7 +329,7 @@ class PostRepository {
     }
   }
 
-  Future<String> downvoteComment(
+  Future<int> downvoteComment(
       {@required int postId, @required int commentId}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
