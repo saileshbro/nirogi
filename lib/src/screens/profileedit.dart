@@ -1,8 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:nirogi/main.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
@@ -11,6 +9,7 @@ import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/functions/functions.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/repository/repositories.dart';
+import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
@@ -22,16 +21,9 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   SignupBloc signupBloc;
-  File _image;
+
   GlobalKey<FormState> _formKey;
   final User updateuser = User();
-  Future getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      _image = image;
-    });
-  }
 
   @override
   void initState() {
@@ -116,7 +108,13 @@ class _EditProfileState extends State<EditProfile> {
                                 width: 0.10 * width,
                                 child: FloatingActionButton(
                                   backgroundColor: Colors.white,
-                                  onPressed: getImage,
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) {
+                                      return ModifyImage();
+                                    }));
+                                  },
                                   tooltip: 'Change Avatar',
                                   child: Image.asset(
                                     'assets/images/icons/avatar.png',
