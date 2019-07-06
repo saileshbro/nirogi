@@ -70,8 +70,9 @@ class _EachFirstAidPageState extends State<EachFirstAidPage> {
                                 ),
                           ),
                     flexibleSpace: FlexibleSpaceBar(
-                        background: Image.network(
-                      "$baseUrl/${snapshot.data.imageUrl}",
+                        background: FadeInImage.assetNetwork(
+                      image: "$baseUrl/${snapshot.data.imageUrl}",
+                      placeholder: "assets/gifs/ripple.gif",
                       fit: BoxFit.cover,
                     )),
                   ),

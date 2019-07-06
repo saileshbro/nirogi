@@ -32,9 +32,12 @@ class DiseaseCard extends StatelessWidget {
               Container(
                 height: 0.3 * height,
                 width: 0.329 * width,
-                child: Image.network(
-                  disease.imageUrl,
-                  fit: BoxFit.contain,
+                child: FadeInImage.assetNetwork(
+                  placeholder: "assets/gifs/ripple.gif",
+                  image: disease.imageUrl,
+                  fit: BoxFit.fitWidth,
+                  // pl
+                  // placeholderScale: 10,
                 ),
               ),
               Positioned(

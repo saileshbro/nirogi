@@ -32,8 +32,9 @@ class DrugWidget extends StatelessWidget {
                 height: height,
                 width: width,
                 child: RotatedBox(
-                  child: Image.network(
-                    drug.imageUrl,
+                  child: FadeInImage.assetNetwork(
+                    image: drug.imageUrl,
+                    placeholder: "assets/gifs/ripplerotate.gif",
                     fit: BoxFit.fill,
                   ),
                   quarterTurns: 5,

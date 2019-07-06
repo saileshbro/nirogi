@@ -27,8 +27,9 @@ class NewsCard extends StatelessWidget {
                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             child: Row(
               children: <Widget>[
-                Image.network(
-                  news.imageUrl,
+                FadeInImage.assetNetwork(
+                  image: news.imageUrl,
+                  placeholder: "assets/gifs/ripple.gif",
                   width: 0.28 * MediaQuery.of(context).size.width,
                   height: 0.1 * MediaQuery.of(context).size.height,
                   fit: BoxFit.fill,

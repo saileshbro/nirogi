@@ -168,8 +168,9 @@ class FoodCard extends StatelessWidget {
             Container(
               height: 260,
               width: 160,
-              child: Image.network(
-                imageUrl,
+              child: FadeInImage.assetNetwork(
+                image: imageUrl,
+                placeholder: "assets/gifs/ripple.gif",
                 width: 30,
               ),
             ),

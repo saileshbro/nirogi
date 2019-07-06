@@ -68,8 +68,9 @@ class _EachDrugState extends State<EachDrug> {
                             ),
                       ),
                 flexibleSpace: FlexibleSpaceBar(
-                    background: Image.network(
-                  eachdrug.imageUrl,
+                    background: FadeInImage.assetNetwork(
+                  image: eachdrug.imageUrl,
+                  placeholder: "assets/gifs/ripple.gif",
                   fit: BoxFit.cover,
                 )),
               ),

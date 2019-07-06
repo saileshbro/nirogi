@@ -69,8 +69,9 @@ class _ViewProfileState extends State<ViewProfile> {
                         child: Container(
                           height: 0.16 * height,
                           width: 0.25 * width,
-                          child: Image.network(
-                            '$baseUrl/${widget.imageUrl}',
+                          child: FadeInImage.assetNetwork(
+                            image: '$baseUrl/${widget.imageUrl}',
+                            placeholder: "assets/gifs/ripple.gif",
                             fit: BoxFit.cover,
                           ),
                         ),

@@ -97,8 +97,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Container(
                               height: 0.16 * height,
                               width: 0.16 * height,
-                              child: Image.network(
-                                "$baseUrl/${loggedinUser.imageUrl}",
+                              child: FadeInImage.assetNetwork(
+                                image: "$baseUrl/${loggedinUser.imageUrl}",
+                                placeholder: "assets/gifs/ripple.gif",
                                 fit: BoxFit.cover,
                               ),
                             ),

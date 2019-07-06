@@ -29,8 +29,9 @@ class DiseaseBlock extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Container(
-                child: Image.network(
-                  disease.imageUrl,
+                child: FadeInImage.assetNetwork(
+                  image: disease.imageUrl,
+                  placeholder: "assets/gifs/ripple.gif",
                   height: 0.19 * height,
                   width: 0.34 * width,
                   fit: BoxFit.contain,
