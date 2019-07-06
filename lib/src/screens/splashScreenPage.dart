@@ -8,7 +8,7 @@ class SplashPage extends StatelessWidget {
         child: Container(
           width: 100,
           child: Image.asset(
-            'assets/images/icons/splash.png',
+            'assets/images/icons/blood-drop.png',
           ),
         ),
       ),

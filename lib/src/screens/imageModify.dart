@@ -143,6 +143,7 @@ class _ModifyImageState extends State<ModifyImage> {
                         textColor: Colors.white,
                         fontSize: 16.0);
                     imageCache.clear();
+                    Navigator.of(context).pop();
                     return Container(
                       height: 50,
                       width: 50,
