@@ -13,3 +13,4 @@ export 'symptoms.dart';
 export 'user.dart';
 export 'province.dart';
 export 'passwordmodel.dart';
+export 'bmi.dart';

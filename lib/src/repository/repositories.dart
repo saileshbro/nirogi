@@ -8,3 +8,4 @@ export 'profile_repository.dart';
 export 'province_repository.dart';
 export 'symptom_repository.dart';
 export 'user_repository.dart';
+export 'bmi_repository.dart';
