@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/models/models.dart' as prefix0;
+import 'package:nirogi/src/themes/scrollOverlay.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class IncompatibleFoodsMenuPage extends StatelessWidget {
@@ -11,65 +13,73 @@ class IncompatibleFoodsMenuPage extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Incompatible Foods',
-                style: Theme.of(context).textTheme.headline),
+            Text(
+              'Incompatible Foods',
+              style: Theme.of(context).textTheme.body2.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+            ),
             SizedBox(
               width: 14,
             ),
+            Stack(
+              children: <Widget>[
+                Image.asset(
+                  'assets/images/icons/breakfast.png',
+                  width: 50,
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Image.asset(
+                    'assets/images/icons/close.png',
+                    width: 20,
+                    color: Colors.red[700],
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
         child: Container(
           child: Column(
             children: <Widget>[
-              Card(
-                color: Colors.white70,
-                elevation: 5,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'Incompatible Foods to Eat With:',
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              Text(
+                'Incompatible Foods to Eat With:',
+                style: Theme.of(context).textTheme.body2.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.red[700],
+                    ),
               ),
               SizedBox(
                 height: 10,
               ),
               Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        itemCount: foodData.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return FoodMenuBox(
-                            thefood: foodData[index],
+                child: ScrollConfiguration(
+                  child: GridView.count(
+                    primary: false,
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5,
+                    crossAxisCount: 2,
+                    childAspectRatio: 1.2,
+                    children: List.generate(
+                      foodData.length,
+                      (index) {
+                        return Center(
+                          child: FoodMenuBox(
                             indexNo: index,
-                          );
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return SizedBox(
-                            height: 15.0,
-                          );
-                        },
-                      ),
-                    ],
+                            thefood: foodData[index],
+                          ),
+                        );
+                      },
+                    ),
                   ),
+                  behavior: RemoveEndOfListIndicator(),
                 ),
               ),
             ],

@@ -172,6 +172,7 @@ class FoodCard extends StatelessWidget {
                 image: imageUrl,
                 placeholder: "assets/gifs/ripple.gif",
                 width: 30,
+                fit: BoxFit.cover,
               ),
             ),
             Positioned(
