@@ -171,6 +171,7 @@ class FoodCard extends StatelessWidget {
               child: Image.network(
                 imageUrl,
                 width: 30,
+                fit: BoxFit.cover,
               ),
             ),
             Positioned(

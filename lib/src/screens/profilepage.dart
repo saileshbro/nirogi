@@ -83,8 +83,6 @@ class _ProfilePageState extends State<ProfilePage> {
               Stack(
                 children: <Widget>[
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -97,9 +95,13 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Container(
                               height: 0.16 * height,
                               width: 0.16 * height,
-                              child: Image.network(
-                                "$baseUrl/${loggedinUser.imageUrl}",
-                                fit: BoxFit.cover,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                      "$baseUrl/${loggedinUser.imageUrl}",
+                                    ),
+                                    fit: BoxFit.cover),
                               ),
                             ),
                           ),
@@ -113,21 +115,33 @@ class _ProfilePageState extends State<ProfilePage> {
                                   children: <Widget>[
                                     Column(
                                       children: <Widget>[
-                                        Text(
-                                          loggedinUser.name,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .body2
-                                              .copyWith(
-                                                  color: Colors.red[700],
-                                                  fontSize: 20),
+                                        Container(
+                                          width: 120,
+                                          child: Text(
+                                            loggedinUser.name,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .body2
+                                                .copyWith(
+                                                    color: Colors.red[700],
+                                                    fontSize: 20),
+                                            maxLines: 3,
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.center,
+                                          ),
                                         ),
-                                        Text(
-                                          loggedinUser.address ?? "",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .body2
-                                              .copyWith(fontSize: 15),
+                                        Container(
+                                          width: 120,
+                                          child: Text(
+                                            loggedinUser.address ?? "",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .body2
+                                                .copyWith(fontSize: 15),
+                                            maxLines: 3,
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.center,
+                                          ),
                                         ),
                                       ],
                                     ),
