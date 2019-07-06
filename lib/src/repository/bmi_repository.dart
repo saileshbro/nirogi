@@ -56,3 +56,5 @@ class BmiRepository {
     }
   }
 }
+
+final BmiRepository bmiRepository = BmiRepository();

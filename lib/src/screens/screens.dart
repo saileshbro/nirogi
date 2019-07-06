@@ -32,3 +32,4 @@ export 'incompatibleFoodsMenuPage.dart';
 export 'dailyWater.dart';
 export 'imageModify.dart';
 export 'search_page.dart';
+export 'bmiHistory.dart';

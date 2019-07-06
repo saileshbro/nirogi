@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:nirogi/src/bloc/blocs.dart';
+import 'package:nirogi/src/bloc/events.dart';
+import 'package:nirogi/src/bloc/states.dart';
+import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/screens/screens.dart';
 
-class ShowBMI extends StatelessWidget {
+class ShowBMI extends StatefulWidget {
   final String text;
   final double bmi;
 
   const ShowBMI({Key key, this.text, this.bmi}) : super(key: key);
+
+  @override
+  _ShowBMIState createState() => _ShowBMIState();
+}
+
+class _ShowBMIState extends State<ShowBMI> {
+  BmiBloc bmibloc = BmiBloc();
+  @override
   Color getBmiColor(bmi) {
     if (bmi < 18.5) {
       return Colors.blue;
@@ -69,14 +84,14 @@ class ShowBMI extends StatelessWidget {
               ],
             ),
             CircleAvatar(
-              backgroundColor: getCircleColor(bmi),
+              backgroundColor: getCircleColor(widget.bmi),
               radius: 80,
               child: Text(
-                bmi.toStringAsFixed(1),
+                widget.bmi.toStringAsFixed(1),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 40,
-                  color: getBmiColor(bmi),
+                  color: getBmiColor(widget.bmi),
                 ),
               ),
             ),
@@ -85,40 +100,46 @@ class ShowBMI extends StatelessWidget {
                 Result(
                   condition: 'Underweight',
                   bmi: '< 18.5',
-                  isIt: bmi < 18.5 ? true : false,
-                  txtcolor: bmi < 18.5 ? Colors.blue : Colors.black,
+                  isIt: widget.bmi < 18.5 ? true : false,
+                  txtcolor: widget.bmi < 18.5 ? Colors.blue : Colors.black,
                 ),
                 Result(
                   condition: 'Normal',
                   bmi: '18.5 - 25',
-                  isIt: 18.5 < bmi && bmi < 25 ? true : false,
-                  txtcolor:
-                      18.5 < bmi && bmi < 25 ? Color(0xFF08D8BF) : Colors.black,
+                  isIt: 18.5 < widget.bmi && widget.bmi < 25 ? true : false,
+                  txtcolor: 18.5 < widget.bmi && widget.bmi < 25
+                      ? Color(0xFF08D8BF)
+                      : Colors.black,
                 ),
                 Result(
                   condition: 'Overweight',
                   bmi: '25 - 30',
-                  isIt: 25 < bmi && bmi < 30 ? true : false,
-                  txtcolor: 25 < bmi && bmi < 30 ? Colors.yellow : Colors.black,
+                  isIt: 25 < widget.bmi && widget.bmi < 30 ? true : false,
+                  txtcolor: 25 < widget.bmi && widget.bmi < 30
+                      ? Colors.yellow
+                      : Colors.black,
                 ),
                 Result(
                   condition: 'Obese',
                   bmi: '30 - 35',
-                  isIt: 30 < bmi && bmi < 35 ? true : false,
-                  txtcolor: 30 < bmi && bmi < 35 ? Colors.orange : Colors.black,
+                  isIt: 30 < widget.bmi && widget.bmi < 35 ? true : false,
+                  txtcolor: 30 < widget.bmi && widget.bmi < 35
+                      ? Colors.orange
+                      : Colors.black,
                 ),
                 Result(
                   condition: 'Severely Obese',
                   bmi: '35 - 40',
-                  isIt: 35 < bmi && bmi < 40 ? true : false,
-                  txtcolor:
-                      35 < bmi && bmi < 40 ? Color(0xFFF37B56) : Colors.black,
+                  isIt: 35 < widget.bmi && widget.bmi < 40 ? true : false,
+                  txtcolor: 35 < widget.bmi && widget.bmi < 40
+                      ? Color(0xFFF37B56)
+                      : Colors.black,
                 ),
                 Result(
                   condition: 'Very Severely Obese',
                   bmi: '> 40',
-                  isIt: bmi > 40 ? true : false,
-                  txtcolor: bmi > 40 ? Colors.red : Colors.black,
+                  isIt: widget.bmi > 40 ? true : false,
+                  txtcolor: widget.bmi > 40 ? Colors.red : Colors.black,
                 ),
               ],
             ),
@@ -127,15 +148,58 @@ class ShowBMI extends StatelessWidget {
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
-                    // Navigator.pop(context);
+                    bmibloc.dispatch(
+                      BmiAddevent(
+                        bmi: Bmi(value: widget.bmi),
+                      ),
+                    );
                   },
                   child: CircleAvatar(
                     backgroundColor: Colors.lightGreen,
                     radius: 33,
-                    child: Icon(
-                      Icons.save,
-                      color: Colors.black,
-                      size: 33,
+                    child: BlocBuilder(
+                      bloc: bmibloc,
+                      builder: (BuildContext context, BmiState state) {
+                        if (state is BmiUninitiatedState) {
+                          return Icon(
+                            Icons.save,
+                            color: Colors.black,
+                            size: 33,
+                          );
+                        } else if (state is BmiSendingState) {
+                          return CircularProgressIndicator();
+                        } else if (state is BmiSucessState) {
+                          Fluttertoast.showToast(
+                              msg: state.message,
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIos: 1,
+                              backgroundColor: Colors.black,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                          Navigator.pop(context);
+                          return Icon(
+                            Icons.save,
+                            color: Colors.black,
+                            size: 33,
+                          );
+                        } else if (state is BmiErrorState) {
+                          Fluttertoast.showToast(
+                              msg: state.error,
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIos: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                          Navigator.pop(context);
+                          return Icon(
+                            Icons.save,
+                            color: Colors.black,
+                            size: 33,
+                          );
+                        }
+                      },
                     ),
                   ),
                 ),
@@ -153,7 +217,10 @@ class ShowBMI extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // Navigator.pop(context);
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return BmiHistory();
+                    }));
                   },
                   child: CircleAvatar(
                     backgroundColor: Colors.amberAccent,

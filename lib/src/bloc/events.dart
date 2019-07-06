@@ -10,3 +10,4 @@ export 'comment_event.dart';
 export 'vote_event.dart';
 export 'search_event.dart';
 export 'uploadImage_event.dart';
+export 'bmi_event.dart';
