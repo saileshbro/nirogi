@@ -36,7 +36,7 @@ flutter:
    - assets/images/logos/
    - assets/images/icons/
    - assets/images/province/
-   - assets/animations/
+   - assets/gifs/
   fonts:
     - family: Montserrat
       fonts:

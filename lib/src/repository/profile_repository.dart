@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:http/http.dart' show Client, MultipartRequest;
+import 'package:http/http.dart' show Client;
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
@@ -138,24 +138,23 @@ class ProfileRepository {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
     try {
-      FormData formData = FormData();
-      formData.add('avatar', UploadFileInfo(image, image.path));
-      final response = await dio.patch("$baseUrl/api/user/me/avatar",
-          data: formData,
-          options: Options(
-            method: 'PATCH',
-            headers: {
-              "Authorization": "Bearer " + token,
-            },
+      Dio dio = new Dio();
+      FormData formdata = new FormData();
+      formdata.add("avatar", new UploadFileInfo(image, (image.path)));
+      final response = await dio.post(
+        "$baseUrl/api/users/me/avatar",
+        data: formdata,
+        options: Options(
+            method: 'POST',
             responseType: ResponseType.json,
-          ));
-      Map<String, dynamic> responseData = jsonDecode(response.data);
-      if (responseData.containsKey('error')) {
-        throw responseData['error'];
-      } else if (responseData.containsKey('message')) {
-        return responseData['message'];
+            headers: <String, dynamic>{
+              'Authorization': "Bearer $token",
+            }),
+      );
+      if (response.statusCode == 200) {
+        return "Success";
       } else {
-        throw "Unexpected error occured!";
+        return "Error";
       }
     } catch (e) {
       throw e.toString();

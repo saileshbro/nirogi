@@ -70,8 +70,9 @@ class _EachDiseaseState extends State<EachDisease> {
                                   ),
                             ),
                       flexibleSpace: FlexibleSpaceBar(
-                        background: Image.network(
-                          widget.disease.imageUrl,
+                        background: FadeInImage.assetNetwork(
+                          placeholder: "assets/gifs/ripple.gif",
+                          image: widget.disease.imageUrl,
                           fit: BoxFit.cover,
                         ),
                       ),

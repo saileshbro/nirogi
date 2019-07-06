@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:nirogi/src/bloc/blocs.dart';
+import 'package:nirogi/src/bloc/events.dart';
+import 'package:nirogi/src/bloc/states.dart';
+import 'package:nirogi/src/bloc/uploadImage_bloc.dart';
 import 'dart:io';
+
+import 'package:nirogi/src/bloc/uploadImage_state.dart';
 
 class ModifyImage extends StatefulWidget {
   @override
@@ -11,6 +19,7 @@ class ModifyImage extends StatefulWidget {
 }
 
 class _ModifyImageState extends State<ModifyImage> {
+  UploadBloc uploadBloc = UploadBloc();
   File _image;
 
   Future getImage() async {
@@ -61,7 +70,7 @@ class _ModifyImageState extends State<ModifyImage> {
         child: Container(
           margin: EdgeInsets.symmetric(vertical: 80),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Material(
                 borderRadius: BorderRadius.circular(10),
@@ -107,6 +116,56 @@ class _ModifyImageState extends State<ModifyImage> {
                         ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
+              BlocBuilder(
+                bloc: uploadBloc,
+                builder: (BuildContext context, state) {
+                  if (state is UploadInitialState) {
+                    return Container(
+                      height: 50,
+                      width: 50,
+                    );
+                  } else if (state is UploadSendingState) {
+                    return Container(
+                      height: 50,
+                      width: 50,
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is UploadSuccessState) {
+                    Fluttertoast.showToast(
+                        msg: state.message,
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIos: 1,
+                        backgroundColor: Colors.black,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                    imageCache.clear();
+                    return Container(
+                      height: 50,
+                      width: 50,
+                    );
+                  } else if (state is UploadFailedState) {
+                    Fluttertoast.showToast(
+                        msg: state.error,
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIos: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                    return Container(
+                      height: 50,
+                      width: 50,
+                    );
+                  }
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
               OutlineButton(
                 borderSide: BorderSide(
                   color: Colors.blue[700],
@@ -116,7 +175,10 @@ class _ModifyImageState extends State<ModifyImage> {
                   color: Colors.blue[700],
                   height: 30,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  uploadBloc
+                      .dispatch(UploadProfilePicture(uploadImage: _image));
+                },
               )
             ],
           ),

@@ -76,6 +76,17 @@ class UserRepository {
     return;
   }
 
+  Future<void> updateProfileSharedPreferences(
+      {@required String name,
+      @required String email,
+      @required String address}) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('name', name);
+    preferences.setString('email', email);
+    preferences.setString('address', address ?? "");
+    return;
+  }
+
   Future<bool> hasToken() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.containsKey('token');

@@ -261,13 +261,16 @@ class _EditProfileState extends State<EditProfile> {
                                 return CircularProgressIndicator();
                               } else if (state is SignupSuccessState) {
                                 Fluttertoast.showToast(
-                                    msg: state.message,
+                                    msg: "Updated. Please re-authenticate.",
                                     toastLength: Toast.LENGTH_SHORT,
                                     gravity: ToastGravity.BOTTOM,
                                     timeInSecForIos: 1,
                                     backgroundColor: Colors.black,
                                     textColor: Colors.white,
                                     fontSize: 16.0);
+                                BlocProvider.of<AuthenticationBloc>(context)
+                                    .dispatch(LoggedOutEvent());
+                                Navigator.pop(context);
                                 Navigator.pop(context);
                                 return Text(
                                   'Save Changes',
@@ -287,7 +290,6 @@ class _EditProfileState extends State<EditProfile> {
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                     fontSize: 16.0);
-                                Navigator.pop(context);
                                 return Text(
                                   'Save Changes',
                                   style: Theme.of(context)
@@ -302,9 +304,6 @@ class _EditProfileState extends State<EditProfile> {
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
-                              loggedinUser.address = updateuser.address;
-                              loggedinUser.email = updateuser.email;
-                              loggedinUser.name = updateuser.name;
                               signupBloc.dispatch(
                                   UpdateProfileEvent(user: updateuser));
                             }

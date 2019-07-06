@@ -15,7 +15,7 @@ class UploadBloc extends Bloc<UploadPictureEvent, UploadPictureState> {
       if (event is UploadProfilePicture) {
         message = await profileRepository.uploadProfilePicture(
             image: event.uploadImage);
-        yield (UploadSuccessState(message: message));
+        yield UploadSuccessState(message: message);
       }
     } catch (e) {
       yield UploadFailedState(error: e.toString());
