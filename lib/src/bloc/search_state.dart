@@ -18,6 +18,12 @@ class SearchDiseaseFetchedState extends SearchState {
       : assert(diseases != null);
 }
 
+class SearchSymptomFetchedState extends SearchState {
+  final List<Symptom> symptoms;
+  SearchSymptomFetchedState({@required this.symptoms})
+      : assert(symptoms != null);
+}
+
 class SearchErrorState extends SearchState {}
 
 class SearchEmptyState extends SearchState {}

@@ -11,3 +11,8 @@ class DiseaseSearchEvent extends SearchEvent {
   final String query;
   DiseaseSearchEvent({@required this.query}) : assert(query != null);
 }
+
+class SymptomSearchEvent extends SearchEvent {
+  final String query;
+  SymptomSearchEvent({@required this.query}) : assert(query != null);
+}

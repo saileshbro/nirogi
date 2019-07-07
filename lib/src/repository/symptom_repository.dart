@@ -71,6 +71,28 @@ class SymptomRepository {
     }
   }
 
+  Future<List<Symptom>> searchSymptoms({@required String query}) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final token = preferences.getString('token');
+    try {
+      final response = await client.get(
+        "$baseUrl/api/symptoms/search/$query",
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
+        },
+      );
+      Map<String, dynamic> responseData = jsonDecode(response.body);
+      if (responseData.containsKey('error')) {
+        throw responseData['error'];
+      } else {
+        return Symptoms.fromJson(jsonDecode(response.body)).symptoms;
+      }
+    } catch (e) {
+      throw "Unexpected error occured.";
+    }
+  }
+
   Future<String> addSymptom({@required Symptom symptom}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');
