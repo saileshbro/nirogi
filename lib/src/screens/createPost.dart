@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nirogi/main.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/states.dart';
@@ -72,10 +73,9 @@ class _CreatePostState extends State<CreatePost> {
                       width: 10,
                     ),
                     Text(
-                      'Sailesh Dahal',
+                      loggedinUser.name,
                       style: Theme.of(context).textTheme.body2.copyWith(
                             fontSize: 18,
-                            color: Colors.black,
                           ),
                     ),
                   ],

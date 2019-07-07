@@ -206,9 +206,11 @@ class _EditPostState extends State<EditPost> {
                             onPressed: () {
                               if (_createPostField.currentState.validate()) {
                                 _createPostField.currentState.save();
+                                widget.post.category = categoryValue;
                                 addPostBloc.dispatch(EditPostEvent(
-                                    post: widget.post,
-                                    postId: widget.post.postId));
+                                  post: widget.post,
+                                  postId: widget.post.postId,
+                                ));
                               }
                             },
                             child: Text(

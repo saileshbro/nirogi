@@ -22,7 +22,7 @@ class ToolCard extends StatelessWidget {
             child: InkWell(
               child: Card(
                 elevation: 5,
-                color: Colors.white70,
+                color: Theme.of(context).canvasColor,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[

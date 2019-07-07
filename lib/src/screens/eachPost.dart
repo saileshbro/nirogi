@@ -85,6 +85,7 @@ class _EachPostState extends State<EachPost> {
                 addPostBloc
                     .dispatch(DeletePostEvent(postId: widget.post.postId));
                 Navigator.pop(context);
+                Navigator.pop(context);
                 getPostsBloc.dispatch(GetAllPostsEvent(sort: 'popular'));
               },
               child: Text(
@@ -145,6 +146,10 @@ class _EachPostState extends State<EachPost> {
                               borderSide: BorderSide.none,
                             ),
                             hintText: "Enter your comment here",
+                            hintStyle:
+                                Theme.of(context).textTheme.body2.copyWith(
+                                      fontSize: 16,
+                                    ),
                             border: UnderlineInputBorder(
                               borderSide: BorderSide.none,
                             ),
@@ -164,9 +169,6 @@ class _EachPostState extends State<EachPost> {
                               comment: comment,
                               postId: widget.post.postId,
                             ));
-                            getAllCommentsBloc.dispatch(GetAllCommentsEvent(
-                                postId: widget.post.postId,
-                                sort: dropdownValue.title));
                           }
                         },
                       ),
@@ -186,6 +188,9 @@ class _EachPostState extends State<EachPost> {
                                 backgroundColor: Colors.black,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
+                            getAllCommentsBloc.dispatch(GetAllCommentsEvent(
+                                postId: widget.post.postId,
+                                sort: dropdownValue.title));
                             return SizedBox();
                           } else {
                             var errorstate = state as CommentErrorState;
@@ -227,7 +232,7 @@ class _EachPostState extends State<EachPost> {
                 width: 0.0,
               ),
         appBar: AppBar(
-          backgroundColor: Colors.grey[300],
+          backgroundColor: Theme.of(context).canvasColor,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -517,7 +522,7 @@ class _EachPostState extends State<EachPost> {
                   height: 5,
                 ),
                 Container(
-                  color: Colors.grey[300],
+                  color: Theme.of(context).canvasColor,
                   padding: EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
                     children: <Widget>[
@@ -783,10 +788,18 @@ class _BuildCommentsList extends StatelessWidget {
           );
         } else if (state is CommentsEmptyState) {
           return Container(
+            margin:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.3),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text("No posts found"),
+                Text(
+                  "No comments found",
+                  style: Theme.of(context).textTheme.body1.copyWith(
+                        fontSize: 17,
+                        color: Colors.red,
+                      ),
+                ),
               ],
             ),
           );

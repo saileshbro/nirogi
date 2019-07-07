@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/repository/repositories.dart';
@@ -45,8 +46,23 @@ class ShowFoods extends StatelessWidget {
               ),
             );
           } else if (snapshot.hasError) {
-            return Center(
-              child: Text("error"),
+            return Column(
+              children: <Widget>[
+                Container(
+                  width: 0.32 * MediaQuery.of(context).size.width,
+                  height: 0.32 * MediaQuery.of(context).size.width,
+                  child: FlareActor(
+                    'assets/animations/nointernet.flr',
+                    animation: 'init',
+                    fit: BoxFit.cover,
+                    shouldClip: false,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(snapshot.error)
+              ],
             );
           } else
             return Center(

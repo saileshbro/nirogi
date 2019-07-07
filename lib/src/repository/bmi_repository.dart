@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' show Client;
+import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
@@ -27,7 +27,11 @@ class BmiRepository {
         return Bmis.fromJson(jsonDecode(response.body)).bmi;
       }
     } catch (e) {
-      throw e.toString();
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -52,7 +56,11 @@ class BmiRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      throw e.toString();
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -76,7 +84,11 @@ class BmiRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      throw e.toString();
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      } else {
+        throw e.toString();
+      }
     }
   }
 }

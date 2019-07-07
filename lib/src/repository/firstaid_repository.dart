@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
-import 'package:http/http.dart' show Client;
+import 'package:http/http.dart';
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,7 +24,7 @@ class FirstAidRepository {
         return Firstaids.fromJson(jsonDecode(response.body)).firstaids;
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();
@@ -48,7 +48,7 @@ class FirstAidRepository {
         return Firstaid.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();

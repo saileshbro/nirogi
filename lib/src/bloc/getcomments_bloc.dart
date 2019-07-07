@@ -14,7 +14,6 @@ class GetAllCommentsBloc extends Bloc<GetCommentsEvent, GetCommentsState> {
     try {
       List<Comment> comments;
       if (event is GetAllCommentsEvent) {
-        await postRepository.incrementViewOfAPost(postId: event.postId);
         comments = await postRepository.getAllCommentsFromPost(
             postId: event.postId, sort: event.sort);
       }

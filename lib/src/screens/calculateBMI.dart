@@ -47,7 +47,7 @@ class _CalculateBMIState extends State<CalculateBMI> {
         ),
       ),
       body: Container(
-        color: Color(0xFFF5F5F5),
+        color: Theme.of(context).scaffoldBackgroundColor,
         padding: const EdgeInsets.fromLTRB(15, 8, 15, 45),
         child: Column(
           children: <Widget>[
@@ -63,7 +63,7 @@ class _CalculateBMIState extends State<CalculateBMI> {
                         selectedGender == Gender.male ? "Male" : "Female",
                         style: TextStyle(
                             fontSize: 17,
-                            color: Color(0xFFA9A9A9),
+                            color: Theme.of(context).textTheme.headline.color,
                             fontWeight: FontWeight.bold),
                       ),
                       Line(),
@@ -71,7 +71,7 @@ class _CalculateBMIState extends State<CalculateBMI> {
                         weightValue.toString() + 'Kg',
                         style: TextStyle(
                             fontSize: 17,
-                            color: Color(0xFFA9A9A9),
+                            color: Theme.of(context).textTheme.headline.color,
                             fontWeight: FontWeight.bold),
                       ),
                       Line(),
@@ -79,7 +79,7 @@ class _CalculateBMIState extends State<CalculateBMI> {
                         bodyHeight.toString() + 'cm',
                         style: TextStyle(
                             fontSize: 17,
-                            color: Color(0xFFA9A9A9),
+                            color: Theme.of(context).textTheme.headline.color,
                             fontWeight: FontWeight.bold),
                       ),
                     ],
@@ -106,7 +106,10 @@ class _CalculateBMIState extends State<CalculateBMI> {
                                       style: TextStyle(
                                         fontFamily: 'Montserrat-Medium',
                                         fontSize: 20,
-                                        color: Colors.black87,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .headline
+                                            .color,
                                       ),
                                     ),
                                     SizedBox(
@@ -192,7 +195,10 @@ class _CalculateBMIState extends State<CalculateBMI> {
                                       style: TextStyle(
                                         fontFamily: 'Montserrat-Medium',
                                         fontSize: 20,
-                                        color: Colors.black87,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .headline
+                                            .color,
                                       ),
                                     ),
                                     SizedBox(
@@ -281,7 +287,10 @@ class _CalculateBMIState extends State<CalculateBMI> {
                                 style: TextStyle(
                                   fontFamily: 'Montserrat-Medium',
                                   fontSize: 20,
-                                  color: Colors.black87,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .headline
+                                      .color,
                                 ),
                               ),
                               SizedBox(
@@ -308,6 +317,10 @@ class _CalculateBMIState extends State<CalculateBMI> {
                                   value: bodyHeight.toDouble(),
                                   max: 220,
                                   min: 100,
+                                  activeColor: Theme.of(context)
+                                      .textTheme
+                                      .headline
+                                      .color,
                                   onChanged: (double newValue) {
                                     setState(() {
                                       bodyHeight = newValue.round();

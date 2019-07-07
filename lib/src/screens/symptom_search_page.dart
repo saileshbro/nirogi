@@ -78,7 +78,7 @@ class _SymptomSearchPageState extends State<SymptomSearchPage> {
               onPressed: () {
                 if (_key.currentState.validate()) {
                   _key.currentState.save();
-                  searchBloc.dispatch(DrugSearchEvent(query: searchQuery));
+                  searchBloc.dispatch(SymptomSearchEvent(query: searchQuery));
                   print(searchQuery);
                 }
               },
@@ -113,7 +113,24 @@ class _SymptomSearchPageState extends State<SymptomSearchPage> {
               ));
             } else if (state is SearchEmptyState) {
               return Center(
-                child: Text("Nothing fround for the query\n\n$searchQuery"),
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(children: [
+                    TextSpan(
+                        text: "Nothing found for\n\n",
+                        style: Theme.of(context).textTheme.body1.copyWith(
+                              fontSize: 15,
+                              color: Colors.black,
+                            )),
+                    TextSpan(
+                      text: searchQuery,
+                      style: Theme.of(context).textTheme.headline.copyWith(
+                          fontSize: 17,
+                          color: Colors.blue[700],
+                          fontWeight: FontWeight.w500),
+                    )
+                  ]),
+                ),
               );
             } else if (state is SearchSymptomFetchedState) {
               return Padding(

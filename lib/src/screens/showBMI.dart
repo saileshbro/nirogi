@@ -196,6 +196,11 @@ class _ShowBMIState extends State<ShowBMI> {
                               backgroundColor: Colors.pink,
                             );
                           }
+                          return Icon(
+                            Icons.save,
+                            color: Colors.black,
+                            size: 33,
+                          );
                         },
                       ),
                     ),

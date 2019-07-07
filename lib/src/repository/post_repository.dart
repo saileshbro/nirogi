@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:http/http.dart' show Client;
+import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
@@ -24,6 +24,9 @@ class PostRepository {
         return Posts.fromJson(jsonDecode(response.body)).posts;
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -43,6 +46,9 @@ class PostRepository {
         return Posts.fromJson(jsonDecode(response.body)).posts;
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -63,6 +69,9 @@ class PostRepository {
         return Posts.fromJson(jsonDecode(response.body)).posts;
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -83,6 +92,9 @@ class PostRepository {
         return Posts.fromJson(jsonDecode(response.body)).posts;
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -108,6 +120,9 @@ class PostRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -127,6 +142,9 @@ class PostRepository {
         return Post.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -153,6 +171,9 @@ class PostRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -175,6 +196,9 @@ class PostRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -197,6 +221,9 @@ class PostRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -219,6 +246,9 @@ class PostRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -241,6 +271,9 @@ class PostRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -267,6 +300,9 @@ class PostRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -290,6 +326,9 @@ class PostRepository {
         return Comments.fromJson(jsonDecode(response.body)).comments;
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -313,6 +352,9 @@ class PostRepository {
         return Comment.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -342,6 +384,9 @@ class PostRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -367,6 +412,9 @@ class PostRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -392,6 +440,9 @@ class PostRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -417,6 +468,9 @@ class PostRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -441,6 +495,9 @@ class PostRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }
@@ -465,6 +522,9 @@ class PostRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
+      if (e is SocketException || e is ClientException) {
+        throw "Network Error.";
+      }
       throw e.toString();
     }
   }

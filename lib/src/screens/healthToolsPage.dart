@@ -31,10 +31,10 @@ class HealthToolsPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
           child: GridView.count(
             primary: false,
-            padding: const EdgeInsets.only(bottom: 15),
             crossAxisSpacing: 10.0,
             crossAxisCount: 2,
-            mainAxisSpacing: 0.8,
+            mainAxisSpacing: 0,
+            childAspectRatio: 1.18,
             children: <Widget>[
               ToolCard(
                 imageUrl: "assets/images/icons/diet.png",
@@ -91,7 +91,7 @@ class IncompatibleFoods extends StatelessWidget {
             child: InkWell(
               child: Card(
                 elevation: 5,
-                color: Colors.white70,
+                color: Theme.of(context).canvasColor,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[

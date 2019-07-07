@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/repository/post_repository.dart';
 import 'package:nirogi/src/screens/screens.dart';
 
 class ForumBlock extends StatelessWidget {
@@ -15,6 +16,7 @@ class ForumBlock extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {
+        postRepository.incrementViewOfAPost(postId: post.postId);
         Navigator.push(
           context,
           MaterialPageRoute(

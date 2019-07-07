@@ -279,17 +279,15 @@ class _ProfilePageState extends State<ProfilePage> {
                             } else if (state is PostsEmptyState) {
                               return Container(
                                 child: Center(
-                                  child: Column(
-                                    children: <Widget>[
-                                      FlareActor(
-                                        'assets/animations/error.flr',
-                                        animation: 'go',
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text("No posts found"),
-                                    ],
+                                  child: Text(
+                                    "No posts found",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .body1
+                                        .copyWith(
+                                          fontSize: 17,
+                                          color: Colors.red,
+                                        ),
                                   ),
                                 ),
                               );

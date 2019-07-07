@@ -6,6 +6,8 @@ import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/bmi_state.dart';
 import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/states.dart';
+import 'package:nirogi/src/models/models.dart';
+import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
 
 class BmiHistory extends StatefulWidget {
@@ -14,11 +16,11 @@ class BmiHistory extends StatefulWidget {
 }
 
 class _BmiHistoryState extends State<BmiHistory> {
-  BmiBloc bmiBloc = BmiBloc();
+  Future<List<Bmi>> bmis;
   @override
   void initState() {
     super.initState();
-    bmiBloc.dispatch(BmiGetEvent());
+    bmis = bmiRepository.getBmiRecords();
   }
 
   @override
@@ -29,7 +31,6 @@ class _BmiHistoryState extends State<BmiHistory> {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              bmiBloc.dispose();
               _showDeleteModal();
             },
             icon: Icon(
@@ -57,32 +58,23 @@ class _BmiHistoryState extends State<BmiHistory> {
           ],
         ),
       ),
-      body: BlocBuilder(
-        bloc: bmiBloc,
-        builder: (BuildContext context, BmiState state) {
-          if (state is BmiUninitiatedState) {
-            return Center(
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.pink,
-              ),
-            );
-          } else if (state is BmiEmptyState) {
-            return Center(
-              child: Text('No records found.'),
-            );
-          } else if (state is BmiSendingState) {
-            return Center(
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.pink,
-              ),
-            );
-          } else if (state is BmiFetchedState) {
-            return ScrollConfiguration(
-              behavior: RemoveEndOfListIndicator(),
-              child: RefreshIndicator(
-                onRefresh: () async {
-                  bmiBloc.dispatch(BmiGetEvent());
-                },
+      body: FutureBuilder(
+        future: bmis,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data.length == 0) {
+              return Center(
+                child: Text(
+                  'No Records Found.',
+                  style: Theme.of(context).textTheme.headline.copyWith(
+                      fontSize: 17,
+                      color: Colors.blue[700],
+                      fontWeight: FontWeight.w500),
+                ),
+              );
+            } else {
+              return ScrollConfiguration(
+                behavior: RemoveEndOfListIndicator(),
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
@@ -92,74 +84,90 @@ class _BmiHistoryState extends State<BmiHistory> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             DataTable(
-                                columns: <DataColumn>[
-                                  DataColumn(
-                                    label: Text(
-                                      'Calculated Date',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .body2
-                                          .copyWith(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.red[700],
-                                          ),
-                                    ),
-                                  ),
-                                  DataColumn(
-                                    label: Text(
-                                      'BMI',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .body2
-                                          .copyWith(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.red[700],
-                                          ),
-                                    ),
-                                  ),
-                                ],
-                                rows: state.bmis.map(
-                                  (bmi) {
-                                    return DataRow(
-                                      cells: <DataCell>[
-                                        DataCell(
-                                          Text(bmi.createdAt),
-                                          showEditIcon: false,
-                                          placeholder: false,
+                              columns: <DataColumn>[
+                                DataColumn(
+                                  label: Text(
+                                    'Calculated Date',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .body2
+                                        .copyWith(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.red[700],
                                         ),
-                                        DataCell(
-                                          Text(
-                                            bmi.value.toString(),
-                                          ),
-                                          placeholder: false,
+                                  ),
+                                ),
+                                DataColumn(
+                                  label: Text(
+                                    'BMI',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .body2
+                                        .copyWith(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.red[700],
                                         ),
-                                      ],
-                                    );
-                                  },
-                                ).toList()),
+                                  ),
+                                ),
+                              ],
+                              rows: snapshot.data.map<DataRow>(
+                                (bmi) {
+                                  return DataRow(
+                                    cells: <DataCell>[
+                                      DataCell(
+                                        Text(bmi.createdAt),
+                                        showEditIcon: false,
+                                        placeholder: false,
+                                      ),
+                                      DataCell(
+                                        Text(
+                                          bmi.value.toString(),
+                                        ),
+                                        placeholder: false,
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ).toList(),
+                            ),
                           ],
                         ),
                       )
                     ],
                   ),
                 ),
-              ),
-            );
-          } else if (state is BmiErrorState) {
-            Container(
-              width: 0.32 * MediaQuery.of(context).size.width,
-              height: 0.32 * MediaQuery.of(context).size.width,
-              child: FlareActor(
-                'assets/animations/nointernet.flr',
-                animation: 'init',
-                fit: BoxFit.cover,
-                shouldClip: false,
+              );
+            }
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    width: 0.32 * MediaQuery.of(context).size.width,
+                    height: 0.32 * MediaQuery.of(context).size.width,
+                    child: FlareActor(
+                      'assets/animations/nointernet.flr',
+                      animation: 'init',
+                      fit: BoxFit.cover,
+                      shouldClip: false,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(snapshot.error)
+                ],
               ),
             );
           } else {
-            return SizedBox();
+            return Center(
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.pink,
+              ),
+            );
           }
         },
       ),
@@ -167,7 +175,6 @@ class _BmiHistoryState extends State<BmiHistory> {
   }
 
   void _showDeleteModal() {
-    bmiBloc.dispose();
     BmiBloc deleteBmiBloc = BmiBloc();
     showDialog(
       context: context,

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:http/http.dart' show Client;
+import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
@@ -23,7 +23,7 @@ class SymptomRepository {
         return Symptoms.fromJson(jsonDecode(response.body)).symptoms;
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();
@@ -49,7 +49,7 @@ class SymptomRepository {
         return Symptoms.fromJson(jsonDecode(response.body)).symptoms;
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();
@@ -75,7 +75,7 @@ class SymptomRepository {
         return Symptom.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();
@@ -101,7 +101,7 @@ class SymptomRepository {
         return Symptoms.fromJson(jsonDecode(response.body)).symptoms;
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();
@@ -130,7 +130,7 @@ class SymptomRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();

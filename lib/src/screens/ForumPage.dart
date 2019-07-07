@@ -94,7 +94,13 @@ class _ForumPageState extends State<ForumPage> {
           } else if (state is PostsEmptyState) {
             return Container(
               child: Center(
-                child: Text("No posts found"),
+                child: Text(
+                  "No posts found",
+                  style: Theme.of(context).textTheme.body1.copyWith(
+                        fontSize: 17,
+                        color: Colors.red,
+                      ),
+                ),
               ),
             );
           } else if (state is PostsFetchingState) {

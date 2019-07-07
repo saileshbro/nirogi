@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:http/http.dart' show Client;
+import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 import 'package:nirogi/src/constants/env.dart';
 import 'package:nirogi/src/models/models.dart';
@@ -25,7 +25,7 @@ class ProfileRepository {
         return User.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();
@@ -48,7 +48,7 @@ class ProfileRepository {
         return Users.fromJson(jsonDecode(response.body)).users;
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();
@@ -71,7 +71,7 @@ class ProfileRepository {
         return User.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();
@@ -98,7 +98,7 @@ class ProfileRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();
@@ -126,7 +126,7 @@ class ProfileRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();
@@ -150,7 +150,7 @@ class ProfileRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();
@@ -181,7 +181,7 @@ class ProfileRepository {
         return "Error";
       }
     } catch (e) {
-      if (e is SocketException) {
+      if (e is SocketException || e is ClientException) {
         throw "Network Error";
       } else {
         throw e.toString();

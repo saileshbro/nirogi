@@ -1,4 +1,3 @@
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
@@ -103,19 +102,28 @@ class _DiseaseSearchPageState extends State<DiseaseSearchPage> {
               ));
             } else if (state is SearchErrorState) {
               return Center(
-                  child: Container(
-                width: 0.32 * MediaQuery.of(context).size.width,
-                height: 0.32 * MediaQuery.of(context).size.width,
-                child: FlareActor(
-                  'assets/animations/nointernet.flr',
-                  animation: 'init',
-                  fit: BoxFit.cover,
-                  shouldClip: false,
-                ),
-              ));
+                child: Text("error occured"),
+              );
             } else if (state is SearchEmptyState) {
               return Center(
-                child: Text("Nothing fround for the query\n\n$searchQuery"),
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(children: [
+                    TextSpan(
+                        text: "Nothing found for\n\n",
+                        style: Theme.of(context).textTheme.body1.copyWith(
+                              fontSize: 15,
+                              color: Colors.black,
+                            )),
+                    TextSpan(
+                      text: searchQuery,
+                      style: Theme.of(context).textTheme.headline.copyWith(
+                          fontSize: 17,
+                          color: Colors.blue[700],
+                          fontWeight: FontWeight.w500),
+                    )
+                  ]),
+                ),
               );
             } else if (state is SearchDiseaseFetchedState) {
               return Padding(

@@ -74,8 +74,12 @@ class _CommentCardState extends State<CommentCard> {
                     postId: widget.comment.postid);
                 Navigator.of(context).pop();
                 setState(() {
-                  getAllCommentsBloc.dispatch(GetAllCommentsEvent(
-                      sort: 'time', postId: widget.comment.postid));
+                  getAllCommentsBloc.dispatch(
+                    GetAllCommentsEvent(
+                      sort: 'time',
+                      postId: widget.comment.postid,
+                    ),
+                  );
                 });
               },
               child: Text(

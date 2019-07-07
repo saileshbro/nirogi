@@ -15,7 +15,7 @@ class FoodMenuBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Card(
-        color: Colors.white.withOpacity(0.7),
+        color: Theme.of(context).canvasColor,
         elevation: 2,
         child: Column(
           children: <Widget>[
