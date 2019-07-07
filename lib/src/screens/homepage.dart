@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -263,8 +264,12 @@ class _HomePageState extends State<HomePage> {
             );
           } else {
             return Center(
-              child: CircularProgressIndicator(),
-            );
+                child: FlareActor(
+              'assets/animations/nointernet.flr',
+              animation: 'init',
+              fit: BoxFit.cover,
+              alignment: Alignment.center,
+            ));
           }
         },
       ),
