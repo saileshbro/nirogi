@@ -25,7 +25,7 @@ class ProfileRepository {
         return User.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -44,7 +44,7 @@ class ProfileRepository {
         return Users.fromJson(jsonDecode(response.body)).users;
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -63,7 +63,7 @@ class ProfileRepository {
         return User.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -86,7 +86,7 @@ class ProfileRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -110,7 +110,7 @@ class ProfileRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -130,7 +130,7 @@ class ProfileRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -157,7 +157,7 @@ class ProfileRepository {
         return "Error";
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 }

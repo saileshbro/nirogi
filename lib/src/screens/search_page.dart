@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
@@ -89,12 +90,23 @@ class _SearchPageState extends State<SearchPage> {
               );
             }
             if (state is SearchFetchingState) {
-              return Center(child: CircularProgressIndicator());
+              return Center(
+                  child: CircularProgressIndicator(
+                backgroundColor: Colors.pink,
+              ));
             }
             if (state is SearchErrorState) {
               return Center(
-                child: Text('error'),
-              );
+                  child: Container(
+                width: 0.32 * MediaQuery.of(context).size.width,
+                height: 0.32 * MediaQuery.of(context).size.width,
+                child: FlareActor(
+                  'assets/animations/nointernet.flr',
+                  animation: 'init',
+                  fit: BoxFit.cover,
+                  shouldClip: false,
+                ),
+              ));
             }
             if (state is SearchEmptyState) {
               return Center(

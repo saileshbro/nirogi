@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
@@ -99,13 +100,22 @@ class _ForumPageState extends State<ForumPage> {
           } else if (state is PostsFetchingState) {
             return Container(
               child: Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.pink,
+                ),
               ),
             );
           } else if (state is PostsErrorState) {
-            return Container(
-              child: Center(
-                child: Text("error"),
+            return Center(
+              child: Container(
+                width: 0.32 * MediaQuery.of(context).size.width,
+                height: 0.32 * MediaQuery.of(context).size.width,
+                child: FlareActor(
+                  'assets/animations/nointernet.flr',
+                  animation: 'init',
+                  fit: BoxFit.cover,
+                  shouldClip: false,
+                ),
               ),
             );
           }

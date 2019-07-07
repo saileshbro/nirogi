@@ -479,7 +479,9 @@ class _EachPostState extends State<EachPost> {
                           } else if (state is AddPostSendingState) {
                             return Container(
                               child: Center(
-                                child: CircularProgressIndicator(),
+                                child: CircularProgressIndicator(
+                                  backgroundColor: Colors.pink,
+                                ),
                               ),
                             );
                           } else if (state is AddPostSucessState) {
@@ -791,7 +793,9 @@ class _BuildCommentsList extends StatelessWidget {
             margin:
                 EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.3),
             child: Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.pink,
+              ),
             ),
           );
         } else if (state is CommentsErrorState) {

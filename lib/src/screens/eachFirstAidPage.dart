@@ -125,7 +125,9 @@ class _EachFirstAidPageState extends State<EachFirstAidPage> {
             );
           } else {
             return Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.pink,
+              ),
             );
           }
         },

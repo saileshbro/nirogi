@@ -24,7 +24,7 @@ class FirstAidRepository {
         return Firstaids.fromJson(jsonDecode(response.body)).firstaids;
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -44,7 +44,7 @@ class FirstAidRepository {
         return Firstaid.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 }

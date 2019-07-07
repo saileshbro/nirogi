@@ -26,7 +26,7 @@ class NewsReposirory {
         return News.fromJson(jsonDecode(response.body)).news;
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -48,7 +48,7 @@ class NewsReposirory {
         return NewsItem.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 }

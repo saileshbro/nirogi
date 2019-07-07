@@ -50,7 +50,9 @@ class ShowFoods extends StatelessWidget {
             );
           } else
             return Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.pink,
+              ),
             );
         },
       ),

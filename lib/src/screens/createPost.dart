@@ -225,7 +225,9 @@ class _CreatePostState extends State<CreatePost> {
                     } else if (state is AddPostSendingState) {
                       return Container(
                         child: Center(
-                          child: CircularProgressIndicator(),
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.pink,
+                          ),
                         ),
                       );
                     } else if (state is AddPostSucessState) {

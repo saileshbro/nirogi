@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/models.dart';
@@ -20,7 +21,7 @@ class FoodTipsPage extends StatelessWidget {
                 width: 14,
               ),
               Image.asset(
-                'assets/images/icons/foodtips.png',
+                'assets/images/icons/diet.png',
                 width: 30,
               ),
             ],
@@ -56,11 +57,22 @@ class FoodTipsPage extends StatelessWidget {
                         );
                       } else if (snapshot.hasError) {
                         return Center(
-                          child: Text("Error"),
+                          child: Container(
+                            width: 0.32 * MediaQuery.of(context).size.width,
+                            height: 0.32 * MediaQuery.of(context).size.width,
+                            child: FlareActor(
+                              'assets/animations/nointernet.flr',
+                              animation: 'init',
+                              fit: BoxFit.cover,
+                              shouldClip: false,
+                            ),
+                          ),
                         );
                       } else {
                         return Center(
-                          child: CircularProgressIndicator(),
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.pink,
+                          ),
                         );
                       }
                     }),

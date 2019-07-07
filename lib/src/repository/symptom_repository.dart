@@ -23,7 +23,7 @@ class SymptomRepository {
         return Symptoms.fromJson(jsonDecode(response.body)).symptoms;
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -45,7 +45,7 @@ class SymptomRepository {
         return Symptoms.fromJson(jsonDecode(response.body)).symptoms;
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -67,7 +67,7 @@ class SymptomRepository {
         return Symptom.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -92,7 +92,7 @@ class SymptomRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 }

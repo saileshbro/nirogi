@@ -258,7 +258,9 @@ class _EditProfileState extends State<EditProfile> {
                                           fontSize: 17, color: Colors.white),
                                 );
                               } else if (state is SignupLoadingState) {
-                                return CircularProgressIndicator();
+                                return CircularProgressIndicator(
+                                  backgroundColor: Colors.pink,
+                                );
                               } else if (state is SignupSuccessState) {
                                 Fluttertoast.showToast(
                                     msg: "Updated. Please re-authenticate.",

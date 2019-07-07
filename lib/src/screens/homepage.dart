@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 heading('Common Diseases', context),
                 SizedBox(
@@ -106,36 +106,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 0.02 * height,
                 ),
-                FutureBuilder(
-                  future: commonDrug,
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasData) {
-                      return Container(
-                        height: 300,
-                        child: Swiper(
-                          viewportFraction: 0.7,
-                          scale: 0.9,
-                          itemBuilder: (BuildContext context, int index) {
-                            return DrugWidget(drug: snapshot.data[index]);
-                          },
-                          indicatorLayout: PageIndicatorLayout.COLOR,
-                          autoplay: true,
-                          loop: false,
-                          itemCount: snapshot.data.length,
-                          containerWidth: 200,
-                        ),
-                      );
-                    } else if (snapshot.hasError) {
-                      return Center(
-                        child: Text(snapshot.error),
-                      );
-                    } else {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                  },
-                ),
+                buildCommonDrugs(),
                 SizedBox(
                   height: 0.03 * height,
                 ),
@@ -146,6 +117,48 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+    );
+  }
+
+  FutureBuilder<List<Drug>> buildCommonDrugs() {
+    return FutureBuilder(
+      future: commonDrug,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          return Container(
+            height: 300,
+            child: Swiper(
+              viewportFraction: 0.7,
+              scale: 0.9,
+              itemBuilder: (BuildContext context, int index) {
+                return DrugWidget(drug: snapshot.data[index]);
+              },
+              indicatorLayout: PageIndicatorLayout.COLOR,
+              autoplay: true,
+              loop: false,
+              itemCount: snapshot.data.length,
+              containerWidth: 200,
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return Container(
+            width: 0.32 * MediaQuery.of(context).size.width,
+            height: 0.32 * MediaQuery.of(context).size.width,
+            child: FlareActor(
+              'assets/animations/nointernet.flr',
+              animation: 'init',
+              fit: BoxFit.cover,
+              shouldClip: false,
+            ),
+          );
+        } else {
+          return Center(
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.pink,
+            ),
+          );
+        }
+      },
     );
   }
 
@@ -176,12 +189,21 @@ class _HomePageState extends State<HomePage> {
                 },
               );
             } else if (snapshot.hasError) {
-              return Center(
-                child: Text(snapshot.error),
+              return Container(
+                width: 0.30 * MediaQuery.of(context).size.width,
+                height: 0.30 * MediaQuery.of(context).size.width,
+                child: FlareActor(
+                  'assets/animations/nointernet.flr',
+                  animation: 'init',
+                  fit: BoxFit.cover,
+                  shouldClip: false,
+                ),
               );
             } else {
               return Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.pink,
+                ),
               );
             }
           }),
@@ -259,17 +281,22 @@ class _HomePageState extends State<HomePage> {
               },
             );
           } else if (snapshot.hasError) {
-            return Center(
-              child: Text(snapshot.error.toString()),
+            return Container(
+              width: 0.32 * MediaQuery.of(context).size.width,
+              height: 0.32 * MediaQuery.of(context).size.width,
+              child: FlareActor(
+                'assets/animations/nointernet.flr',
+                animation: 'init',
+                fit: BoxFit.cover,
+                shouldClip: false,
+              ),
             );
           } else {
             return Center(
-                child: FlareActor(
-              'assets/animations/nointernet.flr',
-              animation: 'init',
-              fit: BoxFit.cover,
-              alignment: Alignment.center,
-            ));
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.pink,
+              ),
+            );
           }
         },
       ),
@@ -349,12 +376,21 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         } else if (snapshot.hasError) {
-          return Center(
-            child: Text(snapshot.error.toString()),
+          return Container(
+            width: 0.32 * MediaQuery.of(context).size.width,
+            height: 0.32 * MediaQuery.of(context).size.width,
+            child: FlareActor(
+              'assets/animations/nointernet.flr',
+              animation: 'init',
+              fit: BoxFit.cover,
+              shouldClip: false,
+            ),
           );
         } else {
           return Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.pink,
+            ),
           );
         }
       },

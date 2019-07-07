@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
@@ -293,8 +292,8 @@ class _LoginFormState extends State<LoginForm> {
                 elevation: 5,
                 child: Center(
                   child: state is SignupLoadingState
-                      ? SpinKitWave(
-                          color: Colors.red[700],
+                      ? CircularProgressIndicator(
+                          backgroundColor: Colors.pink,
                         )
                       : Text(
                           'LOGIN',

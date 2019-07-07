@@ -29,7 +29,7 @@ class DrugRepository {
       if (e is Exception) {
         throw "Exception";
       } else {
-        throw e.toString();
+        throw "Unexpected error occured.";
       }
     }
   }
@@ -52,7 +52,7 @@ class DrugRepository {
         return Drug.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -74,7 +74,7 @@ class DrugRepository {
         return Drugs.fromJson(jsonDecode(response.body)).drugs;
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 }

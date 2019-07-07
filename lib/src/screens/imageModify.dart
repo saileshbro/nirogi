@@ -131,7 +131,9 @@ class _ModifyImageState extends State<ModifyImage> {
                     return Container(
                       height: 50,
                       width: 50,
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.pink,
+                      ),
                     );
                   } else if (state is UploadSuccessState) {
                     Fluttertoast.showToast(

@@ -192,7 +192,9 @@ class _ShowBMIState extends State<ShowBMI> {
                               size: 33,
                             );
                           } else if (state is BmiSendingState) {
-                            return CircularProgressIndicator();
+                            return CircularProgressIndicator(
+                              backgroundColor: Colors.pink,
+                            );
                           }
                         },
                       ),

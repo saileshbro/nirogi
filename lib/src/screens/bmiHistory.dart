@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -61,7 +62,9 @@ class _BmiHistoryState extends State<BmiHistory> {
         builder: (BuildContext context, BmiState state) {
           if (state is BmiUninitiatedState) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.pink,
+              ),
             );
           } else if (state is BmiEmptyState) {
             return Center(
@@ -69,7 +72,9 @@ class _BmiHistoryState extends State<BmiHistory> {
             );
           } else if (state is BmiSendingState) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.pink,
+              ),
             );
           } else if (state is BmiFetchedState) {
             return ScrollConfiguration(
@@ -143,8 +148,15 @@ class _BmiHistoryState extends State<BmiHistory> {
               ),
             );
           } else if (state is BmiErrorState) {
-            return Center(
-              child: Text('error'),
+            Container(
+              width: 0.32 * MediaQuery.of(context).size.width,
+              height: 0.32 * MediaQuery.of(context).size.width,
+              child: FlareActor(
+                'assets/animations/nointernet.flr',
+                animation: 'init',
+                fit: BoxFit.cover,
+                shouldClip: false,
+              ),
             );
           }
         },

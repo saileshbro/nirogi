@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/repository/repositories.dart';
@@ -37,53 +38,68 @@ class _HealthNewsPageState extends State<HealthNewsPage> {
           ],
         ),
       ),
-      body: ScrollConfiguration(
-        behavior: RemoveEndOfListIndicator(),
-        child: SingleChildScrollView(
-          child: buildTopNews(context),
-        ),
-      ),
+      body: buildTopNews(context),
     );
   }
 
   Widget buildTopNews(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    return FutureBuilder(
-      future: allNews,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.hasData) {
-          return Container(
-            padding: EdgeInsets.only(top: 0.02 * height, bottom: 0.02 * height),
-            child: ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                return NewsCard(
-                  news: snapshot.data[index],
-                );
-              },
-              itemCount: snapshot.data.length,
-              separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(
-                  height: 0.03 * height,
-                );
-              },
-            ),
-          );
-        } else if (snapshot.hasError) {
-          return Container(
-            child: Center(
-              child: Text(snapshot.error.toString()),
-            ),
-          );
-        } else {
-          return Container(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-      },
+    return ScrollConfiguration(
+      behavior: RemoveEndOfListIndicator(),
+      child: SingleChildScrollView(
+        child: FutureBuilder(
+          future: allNews,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return Container(
+                padding:
+                    EdgeInsets.only(top: 0.02 * height, bottom: 0.02 * height),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return NewsCard(
+                      news: snapshot.data[index],
+                    );
+                  },
+                  itemCount: snapshot.data.length,
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      height: 0.03 * height,
+                    );
+                  },
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(
+                      0, MediaQuery.of(context).size.height * 0.3, 0, 0),
+                  width: 0.32 * MediaQuery.of(context).size.width,
+                  height: 0.32 * MediaQuery.of(context).size.width,
+                  child: FlareActor(
+                    'assets/animations/nointernet.flr',
+                    animation: 'init',
+                    fit: BoxFit.cover,
+                    shouldClip: false,
+                  ),
+                ),
+              );
+            } else {
+              return Container(
+                margin: EdgeInsets.fromLTRB(
+                    0, MediaQuery.of(context).size.height * 0.4, 0, 0),
+                height: 40,
+                width: MediaQuery.of(context).size.width,
+                child: Center(
+                    child: CircularProgressIndicator(
+                  backgroundColor: Colors.pink,
+                )),
+              );
+            }
+          },
+        ),
+      ),
     );
   }
 }

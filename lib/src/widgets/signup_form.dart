@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nirogi/src/bloc/authentication_bloc.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
@@ -195,9 +194,8 @@ class _SignupFormState extends State<SignupForm> {
                 elevation: 5,
                 child: Center(
                   child: state is SignupLoadingState
-                      ? SpinKitWave(
-                          color: Colors.red[700],
-                          size: 24,
+                      ? CircularProgressIndicator(
+                          backgroundColor: Colors.pink,
                         )
                       : Text(
                           'REGISTER',

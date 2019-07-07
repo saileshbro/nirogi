@@ -26,7 +26,7 @@ class DiseaseRepository {
         return Diseases.fromJson(jsonDecode(response.body)).diseases;
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -48,7 +48,7 @@ class DiseaseRepository {
         return Diseases.fromJson(jsonDecode(response.body)).diseases;
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -70,7 +70,7 @@ class DiseaseRepository {
         return Disease.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -95,7 +95,7 @@ class DiseaseRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 }

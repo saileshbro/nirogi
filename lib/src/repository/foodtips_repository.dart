@@ -27,7 +27,7 @@ class FoodTipsRepository {
         return Diseases.fromJson(jsonDecode(response.body)).diseases;
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 
@@ -49,7 +49,7 @@ class FoodTipsRepository {
         return FoodTips.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw e.toString();
+      throw "Unexpected error occured.";
     }
   }
 }

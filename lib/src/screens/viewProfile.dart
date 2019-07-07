@@ -181,7 +181,9 @@ class _ViewProfileState extends State<ViewProfile> {
                       } else if (state is PostsFetchingState) {
                         return Container(
                           child: Center(
-                            child: CircularProgressIndicator(),
+                            child: CircularProgressIndicator(
+                              backgroundColor: Colors.pink,
+                            ),
                           ),
                         );
                       } else if (state is PostsErrorState) {
