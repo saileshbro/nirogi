@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
           return <Widget>[
             SliverAppBar(
               pinned: true,
-              expandedHeight: 0.1875 * height,
+              expandedHeight: 0.19 * height,
               flexibleSpace: _isCollapsed ? SizedBox() : heroClipPath(context),
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -313,7 +313,7 @@ class _HomePageState extends State<HomePage> {
           child: ClipPath(
             child: Container(
               margin: EdgeInsets.only(top: 1),
-              height: 0.199 * height,
+              height: 0.27 * height,
               color: Colors.red[700],
             ),
             clipper: HomePageBorderClipper(),
@@ -325,9 +325,9 @@ class _HomePageState extends State<HomePage> {
             clipper: HomePageClipper(),
             child: Container(
               padding: EdgeInsets.fromLTRB(
-                  0.06 * width, 0.01 * height, 0.04 * width, 0.04 * height),
+                  0.06 * width, 0.04 * height, 0.04 * width, 0.04 * height),
               width: MediaQuery.of(context).size.width,
-              height: 0.19 * height,
+              height: 0.195 * height,
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
               ),
