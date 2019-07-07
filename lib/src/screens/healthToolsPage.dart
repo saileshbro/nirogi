@@ -34,6 +34,7 @@ class HealthToolsPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 15),
             crossAxisSpacing: 10.0,
             crossAxisCount: 2,
+            mainAxisSpacing: 0.8,
             children: <Widget>[
               ToolCard(
                 imageUrl: "assets/images/icons/diet.png",
@@ -50,69 +51,7 @@ class HealthToolsPage extends StatelessWidget {
                 name: "First Aid",
                 onTapWidget: FirstAidPage(),
               ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      height: 180,
-                      child: InkWell(
-                        child: Card(
-                          elevation: 5,
-                          color: Colors.white70,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Container(
-                                margin: EdgeInsets.only(top: 10, bottom: 20),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Stack(
-                                      children: <Widget>[
-                                        Image.asset(
-                                          'assets/images/icons/breakfast.png',
-                                          width: 90,
-                                        ),
-                                        Positioned(
-                                          bottom: 0,
-                                          right: 0,
-                                          child: Image.asset(
-                                            'assets/images/icons/close.png',
-                                            width: 30,
-                                            color: Colors.red[700],
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Text(
-                                "Incompatible Foods",
-                                style:
-                                    Theme.of(context).textTheme.body1.copyWith(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                textAlign: TextAlign.center,
-                              )
-                            ],
-                          ),
-                        ),
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (BuildContext context) {
-                                return IncompatibleFoodsMenuPage();
-                              },
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              IncompatibleFoods(),
               ToolCard(
                 imageUrl: "assets/images/icons/bmi.png",
                 name: "BMI Calculator",
@@ -133,6 +72,78 @@ class HealthToolsPage extends StatelessWidget {
         ),
         behavior: RemoveEndOfListIndicator(),
       ),
+    );
+  }
+}
+
+class IncompatibleFoods extends StatelessWidget {
+  const IncompatibleFoods({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            height: 180,
+            child: InkWell(
+              child: Card(
+                elevation: 5,
+                color: Colors.white70,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(top: 10, bottom: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Stack(
+                            children: <Widget>[
+                              Image.asset(
+                                'assets/images/icons/breakfast.png',
+                                width: 90,
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: Image.asset(
+                                  'assets/images/icons/close.png',
+                                  width: 30,
+                                  color: Colors.red[700],
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    Text(
+                      "Incompatible Foods",
+                      style: Theme.of(context).textTheme.body1.copyWith(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return IncompatibleFoodsMenuPage();
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
