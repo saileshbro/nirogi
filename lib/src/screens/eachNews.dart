@@ -72,7 +72,7 @@ class _EachNewsState extends State<EachNews> {
                       flexibleSpace: FlexibleSpaceBar(
                         background: FadeInImage.assetNetwork(
                           image: widget.news.imageUrl,
-                          placeholder: "assets/gifs/ripple.gif",
+                          placeholder: "assets/gifs/loading.gif",
                           fit: BoxFit.cover,
                         ),
                       ),

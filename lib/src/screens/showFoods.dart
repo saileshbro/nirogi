@@ -30,6 +30,9 @@ class ShowFoods extends StatelessWidget {
                     backgroundColor: Colors.green[100],
                     tipIcon: Icons.check,
                   ),
+                  SizedBox(
+                    height: 30,
+                  ),
                   TipsBox(
                     foods: snapshot.data.toavoid,
                     heading: 'Foods To Avoid: ',
@@ -117,7 +120,7 @@ class TipsBox extends StatelessWidget {
             height: 3.0,
           ),
           Container(
-            height: 200,
+            height: 250,
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: ListView.separated(
               physics: BouncingScrollPhysics(),
@@ -161,16 +164,16 @@ class FoodCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       child: Container(
         color: backgroundColor,
-        height: 45.0,
+        height: 60.0,
         child: Stack(
           overflow: Overflow.clip,
           children: <Widget>[
             Container(
-              height: 260,
-              width: 160,
+              height: 300,
+              width: 200,
               child: FadeInImage.assetNetwork(
                 image: imageUrl,
-                placeholder: "assets/gifs/ripple.gif",
+                placeholder: "assets/gifs/loading.gif",
                 width: 30,
                 fit: BoxFit.cover,
               ),
@@ -179,7 +182,7 @@ class FoodCard extends StatelessWidget {
               left: 0.0,
               bottom: 0.0,
               height: 290,
-              width: 160,
+              width: 200,
               child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(colors: [

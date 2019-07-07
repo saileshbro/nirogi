@@ -157,18 +157,10 @@ class _ShowBMIState extends State<ShowBMI> {
                   child: CircleAvatar(
                     backgroundColor: Colors.lightGreen,
                     radius: 33,
-                    child: BlocBuilder(
+                    child: BlocListener(
                       bloc: bmibloc,
-                      builder: (BuildContext context, BmiState state) {
-                        if (state is BmiUninitiatedState) {
-                          return Icon(
-                            Icons.save,
-                            color: Colors.black,
-                            size: 33,
-                          );
-                        } else if (state is BmiSendingState) {
-                          return CircularProgressIndicator();
-                        } else if (state is BmiSucessState) {
+                      listener: (BuildContext context, BmiState state) {
+                        if (state is BmiSucessState) {
                           Fluttertoast.showToast(
                               msg: state.message,
                               toastLength: Toast.LENGTH_SHORT,
@@ -177,12 +169,7 @@ class _ShowBMIState extends State<ShowBMI> {
                               backgroundColor: Colors.black,
                               textColor: Colors.white,
                               fontSize: 16.0);
-                          Navigator.pop(context);
-                          return Icon(
-                            Icons.save,
-                            color: Colors.black,
-                            size: 33,
-                          );
+                          Navigator.of(context).pop();
                         } else if (state is BmiErrorState) {
                           Fluttertoast.showToast(
                               msg: state.error,
@@ -192,14 +179,23 @@ class _ShowBMIState extends State<ShowBMI> {
                               backgroundColor: Colors.red,
                               textColor: Colors.white,
                               fontSize: 16.0);
-                          Navigator.pop(context);
-                          return Icon(
-                            Icons.save,
-                            color: Colors.black,
-                            size: 33,
-                          );
+                          Navigator.of(context).pop();
                         }
                       },
+                      child: BlocBuilder(
+                        bloc: bmibloc,
+                        builder: (BuildContext context, BmiState state) {
+                          if (state is BmiUninitiatedState) {
+                            return Icon(
+                              Icons.save,
+                              color: Colors.black,
+                              size: 33,
+                            );
+                          } else if (state is BmiSendingState) {
+                            return CircularProgressIndicator();
+                          }
+                        },
+                      ),
                     ),
                   ),
                 ),

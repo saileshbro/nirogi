@@ -34,7 +34,7 @@ class SymptomCard extends StatelessWidget {
                 width: 0.329 * width,
                 child: FadeInImage.assetNetwork(
                   image: symptom.imageUrl,
-                  placeholder: "assets/gifs/ripple.gif",
+                  placeholder: "assets/gifs/loading.gif",
                   fit: BoxFit.contain,
                 ),
               ),

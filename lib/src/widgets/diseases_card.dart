@@ -33,7 +33,7 @@ class DiseaseCard extends StatelessWidget {
                 height: 0.3 * height,
                 width: 0.329 * width,
                 child: FadeInImage.assetNetwork(
-                  placeholder: "assets/gifs/ripple.gif",
+                  placeholder: "assets/gifs/loading.gif",
                   image: disease.imageUrl,
                   fit: BoxFit.fitWidth,
                   // pl

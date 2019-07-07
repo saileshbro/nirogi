@@ -29,7 +29,7 @@ class NewsCard extends StatelessWidget {
               children: <Widget>[
                 FadeInImage.assetNetwork(
                   image: news.imageUrl,
-                  placeholder: "assets/gifs/ripple.gif",
+                  placeholder: "assets/gifs/loading.gif",
                   width: 0.28 * MediaQuery.of(context).size.width,
                   height: 0.1 * MediaQuery.of(context).size.height,
                   fit: BoxFit.fill,

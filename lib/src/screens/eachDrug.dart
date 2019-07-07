@@ -70,7 +70,7 @@ class _EachDrugState extends State<EachDrug> {
                 flexibleSpace: FlexibleSpaceBar(
                     background: FadeInImage.assetNetwork(
                   image: eachdrug.imageUrl,
-                  placeholder: "assets/gifs/ripple.gif",
+                  placeholder: "assets/gifs/loading.gif",
                   fit: BoxFit.cover,
                 )),
               ),

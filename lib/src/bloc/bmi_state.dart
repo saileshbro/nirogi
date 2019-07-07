@@ -7,6 +7,8 @@ class BmiUninitiatedState extends BmiState {}
 
 class BmiSendingState extends BmiState {}
 
+class BmiEmptyState extends BmiState {}
+
 class BmiErrorState extends BmiState {
   final String error;
   BmiErrorState({@required this.error}) : assert(error != null);

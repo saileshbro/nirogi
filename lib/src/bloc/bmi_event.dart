@@ -12,3 +12,5 @@ class BmiAddevent extends BmiEvent {
 }
 
 class BmiGetEvent extends BmiEvent {}
+
+class BmiClearEvent extends BmiEvent {}

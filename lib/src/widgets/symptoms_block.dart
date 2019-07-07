@@ -31,7 +31,7 @@ class SymptomBlock extends StatelessWidget {
               Container(
                 child: FadeInImage.assetNetwork(
                   image: symptom.imageUrl,
-                  placeholder: "assets/gifs/ripple.gif",
+                  placeholder: "assets/gifs/loading.gif",
                   height: 0.19 * height,
                   width: 0.34 * width,
                   fit: BoxFit.contain,

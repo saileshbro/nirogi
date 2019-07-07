@@ -71,7 +71,7 @@ class _EachDiseaseState extends State<EachDisease> {
                             ),
                       flexibleSpace: FlexibleSpaceBar(
                         background: FadeInImage.assetNetwork(
-                          placeholder: "assets/gifs/ripple.gif",
+                          placeholder: "assets/gifs/loading.gif",
                           image: widget.disease.imageUrl,
                           fit: BoxFit.cover,
                         ),

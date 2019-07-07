@@ -71,7 +71,7 @@ class _EachProvincePageState extends State<EachProvincePage> {
                     flexibleSpace: FlexibleSpaceBar(
                         background: FadeInImage.assetNetwork(
                       image: "$baseUrl/${snapshot.data.imageUrl}",
-                      placeholder: "assets/gifs/ripple.gif",
+                      placeholder: "assets/gifs/loading.gif",
                       fit: BoxFit.fitWidth,
                     )),
                   ),

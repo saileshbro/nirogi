@@ -12,15 +12,22 @@ class BmiBloc extends Bloc<BmiEvent, BmiState> {
   Stream<BmiState> mapEventToState(BmiEvent event) async* {
     yield BmiSendingState();
     try {
+      String message;
       if (event is BmiAddevent) {
-        String message;
         message = await bmiRepository.addRecord(bmi: event.bmi);
 
         yield BmiSucessState(message: message);
       } else if (event is BmiGetEvent) {
         List<Bmi> bmis;
         bmis = await bmiRepository.getBmiRecords();
-        yield BmiFetchedState(bmis: bmis);
+        if (bmis.isNotEmpty) {
+          yield BmiFetchedState(bmis: bmis);
+        } else {
+          yield BmiEmptyState();
+        }
+      } else if (event is BmiClearEvent) {
+        message = await bmiRepository.clearRecord();
+        BmiSucessState(message: message);
       }
     } catch (e) {
       yield BmiErrorState(error: e.toString());

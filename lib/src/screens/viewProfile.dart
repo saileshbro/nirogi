@@ -71,7 +71,7 @@ class _ViewProfileState extends State<ViewProfile> {
                           width: 0.25 * width,
                           child: FadeInImage.assetNetwork(
                             image: '$baseUrl/${widget.imageUrl}',
-                            placeholder: "assets/gifs/ripple.gif",
+                            placeholder: "assets/gifs/loading.gif",
                             fit: BoxFit.cover,
                           ),
                         ),

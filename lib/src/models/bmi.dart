@@ -28,7 +28,7 @@ class Bmi {
   Bmi({this.value, this.createdAt});
 
   Bmi.fromJson(Map<String, dynamic> json) {
-    value = json['value'];
+    value = json['value'] * 1.0;
     createdAt = json['created_at'];
   }
 
