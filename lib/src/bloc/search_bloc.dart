@@ -30,6 +30,15 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           yield SearchDiseaseFetchedState(diseases: diseases);
         }
       }
+      if (event is SymptomSearchEvent) {
+        List<Symptom> symptoms;
+        symptoms = await symptomRepository.searchSymptoms(query: event.query);
+        if (symptoms.length == 0) {
+          yield SearchEmptyState();
+        } else {
+          yield SearchSymptomFetchedState(symptoms: symptoms);
+        }
+      }
     } catch (e) {
       yield SearchErrorState();
     }

@@ -37,8 +37,12 @@ class _SearchPageState extends State<SearchPage> {
               _key.currentState.save();
               if (widget.type == "drug") {
                 searchBloc.dispatch(DrugSearchEvent(query: searchQuery));
-              } else if (widget.type == "disease") {
+              }
+              if (widget.type == "disease") {
                 searchBloc.dispatch(DiseaseSearchEvent(query: searchQuery));
+              }
+              if (widget.type == 'symptom') {
+                searchBloc.dispatch(SymptomSearchEvent(query: searchQuery));
               }
               print(searchQuery);
             }
