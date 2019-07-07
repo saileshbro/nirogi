@@ -23,7 +23,11 @@ class SymptomRepository {
         return Symptoms.fromJson(jsonDecode(response.body)).symptoms;
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -45,7 +49,11 @@ class SymptomRepository {
         return Symptoms.fromJson(jsonDecode(response.body)).symptoms;
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -67,7 +75,11 @@ class SymptomRepository {
         return Symptom.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -89,7 +101,11 @@ class SymptomRepository {
         return Symptoms.fromJson(jsonDecode(response.body)).symptoms;
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -114,7 +130,11 @@ class SymptomRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 }

@@ -26,10 +26,10 @@ class DrugRepository {
         return Drugs.fromJson(jsonDecode(response.body)).drugs;
       }
     } catch (e) {
-      if (e is Exception) {
-        throw "Exception";
+      if (e is SocketException) {
+        throw "Network Error";
       } else {
-        throw "Unexpected error occured.";
+        throw e.toString();
       }
     }
   }
@@ -52,7 +52,11 @@ class DrugRepository {
         return Drug.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -74,7 +78,11 @@ class DrugRepository {
         return Drugs.fromJson(jsonDecode(response.body)).drugs;
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 }

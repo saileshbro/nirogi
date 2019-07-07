@@ -25,7 +25,11 @@ class ProfileRepository {
         return User.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -44,7 +48,11 @@ class ProfileRepository {
         return Users.fromJson(jsonDecode(response.body)).users;
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -63,7 +71,11 @@ class ProfileRepository {
         return User.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -86,7 +98,11 @@ class ProfileRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -110,7 +126,11 @@ class ProfileRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -130,7 +150,11 @@ class ProfileRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -157,7 +181,11 @@ class ProfileRepository {
         return "Error";
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 }

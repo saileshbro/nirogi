@@ -17,9 +17,7 @@ class SymptomsPage extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (BuildContext context) {
-                  return SearchPage(
-                    type: 'symptom',
-                  );
+                  return SymptomSearchPage();
                 }));
               },
               icon: Icon(
@@ -105,15 +103,25 @@ class __BuildSymptomListState extends State<_BuildSymptomList> {
           return Expanded(
             child: Center(
               child: Container(
-                width: 0.32 * MediaQuery.of(context).size.width,
-                height: 0.32 * MediaQuery.of(context).size.width,
-                child: FlareActor(
-                  'assets/animations/nointernet.flr',
-                  animation: 'init',
-                  fit: BoxFit.cover,
-                  shouldClip: false,
-                ),
-              ),
+                  height: MediaQuery.of(context).size.width,
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        width: 0.32 * MediaQuery.of(context).size.width,
+                        height: 0.32 * MediaQuery.of(context).size.width,
+                        child: FlareActor(
+                          'assets/animations/nointernet.flr',
+                          animation: 'init',
+                          fit: BoxFit.cover,
+                          shouldClip: false,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(snapshot.error)
+                    ],
+                  )),
             ),
           );
         } else {

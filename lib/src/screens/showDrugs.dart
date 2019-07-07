@@ -27,9 +27,7 @@ class _ShowDrugsState extends State<ShowDrugs> {
             onPressed: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (BuildContext context) {
-                return SearchPage(
-                  type: 'drug',
-                );
+                return DrugSearchPage();
               }));
             },
             icon: Icon(
@@ -90,18 +88,26 @@ class _ShowDrugsState extends State<ShowDrugs> {
                 ],
               );
             } else if (snapshot.hasError) {
-              return Container(
-                child: Center(
-                    child: Container(
-                  width: 0.32 * MediaQuery.of(context).size.width,
-                  height: 0.32 * MediaQuery.of(context).size.width,
-                  child: FlareActor(
-                    'assets/animations/nointernet.flr',
-                    animation: 'init',
-                    fit: BoxFit.cover,
-                    shouldClip: false,
-                  ),
-                )),
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      width: 0.32 * MediaQuery.of(context).size.width,
+                      height: 0.32 * MediaQuery.of(context).size.width,
+                      child: FlareActor(
+                        'assets/animations/nointernet.flr',
+                        animation: 'init',
+                        fit: BoxFit.cover,
+                        shouldClip: false,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(snapshot.error)
+                  ],
+                ),
               );
             } else {
               return Container(

@@ -158,6 +158,8 @@ class _BmiHistoryState extends State<BmiHistory> {
                 shouldClip: false,
               ),
             );
+          } else {
+            return SizedBox();
           }
         },
       ),

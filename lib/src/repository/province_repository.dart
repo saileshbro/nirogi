@@ -27,7 +27,11 @@ class ProvinceRepository {
         return Provinces.fromJson(jsonDecode(response.body)).provinces;
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -49,7 +53,11 @@ class ProvinceRepository {
         return Province.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 }

@@ -783,8 +783,11 @@ class _BuildCommentsList extends StatelessWidget {
           );
         } else if (state is CommentsEmptyState) {
           return Container(
-            child: Center(
-              child: Text("No posts found"),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text("No posts found"),
+              ],
             ),
           );
         } else if (state is CommentsFetchingState) {

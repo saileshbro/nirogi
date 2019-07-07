@@ -31,5 +31,7 @@ export 'categoryForum.dart';
 export 'incompatibleFoodsMenuPage.dart';
 export 'dailyWater.dart';
 export 'imageModify.dart';
-export 'search_page.dart';
+export 'disease_search_page.dart';
+export 'symptom_search_page.dart';
+export 'drug_search_page.dart';
 export 'bmiHistory.dart';

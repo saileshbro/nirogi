@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nirogi/src/bloc/blocs.dart';
@@ -77,10 +78,23 @@ class _CategoryForumPageState extends State<CategoryForumPage> {
               ),
             );
           } else if (state is PostsEmptyState) {
-            return Container(
-              child: Center(
-                child: Text("No posts found"),
-              ),
+            return Column(
+              children: <Widget>[
+                Container(
+                  width: 0.32 * MediaQuery.of(context).size.width,
+                  height: 0.32 * MediaQuery.of(context).size.width,
+                  child: FlareActor(
+                    'assets/animations/error.flr',
+                    animation: 'go',
+                    fit: BoxFit.cover,
+                    shouldClip: false,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text("Network Error.")
+              ],
             );
           } else if (state is PostsFetchingState) {
             return Container(

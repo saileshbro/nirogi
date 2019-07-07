@@ -141,15 +141,23 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         } else if (snapshot.hasError) {
-          return Container(
-            width: 0.32 * MediaQuery.of(context).size.width,
-            height: 0.32 * MediaQuery.of(context).size.width,
-            child: FlareActor(
-              'assets/animations/nointernet.flr',
-              animation: 'init',
-              fit: BoxFit.cover,
-              shouldClip: false,
-            ),
+          return Column(
+            children: <Widget>[
+              Container(
+                width: 0.32 * MediaQuery.of(context).size.width,
+                height: 0.32 * MediaQuery.of(context).size.width,
+                child: FlareActor(
+                  'assets/animations/nointernet.flr',
+                  animation: 'init',
+                  fit: BoxFit.cover,
+                  shouldClip: false,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(snapshot.error)
+            ],
           );
         } else {
           return Center(
@@ -189,15 +197,23 @@ class _HomePageState extends State<HomePage> {
                 },
               );
             } else if (snapshot.hasError) {
-              return Container(
-                width: 0.30 * MediaQuery.of(context).size.width,
-                height: 0.30 * MediaQuery.of(context).size.width,
-                child: FlareActor(
-                  'assets/animations/nointernet.flr',
-                  animation: 'init',
-                  fit: BoxFit.cover,
-                  shouldClip: false,
-                ),
+              return Column(
+                children: <Widget>[
+                  Container(
+                    width: 0.32 * MediaQuery.of(context).size.width,
+                    height: 0.32 * MediaQuery.of(context).size.width,
+                    child: FlareActor(
+                      'assets/animations/nointernet.flr',
+                      animation: 'init',
+                      fit: BoxFit.cover,
+                      shouldClip: false,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(snapshot.error)
+                ],
               );
             } else {
               return Center(
@@ -281,15 +297,23 @@ class _HomePageState extends State<HomePage> {
               },
             );
           } else if (snapshot.hasError) {
-            return Container(
-              width: 0.32 * MediaQuery.of(context).size.width,
-              height: 0.32 * MediaQuery.of(context).size.width,
-              child: FlareActor(
-                'assets/animations/nointernet.flr',
-                animation: 'init',
-                fit: BoxFit.cover,
-                shouldClip: false,
-              ),
+            return Column(
+              children: <Widget>[
+                Container(
+                  width: 0.32 * MediaQuery.of(context).size.width,
+                  height: 0.32 * MediaQuery.of(context).size.width,
+                  child: FlareActor(
+                    'assets/animations/nointernet.flr',
+                    animation: 'init',
+                    fit: BoxFit.cover,
+                    shouldClip: false,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(snapshot.error)
+              ],
             );
           } else {
             return Center(
@@ -376,15 +400,23 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         } else if (snapshot.hasError) {
-          return Container(
-            width: 0.32 * MediaQuery.of(context).size.width,
-            height: 0.32 * MediaQuery.of(context).size.width,
-            child: FlareActor(
-              'assets/animations/nointernet.flr',
-              animation: 'init',
-              fit: BoxFit.cover,
-              shouldClip: false,
-            ),
+          return Column(
+            children: <Widget>[
+              Container(
+                width: 0.32 * MediaQuery.of(context).size.width,
+                height: 0.32 * MediaQuery.of(context).size.width,
+                child: FlareActor(
+                  'assets/animations/nointernet.flr',
+                  animation: 'init',
+                  fit: BoxFit.cover,
+                  shouldClip: false,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(snapshot.error)
+            ],
           );
         } else {
           return Center(

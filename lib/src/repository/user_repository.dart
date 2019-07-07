@@ -25,7 +25,7 @@ class UserRepository {
         return user;
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      throw e.toString();
     }
   }
 
@@ -47,7 +47,7 @@ class UserRepository {
         return user;
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      throw e.toString();
     }
   }
 
@@ -110,7 +110,11 @@ class UserRepository {
         return User.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 }

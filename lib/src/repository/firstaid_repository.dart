@@ -24,7 +24,11 @@ class FirstAidRepository {
         return Firstaids.fromJson(jsonDecode(response.body)).firstaids;
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -44,7 +48,11 @@ class FirstAidRepository {
         return Firstaid.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 }

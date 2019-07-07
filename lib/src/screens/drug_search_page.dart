@@ -5,16 +5,13 @@ import 'package:nirogi/src/bloc/blocs.dart';
 import 'package:nirogi/src/bloc/events.dart';
 import 'package:nirogi/src/bloc/states.dart';
 import 'package:nirogi/src/screens/screens.dart';
-import 'package:nirogi/src/widgets/widgets.dart';
 
-class SearchPage extends StatefulWidget {
-  final String type;
-  SearchPage({@required this.type});
+class DrugSearchPage extends StatefulWidget {
   @override
-  _SearchPageState createState() => _SearchPageState();
+  _DrugSearchPageState createState() => _DrugSearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _DrugSearchPageState extends State<DrugSearchPage> {
   FocusNode focusNode;
   SearchBloc searchBloc;
   String searchQuery = "";
@@ -27,6 +24,12 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    searchBloc.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     FocusScope.of(context).requestFocus(focusNode);
     return Scaffold(
@@ -35,15 +38,7 @@ class _SearchPageState extends State<SearchPage> {
           onFieldSubmitted: (value) {
             if (_key.currentState.validate()) {
               _key.currentState.save();
-              if (widget.type == "drug") {
-                searchBloc.dispatch(DrugSearchEvent(query: searchQuery));
-              }
-              if (widget.type == "disease") {
-                searchBloc.dispatch(DiseaseSearchEvent(query: searchQuery));
-              }
-              if (widget.type == 'symptom') {
-                searchBloc.dispatch(SymptomSearchEvent(query: searchQuery));
-              }
+              searchBloc.dispatch(DrugSearchEvent(query: searchQuery));
               print(searchQuery);
             }
           },
@@ -70,7 +65,7 @@ class _SearchPageState extends State<SearchPage> {
             border: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.red[700]),
             ),
-            hintText: 'Search for ${widget.type}',
+            hintText: 'Search for drug',
             labelStyle: TextStyle(
               fontSize: 18,
               color: Colors.red[700],
@@ -97,16 +92,14 @@ class _SearchPageState extends State<SearchPage> {
           builder: (BuildContext context, state) {
             if (state is SearchUninitialisedState) {
               return Center(
-                child: Text('Search for the ${widget.type} here.'),
+                child: Text('Search for the drug here.'),
               );
-            }
-            if (state is SearchFetchingState) {
+            } else if (state is SearchFetchingState) {
               return Center(
                   child: CircularProgressIndicator(
                 backgroundColor: Colors.pink,
               ));
-            }
-            if (state is SearchErrorState) {
+            } else if (state is SearchErrorState) {
               return Center(
                   child: Container(
                 width: 0.32 * MediaQuery.of(context).size.width,
@@ -118,13 +111,11 @@ class _SearchPageState extends State<SearchPage> {
                   shouldClip: false,
                 ),
               ));
-            }
-            if (state is SearchEmptyState) {
+            } else if (state is SearchEmptyState) {
               return Center(
                 child: Text("Nothing fround for the query\n\n$searchQuery"),
               );
-            }
-            if (state is SearchDrugFetchedState) {
+            } else if (state is SearchDrugFetchedState) {
               return Padding(
                 padding: EdgeInsets.only(right: 10, left: 10),
                 child: Container(
@@ -135,27 +126,6 @@ class _SearchPageState extends State<SearchPage> {
                     itemCount: state.drugs.length,
                     itemBuilder: (BuildContext context, int index) {
                       return DrugCard(drug: state.drugs[index]);
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return SizedBox(
-                        height: 15.0,
-                      );
-                    },
-                  ),
-                ),
-              );
-            }
-            if (state is SearchDiseaseFetchedState) {
-              return Padding(
-                padding: EdgeInsets.only(right: 10, left: 10),
-                child: Container(
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    physics: BouncingScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    itemCount: state.diseases.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return DiseaseBlock(disease: state.diseases[index]);
                     },
                     separatorBuilder: (BuildContext context, int index) {
                       return SizedBox(

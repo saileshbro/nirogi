@@ -73,17 +73,26 @@ class _HealthNewsPageState extends State<HealthNewsPage> {
             } else if (snapshot.hasError) {
               return Center(
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(
-                      0, MediaQuery.of(context).size.height * 0.3, 0, 0),
-                  width: 0.32 * MediaQuery.of(context).size.width,
-                  height: 0.32 * MediaQuery.of(context).size.width,
-                  child: FlareActor(
-                    'assets/animations/nointernet.flr',
-                    animation: 'init',
-                    fit: BoxFit.cover,
-                    shouldClip: false,
-                  ),
-                ),
+                    height: MediaQuery.of(context).size.width,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          width: 0.32 * MediaQuery.of(context).size.width,
+                          height: 0.32 * MediaQuery.of(context).size.width,
+                          child: FlareActor(
+                            'assets/animations/nointernet.flr',
+                            animation: 'init',
+                            fit: BoxFit.cover,
+                            shouldClip: false,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(snapshot.error)
+                      ],
+                    )),
               );
             } else {
               return Container(

@@ -152,15 +152,24 @@ class _FirstAidPageState extends State<FirstAidPage> {
             );
           } else if (snapshot.hasError) {
             return Center(
-              child: Container(
-                width: 0.32 * MediaQuery.of(context).size.width,
-                height: 0.32 * MediaQuery.of(context).size.width,
-                child: FlareActor(
-                  'assets/animations/nointernet.flr',
-                  animation: 'init',
-                  fit: BoxFit.cover,
-                  shouldClip: false,
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    width: 0.32 * MediaQuery.of(context).size.width,
+                    height: 0.32 * MediaQuery.of(context).size.width,
+                    child: FlareActor(
+                      'assets/animations/nointernet.flr',
+                      animation: 'init',
+                      fit: BoxFit.cover,
+                      shouldClip: false,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(snapshot.error)
+                ],
               ),
             );
           } else

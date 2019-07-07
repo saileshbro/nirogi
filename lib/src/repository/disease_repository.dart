@@ -26,7 +26,11 @@ class DiseaseRepository {
         return Diseases.fromJson(jsonDecode(response.body)).diseases;
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -48,7 +52,11 @@ class DiseaseRepository {
         return Diseases.fromJson(jsonDecode(response.body)).diseases;
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -70,7 +78,11 @@ class DiseaseRepository {
         return Diseases.fromJson(jsonDecode(response.body)).diseases;
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -92,7 +104,11 @@ class DiseaseRepository {
         return Disease.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 
@@ -117,7 +133,11 @@ class DiseaseRepository {
         throw "Unexpected error occured!";
       }
     } catch (e) {
-      throw "Unexpected error occured.";
+      if (e is SocketException) {
+        throw "Network Error";
+      } else {
+        throw e.toString();
+      }
     }
   }
 }
