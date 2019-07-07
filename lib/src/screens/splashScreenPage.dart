@@ -5,11 +5,10 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
+        child: Image.asset(
+          'assets/images/icons/splash.png',
+          height: 100,
           width: 100,
-          child: Image.asset(
-            'assets/images/icons/blood-drop.png',
-          ),
         ),
       ),
     );

@@ -52,6 +52,28 @@ class DiseaseRepository {
     }
   }
 
+  Future<List<Disease>> searchDiseases({@required String query}) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final token = preferences.getString('token');
+    try {
+      final response = await client.get(
+        "$baseUrl/api/diseases/search/$query",
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          HttpHeaders.contentTypeHeader: 'application/json',
+        },
+      );
+      Map<String, dynamic> responseData = jsonDecode(response.body);
+      if (responseData.containsKey('error')) {
+        throw responseData['error'];
+      } else {
+        return Diseases.fromJson(jsonDecode(response.body)).diseases;
+      }
+    } catch (e) {
+      throw "Unexpected error occured.";
+    }
+  }
+
   Future<Disease> getDisease({@required int diseaseId}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('token');

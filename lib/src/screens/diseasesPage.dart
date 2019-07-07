@@ -2,6 +2,7 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/repository/repositories.dart';
+import 'package:nirogi/src/screens/screens.dart';
 import 'package:nirogi/src/widgets/widgets.dart';
 
 class DiseasesPage extends StatelessWidget {
@@ -11,6 +12,22 @@ class DiseasesPage extends StatelessWidget {
     return Scaffold(
         drawer: AppDrawer(),
         appBar: AppBar(
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return SearchPage(
+                    type: 'disease',
+                  );
+                }));
+              },
+              icon: Icon(
+                Icons.search,
+                size: 30,
+              ),
+            )
+          ],
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

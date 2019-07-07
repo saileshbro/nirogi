@@ -27,7 +27,9 @@ class _ShowDrugsState extends State<ShowDrugs> {
             onPressed: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (BuildContext context) {
-                return SearchPage();
+                return SearchPage(
+                  type: 'drug',
+                );
               }));
             },
             icon: Icon(
