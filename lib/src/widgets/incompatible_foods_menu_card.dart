@@ -20,9 +20,10 @@ class FoodMenuBox extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Container(
-              width: 80,
-              child: Image(
-                image: AssetImage('assets/images/icons/foodtips.png'),
+              child: FadeInImage.assetNetwork(
+                image: thefood.imageUrl,
+                placeholder: 'assets/gifs/loading.gif',
+                height: 120,
                 fit: BoxFit.cover,
               ),
             ),

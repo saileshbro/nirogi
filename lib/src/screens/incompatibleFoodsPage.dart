@@ -97,8 +97,11 @@ class FoodBox extends StatelessWidget {
                         ),
                       ),
                       Expanded(
-                          child:
-                              Image.asset('assets/images/icons/foodtips.png'))
+                        child: FadeInImage.assetNetwork(
+                          image: thefood.imageUrl,
+                          placeholder: "assets/gifs/loading.gif",
+                        ),
+                      ),
                     ],
                   ),
                 ),
