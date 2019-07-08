@@ -11,7 +11,7 @@ ThemeData _buildLightTheme() {
       elevation: 0,
     ),
     primaryColor: Colors.white,
-    accentColor: Colors.black,
+    accentColor: Colors.blue,
     primaryIconTheme: IconThemeData(
       color: Colors.red[700],
     ),

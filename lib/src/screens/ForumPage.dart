@@ -23,6 +23,12 @@ class _ForumPageState extends State<ForumPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    getPostsBloc.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
@@ -39,7 +45,7 @@ class _ForumPageState extends State<ForumPage> {
               ),
             );
           },
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).canvasColor,
           child: PlusFloatingIcon(),
         ),
       ),

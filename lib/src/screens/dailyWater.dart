@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fluid_slider/flutter_fluid_slider.dart';
 import 'package:nirogi/src/themes/glass_painter.dart';
+import 'package:nirogi/src/themes/scrollOverlay.dart';
 
 class DailyWater extends StatefulWidget {
   @override
@@ -77,282 +78,281 @@ class _DailyWaterState extends State<DailyWater>
             SizedBox(
               width: 14,
             ),
-            // Image.asset(
-            //   'assets/images/icons/water.png',
-            //   width: 30,
-            // ),
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(18, 15, 18, 8),
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Text(
-                          'Your Body',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500),
-                        ),
-                        Text(
-                          'Weight:',
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: <Widget>[
-                        Text(
-                          bodyWeight.toString(),
-                          style: TextStyle(
-                            fontSize: 50,
+      body: ScrollConfiguration(
+        behavior: RemoveEndOfListIndicator(),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(18, 15, 18, 8),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+                          Text(
+                            'Your Body',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w500),
                           ),
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          'kg',
-                          style: TextStyle(
-                            fontSize: 17,
+                          Text(
+                            'Weight:',
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.w500),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 20, 8, 18),
-                child: Text(
-                  'Slide the cirlce to select your weight.',
-                  style: TextStyle(
-                    fontSize: 15,
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: <Widget>[
+                          Text(
+                            bodyWeight.toString(),
+                            style: TextStyle(
+                              fontSize: 50,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 2,
+                          ),
+                          Text(
+                            'kg',
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-                child: FluidSlider(
-                  value: bodyWeight.toDouble(),
-                  min: 20,
-                  max: 150,
-                  onChanged: (double newValue) {
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 20, 8, 18),
+                  child: Text(
+                    'Slide the cirlce to select your weight.',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                  child: FluidSlider(
+                    value: bodyWeight.toDouble(),
+                    min: 20,
+                    max: 150,
+                    onChanged: (double newValue) {
+                      setState(() {
+                        bodyWeight = newValue.round();
+                        waterInLitre = '__ Litre';
+                        waterInGlass = '__ Glasses';
+                      });
+                    },
+                    sliderColor: Color(0xFF1E8EE7),
+                    thumbColor: Colors.white,
+                    valueTextStyle: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                    ),
+                    start: Image(
+                      image: AssetImage('assets/images/icons/thinman.png'),
+                      color: Colors.white,
+                    ),
+                    end: Image(
+                      image: AssetImage('assets/images/icons/fatman.png'),
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                RaisedButton(
+                  color: Colors.green,
+                  child: Text(
+                    'Calculate Daily Requirement',
+                    style: TextStyle(fontSize: 13, color: Colors.white),
+                  ),
+                  onPressed: () {
                     setState(() {
-                      bodyWeight = newValue.round();
-                      waterInLitre = '__ Litre';
-                      waterInGlass = '__ Glasses';
+                      calculateWater(bodyWeight);
                     });
                   },
-                  sliderColor: Color(0xFF1E8EE7),
-                  thumbColor: Colors.white,
-                  valueTextStyle: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                  ),
-                  start: Image(
-                    image: AssetImage('assets/images/icons/thinman.png'),
-                    color: Colors.white,
-                  ),
-                  end: Image(
-                    image: AssetImage('assets/images/icons/fatman.png'),
-                    color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              RaisedButton(
-                color: Colors.green,
-                child: Text(
-                  'Calculate Daily Requirement',
-                  style: TextStyle(fontSize: 13, color: Colors.white),
+                SizedBox(
+                  height: 25,
                 ),
-                onPressed: () {
-                  setState(() {
-                    calculateWater(bodyWeight);
-                  });
-                },
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                textBaseline: TextBaseline.alphabetic,
-                children: <Widget>[
-                  Text(
-                    waterInLitre,
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 23,
-                    ),
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      child: Text('OR')),
-                  Text(
-                    waterInGlass,
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 23,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Wrap(
-                    spacing: 3,
-                    alignment: WrapAlignment.center,
-                    children: waterGlassList.map((glass) {
-                      return glass;
-                    }).toList()),
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Container(
-                width: 330,
-                height: 1,
-                color: Colors.black,
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              WaterRecommendationBox(
-                  waterInLitre: waterInLitre, waterInGlass: waterInGlass),
-              SizedBox(
-                height: 25,
-              ),
-              Icon(Icons.keyboard_arrow_down),
-              Icon(Icons.keyboard_arrow_down),
-              Icon(Icons.keyboard_arrow_down),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 28, 8, 4),
-                child: Text(
-                  'Additional Settings',
-                  style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.teal[700]),
-                ),
-              ),
-              Container(
-                width: 230,
-                height: 1,
-                color: Colors.black,
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
                   children: <Widget>[
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 8, 4, 8),
-                        child: Text(
-                          'Glass Size',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w400),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 1,
-                      height: 30,
-                      color: Colors.black87,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-                      child: GestureDetector(
-                        child: CircleAvatar(
-                          child: Icon(Icons.remove),
-                        ),
-                        onTap: () {
-                          setState(() {
-                            if (glassVolume > 100) {
-                              glassVolume--;
-                            }
-
-                            calculateWater(bodyWeight);
-                          });
-                        },
-                      ),
-                    ),
                     Text(
-                      volume,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                      waterInLitre,
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 23,
+                      ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-                      child: GestureDetector(
-                        child: CircleAvatar(
-                          child: Icon(Icons.add),
-                        ),
-                        onTap: () {
-                          setState(() {
-                            glassVolume++;
-                            calculateWater(bodyWeight);
-                          });
-                        },
+                        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        child: Text('OR')),
+                    Text(
+                      waterInGlass,
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 23,
                       ),
                     ),
                   ],
                 ),
-              ),
-              SizedBox(
-                height: 60,
-              ),
-              Text(
-                'It is recommended to drink additional 350ml of water for every 30 minutes of exercise you do.',
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                'Note: Your water intake requirement will vary according to your health and activity levels.',
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700,
+                SizedBox(
+                  height: 25,
                 ),
-              ),
-              SizedBox(
-                height: 25,
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Wrap(
+                      spacing: 3,
+                      alignment: WrapAlignment.center,
+                      children: waterGlassList.map((glass) {
+                        return glass;
+                      }).toList()),
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Container(
+                  width: 330,
+                  height: 1,
+                  color: Colors.black,
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                WaterRecommendationBox(
+                    waterInLitre: waterInLitre, waterInGlass: waterInGlass),
+                SizedBox(
+                  height: 25,
+                ),
+                Icon(Icons.keyboard_arrow_down),
+                Icon(Icons.keyboard_arrow_down),
+                Icon(Icons.keyboard_arrow_down),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 28, 8, 4),
+                  child: Text(
+                    'Additional Settings',
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.teal[700]),
+                  ),
+                ),
+                Container(
+                  width: 230,
+                  height: 1,
+                  color: Colors.black,
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(8, 8, 4, 8),
+                          child: Text(
+                            'Glass Size',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w400),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 1,
+                        height: 30,
+                        color: Colors.black87,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+                        child: GestureDetector(
+                          child: CircleAvatar(
+                            child: Icon(Icons.remove),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              if (glassVolume > 100) {
+                                glassVolume--;
+                              }
+
+                              calculateWater(bodyWeight);
+                            });
+                          },
+                        ),
+                      ),
+                      Text(
+                        volume,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w400),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+                        child: GestureDetector(
+                          child: CircleAvatar(
+                            child: Icon(Icons.add),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              glassVolume++;
+                              calculateWater(bodyWeight);
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 60,
+                ),
+                Text(
+                  'It is recommended to drink additional 350ml of water for every 30 minutes of exercise you do.',
+                  style: TextStyle(fontSize: 16),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Note: Your water intake requirement will vary according to your health and activity levels.',
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+              ],
+            ),
           ),
         ),
       ),

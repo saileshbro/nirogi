@@ -38,7 +38,6 @@ class _ModifyImageState extends State<ModifyImage> {
     );
     setState(() {
       _image = result;
-      print("image${_image.lengthSync()}");
     });
   }
 

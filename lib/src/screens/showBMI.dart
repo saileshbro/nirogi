@@ -101,7 +101,7 @@ class _ShowBMIState extends State<ShowBMI> {
                   condition: 'Underweight',
                   bmi: '< 18.5',
                   isIt: widget.bmi < 18.5 ? true : false,
-                  txtcolor: widget.bmi < 18.5 ? Colors.blue : Colors.black,
+                  txtcolor: widget.bmi < 18.5 ? Colors.blue : Colors.white,
                 ),
                 Result(
                   condition: 'Normal',
@@ -109,7 +109,7 @@ class _ShowBMIState extends State<ShowBMI> {
                   isIt: 18.5 < widget.bmi && widget.bmi < 25 ? true : false,
                   txtcolor: 18.5 < widget.bmi && widget.bmi < 25
                       ? Color(0xFF08D8BF)
-                      : Colors.black,
+                      : Colors.white,
                 ),
                 Result(
                   condition: 'Overweight',
@@ -117,7 +117,7 @@ class _ShowBMIState extends State<ShowBMI> {
                   isIt: 25 < widget.bmi && widget.bmi < 30 ? true : false,
                   txtcolor: 25 < widget.bmi && widget.bmi < 30
                       ? Colors.yellow
-                      : Colors.black,
+                      : Colors.white,
                 ),
                 Result(
                   condition: 'Obese',
@@ -125,7 +125,7 @@ class _ShowBMIState extends State<ShowBMI> {
                   isIt: 30 < widget.bmi && widget.bmi < 35 ? true : false,
                   txtcolor: 30 < widget.bmi && widget.bmi < 35
                       ? Colors.orange
-                      : Colors.black,
+                      : Colors.white,
                 ),
                 Result(
                   condition: 'Severely Obese',
@@ -133,13 +133,13 @@ class _ShowBMIState extends State<ShowBMI> {
                   isIt: 35 < widget.bmi && widget.bmi < 40 ? true : false,
                   txtcolor: 35 < widget.bmi && widget.bmi < 40
                       ? Color(0xFFF37B56)
-                      : Colors.black,
+                      : Colors.white,
                 ),
                 Result(
                   condition: 'Very Severely Obese',
                   bmi: '> 40',
                   isIt: widget.bmi > 40 ? true : false,
-                  txtcolor: widget.bmi > 40 ? Colors.red : Colors.black,
+                  txtcolor: widget.bmi > 40 ? Colors.red : Colors.white,
                 ),
               ],
             ),
@@ -269,7 +269,9 @@ class Result extends StatelessWidget {
             style: TextStyle(
               fontSize: 19,
               fontWeight: FontWeight.w400,
-              color: isIt == false ? Colors.black : txtcolor,
+              color: isIt == false
+                  ? Theme.of(context).textTheme.headline.color
+                  : txtcolor,
             ),
           ),
           Text(
@@ -277,7 +279,9 @@ class Result extends StatelessWidget {
             style: TextStyle(
               fontSize: 19,
               fontWeight: FontWeight.w400,
-              color: isIt == false ? Colors.black : txtcolor,
+              color: isIt == false
+                  ? Theme.of(context).textTheme.headline.color
+                  : txtcolor,
             ),
           ),
         ],

@@ -239,7 +239,6 @@ class _CommentCardState extends State<CommentCard> {
                   onTap: widget.comment.voteStatus == 1
                       ? null
                       : () {
-                          print("hhe");
                           voteBloc.dispatch(CommentUpvoteEvent(
                               postId: widget.comment.postid,
                               commentId: widget.comment.commentId));
@@ -268,7 +267,6 @@ class _CommentCardState extends State<CommentCard> {
                   onTap: widget.comment.voteStatus == -1
                       ? null
                       : () {
-                          print("hhe");
                           voteBloc.dispatch(CommentDownVoteEvent(
                               postId: widget.comment.postid,
                               commentId: widget.comment.commentId));
@@ -326,7 +324,6 @@ class _CommentCardState extends State<CommentCard> {
                   onTap: widget.comment.voteStatus == 1
                       ? null
                       : () {
-                          print("hhe");
                           voteBloc.dispatch(CommentUpvoteEvent(
                               commentId: widget.comment.commentId,
                               postId: widget.comment.postid));
@@ -355,7 +352,6 @@ class _CommentCardState extends State<CommentCard> {
                   onTap: widget.comment.voteStatus == -1
                       ? null
                       : () {
-                          print("hhe");
                           voteBloc.dispatch(CommentDownVoteEvent(
                             commentId: widget.comment.commentId,
                             postId: widget.comment.postid,

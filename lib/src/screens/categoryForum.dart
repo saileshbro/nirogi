@@ -113,7 +113,6 @@ class _CategoryForumPageState extends State<CategoryForumPage> {
           }
           final stateAsPostsFetchedState = state as PostsFetchedState;
           final posts = stateAsPostsFetchedState.posts;
-          print(posts);
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,

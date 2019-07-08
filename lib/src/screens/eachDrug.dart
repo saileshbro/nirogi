@@ -102,7 +102,7 @@ class _DrugInfoCard extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.only(left: 20, right: 10, top: 20, bottom: 0),
-      color: Colors.grey[300],
+      color: Theme.of(context).canvasColor.withOpacity(0.5),
       child: Container(
         child: Column(
           children: <Widget>[
@@ -113,7 +113,6 @@ class _DrugInfoCard extends StatelessWidget {
                 InfoCard(
                   info: eachdrug.brandName,
                   fontFamily: "Karla",
-                  color: Colors.black,
                   fontsize: 18.0,
                 ),
               ],
@@ -137,7 +136,7 @@ class _DrugInfoCard extends StatelessWidget {
                 InfoCard(
                   info: eachdrug.dose,
                   fontFamily: "Karla",
-                  color: Colors.black,
+                  color: Theme.of(context).textTheme.body1.color,
                   fontsize: 18.0,
                 ),
               ],
@@ -149,7 +148,7 @@ class _DrugInfoCard extends StatelessWidget {
                 InfoCard(
                   info: eachdrug.summary,
                   fontFamily: "Karla",
-                  color: Colors.black,
+                  color: Theme.of(context).textTheme.body1.color,
                   fontsize: 16.0,
                 ),
               ],
@@ -177,7 +176,7 @@ class TitleCard extends StatelessWidget {
       child: Text(
         "$title:  ",
         style: Theme.of(context).textTheme.body2.copyWith(
-            fontSize: 18, fontWeight: FontWeight.w500, color: Colors.blue[900]),
+            fontSize: 18, fontWeight: FontWeight.w500, color: Colors.blue[300]),
       ),
     );
   }

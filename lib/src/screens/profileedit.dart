@@ -147,7 +147,6 @@ class _EditProfileState extends State<EditProfile> {
                                 validator: (name) => validateName(name),
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.black,
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -180,7 +179,6 @@ class _EditProfileState extends State<EditProfile> {
                                 validator: (email) => validateEmail(email),
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.black,
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -212,7 +210,6 @@ class _EditProfileState extends State<EditProfile> {
                                 initialValue: loggedinUser.address ?? "",
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.black,
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
                                 ),

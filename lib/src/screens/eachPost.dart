@@ -224,7 +224,7 @@ class _EachPostState extends State<EachPost> {
                     isButtonClicked = !isButtonClicked;
                   });
                 },
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).canvasColor,
                 child: PlusFloatingIcon(),
               )
             : Container(

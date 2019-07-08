@@ -39,7 +39,6 @@ class _SymptomSearchPageState extends State<SymptomSearchPage> {
             if (_key.currentState.validate()) {
               _key.currentState.save();
               searchBloc.dispatch(SymptomSearchEvent(query: searchQuery));
-              print(searchQuery);
             }
           },
           key: _key,
@@ -79,7 +78,6 @@ class _SymptomSearchPageState extends State<SymptomSearchPage> {
                 if (_key.currentState.validate()) {
                   _key.currentState.save();
                   searchBloc.dispatch(SymptomSearchEvent(query: searchQuery));
-                  print(searchQuery);
                 }
               },
             ),

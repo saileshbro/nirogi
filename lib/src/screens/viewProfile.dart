@@ -39,7 +39,7 @@ class _ViewProfileState extends State<ViewProfile> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('ViewProfile', style: Theme.of(context).textTheme.headline),
+            Text('View Profile', style: Theme.of(context).textTheme.headline),
             SizedBox(
               width: 0.02 * width,
             ),
@@ -68,11 +68,13 @@ class _ViewProfileState extends State<ViewProfile> {
                         ),
                         child: Container(
                           height: 0.16 * height,
-                          width: 0.25 * width,
-                          child: FadeInImage.assetNetwork(
-                            image: '$baseUrl/${widget.imageUrl}',
-                            placeholder: "assets/gifs/loading.gif",
-                            fit: BoxFit.cover,
+                          width: 0.16 * height,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image:
+                                  NetworkImage('$baseUrl/${widget.imageUrl}'),
+                            ),
                           ),
                         ),
                       ),

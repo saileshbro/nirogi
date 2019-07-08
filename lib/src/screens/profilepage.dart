@@ -54,6 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: FloatingActionButton(
                 heroTag: 'createPost',
                 onPressed: () {
+                  getPostsBloc.dispose();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -61,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   );
                 },
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).canvasColor,
                 child: PlusFloatingIcon(),
               ),
             ),

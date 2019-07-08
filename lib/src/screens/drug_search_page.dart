@@ -39,7 +39,6 @@ class _DrugSearchPageState extends State<DrugSearchPage> {
             if (_key.currentState.validate()) {
               _key.currentState.save();
               searchBloc.dispatch(DrugSearchEvent(query: searchQuery));
-              print(searchQuery);
             }
           },
           key: _key,
@@ -79,7 +78,6 @@ class _DrugSearchPageState extends State<DrugSearchPage> {
                 if (_key.currentState.validate()) {
                   _key.currentState.save();
                   searchBloc.dispatch(DrugSearchEvent(query: searchQuery));
-                  print(searchQuery);
                 }
               },
             ),

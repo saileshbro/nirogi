@@ -11,7 +11,6 @@ class QueryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
       child: Column(
         children: <Widget>[
           SizedBox(
@@ -43,8 +42,6 @@ class QueryCard extends StatelessWidget {
             data: sectionInfo.content,
             defaultTextStyle: TextStyle(
               fontSize: 14,
-              color: Colors.black,
-              backgroundColor: Colors.white,
               fontWeight: FontWeight.w500,
               fontFamily: 'Montserrat',
             ),

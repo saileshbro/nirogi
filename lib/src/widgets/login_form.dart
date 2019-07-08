@@ -105,7 +105,7 @@ class _LoginFormState extends State<LoginForm> {
                   onPressed: () {
                     if (_key.currentState.validate()) {
                       _key.currentState.save();
-                      print(email);
+
                       managePasswordBloc
                           .dispatch(ForgetPasswordEvent(email: email));
                     }

@@ -39,8 +39,6 @@ class _DiseaseSearchPageState extends State<DiseaseSearchPage> {
               _key.currentState.save();
 
               searchBloc.dispatch(DiseaseSearchEvent(query: searchQuery));
-
-              print(searchQuery);
             }
           },
           key: _key,
@@ -80,7 +78,6 @@ class _DiseaseSearchPageState extends State<DiseaseSearchPage> {
                 if (_key.currentState.validate()) {
                   _key.currentState.save();
                   searchBloc.dispatch(DiseaseSearchEvent(query: searchQuery));
-                  print(searchQuery);
                 }
               },
             ),

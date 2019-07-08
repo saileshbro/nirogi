@@ -70,7 +70,6 @@ class _BloodDonationState extends State<BloodDonation> {
               children: <Widget>[
                 TopHeader(),
                 Container(
-                  //   color: Colors.greenAccent,
                   decoration: BoxDecoration(
                     border: Border.all(),
                     borderRadius: BorderRadius.circular(20),
@@ -175,7 +174,7 @@ class BloodDonationResult extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(10, 5, 10, 20),
         child: Card(
           elevation: 3,
-          color: Colors.white54,
+          color: Theme.of(context).canvasColor,
           child: Column(
             children: <Widget>[
               Expanded(
