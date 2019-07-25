@@ -56,7 +56,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AuthenticationBloc>(
-      bloc: authenticationBloc,
       child: BlocBuilder<ChangeThemeEvent, ChangeThemeState>(
         bloc: changeThemeBloc,
         builder: (BuildContext context, ChangeThemeState state) {
@@ -104,7 +103,9 @@ class _MyAppState extends State<MyApp> {
             theme: state.themeData,
           );
         },
-      ),
+      ), builder: (BuildContext context) {
+        return authenticationBloc;
+      },
     );
   }
 }
