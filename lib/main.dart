@@ -103,7 +103,8 @@ class _MyAppState extends State<MyApp> {
             theme: state.themeData,
           );
         },
-      ), builder: (BuildContext context) {
+      ),
+      builder: (BuildContext context) {
         return authenticationBloc;
       },
     );

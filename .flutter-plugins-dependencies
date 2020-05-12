@@ -1,0 +1,1 @@
+{"_info":"// This is a generated file; do not edit or check into version control.","dependencyGraph":[{"name":"flutter_image_compress","dependencies":[]},{"name":"fluttertoast","dependencies":[]},{"name":"image_cropper","dependencies":[]},{"name":"image_picker","dependencies":[]},{"name":"shared_preferences","dependencies":[]},{"name":"webview_flutter","dependencies":[]}]}
