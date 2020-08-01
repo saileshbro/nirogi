@@ -287,7 +287,7 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 elevation: 5,
                 child: Center(
-                  child: state is SignupLoadingState
+                  child: state is LoginLoadingState
                       ? CircularProgressIndicator(
                           backgroundColor: Colors.pink,
                         )

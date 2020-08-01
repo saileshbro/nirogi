@@ -23,11 +23,11 @@ class _FirstAidPageState extends State<FirstAidPage> {
     _customController = ScrollController()
       ..addListener(
         () => setState(
-              () {
-                _isCollapsed =
-                    (_customController.offset <= kToolbarHeight) ? false : true;
-              },
-            ),
+          () {
+            _isCollapsed =
+                (_customController.offset <= kToolbarHeight) ? false : true;
+          },
+        ),
       );
   }
 
@@ -132,6 +132,8 @@ class _FirstAidPageState extends State<FirstAidPage> {
                                               .headline
                                               .copyWith(
                                                 color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16,
                                               ),
                                         ),
                                       ),

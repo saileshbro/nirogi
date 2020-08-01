@@ -37,13 +37,14 @@ class _ForumPageState extends State<ForumPage> {
         margin: EdgeInsets.only(bottom: 0.033 * height),
         child: FloatingActionButton(
           heroTag: 'createPost',
-          onPressed: () {
-            Navigator.push(
+          onPressed: () async {
+            await Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => CreatePost(),
               ),
             );
+            getPostsBloc.add(GetAllPostsEvent(sort: sort));
           },
           backgroundColor: Theme.of(context).canvasColor,
           child: PlusFloatingIcon(),

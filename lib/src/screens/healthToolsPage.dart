@@ -34,7 +34,6 @@ class HealthToolsPage extends StatelessWidget {
             crossAxisSpacing: 10.0,
             crossAxisCount: 2,
             mainAxisSpacing: 0,
-            childAspectRatio: 1.18,
             children: <Widget>[
               ToolCard(
                 imageUrl: "assets/images/icons/diet.png",
@@ -83,67 +82,58 @@ class IncompatibleFoods extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: Container(
-            height: 180,
-            child: InkWell(
-              child: Card(
-                elevation: 5,
-                color: Theme.of(context).canvasColor,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.only(top: 10, bottom: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Stack(
-                            children: <Widget>[
-                              Image.asset(
-                                'assets/images/icons/breakfast.png',
-                                width: 90,
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: Image.asset(
-                                  'assets/images/icons/close.png',
-                                  width: 30,
-                                  color: Colors.red[700],
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
+    return InkWell(
+      child: Card(
+        elevation: 5,
+        color: Theme.of(context).canvasColor,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: 10, bottom: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Stack(
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/images/icons/breakfast.png',
+                        width: 90,
                       ),
-                    ),
-                    Text(
-                      "Incompatible Foods",
-                      style: Theme.of(context).textTheme.body1.copyWith(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                      textAlign: TextAlign.center,
-                    )
-                  ],
-                ),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Image.asset(
+                          'assets/images/icons/close.png',
+                          width: 30,
+                          color: Colors.red[700],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return IncompatibleFoodsMenuPage();
-                    },
-                  ),
-                );
-              },
             ),
-          ),
+            Text(
+              "Incompatible Foods",
+              style: Theme.of(context).textTheme.body1.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+              textAlign: TextAlign.center,
+            )
+          ],
         ),
-      ],
+      ),
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return IncompatibleFoodsMenuPage();
+            },
+          ),
+        );
+      },
     );
   }
 }

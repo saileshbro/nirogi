@@ -149,6 +149,7 @@ class _EditProfileState extends State<EditProfile> {
                                   fontSize: 16,
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
+                                  color: Colors.black,
                                 ),
                                 decoration: InputDecoration(
                                   errorText: "",
@@ -181,6 +182,7 @@ class _EditProfileState extends State<EditProfile> {
                                   fontSize: 16,
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
+                                  color: Colors.black,
                                 ),
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
@@ -212,6 +214,7 @@ class _EditProfileState extends State<EditProfile> {
                                   fontSize: 16,
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
+                                  color: Colors.black,
                                 ),
                                 keyboardType: TextInputType.multiline,
                                 decoration: InputDecoration(

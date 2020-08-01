@@ -136,6 +136,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Column(
                                             children: <Widget>[
@@ -162,11 +164,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                               Container(
                                                 width: 120,
                                                 child: Text(
-                                                  loggedinUser.address ?? "",
+                                                  loggedinUser.address ??
+                                                      "JHAPA NEPAL",
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .body2
-                                                      .copyWith(fontSize: 15),
+                                                      .copyWith(
+                                                        fontSize: 15,
+                                                      ),
                                                   maxLines: 3,
                                                   overflow:
                                                       TextOverflow.ellipsis,
@@ -175,28 +180,18 @@ class _ProfilePageState extends State<ProfilePage> {
                                               ),
                                             ],
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 10),
-                                            child: OutlineButton(
-                                                borderSide: BorderSide(
-                                                  color: Colors.blue,
-                                                ),
-                                                onPressed: () {
-                                                  Navigator.pushNamed(
-                                                      context, '/editprofile');
-                                                },
-                                                child: Text(
-                                                  'Edit Profile',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .body2
-                                                      .copyWith(
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.w500),
-                                                )),
-                                          )
+                                          OutlineButton(
+                                            shape: CircleBorder(),
+                                            borderSide: BorderSide(
+                                              color: Colors.blue,
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pushNamed(
+                                                  context, '/editprofile');
+                                            },
+                                            child: Icon(Icons.edit,
+                                                color: Colors.blue),
+                                          ),
                                         ],
                                       ),
                                       SizedBox(
