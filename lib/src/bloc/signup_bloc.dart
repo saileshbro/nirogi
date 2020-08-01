@@ -22,7 +22,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       try {
         final user = await userRepository.signup(
             email: event.email, password: event.password, name: event.name);
-        authenticationBloc.dispatch(LoggedInEvent(
+        authenticationBloc.add(LoggedInEvent(
           token: user.token,
           name: user.name,
           imageUrl: user.imageUrl,

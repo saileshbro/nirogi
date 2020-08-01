@@ -12,6 +12,7 @@ import 'package:nirogi/src/screens/splashScreenPage.dart';
 import 'package:nirogi/src/widgets/loading_indicator.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
     runApp(MyApp(
@@ -36,33 +37,25 @@ class MyApp extends StatefulWidget {
 User loggedinUser;
 
 class _MyAppState extends State<MyApp> {
-  AuthenticationBloc authenticationBloc;
-
   @override
   void initState() {
     widget.changeThemeBloc.onDecideThemeChange();
-    authenticationBloc =
-        AuthenticationBloc(userRepository: widget.userRepository);
-    authenticationBloc.dispatch(AppStartedEvent());
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    authenticationBloc.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AuthenticationBloc>(
-      child: BlocBuilder<ChangeThemeEvent, ChangeThemeState>(
+      create: (context) =>
+          AuthenticationBloc(userRepository: widget.userRepository)
+            ..add(AppStartedEvent()),
+      child: BlocBuilder<ChangeThemeBloc, ChangeThemeState>(
         bloc: changeThemeBloc,
         builder: (BuildContext context, ChangeThemeState state) {
           return MaterialApp(
             title: 'Hami Nirogi',
-            home: BlocBuilder<AuthenticationEvent, AuthenticationState>(
-              bloc: authenticationBloc,
+            home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+              bloc: BlocProvider.of<AuthenticationBloc>(context),
               builder: (BuildContext context, AuthenticationState authstate) {
                 if (authstate is AuthenticationUninitialisedState) {
                   return SplashPage();
@@ -104,9 +97,6 @@ class _MyAppState extends State<MyApp> {
           );
         },
       ),
-      builder: (BuildContext context) {
-        return authenticationBloc;
-      },
     );
   }
 }

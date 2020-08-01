@@ -212,7 +212,6 @@ class _BmiHistoryState extends State<BmiHistory> {
                     msg: state.message,
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.BOTTOM,
-                    timeInSecForIos: 1,
                     backgroundColor: Colors.black,
                     textColor: Colors.white,
                     fontSize: 16.0);
@@ -228,7 +227,6 @@ class _BmiHistoryState extends State<BmiHistory> {
                     msg: state.error,
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.BOTTOM,
-                    timeInSecForIos: 1,
                     backgroundColor: Colors.red,
                     textColor: Colors.white,
                     fontSize: 16.0);
@@ -259,7 +257,7 @@ class _BmiHistoryState extends State<BmiHistory> {
             FlatButton(
               color: Colors.transparent,
               onPressed: () {
-                deleteBmiBloc.dispatch(BmiClearEvent());
+                deleteBmiBloc.add(BmiClearEvent());
               },
               child: Text(
                 'Delete',

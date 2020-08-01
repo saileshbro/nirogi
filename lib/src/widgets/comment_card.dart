@@ -74,7 +74,7 @@ class _CommentCardState extends State<CommentCard> {
                     postId: widget.comment.postid);
                 Navigator.of(context).pop();
                 setState(() {
-                  getAllCommentsBloc.dispatch(
+                  getAllCommentsBloc.add(
                     GetAllCommentsEvent(
                       sort: 'time',
                       postId: widget.comment.postid,
@@ -239,7 +239,7 @@ class _CommentCardState extends State<CommentCard> {
                   onTap: widget.comment.voteStatus == 1
                       ? null
                       : () {
-                          voteBloc.dispatch(CommentUpvoteEvent(
+                          voteBloc.add(CommentUpvoteEvent(
                               postId: widget.comment.postid,
                               commentId: widget.comment.commentId));
                         },
@@ -267,7 +267,7 @@ class _CommentCardState extends State<CommentCard> {
                   onTap: widget.comment.voteStatus == -1
                       ? null
                       : () {
-                          voteBloc.dispatch(CommentDownVoteEvent(
+                          voteBloc.add(CommentDownVoteEvent(
                               postId: widget.comment.postid,
                               commentId: widget.comment.commentId));
                         },
@@ -324,7 +324,7 @@ class _CommentCardState extends State<CommentCard> {
                   onTap: widget.comment.voteStatus == 1
                       ? null
                       : () {
-                          voteBloc.dispatch(CommentUpvoteEvent(
+                          voteBloc.add(CommentUpvoteEvent(
                               commentId: widget.comment.commentId,
                               postId: widget.comment.postid));
                         },
@@ -352,7 +352,7 @@ class _CommentCardState extends State<CommentCard> {
                   onTap: widget.comment.voteStatus == -1
                       ? null
                       : () {
-                          voteBloc.dispatch(CommentDownVoteEvent(
+                          voteBloc.add(CommentDownVoteEvent(
                             commentId: widget.comment.commentId,
                             postId: widget.comment.postid,
                           ));

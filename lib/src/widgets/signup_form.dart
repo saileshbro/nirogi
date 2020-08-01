@@ -43,7 +43,7 @@ class _SignupFormState extends State<SignupForm> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    return BlocBuilder<SignupEvent, SignupState>(
+    return BlocBuilder<SignupBloc, SignupState>(
       bloc: _signupBloc,
       builder: (BuildContext context, SignupState state) {
         if (state is SignupFailureState) {
@@ -52,7 +52,6 @@ class _SignupFormState extends State<SignupForm> {
                 msg: state.error,
                 toastLength: Toast.LENGTH_SHORT,
                 gravity: ToastGravity.BOTTOM,
-                timeInSecForIos: 1,
                 backgroundColor: Colors.red,
                 textColor: Colors.white,
                 fontSize: 16.0);
@@ -211,7 +210,7 @@ class _SignupFormState extends State<SignupForm> {
                     email = _emailKey.currentState.value;
                     password = _passwordKey.currentState.value;
                     name = _name.currentState.value;
-                    _signupBloc.dispatch(
+                    _signupBloc.add(
                       SignupButtonPressedEvent(
                         email: email,
                         password: password,

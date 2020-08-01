@@ -57,7 +57,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 Navigator.popUntil(context, ModalRoute.withName('/'));
                 setState(() {
                   BlocProvider.of<AuthenticationBloc>(context)
-                      .dispatch(LoggedOutEvent());
+                      .add(LoggedOutEvent());
                 });
               },
               child: Text(
@@ -122,8 +122,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Divider(
                         height: 10,
-                        color: changeThemeBloc.currentState.themeData ==
-                                kLightTheme
+                        color: changeThemeBloc.state.themeData == kLightTheme
                             ? Colors.blueGrey[900].withOpacity(0.5)
                             : Colors.blueGrey[100].withOpacity(0.5),
                       ),
@@ -138,8 +137,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Divider(
                         height: 10,
-                        color: changeThemeBloc.currentState.themeData ==
-                                kLightTheme
+                        color: changeThemeBloc.state.themeData == kLightTheme
                             ? Colors.blueGrey[900].withOpacity(0.5)
                             : Colors.blueGrey[100].withOpacity(0.5),
                       ),
@@ -154,8 +152,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Divider(
                         height: 10,
-                        color: changeThemeBloc.currentState.themeData ==
-                                kLightTheme
+                        color: changeThemeBloc.state.themeData == kLightTheme
                             ? Colors.blueGrey[900].withOpacity(0.5)
                             : Colors.blueGrey[100].withOpacity(0.5),
                       ),
@@ -168,8 +165,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Divider(
                         height: 10,
-                        color: changeThemeBloc.currentState.themeData ==
-                                kLightTheme
+                        color: changeThemeBloc.state.themeData == kLightTheme
                             ? Colors.blueGrey[900].withOpacity(0.5)
                             : Colors.blueGrey[100].withOpacity(0.5),
                       ),
@@ -205,8 +201,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                     height: 60,
                                     width: 60,
                                   ),
-                                  changeThemeBloc.currentState.themeData ==
-                                          kLightTheme
+                                  changeThemeBloc.state.themeData == kLightTheme
                                       ? Positioned(
                                           top: 10,
                                           left: 10,
@@ -242,8 +237,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                     height: 60,
                                     width: 60,
                                   ),
-                                  changeThemeBloc.currentState.themeData ==
-                                          kDarkTheme
+                                  changeThemeBloc.state.themeData == kDarkTheme
                                       ? Positioned(
                                           top: 10,
                                           left: 10,
@@ -277,7 +271,7 @@ class _AppDrawerState extends State<AppDrawer> {
     if (route != '/logout') {
       return Container(
         color: ModalRoute.of(context).settings.name == route
-            ? changeThemeBloc.currentState.themeData.highlightColor
+            ? changeThemeBloc.state.themeData.highlightColor
             : Colors.transparent,
         child: ListTile(
           onTap: ModalRoute.of(context).settings.name != route
@@ -300,7 +294,7 @@ class _AppDrawerState extends State<AppDrawer> {
     } else if (route == '/logout') {
       return Container(
         color: ModalRoute.of(context).settings.name == route
-            ? changeThemeBloc.currentState.themeData.highlightColor
+            ? changeThemeBloc.state.themeData.highlightColor
             : Colors.transparent,
         child: ListTile(
           onTap: _showLogoutModal,

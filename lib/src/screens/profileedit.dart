@@ -263,12 +263,11 @@ class _EditProfileState extends State<EditProfile> {
                                     msg: "Updated. Please re-authenticate.",
                                     toastLength: Toast.LENGTH_SHORT,
                                     gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIos: 1,
                                     backgroundColor: Colors.black,
                                     textColor: Colors.white,
                                     fontSize: 16.0);
                                 BlocProvider.of<AuthenticationBloc>(context)
-                                    .dispatch(LoggedOutEvent());
+                                    .add(LoggedOutEvent());
                                 Navigator.pop(context);
                                 Navigator.pop(context);
                                 return Text(
@@ -285,7 +284,6 @@ class _EditProfileState extends State<EditProfile> {
                                     msg: errstate.error,
                                     toastLength: Toast.LENGTH_SHORT,
                                     gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIos: 1,
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                     fontSize: 16.0);
@@ -303,8 +301,8 @@ class _EditProfileState extends State<EditProfile> {
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
-                              signupBloc.dispatch(
-                                  UpdateProfileEvent(user: updateuser));
+                              signupBloc
+                                  .add(UpdateProfileEvent(user: updateuser));
                             }
                           },
                         ),

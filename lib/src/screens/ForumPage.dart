@@ -19,13 +19,13 @@ class _ForumPageState extends State<ForumPage> {
   @override
   void initState() {
     super.initState();
-    getPostsBloc.dispatch(GetAllPostsEvent(sort: sort));
+    getPostsBloc.add(GetAllPostsEvent(sort: sort));
   }
 
   @override
   void dispose() {
     super.dispose();
-    getPostsBloc.dispose();
+    getPostsBloc.close();
   }
 
   @override
@@ -72,7 +72,7 @@ class _ForumPageState extends State<ForumPage> {
                 setState(() {
                   sort = choice.sort;
                 });
-                getPostsBloc.dispatch(GetAllPostsEvent(sort: sort));
+                getPostsBloc.add(GetAllPostsEvent(sort: sort));
               }
             },
             itemBuilder: (BuildContext context) {
@@ -184,7 +184,7 @@ class __BuildPostsListState extends State<_BuildPostsList> {
             bottom: 0.01 * height),
         child: RefreshIndicator(
           onRefresh: () async {
-            widget.getPostsBloc.dispatch(GetAllPostsEvent(sort: widget.sort));
+            widget.getPostsBloc.add(GetAllPostsEvent(sort: widget.sort));
           },
           child: ListView.separated(
             shrinkWrap: true,

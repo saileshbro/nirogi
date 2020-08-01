@@ -148,7 +148,7 @@ class _ShowBMIState extends State<ShowBMI> {
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
-                    bmibloc.dispatch(
+                    bmibloc.add(
                       BmiAddevent(
                         bmi: Bmi(value: widget.bmi),
                       ),
@@ -165,7 +165,6 @@ class _ShowBMIState extends State<ShowBMI> {
                               msg: state.message,
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.BOTTOM,
-                              timeInSecForIos: 1,
                               backgroundColor: Colors.black,
                               textColor: Colors.white,
                               fontSize: 16.0);
@@ -175,7 +174,6 @@ class _ShowBMIState extends State<ShowBMI> {
                               msg: state.error,
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.BOTTOM,
-                              timeInSecForIos: 1,
                               backgroundColor: Colors.red,
                               textColor: Colors.white,
                               fontSize: 16.0);

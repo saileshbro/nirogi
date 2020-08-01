@@ -26,7 +26,7 @@ class _SymptomSearchPageState extends State<SymptomSearchPage> {
   @override
   void dispose() {
     super.dispose();
-    searchBloc.dispose();
+    searchBloc.close();
   }
 
   @override
@@ -38,7 +38,7 @@ class _SymptomSearchPageState extends State<SymptomSearchPage> {
           onFieldSubmitted: (value) {
             if (_key.currentState.validate()) {
               _key.currentState.save();
-              searchBloc.dispatch(SymptomSearchEvent(query: searchQuery));
+              searchBloc.add(SymptomSearchEvent(query: searchQuery));
             }
           },
           key: _key,
@@ -77,7 +77,7 @@ class _SymptomSearchPageState extends State<SymptomSearchPage> {
               onPressed: () {
                 if (_key.currentState.validate()) {
                   _key.currentState.save();
-                  searchBloc.dispatch(SymptomSearchEvent(query: searchQuery));
+                  searchBloc.add(SymptomSearchEvent(query: searchQuery));
                 }
               },
             ),

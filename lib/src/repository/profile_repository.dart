@@ -164,7 +164,8 @@ class ProfileRepository {
     try {
       Dio dio = new Dio();
       FormData formdata = new FormData();
-      formdata.add("avatar", new UploadFileInfo(image, (image.path)));
+      // formdata.files.add({"avatar"new UploadFileInfo(image, (image.path))});
+      // formdata.files.add(new MapEntry('avatar', new UploadFileInfo(image, (image.path))))
       final response = await dio.post(
         "$baseUrl/api/users/me/avatar",
         data: formdata,

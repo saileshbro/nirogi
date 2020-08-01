@@ -42,7 +42,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _onFocusChanged() {
-    _loginBloc.dispatch((LoginInitialEvent()));
+    _loginBloc.add((LoginInitialEvent()));
   }
 
   String email;
@@ -106,8 +106,7 @@ class _LoginFormState extends State<LoginForm> {
                     if (_key.currentState.validate()) {
                       _key.currentState.save();
 
-                      managePasswordBloc
-                          .dispatch(ForgetPasswordEvent(email: email));
+                      managePasswordBloc.add(ForgetPasswordEvent(email: email));
                     }
                   },
                   child: BlocBuilder(
@@ -130,7 +129,6 @@ class _LoginFormState extends State<LoginForm> {
                             msg: state.message,
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.BOTTOM,
-                            timeInSecForIos: 1,
                             backgroundColor: Colors.black,
                             textColor: Colors.white,
                             fontSize: 16.0);
@@ -146,7 +144,6 @@ class _LoginFormState extends State<LoginForm> {
                             msg: state.error,
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.BOTTOM,
-                            timeInSecForIos: 1,
                             backgroundColor: Colors.red,
                             textColor: Colors.white,
                             fontSize: 16.0);
@@ -171,7 +168,7 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    return BlocBuilder<LoginEvent, LoginState>(
+    return BlocBuilder<LoginBloc, LoginState>(
       bloc: _loginBloc,
       builder: (BuildContext context, LoginState state) {
         if (state is LoginFailureState) {
@@ -179,7 +176,6 @@ class _LoginFormState extends State<LoginForm> {
               msg: state.error,
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.BOTTOM,
-              timeInSecForIos: 1,
               backgroundColor: Colors.red,
               textColor: Colors.white,
               fontSize: 16.0);
@@ -307,7 +303,7 @@ class _LoginFormState extends State<LoginForm> {
                   if (_formKey.currentState.validate()) {
                     user.email = _emailKey.currentState.value;
                     user.password = _passwordKey.currentState.value;
-                    _loginBloc.dispatch(LoginButtonPressedEvent(
+                    _loginBloc.add(LoginButtonPressedEvent(
                         email: user.email, password: user.password));
                   }
                 },

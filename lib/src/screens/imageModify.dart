@@ -26,8 +26,6 @@ class _ModifyImageState extends State<ModifyImage> {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     File croppedFile = await ImageCropper.cropImage(
       sourcePath: image.path,
-      ratioX: 1.0,
-      ratioY: 1.0,
       maxWidth: 512,
       maxHeight: 512,
     );
@@ -139,7 +137,6 @@ class _ModifyImageState extends State<ModifyImage> {
                         msg: state.message,
                         toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.BOTTOM,
-                        timeInSecForIos: 1,
                         backgroundColor: Colors.black,
                         textColor: Colors.white,
                         fontSize: 16.0);
@@ -154,7 +151,6 @@ class _ModifyImageState extends State<ModifyImage> {
                         msg: state.error,
                         toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.BOTTOM,
-                        timeInSecForIos: 1,
                         backgroundColor: Colors.red,
                         textColor: Colors.white,
                         fontSize: 16.0);
@@ -178,8 +174,7 @@ class _ModifyImageState extends State<ModifyImage> {
                   height: 30,
                 ),
                 onPressed: () {
-                  uploadBloc
-                      .dispatch(UploadProfilePicture(uploadImage: _image));
+                  uploadBloc.add(UploadProfilePicture(uploadImage: _image));
                 },
               )
             ],

@@ -26,7 +26,7 @@ class _ViewProfileState extends State<ViewProfile> {
   @override
   void initState() {
     super.initState();
-    getPostsBloc.dispatch(GetUsersPostsEvent(userId: widget.userId));
+    getPostsBloc.add(GetUsersPostsEvent(userId: widget.userId));
   }
 
   @override
@@ -200,8 +200,8 @@ class _ViewProfileState extends State<ViewProfile> {
                       final posts = stateAsPostsFetchedState.posts;
                       return RefreshIndicator(
                         onRefresh: () {
-                          getPostsBloc.dispatch(
-                              GetUsersPostsEvent(userId: widget.userId));
+                          getPostsBloc
+                              .add(GetUsersPostsEvent(userId: widget.userId));
                         },
                         child: ListView.separated(
                           shrinkWrap: true,

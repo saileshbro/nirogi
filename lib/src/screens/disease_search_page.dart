@@ -25,7 +25,7 @@ class _DiseaseSearchPageState extends State<DiseaseSearchPage> {
   @override
   void dispose() {
     super.dispose();
-    searchBloc.dispose();
+    searchBloc.close();
   }
 
   @override
@@ -38,7 +38,7 @@ class _DiseaseSearchPageState extends State<DiseaseSearchPage> {
             if (_key.currentState.validate()) {
               _key.currentState.save();
 
-              searchBloc.dispatch(DiseaseSearchEvent(query: searchQuery));
+              searchBloc.add(DiseaseSearchEvent(query: searchQuery));
             }
           },
           key: _key,
@@ -77,7 +77,7 @@ class _DiseaseSearchPageState extends State<DiseaseSearchPage> {
               onPressed: () {
                 if (_key.currentState.validate()) {
                   _key.currentState.save();
-                  searchBloc.dispatch(DiseaseSearchEvent(query: searchQuery));
+                  searchBloc.add(DiseaseSearchEvent(query: searchQuery));
                 }
               },
             ),

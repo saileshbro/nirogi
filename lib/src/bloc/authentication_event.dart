@@ -1,13 +1,14 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-abstract class AuthenticationEvent extends Equatable {
-  AuthenticationEvent([List props = const []]) : super(props);
-}
+abstract class AuthenticationEvent extends Equatable {}
 
 class AppStartedEvent extends AuthenticationEvent {
   @override
   String toString() => 'AppStarted';
+
+  @override
+  List<Object> get props => null;
 }
 
 class LoggedInEvent extends AuthenticationEvent {
@@ -22,14 +23,19 @@ class LoggedInEvent extends AuthenticationEvent {
       @required this.name,
       this.imageUrl,
       this.address,
-      @required this.email})
-      : super([token, name, imageUrl, address, email]);
+      @required this.email});
 
   @override
   String toString() => 'LoggedIn { token: $token }';
+
+  @override
+  List<Object> get props => [token, name, imageUrl, address, email];
 }
 
 class LoggedOutEvent extends AuthenticationEvent {
   @override
   String toString() => 'LoggedOut';
+
+  @override
+  List<Object> get props => null;
 }

@@ -4,9 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bloc/bloc.dart';
 
 class ChangeThemeBloc extends Bloc<ChangeThemeEvent, ChangeThemeState> {
-  void onLightThemeChange() => dispatch(LightTheme());
-  void onDarkThemeChange() => dispatch(DarkTheme());
-  void onDecideThemeChange() => dispatch(DecideTheme());
+  void onLightThemeChange() => add(LightTheme());
+  void onDarkThemeChange() => add(DarkTheme());
+  void onDecideThemeChange() => add(DecideTheme());
   @override
   ChangeThemeState get initialState => ChangeThemeState.lightTheme();
 

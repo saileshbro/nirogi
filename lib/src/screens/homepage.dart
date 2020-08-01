@@ -33,11 +33,11 @@ class _HomePageState extends State<HomePage> {
     _customController = ScrollController()
       ..addListener(
         () => setState(
-              () {
-                _isCollapsed =
-                    (_customController.offset <= kToolbarHeight) ? false : true;
-              },
-            ),
+          () {
+            _isCollapsed =
+                (_customController.offset <= kToolbarHeight) ? false : true;
+          },
+        ),
       );
   }
 
@@ -360,7 +360,7 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: Image.asset(
-                      changeThemeBloc.currentState.themeData == kDarkTheme
+                      changeThemeBloc.state.themeData == kDarkTheme
                           ? 'assets/images/logos/brand-logo-light.png'
                           : 'assets/images/logos/brand-logo-dark.png',
                       fit: BoxFit.contain,

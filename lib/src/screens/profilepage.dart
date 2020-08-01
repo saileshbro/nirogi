@@ -20,7 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    getPostsBloc.dispatch(GetAllMyPostsEvent());
+    getPostsBloc.add(GetAllMyPostsEvent());
   }
 
   @override
@@ -54,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: FloatingActionButton(
                 heroTag: 'createPost',
                 onPressed: () {
-                  getPostsBloc.dispose();
+                  getPostsBloc.close();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -321,7 +321,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             final posts = stateAsPostsFetchedState.posts;
                             return RefreshIndicator(
                               onRefresh: () async {
-                                getPostsBloc.dispatch(GetAllMyPostsEvent());
+                                getPostsBloc.add(GetAllMyPostsEvent());
                               },
                               child: ListView.separated(
                                 shrinkWrap: true,

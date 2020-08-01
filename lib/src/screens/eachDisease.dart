@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:nirogi/src/models/models.dart';
 import 'package:nirogi/src/repository/repositories.dart';
 import 'package:nirogi/src/themes/scrollOverlay.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:html/dom.dart' as dom;
+import 'package:flutter_html/flutter_html.dart';
 
 class EachDisease extends StatefulWidget {
   final Disease disease;
@@ -25,11 +25,11 @@ class _EachDiseaseState extends State<EachDisease> {
     _customController = ScrollController()
       ..addListener(
         () => setState(
-              () {
-                _isCollapsed =
-                    (_customController.offset <= kToolbarHeight) ? false : true;
-              },
-            ),
+          () {
+            _isCollapsed =
+                (_customController.offset <= kToolbarHeight) ? false : true;
+          },
+        ),
       );
   }
 

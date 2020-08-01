@@ -21,7 +21,7 @@ class _CategoryForumPageState extends State<CategoryForumPage> {
   @override
   void initState() {
     super.initState();
-    getPostsBloc.dispatch(GetCategoryPostsEvent(
+    getPostsBloc.add(GetCategoryPostsEvent(
       categoryId: widget.category.categoryId,
     ));
   }
@@ -40,8 +40,8 @@ class _CategoryForumPageState extends State<CategoryForumPage> {
               context,
               MaterialPageRoute(
                 builder: (context) => CreatePost(
-                      categoryKey: widget.category.categoryId,
-                    ),
+                  categoryKey: widget.category.categoryId,
+                ),
               ),
             );
           },
@@ -158,7 +158,7 @@ class __BuildPostsListState extends State<_BuildPostsList> {
         child: RefreshIndicator(
           onRefresh: () async {
             widget.getPostsBloc
-                .dispatch(GetCategoryPostsEvent(categoryId: widget.categoryId));
+                .add(GetCategoryPostsEvent(categoryId: widget.categoryId));
           },
           child: ListView.separated(
             shrinkWrap: true,

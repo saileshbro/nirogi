@@ -26,7 +26,7 @@ class _DrugSearchPageState extends State<DrugSearchPage> {
   @override
   void dispose() {
     super.dispose();
-    searchBloc.dispose();
+    searchBloc.close();
   }
 
   @override
@@ -38,7 +38,7 @@ class _DrugSearchPageState extends State<DrugSearchPage> {
           onFieldSubmitted: (value) {
             if (_key.currentState.validate()) {
               _key.currentState.save();
-              searchBloc.dispatch(DrugSearchEvent(query: searchQuery));
+              searchBloc.add(DrugSearchEvent(query: searchQuery));
             }
           },
           key: _key,
@@ -77,7 +77,7 @@ class _DrugSearchPageState extends State<DrugSearchPage> {
               onPressed: () {
                 if (_key.currentState.validate()) {
                   _key.currentState.save();
-                  searchBloc.dispatch(DrugSearchEvent(query: searchQuery));
+                  searchBloc.add(DrugSearchEvent(query: searchQuery));
                 }
               },
             ),

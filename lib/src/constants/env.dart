@@ -1,1 +1,1 @@
-final String baseUrl = "http://192.168.1.235:8000";
+final String baseUrl = "https://nirogi.herokuapp.com";

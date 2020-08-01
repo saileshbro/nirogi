@@ -8,6 +8,9 @@ class AuthenticationUninitialisedState extends AuthenticationState {
   String toString() {
     return "AuthenticationUninitialisedState";
   }
+
+  @override
+  List<Object> get props => null;
 }
 
 class AuthenticationAuthenticatedState extends AuthenticationState {
@@ -22,16 +25,25 @@ class AuthenticationAuthenticatedState extends AuthenticationState {
       @required this.address,
       @required this.token,
       @required this.imageUrl});
+
   @override
-  String toString() => 'AuthenticationAuthenticated';
+  List<Object> get props => [
+        name,
+        email,
+        address,
+        imageUrl,
+        token,
+      ];
 }
 
 class AuthenticationUnauthenticatedState extends AuthenticationState {
   @override
   String toString() => 'AuthenticationUnauthenticated';
+  List<Object> get props => null;
 }
 
 class AuthenticationLoadingState extends AuthenticationState {
   @override
   String toString() => 'AuthenticationLoading';
+  List<Object> get props => null;
 }

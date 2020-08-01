@@ -207,7 +207,7 @@ class _EditPostState extends State<EditPost> {
                               if (_createPostField.currentState.validate()) {
                                 _createPostField.currentState.save();
                                 widget.post.category = categoryValue;
-                                addPostBloc.dispatch(EditPostEvent(
+                                addPostBloc.add(EditPostEvent(
                                   post: widget.post,
                                   postId: widget.post.postId,
                                 ));
@@ -246,7 +246,6 @@ class _EditPostState extends State<EditPost> {
                           msg: state.message,
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
-                          timeInSecForIos: 1,
                           backgroundColor: Colors.black,
                           textColor: Colors.white,
                           fontSize: 16.0);
@@ -258,7 +257,6 @@ class _EditPostState extends State<EditPost> {
                           msg: errorstate.error,
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
-                          timeInSecForIos: 1,
                           backgroundColor: Colors.red,
                           textColor: Colors.white,
                           fontSize: 16.0);

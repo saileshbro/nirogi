@@ -38,7 +38,7 @@ class _EachPostState extends State<EachPost> {
     comment = Comment();
     voteBloc = VoteBloc();
     getPostsBloc = GetPostsBloc();
-    getAllCommentsBloc.dispatch(GetAllCommentsEvent(
+    getAllCommentsBloc.add(GetAllCommentsEvent(
         postId: widget.post.postId, sort: dropdownValue.title));
     addPostBloc = PostBloc();
   }
@@ -82,11 +82,10 @@ class _EachPostState extends State<EachPost> {
             FlatButton(
               color: Colors.transparent,
               onPressed: () {
-                addPostBloc
-                    .dispatch(DeletePostEvent(postId: widget.post.postId));
+                addPostBloc.add(DeletePostEvent(postId: widget.post.postId));
                 Navigator.pop(context);
                 Navigator.pop(context);
-                getPostsBloc.dispatch(GetAllPostsEvent(sort: 'popular'));
+                getPostsBloc.add(GetAllPostsEvent(sort: 'popular'));
               },
               child: Text(
                 'Delete',
@@ -165,7 +164,7 @@ class _EachPostState extends State<EachPost> {
                         onPressed: () async {
                           if (_textFieldKey.currentState.validate()) {
                             comment.comment = _textFieldKey.currentState.value;
-                            commentBloc.dispatch(CreateNewCommentevent(
+                            commentBloc.add(CreateNewCommentevent(
                               comment: comment,
                               postId: widget.post.postId,
                             ));
@@ -184,11 +183,10 @@ class _EachPostState extends State<EachPost> {
                                 msg: state.message,
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.BOTTOM,
-                                timeInSecForIos: 1,
                                 backgroundColor: Colors.black,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
-                            getAllCommentsBloc.dispatch(GetAllCommentsEvent(
+                            getAllCommentsBloc.add(GetAllCommentsEvent(
                                 postId: widget.post.postId,
                                 sort: dropdownValue.title));
                             return SizedBox();
@@ -198,7 +196,6 @@ class _EachPostState extends State<EachPost> {
                                 msg: errorstate.error,
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.BOTTOM,
-                                timeInSecForIos: 1,
                                 backgroundColor: Colors.black,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
@@ -494,7 +491,6 @@ class _EachPostState extends State<EachPost> {
                                 msg: state.message,
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.BOTTOM,
-                                timeInSecForIos: 1,
                                 backgroundColor: Colors.black,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
@@ -506,7 +502,6 @@ class _EachPostState extends State<EachPost> {
                                 msg: errorstate.error,
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.BOTTOM,
-                                timeInSecForIos: 1,
                                 backgroundColor: Colors.red,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
@@ -554,7 +549,7 @@ class _EachPostState extends State<EachPost> {
                           setState(() {
                             dropdownValue = choice;
                           });
-                          getAllCommentsBloc.dispatch(GetAllCommentsEvent(
+                          getAllCommentsBloc.add(GetAllCommentsEvent(
                               postId: widget.post.postId,
                               sort: dropdownValue.title));
                         },
@@ -625,8 +620,8 @@ class _EachPostState extends State<EachPost> {
                   onTap: widget.post.voteStatus == 1
                       ? null
                       : () {
-                          voteBloc.dispatch(
-                              PostUpvoteEvent(postId: widget.post.postId));
+                          voteBloc
+                              .add(PostUpvoteEvent(postId: widget.post.postId));
                         },
                   child: Image.asset(
                     'assets/images/icons/upArrow.png',
@@ -652,7 +647,7 @@ class _EachPostState extends State<EachPost> {
                   onTap: widget.post.voteStatus == -1
                       ? null
                       : () {
-                          voteBloc.dispatch(
+                          voteBloc.add(
                               PostDownVoteEvent(postId: widget.post.postId));
                         },
                   child: Image.asset(
@@ -708,8 +703,8 @@ class _EachPostState extends State<EachPost> {
                   onTap: widget.post.voteStatus == 1
                       ? null
                       : () {
-                          voteBloc.dispatch(
-                              PostUpvoteEvent(postId: widget.post.postId));
+                          voteBloc
+                              .add(PostUpvoteEvent(postId: widget.post.postId));
                         },
                   child: Image.asset(
                     'assets/images/icons/upArrow.png',
@@ -735,7 +730,7 @@ class _EachPostState extends State<EachPost> {
                   onTap: widget.post.voteStatus == -1
                       ? null
                       : () {
-                          voteBloc.dispatch(
+                          voteBloc.add(
                               PostDownVoteEvent(postId: widget.post.postId));
                         },
                   child: Image.asset(
